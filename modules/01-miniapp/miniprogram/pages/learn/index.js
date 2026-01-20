@@ -35,6 +35,7 @@ Page({
     objQuestionId:[],
     arrQuestionId: [],
     arrcheckQuestion:{},
+    starshow: !1,
   },
 
   /**
@@ -133,6 +134,7 @@ Page({
           objQuestionId: objQuestionId,
           arrcheckQuestion: arrcheckQuestion
         })
+        that.syncFavoriteStatus()
         setTimeout(function () {
           wx.hideLoading()
         }, 600)
@@ -266,6 +268,7 @@ Page({
       indexInd: n,
       current: r
     })
+    this.syncFavoriteStatus()
     console.log(o)
   },
   selectAnswer: function(t) {
@@ -416,6 +419,51 @@ Page({
       })
     }, 500)
 
+    this.syncFavoriteStatus()
+
+  },
+
+  getFavoriteStorageKey() {
+    return `fav_${this.data.cateid}`
+  },
+
+  getFavoriteIdList() {
+    const raw = wx.getStorageSync(this.getFavoriteStorageKey())
+    return Array.isArray(raw) ? raw : []
+  },
+
+  syncFavoriteStatus() {
+    const questionList = this.data.questionList || []
+    const current = questionList[this.data.indexInd]
+    if (!current || !current.objectId) {
+      this.setData({ starshow: !1 })
+      return
+    }
+    const list = this.getFavoriteIdList()
+    this.setData({ starshow: list.indexOf(current.objectId) !== -1 })
+  },
+
+  starcollect() {
+    const questionList = this.data.questionList || []
+    const current = questionList[this.data.indexInd]
+    if (!current || !current.objectId) return
+
+    const key = this.getFavoriteStorageKey()
+    const list = this.getFavoriteIdList()
+    const idx = list.indexOf(current.objectId)
+
+    if (idx === -1) {
+      list.push(current.objectId)
+      wx.setStorageSync(key, list)
+      this.setData({ starshow: !0 })
+      wx.showToast({ title: '已收藏', icon: 'success' })
+      return
+    }
+
+    list.splice(idx, 1)
+    wx.setStorageSync(key, list)
+    this.setData({ starshow: !1 })
+    wx.showToast({ title: '已取消收藏', icon: 'none' })
   },
   del_data: function(t) {
     var that = this

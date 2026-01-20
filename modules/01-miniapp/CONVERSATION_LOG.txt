@@ -12,3 +12,9 @@
 决定/结论：
 下一步：
 
+--- 2026-01-21 00:48 ---
+用户：继续。
+助手：在 `modules/01-miniapp` 下先执行 `git pull --rebase origin main`（无新改动）；按 MVP 的“收藏：收藏/取消收藏（先本地 storage）”补齐练习页收藏逻辑：点击底部栏可对当前题目收藏/取消收藏并落本地 `fav_<cateid>`。
+决定/结论：收藏先只做练习页本地存储闭环（不接后端、不做全局收藏列表页），先满足 MVP 可用与不报错。
+下一步：推送分支 `feat/01-miniapp-favorite-local-winE2`；在 `modules/99-hub/REQUESTS.md` 新增合并请求；后续再补“收藏入口页/列表”与考试页收藏（如需）。
+

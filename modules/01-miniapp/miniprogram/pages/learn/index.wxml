@@ -39,8 +39,8 @@
       </view>
     </view>
     <view bindtap="starcollect" class="h-right" wx:if="{{!iconInd}}">
-      <!-- <image src="/images/nav_test_icon_fav.png" wx:if="{{!starshow}}"></image>
-      <image src="/images/star-active.png" wx:if="{{starshow}}"></image> -->
+      <image src="/images/nav_test_icon_fav.png" wx:if="{{!starshow}}"></image>
+      <image src="/images/star-active.png" wx:if="{{starshow}}"></image>
       <text>{{menu}}</text>
     </view>
     <view bindtap="del_data" class="h-right" wx:if="{{iconInd}}">
