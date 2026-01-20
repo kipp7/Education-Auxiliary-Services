@@ -8,3 +8,5 @@
 - `modules/04-admin-console/CONVERSATION_LOG.txt`
 - `modules/99-hub/CONVERSATION_LOG.txt`
 
+历史快照（可选）：
+- `modules/99-hub/Conversation_History.txt`

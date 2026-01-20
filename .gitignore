@@ -5,7 +5,7 @@
 **/.vscode/
 **/*.log
 **/.env
+**/project.private.config.json
 
 # Node
 **/node_modules/
-
