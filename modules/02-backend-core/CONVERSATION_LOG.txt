@@ -21,3 +21,15 @@
 下一步：
 - 等待 99-hub 定稿 MVP 契约（`POST /auth/wechat`、题库读取、作答提交、进度查询），随后在本模块落地最小服务与路由实现。
 
+--- 2026-01-20 21:03 ---
+用户：按本模块 TASKS.md 顺序推进，完成本轮最小可交付并提交推送。
+助手：已先执行 git pull --rebase origin main；本轮最小可交付为新增本模块 README（明确范围/关键词/约束）。
+决定/结论：
+- 在 99-hub 未定稿接口契约前，本模块仅做不影响契约的准备工作，避免实现返工。
+下一步：
+- 99-hub 定稿契约后，从 POST /auth/wechat 开始落地最小服务与首批路由实现。
+
+补充：本轮执行 git pull --rebase origin main 失败（无法连接远程仓库）。
+
+补充：本轮 git push origin module/02-backend-core 失败（无法连接远程仓库），已在本地提交 commit 69ef0e4，待网络恢复后重试 push。
+
