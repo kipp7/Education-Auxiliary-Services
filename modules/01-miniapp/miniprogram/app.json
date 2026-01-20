@@ -3,6 +3,7 @@
     "pages/start/index",
     "pages/index/index",
     "pages/library/index",
+    "pages/library/unit/index",
     "pages/course/index",
     "pages/course/player",
     "pages/exam-menu/index",
