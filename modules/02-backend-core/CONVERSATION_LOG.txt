@@ -24,8 +24,7 @@
 --- 2026-01-21 01:12 ---
 里程碑：M2 最小服务骨架（mock）
 验收方式（路径）：
-- 启动：在 modules/02-backend-core 目录执行 
-pm run dev（需要本机已安装 Node/npm）
+- 启动：在 modules/02-backend-core 目录执行 `npm run dev`（需要本机已安装 Node/npm）
 - 健康检查：curl http://localhost:3000/health
 - 登录获取 token：curl -X POST http://localhost:3000/auth/wechat -H "Content-Type: application/json" -d '{"code":"demo"}'
 - 带 token 访问：curl http://localhost:3000/subjects -H "Authorization: Bearer demo-token"
