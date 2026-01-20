@@ -12,3 +12,21 @@
 风险/阻塞：
 下一步：
 
+
+--- 2026-01-21 01:14 ---
+同步来源（模块/分支）：feat/99-hub-m1m2-align-and-accept
+本次关键变化：
+- 在 modules/99-hub/REQUESTS.md 增补 M1/M2 对齐清单（契约形式/错误码/鉴权/题目结构/导入任务模型/最小接口集）
+- 使用 MCP（小程序 DevTools ws://localhost:9420）跑通 tab 全路径切换并留存截图
+验收路径（M1 - miniapp）：
+- 首页：/pages/index/index（截图：modules/99-hub/logs/miniapp-acceptance-home.png, ...home-2.png）
+- 题库：/pages/library/index（截图：modules/99-hub/logs/miniapp-acceptance-library.png）
+- 答题：/pages/exam-menu/index（截图：modules/99-hub/logs/miniapp-acceptance-exam-menu.png）
+- 我的：/pages/my/index（截图：modules/99-hub/logs/miniapp-acceptance-my.png）
+控制台日志要点：
+- WXML 警告：pages/my/index.wxml 存在 wx:key=\"{{index}}\"（建议改为 wx:key=\"index\"）
+风险/阻塞：
+- 题库/答题/我的页面可切换；尚未覆盖“注册/状态/做题(dati)/错题/收藏”等深链路页面的交互验收
+下一步：
+- 继续补全“题目通用数据结构”对齐表（Question IR ↔ API）
+- 由 01-miniapp 修正 wx:key 警告（写入 REQUESTS / 或由对应模块自修）
