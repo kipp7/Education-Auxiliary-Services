@@ -3,6 +3,7 @@ import { RequireAuth } from "./auth/RequireAuth";
 import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { PlaceholderPage } from "./pages/PlaceholderPage";
+import { QuestionBankPage } from "./questionBank/QuestionBankPage";
 
 export function App() {
   return (
@@ -20,7 +21,7 @@ export function App() {
         path="/question-bank"
         element={
           <RequireAuth>
-            <PlaceholderPage title="题库管理" />
+            <QuestionBankPage />
           </RequireAuth>
         }
       />
