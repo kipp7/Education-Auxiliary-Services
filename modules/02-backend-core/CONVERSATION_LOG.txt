@@ -55,3 +55,11 @@
 - 下一条任务（与 99-hub 定稿契约）已提供 OpenAPI 草案供评审。
 下一步：
 - 等 99-hub 定稿契约后再开始实现后端路由。
+
+--- 2026-01-21 00:24 ---
+用户：要求同步 main、确认 worktree、按 TASKS.md 做下一条未完成项，并提交到新 feat 分支推送，再在 99-hub 留合并请求。
+助手：已在 02-backend-core worktree 完成 /auth/wechat 草案细化（契约字段 + 接口说明）。
+决定/结论：
+- /auth/wechat 草案响应补充 expiresIn，并预留 userId/isNewUser 字段供 99-hub 定稿裁剪。
+下一步：
+- 99-hub 定稿后，在本模块开始落地最小服务与路由实现。

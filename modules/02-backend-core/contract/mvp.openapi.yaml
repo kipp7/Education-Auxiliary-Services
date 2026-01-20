@@ -57,13 +57,25 @@ components:
     AuthWechatResponse:
       type: object
       additionalProperties: false
-      required: [token]
+      required: [token, expiresIn]
       properties:
         token:
           type: string
           description: |
             草案：服务端签发的访问 token。
             传递方式建议：Authorization: Bearer <token>（需 99-hub 最终确认）。
+        expiresIn:
+          type: integer
+          minimum: 1
+          description: token 有效期（秒）
+        userId:
+          type: string
+          nullable: true
+          description: 草案：本系统用户 ID（若首次登录且未完成创建，可为空）
+        isNewUser:
+          type: boolean
+          nullable: true
+          description: 草案：是否首次登录创建用户
 
     Subject:
       type: object
