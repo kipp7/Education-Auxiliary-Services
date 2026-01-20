@@ -36,3 +36,9 @@
 决定/结论：保持 UI 入口不变，优先保证 Mock 数据下信息展示正确；后续接真实 API 时再统一字段。
 下一步：尝试 `git push origin module/01-miniapp`（若网络允许）；继续按 MVP 验证“首页→题库→练习/考试”闭环与错题/收藏本地存储。
 
+--- 2026-01-21 00:33 ---
+用户：要求进入模块目录后先 `git pull --rebase origin main`，再按 `TASKS.md` 做下一条未完成项；完成后新开 `feat/...` 分支提交推送，并在 `modules/99-hub/REQUESTS.md` 写合并请求。
+助手：已执行 `git pull --rebase origin main`（期间解决冲突并完成 rebase）；按 MVP 任务补齐路由参数安全性：将 `menu` 参数做 URL 编码，避免题库名称含空格/中文导致跳转异常（`pages/category` 与 `pages/exam-menu`）。
+决定/结论：优先保障 Mock 跑通链路的稳定性（导航参数安全），不引入跨模块改动。
+下一步：创建并推送分支 `feat/01-miniapp-mvp-urlencode-winE`；在 `modules/99-hub/REQUESTS.md` 提交合并请求；继续推进 MVP“首页→题库列表→练习模式”链路验证。
+
