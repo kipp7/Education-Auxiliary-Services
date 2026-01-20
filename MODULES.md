@@ -2,6 +2,7 @@
 
 ## 目录结构
 
+- `modules/00-shared/`：共享资产（接口契约、DTO、通用规范、跨模块复用）
 - `modules/01-miniapp/`：微信小程序（展示/做题/记录/我的/资讯等）
 - `modules/02-backend-core/`：后端核心（用户、权限、题库、作答记录 API）
 - `modules/03-importer/`：导入/解析（文件夹/zip 上传、解析、入库）
@@ -10,6 +11,7 @@
 
 ## 任务看板入口
 
+- `modules/00-shared/KEYWORDS.md`
 - `modules/01-miniapp/TASKS.md`
 - `modules/02-backend-core/TASKS.md`
 - `modules/03-importer/TASKS.md`
