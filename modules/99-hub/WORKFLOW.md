@@ -71,6 +71,19 @@ pwsh modules/99-hub/merge_queue.ps1 -DryRun -ForceFetch
 pwsh modules/99-hub/merge_queue.ps1 -ForceFetch
 ```
 
+### 守护模式（一直挂着）
+
+当你希望像“后端服务”一样一直运行：有新分支加入合并队列就自动合并。
+
+```powershell
+# 每 2 分钟检查一次合并队列，有待合并项就自动 merge+push
+pwsh modules/99-hub/merge_queue_daemon.ps1 -ForceFetch -IntervalSeconds 120
+```
+
+注意：
+- 只能启动 **一个** 守护进程；多开会相互抢占导致失败。
+- 如果出现冲突，脚本会报错并等待下个周期；需要人工处理冲突后再继续。
+
 约定：
 - 合并队列条目使用 `- [ ] \`feat/...\`` 表示待合并
 - 脚本会在成功后将其标记为 `- [x]` 并写入 `modules/99-hub/merge_queue.log`
