@@ -71,3 +71,11 @@
 - 继续以“契约先定稿”为前置，在定稿前仅输出可评审草案文档。
 下一步：
 - 等 99-hub 定稿契约后，再开始实现后端路由与数据层。
+
+--- 2026-01-21 00:49 ---
+用户：允许直接写入 modules/99-hub/REQUESTS.md 并继续。
+助手：已为分支 feat/02-backend-core-question-read-codex 在 99-hub REQUESTS.md 补充合并请求条目。
+决定/结论：
+- 合并请求条目已包含分支名与验收方式，便于总控快速评审。
+下一步：
+- 继续按 TASKS.md 下一项（POST /answers/submit 草案或进度接口草案）推进。

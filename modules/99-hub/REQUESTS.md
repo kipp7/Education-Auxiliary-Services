@@ -49,3 +49,15 @@
   - 阅读 `modules/02-backend-core/contract/auth.wechat.md`，确认请求/响应与 token 传递方式符合预期
   - 阅读 `modules/02-backend-core/contract/mvp.openapi.yaml`，确认 `AuthWechatResponse.required` 包含 `expiresIn`
 
+## 合并请求：补齐题库读取接口草案说明
+- 发起模块：`modules/02-backend-core`
+- 目标模块：`modules/99-hub`
+- 分支：`feat/02-backend-core-question-read-codex`
+- 变更点：新增题库读取接口草案说明文档：`modules/02-backend-core/contract/question.read.md`
+- 验收方式：
+  - 评审 `modules/02-backend-core/contract/question.read.md` 是否覆盖：
+    - `GET /subjects`
+    - `GET /packages?subjectId=...`
+    - `GET /chapters?packageId=...`
+    - `GET /questions?chapterId=...&mode=...&limit=...`
+
