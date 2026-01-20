@@ -28,3 +28,19 @@
 验收方式：
 - 评审 modules/02-backend-core/contract/auth.wechat.md 的请求/响应与 token 传递方式
 - 检查 OpenAPI 中 AuthWechatResponse 是否包含 expiresIn
+
+--- 2026-01-21 00:38 ---
+变更点：
+- 新增题库读取接口草案说明：modules/02-backend-core/contract/question.read.md
+
+日志：
+- git pull --rebase origin main：已执行（成功）
+
+截图：
+- 无（纯文档/契约草案变更）
+
+验收方式：
+- 评审 modules/02-backend-core/contract/question.read.md 是否覆盖 GET /subjects、/packages、/chapters、/questions 的参数与响应示例
+
+备注：
+- 本次按“只改本模块目录”执行，未直接修改 modules/99-hub/REQUESTS.md；如需合并请求条目，请由总控窗口补录。
