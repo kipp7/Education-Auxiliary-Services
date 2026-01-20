@@ -8,6 +8,14 @@
 - `modules/04-admin-console/`：管理端（如需要自建后台 UI）
 - `modules/99-hub/`：总控/集成（接口契约、联调清单、CI、Release notes）
 
+## 任务看板入口
+
+- `modules/01-miniapp/TASKS.md`
+- `modules/02-backend-core/TASKS.md`
+- `modules/03-importer/TASKS.md`
+- `modules/04-admin-console/TASKS.md`
+- `modules/99-hub/TASKS.md`
+
 ## 防冲突规则（强制）
 
 - 每个 Codex CLI 窗口只允许在自己模块目录内改动文件。
@@ -18,4 +26,3 @@
 
 - 每个模块用独立分支：`module/01-miniapp`、`module/02-backend-core` …
 - 合并到 `main` 只由总控窗口执行（避免多窗口同时改同一文件）。
-
