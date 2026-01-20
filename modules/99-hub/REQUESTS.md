@@ -13,3 +13,12 @@
 - 影响评估：
 ```
 
+
+## 对齐导入任务模型（ImportTask）
+- 发起模块：modules/03-importer
+- 目标模块：modules/99-hub（汇总）/ modules/02-backend-core
+- 原因：03-importer 已起草导入任务状态/字段，用于后续 GET /import/status 契约与落库实现
+- 期望改动：
+  - 由总控确认 ImportTask 字段与状态机口径（progress 精度、stage 列表、错误报告落地方式、createdBy 权限等）
+  - 需要时在 OpenSpec/接口契约中落地统一版本
+- 影响评估：涉及后端接口返回结构与任务表设计；若不统一，后续联调会频繁返工
