@@ -4,6 +4,8 @@ import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { PlaceholderPage } from "./pages/PlaceholderPage";
 import { QuestionBankPage } from "./questionBank/QuestionBankPage";
+import { ImportTaskDetailPage } from "./imports/ImportTaskDetailPage";
+import { ImportsListPage } from "./imports/ImportsListPage";
 
 export function App() {
   return (
@@ -29,7 +31,15 @@ export function App() {
         path="/imports"
         element={
           <RequireAuth>
-            <PlaceholderPage title="导入管理" />
+            <ImportsListPage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/imports/:taskId"
+        element={
+          <RequireAuth>
+            <ImportTaskDetailPage />
           </RequireAuth>
         }
       />
