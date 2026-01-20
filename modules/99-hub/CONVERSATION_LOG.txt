@@ -22,3 +22,14 @@
 下一步：
 - 网络恢复后补做 git pull --rebase origin main 并处理潜在冲突
 - 跟进 REQUESTS 两项对齐，推进 OpenSpec/契约落地与联调清单
+--- 2026-01-20 20:37 ---
+同步来源（模块/分支）：module/99-hub
+本次关键变化：
+- 按 TASKS.md 先推进“接口契约形式/状态”整理：新增 modules/99-hub/CONTRACT.md 作为契约推进单点入口（占位+待确认项）
+风险/阻塞：
+- 本机主工作区固定在 module/01-miniapp worktree，已为 99-hub 建立独立 worktree 以避免跨模块污染
+下一步：
+- 结合 modules/99-hub/REQUESTS.md 两条请求，补齐 OpenAPI 3.1 目录/发布方式与统一错误结构草案
+--- 2026-01-20 20:42 ---
+补充：
+- git push 因 github.com:443 网络不可达失败；待网络恢复后重试推送 module/99-hub。
