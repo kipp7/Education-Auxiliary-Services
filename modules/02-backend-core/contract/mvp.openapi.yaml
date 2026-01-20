@@ -1,0 +1,337 @@
+openapi: 3.1.0
+info:
+  title: 02-backend-core MVP API (Draft)
+  version: 0.1.0-draft
+  description: |
+    草案：用于 99-hub 讨论并定稿的 MVP 接口契约（非最终版本）。
+servers:
+  - url: https://example.invalid
+
+tags:
+  - name: auth
+    description: 认证/授权
+  - name: subjects
+    description: 科目
+  - name: packages
+    description: 题库包
+  - name: chapters
+    description: 章节
+  - name: questions
+    description: 题目
+  - name: answers
+    description: 作答
+  - name: progress
+    description: 进度
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    ErrorResponse:
+      type: object
+      additionalProperties: false
+      required: [code, message]
+      properties:
+        code:
+          type: string
+          description: 机器可读错误码（需 99-hub 定稿）。
+          examples: [UNAUTHORIZED, FORBIDDEN, INVALID_ARGUMENT, NOT_FOUND]
+        message:
+          type: string
+        requestId:
+          type: string
+          nullable: true
+
+    AuthWechatRequest:
+      type: object
+      additionalProperties: false
+      required: [code]
+      properties:
+        code:
+          type: string
+          description: 微信登录 code
+
+    AuthWechatResponse:
+      type: object
+      additionalProperties: false
+      required: [token]
+      properties:
+        token:
+          type: string
+          description: |
+            草案：服务端签发的访问 token。
+            传递方式建议：Authorization: Bearer <token>（需 99-hub 最终确认）。
+
+    Subject:
+      type: object
+      additionalProperties: false
+      required: [id, name]
+      properties:
+        id: { type: string }
+        name: { type: string }
+
+    Package:
+      type: object
+      additionalProperties: false
+      required: [id, subjectId, name]
+      properties:
+        id: { type: string }
+        subjectId: { type: string }
+        name: { type: string }
+
+    Chapter:
+      type: object
+      additionalProperties: false
+      required: [id, packageId, name]
+      properties:
+        id: { type: string }
+        packageId: { type: string }
+        name: { type: string }
+
+    Question:
+      type: object
+      additionalProperties: false
+      required: [id, chapterId, stem]
+      properties:
+        id: { type: string }
+        chapterId: { type: string }
+        stem: { type: string }
+        analysis:
+          type: string
+          nullable: true
+
+    AnswerSubmitRequest:
+      type: object
+      additionalProperties: false
+      required: [chapterId, answers]
+      properties:
+        chapterId: { type: string }
+        answers:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            required: [questionId, value]
+            properties:
+              questionId: { type: string }
+              value:
+                type: string
+                description: 作答内容（草案：统一字符串，最终可按题型细化）
+
+    AnswerSubmitResponse:
+      type: object
+      additionalProperties: false
+      required: [submitted]
+      properties:
+        submitted:
+          type: integer
+          minimum: 0
+
+    ProgressResponse:
+      type: object
+      additionalProperties: false
+      required: [packageId, completed, total]
+      properties:
+        packageId: { type: string }
+        completed: { type: integer, minimum: 0 }
+        total: { type: integer, minimum: 0 }
+
+  responses:
+    Unauthorized:
+      description: 未认证
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    Forbidden:
+      description: 无权限
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    BadRequest:
+      description: 参数错误
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    NotFound:
+      description: 资源不存在
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+
+paths:
+  /auth/wechat:
+    post:
+      tags: [auth]
+      summary: 微信登录（code → token）
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthWechatRequest"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthWechatResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+
+  /subjects:
+    get:
+      tags: [subjects]
+      summary: 获取科目列表
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Subject"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /packages:
+    get:
+      tags: [packages]
+      summary: 获取题库包列表
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: subjectId
+          in: query
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Package"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /chapters:
+    get:
+      tags: [chapters]
+      summary: 获取章节列表
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: packageId
+          in: query
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Chapter"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /questions:
+    get:
+      tags: [questions]
+      summary: 获取题目列表
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: chapterId
+          in: query
+          required: true
+          schema: { type: string }
+        - name: mode
+          in: query
+          required: false
+          schema:
+            type: string
+            description: 练习/考试等模式（需 99-hub 定稿）
+        - name: limit
+          in: query
+          required: false
+          schema: { type: integer, minimum: 1, maximum: 200 }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Question"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /answers/submit:
+    post:
+      tags: [answers]
+      summary: 提交作答
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnswerSubmitRequest"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AnswerSubmitResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /progress:
+    get:
+      tags: [progress]
+      summary: 获取进度统计
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: packageId
+          in: query
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProgressResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"

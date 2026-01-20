@@ -1,0 +1,10 @@
+--- 2026-01-20 23:23 ---
+变更点：
+- 新增 MVP 接口契约草案：modules/02-backend-core/contract/mvp.openapi.yaml
+- 新增草案说明：modules/02-backend-core/contract/README.md
+
+日志（关键命令输出节选）：
+- git pull --rebase origin main：成功（已在本 worktree 同步到最新 main 并 rebase）
+
+验收方式（本模块）：
+- 打开 modules/02-backend-core/contract/mvp.openapi.yaml，检查是否覆盖 TASKS.md 中 MVP 接口清单与 token 传递方式草案。

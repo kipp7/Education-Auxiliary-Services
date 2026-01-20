@@ -29,3 +29,12 @@
     - `GET /progress?packageId=...`
 - 影响评估：契约定稿后 `02-backend-core` 才能开始最小服务与路由实现；`01-miniapp` 可按契约调整 mock/调用。
 
+## 合并请求：引入 02-backend-core MVP OpenAPI 草案
+- 发起模块：`modules/02-backend-core`
+- 目标模块：`modules/99-hub`
+- 分支：`feat/02-backend-core-contract-draft`
+- 变更点：提供可审阅的 OpenAPI 3.1 草案，作为 99-hub 定稿时的输入（文件见 `modules/02-backend-core/contract/mvp.openapi.yaml`）。
+- 验收方式：
+  - 打开并评审 `modules/02-backend-core/contract/mvp.openapi.yaml`，确认覆盖 `modules/02-backend-core/TASKS.md` 的 MVP 接口清单。
+  - 确认鉴权 token 传递方式（Authorization Bearer）与错误响应结构是否符合 99-hub 统一口径。
+
