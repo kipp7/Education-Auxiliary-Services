@@ -3,6 +3,7 @@ Page({
     id: '',
     resumeSeconds: 0,
     tip: '',
+    currentSeconds: 0,
   },
 
   onLoad(options) {
@@ -15,19 +16,39 @@ Page({
     if (resumeSeconds > 0) {
       this.setData({
         resumeSeconds,
-        tip: `检测到上次播放进度：${Math.floor(resumeSeconds)}s（演示）`,
+        tip: `检测到上次播放进度：${Math.floor(resumeSeconds)}s（Mock）`,
       })
+
+      wx.showModal({
+        title: '继续播放？',
+        content: `检测到上次进度 ${Math.floor(resumeSeconds)}s，是否从此处继续（Mock）？`,
+        cancelText: '重新开始',
+        confirmText: '继续',
+        success: (res) => {
+          const nextSeconds = res.confirm ? resumeSeconds : 0
+          this.setData({ currentSeconds: nextSeconds })
+          wx.setStorageSync(this.getProgressKey(this.data.id), nextSeconds)
+        },
+      })
+      return
     }
+
+    this.setData({ currentSeconds: 0 })
   },
 
   getProgressKey(id) {
     return `course_progress_${id}`
   },
 
-  onTimeUpdate(e) {
-    const currentTime = e?.detail?.currentTime
-    if (!Number.isFinite(currentTime)) return
-    wx.setStorageSync(this.getProgressKey(this.data.id), currentTime)
+  addTenSeconds() {
+    const nextSeconds = (Number(this.data.currentSeconds) || 0) + 10
+    this.setData({ currentSeconds: nextSeconds })
+    wx.setStorageSync(this.getProgressKey(this.data.id), nextSeconds)
+  },
+
+  onSliderChange(e) {
+    const nextSeconds = Number(e.detail.value || 0)
+    this.setData({ currentSeconds: nextSeconds })
+    wx.setStorageSync(this.getProgressKey(this.data.id), nextSeconds)
   },
 })
-

@@ -5,14 +5,15 @@
     <view class="mock-title">播放页（Mock）</view>
     <view class="mock-desc">此页用于演示“进入播放页 + 记录进度（storage）”的后续里程碑。</view>
     <view class="mock-meta">课程ID：{{id}}</view>
+    <view class="mock-meta">当前进度：{{currentSeconds}}s</view>
   </view>
 
-  <video
-    id="video"
-    class="video"
-    src=""
-    controls
-    bindtimeupdate="onTimeUpdate"
-  ></video>
-</view>
+  <view class="controls">
+    <button class="btn primary" bindtap="addTenSeconds">模拟播放 +10s</button>
+  </view>
 
+  <view class="slider">
+    <slider min="0" max="600" step="1" value="{{currentSeconds}}" bindchange="onSliderChange"></slider>
+    <view class="slider-tip">拖动滑块模拟播放进度（0~600s）</view>
+  </view>
+</view>
