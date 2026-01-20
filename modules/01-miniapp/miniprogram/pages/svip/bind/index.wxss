@@ -1,0 +1,111 @@
+.page {
+  padding: 24rpx;
+}
+
+.card {
+  background: #fff;
+  border-radius: 18rpx;
+  padding: 22rpx;
+  box-shadow: 0 6rpx 20rpx rgba(17, 24, 39, 0.06);
+  margin-bottom: 18rpx;
+}
+
+.title {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #111827;
+}
+
+.desc {
+  margin-top: 10rpx;
+  font-size: 26rpx;
+  line-height: 1.5;
+  color: #6b7280;
+}
+
+.field {
+  margin-top: 16rpx;
+}
+
+.label {
+  font-size: 26rpx;
+  color: #374151;
+  margin-bottom: 10rpx;
+}
+
+.input {
+  height: 88rpx;
+  line-height: 88rpx;
+  padding: 0 18rpx;
+  border-radius: 14rpx;
+  background: #f3f4f6;
+}
+
+.hint {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #6b7280;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.actions {
+  display: flex;
+  gap: 16rpx;
+  margin-top: 18rpx;
+}
+
+.btn {
+  flex: 1;
+  height: 88rpx;
+  line-height: 88rpx;
+  border-radius: 999rpx;
+  font-size: 30rpx;
+}
+
+.btn::after {
+  border: none;
+}
+
+.btn.primary {
+  background: #1bd0ad;
+  color: #fff;
+}
+
+.btn.ghost {
+  background: #fff;
+  color: #111827;
+  border: 2rpx solid #e5e7eb;
+}
+
+.btn.danger {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.result {
+  margin-top: 12rpx;
+  font-size: 26rpx;
+}
+
+.ok {
+  color: #059669;
+}
+
+.err {
+  color: #dc2626;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14rpx;
+  font-size: 26rpx;
+  color: #374151;
+}
+
+.k {
+  color: #6b7280;
+}

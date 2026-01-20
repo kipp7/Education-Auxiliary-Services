@@ -8,6 +8,14 @@
     <view class="mock-meta">当前进度：{{currentSeconds}}s</view>
   </view>
 
+  <view class="paywall" wx:if="{{!svipBound}}">
+    <view class="paywall-title">SVIP 未开通（占位）</view>
+    <view class="paywall-desc">部分课程/功能需 SVIP，当前仅演示文案与入口（后续接后端）。</view>
+    <view class="paywall-actions">
+      <button class="btn ghost" bindtap="goBindSvip">去绑定 SVIP</button>
+    </view>
+  </view>
+
   <view class="controls">
     <button class="btn primary" bindtap="addTenSeconds">模拟播放 +10s</button>
   </view>

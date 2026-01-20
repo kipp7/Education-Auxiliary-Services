@@ -4,6 +4,7 @@ Page({
     resumeSeconds: 0,
     tip: '',
     currentSeconds: 0,
+    svipBound: false,
   },
 
   onLoad(options) {
@@ -36,6 +37,12 @@ Page({
     this.setData({ currentSeconds: 0 })
   },
 
+  onShow() {
+    this.setData({
+      svipBound: !!wx.getStorageSync('svip_bound'),
+    })
+  },
+
   getProgressKey(id) {
     return `course_progress_${id}`
   },
@@ -50,5 +57,11 @@ Page({
     const nextSeconds = Number(e.detail.value || 0)
     this.setData({ currentSeconds: nextSeconds })
     wx.setStorageSync(this.getProgressKey(this.data.id), nextSeconds)
+  },
+
+  goBindSvip() {
+    wx.navigateTo({
+      url: '/pages/svip/bind/index',
+    })
   },
 })

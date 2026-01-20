@@ -30,3 +30,9 @@
 验收路径：底部 Tab → 课程 `pages/course/index` → 点击任意课程进入 `pages/course/player?id=<id>` → 调整进度（按钮/滑块）→ 返回课程列表 → 再次进入同一课程，验证续播弹窗与恢复/重置。
 证据：`modules/01-miniapp/_evidence/M3/README.md`。
 
+--- 2026-01-21 01:45 ---
+用户：按 `AUTOPILOT.md` 继续。
+助手：完成 M4 SVIP 绑定（UI + 本地验证占位）：新增 `pages/svip/bind/index`，支持输入码校验（Mock 正确码 `JLXB-SVIP-OK`）并写入本地状态；我的页新增“SVIP 权益”卡片与“SVIP码绑定”入口；课程播放页增加“未开通提示（paywall 文案）”占位并提供跳转入口。
+验收路径：我的 `pages/my/index` → 点击“SVIP 权益/去绑定”或“SVIP码绑定” → `pages/svip/bind/index` → 输入错误码提示无效 → 输入 `JLXB-SVIP-OK` 提示绑定成功并显示状态；未绑定时进入 `pages/course/player?id=<id>` 可看到“SVIP 未开通（占位）”文案与入口。
+证据：`modules/01-miniapp/_evidence/M4/README.md`。
+

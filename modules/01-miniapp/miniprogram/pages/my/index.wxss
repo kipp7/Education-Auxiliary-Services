@@ -99,6 +99,49 @@
     margin-left: 12rpx;
 }
 
+.svip-card{
+    margin: 20rpx 40rpx 10rpx 40rpx;
+    padding: 22rpx 22rpx;
+    border-radius: 18rpx;
+    background: #ffffff;
+    box-shadow: 0 10rpx 26rpx rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.svip-left{
+    display: flex;
+    flex-direction: column;
+}
+
+.svip-title{
+    font-size: 32rpx;
+    font-weight: 700;
+    color: #111827;
+}
+
+.svip-desc{
+    margin-top: 8rpx;
+    font-size: 26rpx;
+    color: #6b7280;
+}
+
+.svip-btn{
+    height: 70rpx;
+    line-height: 70rpx;
+    padding: 0 26rpx;
+    border-radius: 999rpx;
+    font-size: 28rpx;
+    background-color: #ffffff !important;
+    border: 2rpx solid #1bd0ad !important;
+    color: #1bd0ad !important;
+}
+
+.svip-btn::after{
+    border: none;
+}
+
 button::after,button {
     border: none;
     background: none;
