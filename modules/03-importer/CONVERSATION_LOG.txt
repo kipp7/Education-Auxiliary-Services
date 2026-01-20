@@ -21,3 +21,12 @@
 - 已向 99-hub 提出对齐请求：progress 精度、状态/阶段枚举、错误报告落地方式、权限与幂等等。
 下一步：
 - 等待 99-hub/02-backend-core 确认 ImportTask 口径后，再继续 TASKS.md 下一项“上传入口（建议）”的接口契约与实现拆分。
+
+--- 2026-01-20 20:36 ---
+用户：要求继续按 TASKS.md 顺序推进：先 git pull --rebase origin main，完成本轮最小可交付（一个小点），追加记录到 modules/03-importer/CONVERSATION_LOG.txt，再 commit/push 到 module/03-importer。
+助手：已 git pull --rebase origin main；完成“上传入口（建议）”的接口草案（新增 modules/03-importer/UPLOAD_API_DRAFT.md），并在 modules/03-importer/TASKS.md 标记该项为草案完成；如需跨模块对齐，已追加到 modules/99-hub/REQUESTS.md。
+决定/结论：
+- 本轮最小可交付选定为上传/状态接口契约草案（不实现具体服务端代码）。
+- /import/upload 建议以 multipart 为主，JSON 引用对象存储作为备选（待 99-hub 定）。
+下一步：
+- 等待 99-hub 确认鉴权/存储/错误码口径后，再推进下一项“目录层级解析”规则与实现。
