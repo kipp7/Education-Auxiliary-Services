@@ -4,6 +4,8 @@
     "pages/index/index",
     "pages/library/index",
     "pages/exam-menu/index",
+    "pages/news/index",
+    "pages/newsDetail/index",
     "pages/my/index",
     "pages/register/index",
     "pages/status/index",

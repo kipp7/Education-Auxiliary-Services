@@ -1,37 +1,46 @@
-// pages/library/index.js
-const { APP_NAME } = require('../../config/index')
+const config = require('../../config/index')
 
 Page({
   data: {
-    mode: 'learn',
+    appName: config.APP_NAME,
     cateList: [],
   },
 
   onLoad() {
-    wx.setNavigationBarTitle({ title: `${APP_NAME} · 题库` })
     wx.showLoading({ title: '正在加载' })
     wx.u
       .getQuestionMenu()
       .then((res) => {
-        this.setData({ cateList: Array.isArray(res.result) ? res.result : [] })
+        const list = Array.isArray(res.result) ? res.result : []
+        const cateList = list.map((x) => ({
+          ...x,
+          total: x.total || x.questionTotal || x.questionNum || 0,
+        }))
+        this.setData({ cateList })
       })
       .finally(() => wx.hideLoading())
   },
 
-  setMode(e) {
-    const mode = e.currentTarget.dataset.mode
-    if (mode !== 'learn' && mode !== 'exam') return
-    this.setData({ mode })
+  goLearn() {
+    wx.navigateTo({ url: '/pages/category/index?action=learn' })
   },
 
-  goCate(e) {
+  goExam() {
+    wx.switchTab({ url: '/pages/exam-menu/index' })
+  },
+
+  goWrong() {
+    wx.navigateTo({ url: '/pages/wrong/index' })
+  },
+
+  goFavorite() {
+    wx.showToast({ title: '收藏功能待接入', icon: 'none' })
+  },
+
+  goDefaultLearn(e) {
     const cateid = e.currentTarget.dataset.cateid
-    const menu = e.currentTarget.dataset.menu
-    if (this.data.mode === 'learn') {
-      wx.navigateTo({ url: `/pages/learn/index?cateid=${cateid}&menu=${menu}` })
-      return
-    }
-    wx.navigateTo({ url: `/pages/exam/index?cateid=${cateid}&menu=${menu}` })
+    const name = e.currentTarget.dataset.name || ''
+    wx.navigateTo({ url: `/pages/learn/index?cateid=${cateid}&menu=${encodeURIComponent(name)}` })
   },
 })
 

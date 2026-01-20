@@ -1,7 +1,7 @@
 <!--pages/my/index.wxml-->
 <view class="center-wrap">
     <view class="topBG">
-        <image class="topImage" src="https://upload-images.jianshu.io/upload_images/6673460-bc716a04d5f6091c.png"></image>
+        <image class="topImage" src="/images/BG.png"></image>
         <view wx:if="{{userInfo.avatarUrl}}">
           <image class="head" src="{{userInfo.avatarUrl}}"></image>
           <view class="name">{{userInfo.nickName}}</view>

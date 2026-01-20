@@ -42,9 +42,7 @@ Page({
     })
   },
   gocenter() {
-    wx.navigateTo({
-      url: '../my/index',
-    })
+    wx.switchTab({ url: '/pages/my/index' })
   },
   goWrong() {
     wx.navigateTo({ url: '/pages/wrong/index' })
