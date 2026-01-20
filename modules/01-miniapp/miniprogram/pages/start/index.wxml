@@ -1,28 +1,26 @@
-<!--pages/first/index.wxml-->
+<!--pages/start/index.wxml-->
 <view class="container">
   <view class="remind-box" wx:if="{{remind}}">
     <image class="remind-img" src="/images/loading.gif"></image>
   </view>
+
   <block wx:else>
-    <image class="title" src="/images/title8.png"></image>
+    <view class="title-wrap">
+      <text class="title">{{appName}}</text>
+      <text class="subtitle">随练随测 · 查漏补缺</text>
+    </view>
+
     <view class="content">
       <view class="hd" style="transform:rotateZ({{angle}}deg);">
         <image class="logo" src="{{userInfo.avatarUrl}}"></image>
         <image class="wave" src="/images/wave.png" mode="aspectFill"></image>
         <image class="wave wave-bg" src="/images/wave.png" mode="aspectFill"></image>
       </view>
+
       <view class="bd">
-         <image class="smalltitle" src="/images/confirm-word1.png"></image>
-        <view>
-          <view class="confirm-btn" bindtap='goSign'>
-            <text >立即进入</text>
-          </view>
-          <!-- <view class="confirm-btn" bindtap='goSign' wx:if="{{userInfo.avatarUrl}}">
-            <text >立即进入</text>
-          </view>
-          <button class="confirm-btn"  open-type="getUserInfo" bindgetuserinfo="bindgetuserinfo" wx:else>点击授权</button> -->
-        </view>
-        <text class="copyright">© 2019 Mamba 倾情出品 </text>
+        <view class="hint">点击进入，先浏览首页功能</view>
+        <button class="confirm-btn" bindtap="goSign">立即进入</button>
+        <text class="copyright">{{companyName}}</text>
       </view>
     </view>
   </block>
