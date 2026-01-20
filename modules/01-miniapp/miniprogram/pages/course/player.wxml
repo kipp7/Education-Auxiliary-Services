@@ -1,0 +1,18 @@
+<view class="page">
+  <view class="tip" wx:if="{{tip}}">{{tip}}</view>
+
+  <view class="mock">
+    <view class="mock-title">播放页（Mock）</view>
+    <view class="mock-desc">此页用于演示“进入播放页 + 记录进度（storage）”的后续里程碑。</view>
+    <view class="mock-meta">课程ID：{{id}}</view>
+  </view>
+
+  <video
+    id="video"
+    class="video"
+    src=""
+    controls
+    bindtimeupdate="onTimeUpdate"
+  ></video>
+</view>
+
