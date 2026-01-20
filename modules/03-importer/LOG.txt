@@ -1,0 +1,102 @@
+--- 2026-01-20 23:43 ---
+变更点：
+- 新增 txt 模板解析脚本：modules/03-importer/tools/parse-txt.mjs
+- 新增 txt 样例：modules/03-importer/samples/txt/basic.txt
+- 解析输出（可视作截图/日志）：modules/03-importer/output/basic.parsed.json
+- 更新任务看板：modules/03-importer/TASKS.md（勾选 txt 模板解析）
+
+运行日志：
+- 命令：node modules/03-importer/tools/parse-txt.mjs modules/03-importer/samples/txt/basic.txt --category "数学/一年级" > modules/03-importer/output/basic.parsed.json
+- 输出文件大小：1922 bytes
+
+解析输出（节选，完整见 output 文件）：
+{
+  "file": {
+    "path": "modules/03-importer/samples/txt/basic.txt"
+  },
+  "categoryPath": "鏁板/涓€骞寸骇",
+  "questions": [
+    {
+      "id": "q-0001",
+      "type": "single",
+      "stem": "1. 2+2= ?",
+      "options": [
+        {
+          "key": "A",
+          "text": "3"
+        },
+        {
+          "key": "B",
+          "text": "4"
+        },
+        {
+          "key": "C",
+          "text": "5"
+        }
+      ],
+      "answer": {
+        "value": "B"
+      },
+      "analysis": "2+2=4",
+      "source": {
+        "filePath": "modules/03-importer/samples/txt/basic.txt",
+        "lineStart": 1,
+        "lineEnd": 7
+      },
+      "categoryPath": "鏁板/涓€骞寸骇"
+    },
+    {
+      "id": "q-0002",
+      "type": "multi",
+      "stem": "2. 涓嬪垪鍝簺鏄按鏋滐紵",
+      "options": [
+        {
+          "key": "A",
+          "text": "鑻规灉"
+        },
+        {
+          "key": "B",
+          "text": "鐭冲ご"
+        },
+        {
+          "key": "C",
+          "text": "棣欒晧"
+        },
+        {
+          "key": "D",
+          "text": "妗屽瓙"
+        }
+      ],
+      "answer": {
+        "value": "AC"
+      },
+      "analysis": "鑻规灉銆侀钑夋槸姘存灉",
+      "source": {
+        "filePath": "modules/03-importer/samples/txt/basic.txt",
+        "lineStart": 8,
+        "lineEnd": 15
+      },
+      "categoryPath": "鏁板/涓€骞寸骇"
+    },
+    {
+      "id": "q-0003",
+      "type": "judge",
+      "stem": "3. 鍦扮悆鏄渾鐨勩€?,
+      "answer": {
+        "value": "true"
+      },
+      "analysis": "甯歌瘑",
+      "source": {
+        "filePath": "modules/03-importer/samples/txt/basic.txt",
+        "lineStart": 16,
+        "lineEnd": 19
+      },
+      "categoryPath": "鏁板/涓€骞寸骇"
+    }
+  ],
+  "errors": []
+}
+
+
+当前提交：
+- 7c561e1 (HEAD -> feat/03-importer-txt-parser, module/03-importer) 03-importer: question ir draft
