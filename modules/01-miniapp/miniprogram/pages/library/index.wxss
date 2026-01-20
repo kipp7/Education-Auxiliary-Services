@@ -1,30 +1,17 @@
-/* pages/library/index.wxss */
 page {
-  background: #f2f2f2;
+  background: #f6f7fb;
 }
 
 .page {
-  min-height: 100%;
-}
-
-.header {
-  padding: 24rpx 24rpx 18rpx;
-  background: #ffffff;
-  border-bottom: 1px solid #ebebeb;
-}
-
-.title {
-  font-size: 36rpx;
-  font-weight: 800;
-  color: rgba(0, 0, 0, 0.85);
+  padding: 24rpx;
 }
 
 .seg {
-  margin-top: 14rpx;
   display: flex;
-  background: #f5f6f7;
-  border-radius: 999rpx;
-  padding: 6rpx;
+  gap: 16rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 10rpx;
 }
 
 .seg-item {
@@ -35,52 +22,78 @@ page {
   font-size: 28rpx;
   color: rgba(0, 0, 0, 0.6);
   border-radius: 999rpx;
+  background: #f5f6f7;
 }
 
 .seg-item.active {
   background: #1bd0ad;
   color: #ffffff;
-  box-shadow: 0 10rpx 22rpx rgba(27, 208, 173, 0.25);
 }
 
-.list {
-  padding-bottom: 24rpx;
-}
-
-.row {
-  font-size: 28rpx;
-  color: #3f3f3f;
+.block {
+  margin-top: 16rpx;
   background: #fff;
-  padding: 26rpx 24rpx;
+  border-radius: 16rpx;
+  padding: 16rpx;
+}
+
+.block-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #111827;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-top: 14rpx;
+}
+
+.chip {
+  padding: 10rpx 16rpx;
+  border-radius: 999rpx;
+  background: #f5f6f7;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 26rpx;
+}
+
+.chip.active {
+  background: rgba(27, 208, 173, 0.15);
+  color: #1bd0ad;
+  font-weight: 700;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  margin: 18rpx 0 12rpx;
+  color: #111827;
+}
+
+.card {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #ebebeb;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  margin-bottom: 14rpx;
 }
 
-.left {
-  display: flex;
-  align-items: center;
+.card-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #111827;
 }
 
-.icon {
-  width: 40rpx;
-  height: 40rpx;
-  background: #1bd0ad;
-  border-radius: 50%;
-  color: #fff;
-  font-size: 22rpx;
-  text-align: center;
-  line-height: 40rpx;
-}
-
-.name {
-  margin-left: 16rpx;
-  margin-right: 16rpx;
+.card-sub {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: #6b7280;
 }
 
 .arrow {
-  width: 15rpx;
-  height: 27rpx;
+  width: 28rpx;
+  height: 28rpx;
 }
-

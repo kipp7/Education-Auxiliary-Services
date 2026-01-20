@@ -1,0 +1,15 @@
+<view class="page">
+  <view class="card">
+    <view class="title">{{unitTitle || '单元详情（占位）'}}</view>
+    <view class="meta">阶段：{{stage}}</view>
+    <view class="meta" wx:if="{{stage === '初中'}}">路径：{{grade}} / {{semester}} / {{subject}}</view>
+    <view class="meta" wx:if="{{stage === '单招'}}">路径：{{singleSubject}} / {{singleType}}</view>
+    <view class="meta">单元ID：{{unitId}}</view>
+  </view>
+
+  <view class="actions">
+    <button class="btn ghost" bindtap="preview">同步试题(预览)</button>
+    <button class="btn primary" bindtap="online">在线做题(练习/测评)</button>
+  </view>
+</view>
+
