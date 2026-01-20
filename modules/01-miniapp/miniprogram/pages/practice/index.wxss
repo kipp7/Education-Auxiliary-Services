@@ -1,0 +1,46 @@
+/* pages/practice/index.wxss */
+page {
+  background: #f2f2f2;
+}
+
+.page {
+  padding-bottom: 24rpx;
+}
+
+.item {
+  font-size: 28rpx;
+  color: #3f3f3f;
+  background: #fff;
+  padding: 26rpx 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  width: 40rpx;
+  height: 40rpx;
+  background: #1bd0ad;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 22rpx;
+  text-align: center;
+  line-height: 40rpx;
+}
+
+.name {
+  margin-left: 16rpx;
+  margin-right: 16rpx;
+}
+
+.direction {
+  width: 15rpx;
+  height: 27rpx;
+}
+

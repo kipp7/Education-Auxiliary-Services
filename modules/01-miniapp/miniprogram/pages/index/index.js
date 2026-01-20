@@ -53,16 +53,7 @@ Page({
     wx.navigateTo({ url: '/pages/category/index?action=rank' })
   },
   goLearn() {
-    if(this.data.useLearn){
-      wx.navigateTo({
-        url: '/pages/category/index?action=learn',
-      })
-    }else{
-      wx.showToast({
-        title: '练习模式未开启',
-        icon:'loading'
-      })
-    }
+    wx.switchTab({ url: '/pages/practice/index' })
   },
   login() {
     this.setData({
@@ -122,30 +113,6 @@ Page({
     })
   },
   goExam(){
-    if (this.data.userInfo.avatarUrl == undefined || this.data.userInfo.avatarUrl == '') {
-      this.login();
-      return
-    }
-    
-    if (this.data.checkUser) {
-      let userInfo = this.data.userInfo
-      if (userInfo.status == '1') {
-        wx.navigateTo({
-          url: "/pages/category/index?action=exam",
-        })
-      } else if (userInfo.status == '0') {
-        wx.navigateTo({
-          url: '../status/index',
-        })
-      } else {
-        wx.navigateTo({
-          url: '../register/index',
-        })
-      }
-    }else{
-      wx.navigateTo({
-        url: "/pages/category/index?action=exam",
-      })
-    }
+    wx.switchTab({ url: '/pages/exam-menu/index' })
   }
 })

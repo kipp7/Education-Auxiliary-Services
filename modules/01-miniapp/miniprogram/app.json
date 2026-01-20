@@ -2,6 +2,8 @@
   "pages": [
     "pages/start/index",
     "pages/index/index",
+    "pages/practice/index",
+    "pages/exam-menu/index",
     "pages/my/index",
     "pages/register/index",
     "pages/status/index",
@@ -24,6 +26,37 @@
     "navigationBarTitleText": "金榜学伴",
     "navigationBarTextStyle": "white"
   },
+  "tabBar": {
+    "color": "#8A8A8A",
+    "selectedColor": "#1bd0ad",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/nav_test_icon_fav.png",
+        "selectedIconPath": "images/star-active.png"
+      },
+      {
+        "pagePath": "pages/practice/index",
+        "text": "练习",
+        "iconPath": "images/icon_zhangjielianxi@3x.png",
+        "selectedIconPath": "images/icon_zhangjielianxi@3x.png"
+      },
+      {
+        "pagePath": "pages/exam-menu/index",
+        "text": "答题",
+        "iconPath": "images/icon_monikaoshi@3x.png",
+        "selectedIconPath": "images/icon_monikaoshi@3x.png"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "text": "我的",
+        "iconPath": "images/icon_center_tj.png",
+        "selectedIconPath": "images/icon_center_tj.png"
+      }
+    ]
+  },
   "sitemapLocation": "sitemap.json"
 }
-

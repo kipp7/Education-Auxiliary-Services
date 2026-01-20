@@ -75,17 +75,16 @@ Page({
     if (this.data.checkUser) {
       const userInfo = this.data.userInfo
       if (userInfo.status === '1') {
-        wx.reLaunch({ url: '/pages/index/index' })
+        wx.switchTab({ url: '/pages/index/index' })
       } else if (userInfo.status === '0') {
         wx.navigateTo({ url: '/pages/status/index' })
       } else {
         wx.navigateTo({ url: '/pages/register/index' })
       }
     } else {
-      wx.reLaunch({ url: '/pages/index/index' })
+      wx.switchTab({ url: '/pages/index/index' })
     }
 
     wx.hideLoading()
   },
 })
-

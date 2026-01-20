@@ -1,0 +1,11 @@
+<!-- pages/exam-menu/index.wxml -->
+<view class="page">
+  <view bindtap="goquestion" class="item" wx:for="{{cateList}}" wx:key="category" data-cateid="{{item.objectId}}" data-menu="{{item.name}}">
+    <view class="left">
+      <view class="icon">{{index+1}}</view>
+      <text class="name">{{item.name}}</text>
+    </view>
+    <image class="direction" src="/images/jkt/right.png"></image>
+  </view>
+</view>
+
