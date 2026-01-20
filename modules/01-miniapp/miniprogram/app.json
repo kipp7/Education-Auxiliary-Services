@@ -21,10 +21,9 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#1bd0ad",
-    "navigationBarTitleText": "智汇答题",
+    "navigationBarTitleText": "金榜学伴",
     "navigationBarTextStyle": "white"
-    
   },
-  
   "sitemapLocation": "sitemap.json"
 }
+
