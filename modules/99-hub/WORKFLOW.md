@@ -57,6 +57,24 @@ git push
 2) 新建分支重来：`feat/<模块>-<任务>-<窗口>-v2`
 3) **不要** `push --force`（除非总控窗口明确要求）
 
+## 6. 合并队列脚本（总控窗口挂机）
+
+总控窗口可以用脚本从 `modules/99-hub/REQUESTS.md` 的“合并队列”读取待合并分支并自动合并到 `main`。
+
+推荐流程：
+
+```powershell
+# 1) 先演练（不会改动仓库）
+pwsh modules/99-hub/merge_queue.ps1 -DryRun -ForceFetch
+
+# 2) 正式执行（会 merge + push，并将队列标记为已合并）
+pwsh modules/99-hub/merge_queue.ps1 -ForceFetch
+```
+
+约定：
+- 合并队列条目使用 `- [ ] \`feat/...\`` 表示待合并
+- 脚本会在成功后将其标记为 `- [x]` 并写入 `modules/99-hub/merge_queue.log`
+
 ## 5. 模块边界（避免踩踏）
 
 - `modules/01-miniapp/**`：小程序前端（UI/路由/授权/本地缓存）
