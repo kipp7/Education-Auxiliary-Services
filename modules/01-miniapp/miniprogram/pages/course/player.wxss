@@ -57,6 +57,37 @@
   color: #fff;
 }
 
+.btn.ghost {
+  background: #fff;
+  color: #111827;
+  border: 2rpx solid #e5e7eb;
+}
+
+.paywall {
+  background: #fff7ed;
+  border: 2rpx solid #fed7aa;
+  border-radius: 16rpx;
+  padding: 18rpx;
+  margin-top: 12rpx;
+}
+
+.paywall-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #9a3412;
+}
+
+.paywall-desc {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: #9a3412;
+  opacity: 0.9;
+}
+
+.paywall-actions {
+  margin-top: 12rpx;
+}
+
 .slider {
   margin-top: 18rpx;
   background: #fff;
