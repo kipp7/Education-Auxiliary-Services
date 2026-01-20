@@ -1,7 +1,6 @@
 /* pages/category/index.wxss */
 page {
-    background: #f2f2f2;
-    border-top: 1px solid #dcdee0;
+    background: #f6f7fb;
 }
 
 .special-title {
@@ -12,7 +11,7 @@ page {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #ebebeb;
+    border-bottom: 1px solid rgba(235,235,235,0.8);
 }
 
 .special-title>view {
@@ -21,14 +20,14 @@ page {
 }
 
 .special-title .icon {
-    width: 20px;
-    height: 20px;
+    width: 40rpx;
+    height: 40rpx;
     background: #1bd0ad;
     border-radius: 50%;
     color: #fff;
     font-size: 22rpx;
     text-align: center;
-    line-height: 20px;
+    line-height: 40rpx;
 }
 
 .special-title .text {
