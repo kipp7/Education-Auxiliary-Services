@@ -66,3 +66,14 @@
   - 期望：errors 为空，questions[0..2].type 分别包含 single/multi/judge
 - 备注：详细日志/输出已写入 modules/03-importer/LOG.txt
 
+
+## 合并请求：03-importer txt 模板解析（w03-4）
+- 发起模块：modules/03-importer
+- 分支：
+feat/03-importer-txt-parser-w03-4
+- 变更点：新增 txt 模板解析脚本（单选/多选/判断）+ 样例 + 输出示例；并在 TASKS 勾选 txt 项
+- 验收方式：
+  - node modules/03-importer/tools/parse-txt.mjs modules/03-importer/samples/txt/basic.txt --category "数学/一年级" > modules/03-importer/output/basic.parsed.json
+  - 检查 output/basic.parsed.json 中 questions.length == 3 且包含 single/multi/judge；errors 为空
+  - 日志：modules/03-importer/LOG.txt
+
