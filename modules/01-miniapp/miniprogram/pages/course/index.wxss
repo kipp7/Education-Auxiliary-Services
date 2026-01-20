@@ -28,8 +28,9 @@
 
 .section-title {
   font-size: 30rpx;
-  font-weight: 600;
+  font-weight: 700;
   margin: 20rpx 0 12rpx;
+  color: #111827;
 }
 
 .card {
@@ -69,4 +70,3 @@
   font-size: 24rpx;
   color: #1bd0ad;
 }
-
