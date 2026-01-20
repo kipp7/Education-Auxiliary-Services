@@ -48,3 +48,10 @@
  - 将“与 99-hub 一起确定 API 契约”落地为 OpenAPI 3.1 草案（仅草案，最终以 99-hub 定稿为准）。
 下一步：
 - 99-hub 定稿契约后，再开始实现 POST /auth/wechat 等最小路由。
+--- 2026-01-20 23:46 ---
+用户：要求完成后提交到 feat 分支并推送，并写 LOG.txt、留合并请求。
+助手：已在 feat/02-backend-core-contract-draft 推送提交 4e8bead，并更新 LOG.txt 与 99-hub REQUESTS.md。
+决定/结论：
+- 下一条任务（与 99-hub 定稿契约）已提供 OpenAPI 草案供评审。
+下一步：
+- 等 99-hub 定稿契约后再开始实现后端路由。

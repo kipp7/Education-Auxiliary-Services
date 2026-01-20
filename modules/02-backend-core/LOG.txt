@@ -8,3 +8,8 @@
 
 验收方式（本模块）：
 - 打开 modules/02-backend-core/contract/mvp.openapi.yaml，检查是否覆盖 TASKS.md 中 MVP 接口清单与 token 传递方式草案。
+
+补充（2026-01-20 23:46）：
+- 分支：feat/02-backend-core-contract-draft
+- 提交：4e8bead
+- PR 建议：在 GitHub 创建 PR，并按 modules/99-hub/REQUESTS.md 的验收方式评审。
