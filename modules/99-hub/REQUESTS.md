@@ -50,3 +50,16 @@
   - `npm run dev`
   - 打开 `http://localhost:5174` → 开发登录 → 进入“题库管理”
   - 可新增/重命名/删除：科目、题库包、章节、题目；可点击“重置示例数据”
+
+## 合并请求：04-admin-console 导入管理最小骨架
+- 发起模块：`modules/04-admin-console`
+- 目标模块：`modules/99-hub`（总控合并到 `main`）
+- 分支：`feat/04-admin-console-imports-codex`
+- 原因：完成 `TASKS.md` 的“导入管理：上传、任务列表、任务详情、错误报告下载”最小骨架（占位上传 + 本地示例数据 + CSV 下载占位），为后续按契约接入真实接口做准备。
+- 变更范围：仅 `modules/04-admin-console/**`（外加本文件的请求条目）
+- 验收方式：
+  - `cd modules/04-admin-console/web`
+  - `npm install`
+  - `npm run dev`
+  - 打开 `http://localhost:5174` → 开发登录 → 进入“导入管理”
+  - 点击“上传（占位）”创建任务；点击“详情”；有错误的任务可下载 CSV 错误报告
