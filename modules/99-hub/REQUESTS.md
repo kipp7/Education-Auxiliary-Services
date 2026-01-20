@@ -78,3 +78,14 @@ feat/03-importer-txt-parser-w03
   - 检查：output/basic.parsed.json 中 questions.length == 3 且包含 single/multi/judge
   - 日志：modules/03-importer/LOG.txt
 
+
+## 合并请求：03-importer txt 模板解析（w03-2）
+- 发起模块：modules/03-importer
+- 分支：
+feat/03-importer-txt-parser-w03-2
+- 变更点：txt 模板解析脚本/样例/输出（以本分支为准）
+- 验收方式：
+  - node modules/03-importer/tools/parse-txt.mjs modules/03-importer/samples/txt/basic.txt --category "数学/一年级" > modules/03-importer/output/basic.parsed.json
+  - 检查 output/basic.parsed.json 中 questions.length == 3 且 errors 为空
+  - 日志：modules/03-importer/LOG.txt
+

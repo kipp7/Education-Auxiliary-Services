@@ -104,3 +104,11 @@
 窗口：w03
 分支：feat/03-importer-txt-parser-w03
 复验命令：node modules/03-importer/tools/parse-txt.mjs modules/03-importer/samples/txt/basic.txt --category "数学/一年级" > modules/03-importer/output/basic.parsed.json
+
+--- 2026-01-21 00:41 ---
+窗口：w03
+分支：feat/03-importer-txt-parser-w03-2
+变更点：沿用 txt 模板解析实现；更新 TASKS 勾选与合并请求记录（以本分支为准）。
+验收：
+- node modules/03-importer/tools/parse-txt.mjs modules/03-importer/samples/txt/basic.txt --category "数学/一年级" > modules/03-importer/output/basic.parsed.json
+- 检查 output/basic.parsed.json 中 questions.length == 3 且 errors 为空
