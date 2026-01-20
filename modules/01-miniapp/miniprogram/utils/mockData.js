@@ -73,6 +73,25 @@ function normalizeQuestions(rawList) {
   const list = Array.isArray(rawList) ? rawList : [];
   return list.map((q, idx) => {
     const item = { ...q, id: idx };
+
+    if (!Array.isArray(item.choseList) || item.choseList.length < 1) {
+      const optionKeys = ["optionA", "optionB", "optionC", "optionD", "optionE", "optionF", "optionG", "optionH", "optionI", "optionJ"];
+      const options = optionKeys
+        .map((key) => item[key])
+        .filter((val) => typeof val === "string" && val.trim().length > 0)
+        .map((val) => ({ item: val }));
+      if (options.length > 0) item.choseList = options;
+    }
+
+    if (typeof item.help !== "string" || item.help.trim().length < 1) {
+      if (typeof item.analysis === "string" && item.analysis.trim().length > 0) {
+        item.help = item.analysis;
+      }
+    }
+
+    if (typeof item.picUrl !== "string") item.picUrl = "";
+    if (typeof item.helpPicUrl !== "string") item.helpPicUrl = "";
+
     if (String(item.type) === "2" && typeof item.answer === "string") {
       item.answerArr = item.answer.split("");
     }

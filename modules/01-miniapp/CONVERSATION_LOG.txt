@@ -42,3 +42,9 @@
 验收路径：`pages/start/index` → 立即进入 → 首页 `pages/index/index` → 题库 `pages/library/index`（banner+筛选+卡片）→ 课程 `pages/course/index`（banner+卡片）→ 我的 `pages/my/index`（SVIP 权益卡片）。
 证据：`modules/01-miniapp/_evidence/M5/README.md`。
 
+--- 2026-01-21 02:12 ---
+用户：继续跑到下一里程碑。
+助手：按 `TASKS.md` 推进 MVP 下一项：把题库“单元详情页”的“在线做题(练习/测评)”从占位提示改为可跳转到现有做题页（Mock 题目），并补齐 mock 数据的选项/解析字段以确保做题页能显示答案与帮助。
+验收路径：`pages/start/index` → 立即进入 → 底部题库 `pages/library/index` → 点任意单元进入 `pages/library/unit/index` → 点“在线做题(练习/测评)”选“练习” → `pages/learn/index` → 点任一选项，观察对错标记与“帮助/解析”展示。
+下一步：若需要“合并请求”记录，请由 99-hub 窗口把本分支 `feat/01-miniapp-mvp-practice-winE3` 的 MR 需求写入 `modules/99-hub/REQUESTS.md`（本窗口遵守只改本模块目录约束）。
+

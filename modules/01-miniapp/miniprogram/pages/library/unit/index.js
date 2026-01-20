@@ -30,10 +30,20 @@ Page({
   online() {
     wx.showActionSheet({
       itemList: ['练习', '测评'],
-      success: () => {
-        wx.showToast({ title: '在线做题后续接题库映射', icon: 'none' })
+      success: (res) => {
+        const menu = this.data.unitTitle || '单元练习（Mock）'
+        const cateid = 'menu_demo_1'
+        if (res.tapIndex === 0) {
+          wx.navigateTo({
+            url: `/pages/learn/index?cateid=${encodeURIComponent(cateid)}&menu=${encodeURIComponent(menu)}`,
+          })
+          return
+        }
+
+        wx.navigateTo({
+          url: `/pages/exam/index?cateid=${encodeURIComponent(cateid)}&menu=${encodeURIComponent(menu)}`,
+        })
       },
     })
   },
 })
-
