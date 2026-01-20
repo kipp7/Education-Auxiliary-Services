@@ -33,3 +33,11 @@
 
 补充：本轮 git push origin module/02-backend-core 失败（无法连接远程仓库），已在本地提交 commit 69ef0e4，待网络恢复后重试 push。
 
+--- 2026-01-20 23:23 ---
+用户：继续。
+助手：已完成 pull(rebase) 并处理远端分支快进限制后成功 push。
+决定/结论：
+- 本轮 git pull --rebase origin main 成功；push 遇到远端 module/02-backend-core 非快进，改为先 git pull --rebase origin module/02-backend-core 后再 push。
+下一步：
+- 等待 99-hub 定稿接口契约后，开始实现最小服务与路由（从 POST /auth/wechat）。
+
