@@ -19,6 +19,11 @@ const cellList = [
     icon: '/images/icon_center_tj.png',
     title: '关于我们',
   },
+  {
+    icon: '/images/icon_center_tj.png',
+    title: 'SVIP码绑定',
+    page: '../svip/bind/index',
+  },
 ]
 
 Page({
@@ -26,6 +31,7 @@ Page({
     cellList,
     is_login: true,
     canIUseGetUserProfile: false,
+    svipBound: false,
   },
 
   onLoad() {
@@ -39,6 +45,7 @@ Page({
   onShow() {
     this.setData({
       userInfo: wx.getStorageSync('userInfo'),
+      svipBound: !!wx.getStorageSync('svip_bound'),
     })
   },
 
@@ -74,6 +81,11 @@ Page({
       case 3:
         this.about()
         break
+      case 4:
+        wx.navigateTo({
+          url: '../svip/bind/index',
+        })
+        break
     }
   },
 
@@ -82,6 +94,12 @@ Page({
       title: '关于我们',
       content: `${APP_NAME}由${COMPANY_NAME}提供服务，用于学习训练与测评辅助。`,
       showCancel: false,
+    })
+  },
+
+  go_svip() {
+    wx.navigateTo({
+      url: '../svip/bind/index',
     })
   },
 

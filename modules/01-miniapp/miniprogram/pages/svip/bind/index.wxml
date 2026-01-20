@@ -1,0 +1,42 @@
+<view class="page">
+  <view class="card">
+    <view class="title">SVIP 码绑定（Mock）</view>
+    <view class="desc">此页面用于演示“输入 + 本地校验 + 开通状态”占位，后续由后端接入真实校验。</view>
+
+    <view class="field">
+      <view class="label">SVIP 码</view>
+      <input
+        class="input"
+        placeholder="请输入 SVIP 码"
+        value="{{code}}"
+        bindinput="onInput"
+        maxlength="32"
+      />
+      <view class="hint">Mock 正确码：<text class="mono">{{mockOkCode}}</text></view>
+    </view>
+
+    <view class="actions">
+      <button class="btn primary" bindtap="submit">立即绑定</button>
+      <button class="btn ghost" bindtap="clear">清空</button>
+    </view>
+
+    <view class="result" wx:if="{{statusText}}">
+      <text class="{{statusType === 'ok' ? 'ok' : 'err'}}">{{statusText}}</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="title">当前状态</view>
+    <view class="row">
+      <view class="k">SVIP</view>
+      <view class="v {{svipBound ? 'ok' : 'err'}}">{{svipBound ? '已开通(本地)' : '未开通'}}</view>
+    </view>
+    <view class="row" wx:if="{{boundAtText}}">
+      <view class="k">绑定时间</view>
+      <view class="v">{{boundAtText}}</view>
+    </view>
+    <view class="actions">
+      <button class="btn danger" bindtap="unbind" wx:if="{{svipBound}}">解除绑定（本地）</button>
+    </view>
+  </view>
+</view>
