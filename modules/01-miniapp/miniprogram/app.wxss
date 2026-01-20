@@ -8,6 +8,7 @@ page{
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  background: #f6f7fb;
 }
 .container {
   position: relative;
@@ -30,4 +31,23 @@ page{
   width: 250rpx;
   height: 250rpx;
   padding-bottom: 25rpx;
+}
+
+.banner {
+  background: linear-gradient(135deg, #1bd0ad 0%, #0ea5e9 100%);
+  border-radius: 18rpx;
+  padding: 22rpx 22rpx;
+  color: #fff;
+  box-shadow: 0 12rpx 26rpx rgba(27, 208, 173, 0.18);
+}
+
+.banner-title {
+  font-size: 34rpx;
+  font-weight: 800;
+}
+
+.banner-desc {
+  margin-top: 8rpx;
+  font-size: 26rpx;
+  opacity: 0.9;
 }

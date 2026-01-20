@@ -11,6 +11,11 @@
     </view>
   </view>
 
+  <view class="banner" style="margin-top: 16rpx;">
+    <view class="banner-title">课程精选</view>
+    <view class="banner-desc">点击进入播放页，支持续播与 SVIP 提示（Mock）</view>
+  </view>
+
   <view class="section-title">课程列表（Mock）</view>
 
   <view class="list">
@@ -24,4 +29,3 @@
     </view>
   </view>
 </view>
-
