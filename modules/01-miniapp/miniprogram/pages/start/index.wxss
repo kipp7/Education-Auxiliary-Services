@@ -169,8 +169,8 @@ page {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 46%;
-  padding: 72rpx 56rpx 180rpx;
+  height: 38%;
+  padding: 56rpx 56rpx 170rpx;
   background: rgba(255, 255, 255, 0.96);
   border-top-left-radius: 44rpx;
   border-top-right-radius: 44rpx;
