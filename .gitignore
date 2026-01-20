@@ -1,0 +1,11 @@
+# WeChat DevTools
+**/.DS_Store
+**/dist/
+**/.idea/
+**/.vscode/
+**/*.log
+**/.env
+
+# Node
+**/node_modules/
+
