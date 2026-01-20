@@ -12,3 +12,10 @@
 决定/结论：
 下一步：
 
+
+--- 2026-01-20 19:57 ---
+用户：要求每轮对话结束后追加记录；按 TASKS.md 顺序推进并执行 pull/rebase、commit、push 流程。
+助手：本轮最小可交付为文档化：新增 README，明确管理台范围/关键词/MVP 页面与对 99-hub 的依赖；已尝试 git pull --rebase origin main，但当前 GitHub 连接失败。
+决定/结论：本模块先沉淀边界与页面清单，避免在契约未定前写 UI 代码。
+下一步：网络恢复后重试 rebase/push；待 99-hub 定稿后按 MVP 顺序补齐登录与 RBAC 最小骨架。
+
