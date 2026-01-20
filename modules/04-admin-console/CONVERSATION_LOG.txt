@@ -12,3 +12,34 @@
 决定/结论：
 下一步：
 
+--- 2026-01-21 01:10 ---
+里程碑：M1 管理台 Web 骨架 + 登录与权限守卫
+验收路径：
+- cd modules/04-admin-console/web
+- npm install
+- npm run dev
+- 打开 http://localhost:5174 → 开发登录 → 进入首页；点击退出回到登录页
+--- 2026-01-21 01:12 ---
+里程碑：M2 题库管理（最小骨架）
+验收路径：
+- cd modules/04-admin-console/web
+- npm install
+- npm run dev
+- 打开 http://localhost:5174 → 开发登录 → 进入“题库管理”
+- 可新增/重命名/删除：科目、题库包、章节、题目；可点击“重置示例数据”
+--- 2026-01-21 01:13 ---
+里程碑：M3 导入管理（最小骨架）
+验收路径：
+- cd modules/04-admin-console/web
+- npm install
+- npm run dev
+- 打开 http://localhost:5174 → 开发登录 → 进入“导入管理”
+- 点击“上传（占位）”创建任务；点击“详情”；有错误的任务可下载 CSV 错误报告（占位）
+--- 2026-01-21 01:14 ---
+里程碑：M4 资讯/公告管理（最小骨架）
+验收路径：
+- cd modules/04-admin-console/web
+- npm install
+- npm run dev
+- 打开 http://localhost:5174 → 开发登录 → 点击“公告管理”
+- 可新增/编辑/删除公告；草稿可发布、已发布可下线；支持搜索与重置示例数据

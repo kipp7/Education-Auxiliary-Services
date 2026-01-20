@@ -1,0 +1,58 @@
+import { Route, Routes } from "react-router-dom";
+import { RequireAuth } from "./auth/RequireAuth";
+import { HomePage } from "./pages/HomePage";
+import { LoginPage } from "./pages/LoginPage";
+import { PlaceholderPage } from "./pages/PlaceholderPage";
+import { QuestionBankPage } from "./questionBank/QuestionBankPage";
+import { ImportTaskDetailPage } from "./imports/ImportTaskDetailPage";
+import { ImportsListPage } from "./imports/ImportsListPage";
+import { AnnouncementsPage } from "./cms/AnnouncementsPage";
+
+export function App() {
+  return (
+    <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      <Route
+        path="/"
+        element={
+          <RequireAuth>
+            <HomePage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/question-bank"
+        element={
+          <RequireAuth>
+            <QuestionBankPage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/imports"
+        element={
+          <RequireAuth>
+            <ImportsListPage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/imports/:taskId"
+        element={
+          <RequireAuth>
+            <ImportTaskDetailPage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/cms"
+        element={
+          <RequireAuth>
+            <AnnouncementsPage />
+          </RequireAuth>
+        }
+      />
+    </Routes>
+  );
+}
+
