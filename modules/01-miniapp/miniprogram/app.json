@@ -3,6 +3,8 @@
     "pages/start/index",
     "pages/index/index",
     "pages/library/index",
+    "pages/course/index",
+    "pages/course/player",
     "pages/exam-menu/index",
     "pages/my/index",
     "pages/register/index",
@@ -45,10 +47,10 @@
         "selectedIconPath": "images/icon_zhangjielianxi@3x.png"
       },
       {
-        "pagePath": "pages/exam-menu/index",
-        "text": "答题",
-        "iconPath": "images/icon_monikaoshi@3x.png",
-        "selectedIconPath": "images/icon_monikaoshi@3x.png"
+        "pagePath": "pages/course/index",
+        "text": "课程",
+        "iconPath": "images/icon_center_msg.png",
+        "selectedIconPath": "images/icon_center_msg.png"
       },
       {
         "pagePath": "pages/my/index",
