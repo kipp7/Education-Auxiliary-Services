@@ -41,3 +41,10 @@
 下一步：
 - 等待 99-hub 定稿接口契约后，开始实现最小服务与路由（从 POST /auth/wechat）。
 
+--- 2026-01-20 23:41 ---
+用户：要求同步 main、确认 worktree、按 TASKS.md 做下一条未完成任务；提交到 feat/... 并推送；写 LOG.txt；在 99-hub 留合并请求。
+助手：已在 02-backend-core worktree 同步 main，并完成下一条任务（起草 MVP OpenAPI 草案供 99-hub 定稿）。
+决定/结论：
+ - 将“与 99-hub 一起确定 API 契约”落地为 OpenAPI 3.1 草案（仅草案，最终以 99-hub 定稿为准）。
+下一步：
+- 99-hub 定稿契约后，再开始实现 POST /auth/wechat 等最小路由。
