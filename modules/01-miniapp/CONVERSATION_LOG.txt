@@ -12,3 +12,9 @@
 决定/结论：
 下一步：
 
+--- 2026-01-20 20:04 ---
+用户：要求按根目录关键词执行；每轮结束追加决定/结论/下一步到本模块日志；按 TASKS.md 顺序推进并完成 pull/commit/push。
+助手：已读取 `KEYWORDS.md` 并确认本模块关键词与边界；`git pull --rebase origin main` 因网络无法连接 GitHub 失败；补充 `miniprogram/PROJECT_NOTES.md` 的微信开发者工具导入与 Mock 验证步骤。
+决定/结论：本模块工作严格按 `KEYWORDS.md` 关键词归属；本轮最小可交付为完善小程序本地运行说明，降低上手成本。
+下一步：网络可用时重试 `git pull --rebase origin main`；继续按 MVP：验证“首页→题库列表→练习/考试”闭环与错题/收藏本地 storage 流程。
+
