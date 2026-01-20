@@ -12,3 +12,13 @@
 风险/阻塞：
 下一步：
 
+--- 2026-01-20 20:15 ---
+同步来源（模块/分支）：用户指令 / module/99-hub
+本次关键变化：
+- 整理 modules/99-hub/REQUESTS.md：补充跨模块对齐请求（MVP API 契约、ImportTask 模型口径）
+- 新增 modules/99-hub/check-scope.ps1：在提交前检查变更是否越界到其他模块
+风险/阻塞：
+- 当前环境无法连接 github.com，git pull --rebase origin main 失败（待网络恢复补做）
+下一步：
+- 网络恢复后补做 git pull --rebase origin main 并处理潜在冲突
+- 跟进 REQUESTS 两项对齐，推进 OpenSpec/契约落地与联调清单
