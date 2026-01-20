@@ -1,0 +1,7 @@
+<view class="page">
+  <view class="title">{{item.title}}</view>
+  <view class="meta">{{item.time}}</view>
+  <image class="cover" src="{{item.cover}}"></image>
+  <view class="body">{{item.content}}</view>
+</view>
+

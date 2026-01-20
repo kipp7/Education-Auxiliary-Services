@@ -1,10 +1,10 @@
 // pages/start/index.js
-const { APP_NAME, COMPANY_NAME } = require('../../config/index')
+const config = require('../../config/index')
 
 Page({
   data: {
-    appName: APP_NAME,
-    companyName: COMPANY_NAME,
+    appName: config.APP_NAME,
+    companyName: config.COMPANY_NAME,
 
     userInfo: {},
     angle: 0,
@@ -14,7 +14,7 @@ Page({
   },
 
   onLoad() {
-    wx.setNavigationBarTitle({ title: APP_NAME })
+    wx.setNavigationBarTitle({ title: config.APP_NAME })
   },
 
   onShow() {
@@ -73,19 +73,23 @@ Page({
     wx.showLoading({ title: '正在加载' })
 
     if (this.data.checkUser) {
-      const userInfo = this.data.userInfo
+      const userInfo = this.data.userInfo || {}
       if (userInfo.status === '1') {
-        wx.reLaunch({ url: '/pages/index/index' })
-      } else if (userInfo.status === '0') {
-        wx.navigateTo({ url: '/pages/status/index' })
-      } else {
-        wx.navigateTo({ url: '/pages/register/index' })
+        wx.hideLoading()
+        wx.switchTab({ url: '/pages/index/index' })
+        return
       }
-    } else {
-      wx.reLaunch({ url: '/pages/index/index' })
+      if (userInfo.status === '0') {
+        wx.hideLoading()
+        wx.navigateTo({ url: '/pages/status/index' })
+        return
+      }
+      wx.hideLoading()
+      wx.navigateTo({ url: '/pages/register/index' })
+      return
     }
 
     wx.hideLoading()
+    wx.switchTab({ url: '/pages/index/index' })
   },
 })
-

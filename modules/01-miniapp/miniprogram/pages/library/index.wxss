@@ -1,0 +1,78 @@
+.page {
+  padding: 24rpx;
+}
+
+.quick {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 20rpx 10rpx;
+}
+
+.quick-item {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 26rpx;
+  color: #333;
+}
+
+.quick-icon {
+  width: 56rpx;
+  height: 56rpx;
+  margin-bottom: 10rpx;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  margin: 20rpx 0 12rpx;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22rpx 20rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  margin-bottom: 16rpx;
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.vip {
+  font-size: 22rpx;
+  color: #fff;
+  background: #111;
+  padding: 2rpx 10rpx;
+  border-radius: 999rpx;
+}
+
+.card-sub {
+  margin-top: 8rpx;
+  color: #6b7280;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.sep {
+  color: #d1d5db;
+}
+
+.arrow {
+  width: 28rpx;
+  height: 28rpx;
+}
+

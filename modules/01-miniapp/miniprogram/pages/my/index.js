@@ -1,5 +1,5 @@
 // pages/my/index.js
-const { APP_NAME, COMPANY_NAME } = require('../../config/index')
+const config = require('../../config/index')
 
 const cellList = [
   {
@@ -42,9 +42,10 @@ Page({
     })
   },
 
-  onShareAppMessage(t) {
-    return t.from, {
-      title: `${APP_NAME} · 学习答题助手`,
+  onShareAppMessage() {
+    return {
+      title: `${config.APP_NAME} · 刷题练习与模拟考试`,
+      imageUrl: '/images/BG.png',
       path: 'pages/start/index',
     }
   },
@@ -78,9 +79,10 @@ Page({
   },
 
   about() {
+    const supportText = config.SUPPORT_TEXT ? `\n\n${config.SUPPORT_TEXT}` : ''
     wx.showModal({
       title: '关于我们',
-      content: `${APP_NAME}由${COMPANY_NAME}提供服务，用于学习训练与测评辅助。`,
+      content: `${config.APP_NAME}由${config.COMPANY_NAME}提供服务，用于学习训练与测评辅助。${supportText}`,
       showCancel: false,
     })
   },
@@ -142,4 +144,3 @@ Page({
     })
   },
 })
-

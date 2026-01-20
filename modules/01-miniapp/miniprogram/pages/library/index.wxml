@@ -1,0 +1,44 @@
+<view class="page">
+  <view class="quick">
+    <view class="quick-item" bindtap="goLearn">
+      <image class="quick-icon" src="/images/icon_zhangjielianxi@3x.png"></image>
+      <text>章节练习</text>
+    </view>
+    <view class="quick-item" bindtap="goExam">
+      <image class="quick-icon" src="/images/icon_monikaoshi@3x.png"></image>
+      <text>模拟考试</text>
+    </view>
+    <view class="quick-item" bindtap="goWrong">
+      <image class="quick-icon" src="/images/icon_cuotishoucang@3x.png"></image>
+      <text>错题集</text>
+    </view>
+    <view class="quick-item" bindtap="goFavorite">
+      <image class="quick-icon" src="/images/nav_test_icon_fav.png"></image>
+      <text>收藏</text>
+    </view>
+  </view>
+
+  <view class="section-title">
+    <text>题库列表</text>
+  </view>
+
+  <view class="list">
+    <view class="card" wx:for="{{cateList}}" wx:key="objectId" data-cateid="{{item.objectId}}" data-name="{{item.name}}" bindtap="goDefaultLearn">
+      <view class="card-left">
+        <view class="card-title">
+          <text>{{item.name}}</text>
+          <text class="vip" wx:if="{{item.isVip}}">VIP</text>
+        </view>
+        <view class="card-sub">
+          <text>已答 0/{{item.total || 0}}</text>
+          <text class="sep">|</text>
+          <text>正确率 0%</text>
+        </view>
+      </view>
+      <view class="card-right">
+        <image class="arrow" src="/images/jkt/right.png"></image>
+      </view>
+    </view>
+  </view>
+</view>
+
