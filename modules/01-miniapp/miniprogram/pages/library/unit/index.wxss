@@ -1,0 +1,51 @@
+.page {
+  padding: 24rpx;
+}
+
+.card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 20rpx;
+}
+
+.title {
+  font-size: 32rpx;
+  font-weight: 800;
+  color: #111827;
+}
+
+.meta {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #6b7280;
+}
+
+.actions {
+  display: flex;
+  gap: 16rpx;
+  margin-top: 18rpx;
+}
+
+.btn {
+  flex: 1;
+  height: 84rpx;
+  line-height: 84rpx;
+  border-radius: 999rpx;
+  font-size: 28rpx;
+}
+
+.btn::after {
+  border: none;
+}
+
+.btn.ghost {
+  background: #fff;
+  color: #1bd0ad;
+  border: 1rpx solid #1bd0ad;
+}
+
+.btn.primary {
+  background: #1bd0ad;
+  color: #fff;
+}
+

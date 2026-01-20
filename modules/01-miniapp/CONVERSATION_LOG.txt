@@ -18,3 +18,9 @@
 验收路径：微信开发者工具导入 `modules/01-miniapp/miniprogram` → `pages/start/index` 点击“立即进入” → 底部 Tab 依次进入：`pages/index/index`、`pages/library/index`、`pages/course/index`、`pages/my/index`；课程页点任意卡片进入 `pages/course/player`。
 证据：`modules/01-miniapp/_evidence/M1/README.md`（记录人工验收路径；MCP 自动化未接入）。
 
+--- 2026-01-21 01:18 ---
+用户：按 `AUTOPILOT.md` 继续。
+助手：完成 M2 题库页信息结构（Mock）：在 `pages/library/index` 支持切换 `初中/单招`，并按年级/册别/科目（初中）或科目/题型（单招）生成单元列表；点击单元进入占位页 `pages/library/unit/index`，展示路径并提供“同步试题(预览)/在线做题(练习/测评)”按钮（提示后置）。
+验收路径：底部 Tab → 题库 `pages/library/index` → 切换 `初中/单招` 与筛选项 → 点击任意单元卡片进入 `pages/library/unit/index`。
+证据：`modules/01-miniapp/_evidence/M2/README.md`。
+
