@@ -43,3 +43,11 @@
 - npm run dev
 - 打开 http://localhost:5174 → 开发登录 → 点击“公告管理”
 - 可新增/编辑/删除公告；草稿可发布、已发布可下线；支持搜索与重置示例数据
+--- 2026-01-21 01:59 ---
+里程碑：M5 SVIP 码管理（最小骨架）
+验收路径：
+- cd modules/04-admin-console/web
+- npm install
+- npm run dev
+- 打开 http://localhost:5174 → 开发登录 → 点击“SVIP 码管理”
+- 可批量生成若干码；可导出 CSV；可将单个码标记为“已注销”；可重置示例数据

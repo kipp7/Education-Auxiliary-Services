@@ -7,6 +7,7 @@ import { QuestionBankPage } from "./questionBank/QuestionBankPage";
 import { ImportTaskDetailPage } from "./imports/ImportTaskDetailPage";
 import { ImportsListPage } from "./imports/ImportsListPage";
 import { AnnouncementsPage } from "./cms/AnnouncementsPage";
+import { SvipCodesPage } from "./svip/SvipCodesPage";
 
 export function App() {
   return (
@@ -49,6 +50,14 @@ export function App() {
         element={
           <RequireAuth>
             <AnnouncementsPage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/svip-codes"
+        element={
+          <RequireAuth>
+            <SvipCodesPage />
           </RequireAuth>
         }
       />
