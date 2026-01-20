@@ -10,18 +10,19 @@
       <text class="subtitle">随练随测 · 查漏补缺</text>
     </view>
 
-    <view class="content">
+    <view class="stage">
       <view class="hd" style="transform:rotateZ({{angle}}deg);">
         <image class="logo" src="{{userInfo.avatarUrl}}"></image>
         <image class="wave" src="/images/wave.png" mode="aspectFill"></image>
         <image class="wave wave-bg" src="/images/wave.png" mode="aspectFill"></image>
       </view>
 
-      <view class="bd">
+      <view class="panel">
         <view class="hint">点击进入，先浏览首页功能</view>
         <button class="confirm-btn" bindtap="goSign">立即进入</button>
-        <text class="copyright">{{companyName}}</text>
       </view>
     </view>
+
+    <text class="copyright">{{companyName}}</text>
   </block>
 </view>
