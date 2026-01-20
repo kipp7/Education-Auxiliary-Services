@@ -13,3 +13,12 @@
 - 影响评估：
 ```
 
+## 合并请求：01-miniapp（MVP 导航参数编码）
+- 分支：`feat/01-miniapp-mvp-urlencode-winE`
+- 模块：`modules/01-miniapp`
+- 变更摘要：
+  - 将题库名称 `menu` 参数做 URL 编码，避免中文/空格导致跳转异常（`pages/category`、`pages/exam-menu`）
+- 验收方式：
+  - `git fetch && git checkout feat/01-miniapp-mvp-urlencode-winE`
+  - 小程序端手动验证：题库名包含中文/空格时，点击进入练习/考试不应出现跳转异常
+
