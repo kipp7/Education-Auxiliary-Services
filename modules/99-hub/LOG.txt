@@ -1,0 +1,17 @@
+# 99-hub 变更日志
+
+
+--- 2026-01-20 23:44 ---
+模块：99-hub
+分支：feat/99-hub-contract-choice
+提交：5548ac3
+变更点：
+- 明确契约形式选择为 OpenAPI 3.1，更新 `modules/99-hub/CONTRACT.md`
+- 在 `modules/99-hub/TASKS.md` 勾选“选择契约形式”已完成
+日志：
+- 5548ac3 99-hub:contract-choice
+验收方式：
+- 打开 `modules/99-hub/CONTRACT.md`，确认“契约形式（已选择：OpenAPI 3.1）”段落与链接无异常
+- 打开 `modules/99-hub/TASKS.md`，确认该条已标记为 [x]
+- 运行 `powershell -NoProfile -ExecutionPolicy Bypass -File modules/99-hub/check-scope.ps1`，应输出 OK
+

@@ -37,3 +37,12 @@
   - 总控确认 ImportTask 字段与状态机：`progress` 精度（0~100 vs 0~1）、`stage` 枚举、错误报告落地方式、`createdBy`/权限等
   - 需要时在 OpenSpec/接口契约中落地统一版本（作为各模块实现依据）
 - 影响评估：涉及后端接口返回结构与任务表设计；若不统一，后续联调会频繁返工。
+
+## 合并请求：选择契约形式（OpenAPI 3.1）
+- 分支：`feat/99-hub-contract-choice`
+- 模块：`modules/99-hub`
+- 变更摘要：更新契约形式为 OpenAPI 3.1，并在 TASKS 勾选完成
+- 验收方式：
+  - `git fetch && git checkout feat/99-hub-contract-choice`
+  - 查看 `modules/99-hub/CONTRACT.md` 与 `modules/99-hub/TASKS.md`
+  - 运行 `powershell -NoProfile -ExecutionPolicy Bypass -File modules/99-hub/check-scope.ps1`
