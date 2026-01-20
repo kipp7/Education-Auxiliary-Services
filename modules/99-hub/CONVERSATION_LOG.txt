@@ -33,3 +33,13 @@
 --- 2026-01-20 20:42 ---
 补充：
 - git push 因 github.com:443 网络不可达失败；待网络恢复后重试推送 module/99-hub。
+--- 2026-01-20 22:04 ---
+同步来源（模块/分支）：module/99-hub
+本次关键变化：
+- 新增 modules/99-hub/ERRORS.md：错误码规范与统一返回结构草案
+- 更新 modules/99-hub/CONTRACT.md：补充错误码草案入口链接
+风险/阻塞：
+- github.com:443 当前不可达，git pull --rebase origin main 与 git push 可能失败
+下一步：
+- 网络恢复后：先 rebase main，再 push module/99-hub
+- 依据 REQUESTS.md 推进 OpenAPI 3.1 目录与鉴权细节
