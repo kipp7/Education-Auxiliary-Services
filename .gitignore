@@ -9,3 +9,12 @@
 
 # Node
 **/node_modules/
+
+# Local reference assets (do not commit)
+图片/
+
+# Local docs (may contain client information)
+*.docx
+
+# Worktree/module duplication artifacts
+modules/02-backend-core/modules/
