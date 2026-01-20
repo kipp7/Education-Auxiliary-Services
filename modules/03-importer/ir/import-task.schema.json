@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "03-importer/import-task.schema.json",
+  "title": "Import Task v0",
+  "type": "object",
+  "required": ["id", "status", "progress"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "status": {
+      "type": "string",
+      "enum": ["queued", "running", "done", "failed"]
+    },
+    "progress": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "stage": { "type": "string" },
+    "createdAt": { "type": "string" },
+    "updatedAt": { "type": "string" },
+    "result": {
+      "type": "object",
+      "properties": {
+        "parsedCount": { "type": "integer", "minimum": 0 },
+        "importedCount": { "type": "integer", "minimum": 0 },
+        "skippedCount": { "type": "integer", "minimum": 0 },
+        "errorCount": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["code", "message"],
+        "properties": {
+          "code": { "type": "string" },
+          "message": { "type": "string" },
+          "file": { "type": "string" },
+          "line": { "type": "integer", "minimum": 1 }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
