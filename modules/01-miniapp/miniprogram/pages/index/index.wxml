@@ -5,7 +5,7 @@
         <view class="app-name">{{appName}}</view>
         <view class="app-sub">刷题练习 · 模拟考试 · 错题巩固</view>
       </view>
-      <view class="brand-right" bindtap="goMyOrLogin">
+      <view class="brand-right" bindtap="onAvatarTap">
         <image class="avatar" wx:if="{{userInfo.avatarUrl}}" src="{{userInfo.avatarUrl}}"></image>
         <image class="avatar" wx:else src="/images/header.png"></image>
         <view class="avatar-text" wx:if="{{!userInfo.avatarUrl}}">登录</view>
@@ -92,4 +92,3 @@
   </view>
   <view class='mask'></view>
 </view>
-

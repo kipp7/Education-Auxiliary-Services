@@ -50,9 +50,8 @@ Page({
     wx.switchTab({ url: '/pages/my/index' })
   },
 
-  goMyOrLogin() {
-    const userInfo = this.data.userInfo || {}
-    if (userInfo.avatarUrl) {
+  onAvatarTap() {
+    if (this.data.userInfo && this.data.userInfo.avatarUrl) {
       this.goMy()
       return
     }
@@ -138,4 +137,3 @@ Page({
     wx.navigateTo({ url: `/pages/learn/index?cateid=${cateid}&menu=${encodeURIComponent(name)}` })
   }
 })
-
