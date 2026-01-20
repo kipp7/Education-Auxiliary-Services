@@ -8,10 +8,10 @@
 
 ## 1. MVP：导入任务流水线（不绑定具体格式）
 - [x] 导入任务模型：任务ID、状态、进度、错误报告、产出统计（草案见 IMPORT_TASK_DRAFT.md）
-- [ ] 上传入口（建议）
-  - [ ] `POST /import/upload`（zip 或多文件）
-  - [ ] `GET /import/status?id=...`
-- [ ] 目录层级解析：把 folder path 解析为分类树节点（规则待确认）
+- [x] 上传入口（建议）（草案见 `UPLOAD_API_DRAFT.md`)
+  - [x] `POST /import/upload`（zip 或多文件）
+  - [x] `GET /import/status?id=...`
+- [x] 目录层级解析：把 folder path 解析为分类树节点（草案见 `FOLDER_HIERARCHY_RULES_DRAFT.md`）
 - [ ] 题目解析接口：先定义输入/输出中间格式（IR），再实现具体 parser
 
 ## 2. Parser 插件化（按优先级）
@@ -24,6 +24,7 @@
 - [ ] 幂等：重复导入同一份资源不会造成脏数据（策略由 99-hub 定）
 - [ ] 错误报告：行号/文件名/原因/建议修复
 - [ ] 预览/抽检：导入后可预览前 N 道题
+
 
 
 
