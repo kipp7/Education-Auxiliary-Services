@@ -38,3 +38,14 @@
   - 打开并评审 `modules/02-backend-core/contract/mvp.openapi.yaml`，确认覆盖 `modules/02-backend-core/TASKS.md` 的 MVP 接口清单。
   - 确认鉴权 token 传递方式（Authorization Bearer）与错误响应结构是否符合 99-hub 统一口径。
 
+## 合并请求：细化 `POST /auth/wechat` 草案
+- 发起模块：`modules/02-backend-core`
+- 目标模块：`modules/99-hub`
+- 分支：`feat/02-backend-core-auth-wechat-codex`
+- 变更点：
+  - 细化 OpenAPI 中 `AuthWechatResponse` 字段（`expiresIn`/`userId`/`isNewUser`）：`modules/02-backend-core/contract/mvp.openapi.yaml`
+  - 补充接口说明：`modules/02-backend-core/contract/auth.wechat.md`
+- 验收方式：
+  - 阅读 `modules/02-backend-core/contract/auth.wechat.md`，确认请求/响应与 token 传递方式符合预期
+  - 阅读 `modules/02-backend-core/contract/mvp.openapi.yaml`，确认 `AuthWechatResponse.required` 包含 `expiresIn`
+
