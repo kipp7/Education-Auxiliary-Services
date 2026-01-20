@@ -26,7 +26,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       id: "dev",
       displayName: displayName.trim() || "管理员",
       roles: ["admin"],
-      permissions: ["admin:access"],
+      permissions: [
+        "admin:access",
+        "question-bank:read",
+        "question-bank:write",
+        "import:read",
+        "import:write",
+        "cms:read",
+        "cms:write",
+      ],
     };
 
     setToken(newToken);

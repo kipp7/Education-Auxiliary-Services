@@ -6,6 +6,7 @@ import { PlaceholderPage } from "./pages/PlaceholderPage";
 import { QuestionBankPage } from "./questionBank/QuestionBankPage";
 import { ImportTaskDetailPage } from "./imports/ImportTaskDetailPage";
 import { ImportsListPage } from "./imports/ImportsListPage";
+import { AnnouncementsPage } from "./cms/AnnouncementsPage";
 
 export function App() {
   return (
@@ -40,6 +41,14 @@ export function App() {
         element={
           <RequireAuth>
             <ImportTaskDetailPage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/cms"
+        element={
+          <RequireAuth>
+            <AnnouncementsPage />
           </RequireAuth>
         }
       />
