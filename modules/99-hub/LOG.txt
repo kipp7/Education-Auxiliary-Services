@@ -1,0 +1,15 @@
+# 99-hub 变更日志
+
+
+--- 2026-01-21 00:40 ---
+分支：feat/99-hub-contract-choice-v2
+变更点：
+- 新增 `modules/99-hub/CONTRACT.md`：明确契约形式选择为 OpenAPI 3.1
+- 更新 `modules/99-hub/TASKS.md`：勾选“选择契约形式”已完成
+日志：
+- changed files:
+  - modules/99-hub/TASKS.md
+验收方式：
+- 打开 `modules/99-hub/CONTRACT.md`，确认“契约形式（已选择：OpenAPI 3.1）”段落
+- 打开 `modules/99-hub/TASKS.md`，确认该条已标记为 [x]
+

@@ -13,3 +13,12 @@
 - 影响评估：
 ```
 
+
+## 合并请求：选择契约形式（OpenAPI 3.1）
+- 分支：`feat/99-hub-contract-choice-v2`
+- 目标：合并到 `main`
+- 变更摘要：新增 CONTRACT.md 并在 TASKS 勾选完成
+- 验收方式：
+  - `git fetch origin`
+  - `git checkout feat/99-hub-contract-choice-v2`
+  - 查看 `modules/99-hub/CONTRACT.md` 与 `modules/99-hub/TASKS.md`

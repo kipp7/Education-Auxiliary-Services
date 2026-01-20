@@ -15,7 +15,7 @@
 - [ ] M6：验收清单与发布流程
 
 ## 2. 接口契约（OpenSpec / OpenAPI）
-- [ ] 选择契约形式（OpenAPI 3.0/3.1 或 JSON Schema + 文档）
+- [x] 选择契约形式（OpenAPI 3.0/3.1 或 JSON Schema + 文档）
 - [ ] 定义错误码规范与返回结构
 - [ ] 定义鉴权方式（token/session）与刷新策略
 - [ ] 定义“题目通用数据结构”（题型、选项、答案、解析、素材）
@@ -45,4 +45,5 @@
 - [ ] 02-backend-core：Auth + SVIP + 题库/题目 + 视频/进度 + 学习记录
 - [ ] 03-importer：文件夹/zip 导入任务 + 题目 IR + txt parser（先跑通）
 - [ ] 04-admin-console：轮播/试题/视频/SVIP/订单（后置，先出骨架）
+
 
