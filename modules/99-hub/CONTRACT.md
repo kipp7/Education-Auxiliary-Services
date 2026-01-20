@@ -27,3 +27,7 @@
 ## 5) 错误码与返回结构（草案）
 
 - 见 modules/99-hub/ERRORS.md`n
+
+## 6) 鉴权与刷新（草案）
+
+- 见 modules/99-hub/AUTH.md`n

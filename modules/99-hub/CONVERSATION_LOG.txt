@@ -43,3 +43,13 @@
 下一步：
 - 网络恢复后：先 rebase main，再 push module/99-hub
 - 依据 REQUESTS.md 推进 OpenAPI 3.1 目录与鉴权细节
+--- 2026-01-20 23:24 ---
+同步来源（模块/分支）：module/99-hub
+本次关键变化：
+- 新增 modules/99-hub/AUTH.md：鉴权方式（Bearer token）与刷新策略草案
+- 更新 modules/99-hub/CONTRACT.md：补充鉴权草案入口链接
+风险/阻塞：
+- 分支与远端 origin/module/99-hub 存在分歧（需在 push 前 rebase/fast-forward）
+下一步：
+- 在不破坏 main rebase 的前提下，先对齐 origin/module/99-hub 再推送
+- 继续推进 TASKS.md 下一项“题目通用数据结构”
