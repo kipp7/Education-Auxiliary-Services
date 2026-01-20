@@ -53,3 +53,16 @@
   - 确认富文本与资源（图片/公式）的表示与存储方式
   - 确认溯源字段（行号/页码/坐标）统一口径
 - 影响评估：影响所有 parser 的输出形态与落库映射；若不先对齐，将导致后续 parser 返工
+
+## 合并请求：03-importer txt 模板解析（feat 分支）
+- 发起模块：modules/03-importer
+- 目标模块：modules/99-hub（总控合并到 main）
+- 分支：feat/03-importer-txt-parser
+- 变更点：新增 txt 模板解析脚本与样例，产出 QuestionIR v0 JSON
+- 验收方式：
+  - 在仓库根目录运行：
+    - node modules/03-importer/tools/parse-txt.mjs modules/03-importer/samples/txt/basic.txt --category "数学/一年级" > modules/03-importer/output/basic.parsed.json
+  - 检查：modules/03-importer/output/basic.parsed.json 中 questions.length == 3 且包含 single/multi/judge 三种题型
+  - 期望：errors 为空，questions[0..2].type 分别包含 single/multi/judge
+- 备注：详细日志/输出已写入 modules/03-importer/LOG.txt
+
