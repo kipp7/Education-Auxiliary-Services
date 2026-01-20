@@ -25,3 +25,15 @@
     - 导入：上传、任务列表、任务详情、错误报告下载
     - 用户/权限：管理员登录、角色绑定/查询（最小闭环即可）
 - 影响评估：契约定稿后 `04-admin-console` 才能开始最小 UI/路由实现；同时可为 `03-importer`、`02-backend-core` 提供一致的管理端契约入口。
+
+## 合并请求：04-admin-console 登录与权限最小骨架
+- 发起模块：`modules/04-admin-console`
+- 目标模块：`modules/99-hub`（总控合并到 `main`）
+- 分支：`feat/04-admin-console-auth-skeleton`
+- 原因：完成 `TASKS.md` 的“登录与权限（管理员）”最小骨架，提供可运行的路由与权限守卫占位，便于后续按契约接入真实接口。
+- 变更范围：仅 `modules/04-admin-console/**`（外加本文件的请求条目）
+- 验收方式：
+  - `cd modules/04-admin-console/web`
+  - `npm install`
+  - `npm run dev`
+  - 打开 `http://localhost:5174`，点击“开发登录”进入首页；退出后回到登录页
