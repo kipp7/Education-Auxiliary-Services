@@ -10,7 +10,7 @@
 - [ ] 与 02-backend-core 的落库/数据模型对齐（由 99-hub 汇总）
 
 ## 1. MVP：导入任务流水线（不绑定具体格式）
-- [ ] 导入任务模型：任务ID、状态、进度、错误报告、产出统计
+- [x] 导入任务模型：任务ID、状态、进度、错误报告、产出统计（见 `modules/03-importer/ir/import-task.schema.json`）
 - [ ] 上传入口（建议）
   - [ ] `POST /import/upload`（zip 或多文件）
   - [ ] `GET /import/status?id=...`
@@ -32,6 +32,7 @@
 - [ ] 幂等：重复导入同一份资源不会造成脏数据（策略由 99-hub 定）
 - [x] 错误报告：行号/文件名/原因/建议修复（格式见 modules/03-importer/ir/error-report.schema.json）
 - [ ] 预览/抽检：导入后可预览前 N 道题
+
 
 
 

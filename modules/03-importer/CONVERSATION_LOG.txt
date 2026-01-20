@@ -20,3 +20,8 @@
 - 查看：modules/03-importer/output/basic.parsed.json
 - IR schema：modules/03-importer/ir/question-ir.schema.json
 - 错误报告 schema：modules/03-importer/ir/error-report.schema.json
+
+--- 2026-01-21 01:18 ---
+决定/结论：完成 AUTOPILOT M2 的导入任务模型（占位）schema。
+验收路径：
+- 查看：modules/03-importer/ir/import-task.schema.json
