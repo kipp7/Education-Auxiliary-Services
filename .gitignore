@@ -22,3 +22,6 @@ modules/02-backend-core/modules/
 # Evidence outputs (keep folder structure via .gitkeep)
 modules/**/_evidence/**
 !modules/**/_evidence/.gitkeep
+
+# Avoid committing ad-hoc logs/screenshots
+modules/99-hub/logs/

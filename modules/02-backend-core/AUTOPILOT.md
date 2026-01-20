@@ -24,6 +24,14 @@ git checkout -b feat/02-backend-core-mvp
 - 输出：项目结构/路由骨架/鉴权中间件占位
 - 先返回 mock 数据，保证小程序可跑通
 
+### M3：端到端 Mock API（可被小程序真正调用）
+> 目标：让小程序把 `USE_MOCK` 切到 `false` 后，至少能跑通：题库树→题目→提交作答→学习记录（全是 mock 返回也行）。
+- [ ] `/subjects` `/packages` `/chapters`
+- [ ] `/questions`（按 chapterId 或随机）
+- [ ] `/videos` `/videos/progress`
+- [ ] `/activation/redeem` `/me/entitlements`
+- [ ] `/me/learning-records`
+
 ## 3. 输出与汇报
 每完成一个里程碑才提交/推送，并在 `modules/02-backend-core/CONVERSATION_LOG.txt` 记录验收方式（curl 示例）。
 
