@@ -27,3 +27,7 @@ git checkout -b feat/02-backend-core-mvp
 ## 3. 输出与汇报
 每完成一个里程碑才提交/推送，并在 `modules/02-backend-core/CONVERSATION_LOG.txt` 记录验收方式（curl 示例）。
 
+## 4. 联动验收（建议，若 MCP 可用）
+如果你当前窗口能连上微信小程序 MCP：
+- 在小程序侧用 `mp_getLogs` 检查 API 失败日志（例如 401/403/5xx）
+- 把关键错误码与请求路径整理到 `modules/99-hub/REQUESTS.md`，让契约与实现一致

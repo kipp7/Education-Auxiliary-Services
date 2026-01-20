@@ -18,3 +18,7 @@
 
 # Worktree/module duplication artifacts
 modules/02-backend-core/modules/
+
+# Evidence outputs (keep folder structure via .gitkeep)
+modules/**/_evidence/**
+!modules/**/_evidence/.gitkeep

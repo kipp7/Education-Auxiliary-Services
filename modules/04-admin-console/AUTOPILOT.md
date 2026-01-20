@@ -24,3 +24,5 @@ git checkout -b feat/04-admin-console-prototype
 ## 3. 输出与汇报
 完成里程碑才提交/推送，并在 `modules/04-admin-console/CONVERSATION_LOG.txt` 记录“如何跑起来/如何验收”。
 
+## 4. 小程序 MCP（可选）
+如果 MCP 可用，用 `mp_screenshot` 把“轮播/题库/课程/我的”四页截图留档，便于对齐管理台配置项。

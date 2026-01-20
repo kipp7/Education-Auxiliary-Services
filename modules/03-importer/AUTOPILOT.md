@@ -25,3 +25,5 @@ git checkout -b feat/03-importer-mvp
 ## 3. 输出与汇报
 完成里程碑才提交/推送，并把“输入样例/输出样例”写进 `modules/03-importer/CONVERSATION_LOG.txt`。
 
+## 4. 小程序侧回归（可选）
+如果 MCP 可用，导入完成后用 `mp_screenshot` 截图验证小程序题库列表/题目页展示是否正常。
