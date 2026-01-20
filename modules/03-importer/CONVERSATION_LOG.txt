@@ -30,3 +30,12 @@
 - /import/upload 建议以 multipart 为主，JSON 引用对象存储作为备选（待 99-hub 定）。
 下一步：
 - 等待 99-hub 确认鉴权/存储/错误码口径后，再推进下一项“目录层级解析”规则与实现。
+
+--- 2026-01-20 22:06 ---
+用户：继续按 TASKS.md 顺序推进：pull/rebase → 最小可交付 → 记录 → commit/push。
+助手：尝试 push 但 GitHub 连接仍不稳定（本地分支仍 ahead）；本轮完成“目录层级解析规则”草案，新增 modules/03-importer/FOLDER_HIERARCHY_RULES_DRAFT.md，并在 modules/03-importer/TASKS.md 标记该项为草案完成；已在 modules/99-hub/REQUESTS.md 追加需要对齐的点。
+决定/结论：
+- 目录层级解析 v0：按路径段直接生成分类树；支持 zip 包裹层根目录折叠；根目录文件归入 未分类。
+下一步：
+- 等待 99-hub/02-backend-core 确认分类树落库字段与幂等策略后，再推进下一项“题目解析 IR 定义”。
+- 网络恢复后重试 git push（将同时推送前一轮与本轮提交）。
