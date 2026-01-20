@@ -13,3 +13,10 @@
 - 影响评估：
 ```
 
+---
+
+## 合并队列（总控窗口执行）
+> 规则：所有窗口只 push 自己的 `feat/*` 分支；总控窗口按优先级合并进 `main`。
+
+- [x] `feat/04-admin-console-autopilot-codex` → 已合并到 `main`（管理台原型 M1–M4）
+
