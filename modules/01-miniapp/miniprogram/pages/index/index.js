@@ -1,7 +1,9 @@
 //index.js
+const { APP_NAME } = require('../../config/index')
 
 Page({
   data: {
+    appName: APP_NAME,
     userInfo: {},
     useLearn:true,
     is_login:true,
@@ -34,6 +36,7 @@ Page({
     })
   },
   onShow: function(){
+    wx.setNavigationBarTitle({ title: APP_NAME })
     this.setData({
       userInfo: wx.getStorageSync('userInfo')
     })
@@ -42,6 +45,12 @@ Page({
     wx.navigateTo({
       url: '../my/index',
     })
+  },
+  goWrong() {
+    wx.navigateTo({ url: '/pages/wrong/index' })
+  },
+  goRank() {
+    wx.navigateTo({ url: '/pages/category/index?action=rank' })
   },
   goLearn() {
     if(this.data.useLearn){

@@ -1,90 +1,74 @@
-<!--index.wxml-->
-<view class='page'>
-  <view class='head'>
-    <view class="topBG">
-      <image class="topImage" src="https://upload-images.jianshu.io/upload_images/6673460-bc716a04d5f6091c.png"></image>
-    </view>
-    <view class='todayData'>
-      <view style='padding:20rpx;'>
-        <image class='signIn' src='{{userInfo.avatarUrl}}' wx:if="{{userInfo.avatarUrl}}"></image>
-        <button hover-class='none' bindtap='login' style='background-color:transparent;' wx:else>
-          <view>
-            <image class='signIn' src='/images/header.png'></image>
-            <view style="font-size:38rpx;">点击登录</view>
-          </view>
-        </button>
-      </view>
-      <view class='headBottom1' wx:if="{{userInfo.avatarUrl}}">
-        <view class='name1'>姓名:</view>
-        <view class='department1'>部门:</view>
-      </view>
-      <view class='headBottom2' wx:if="{{userInfo.avatarUrl}}">
-        <view class='name2' wx:if="{{userInfo.realname}}">{{userInfo.realname}}</view>
-        <view class='name2' wx:else>暂无信息</view>
-        <view class='department2' wx:if="{{userInfo.department}}">{{userInfo.department}}</view>
-        <view class='department2' wx:else>暂无信息</view>
-      </view>
+<!-- pages/index/index.wxml -->
+<view class="page">
+  <view class="header">
+    <view class="brand">
+      <text class="brand-title">{{appName}}</text>
+      <text class="brand-subtitle">学习训练与测评辅助</text>
     </view>
 
-  </view>
-  <view class='swiper-box on'>
-    <view class='bg-container'>
-
-      <!-- 练习区域 -->
-      <view class="bg-1 css-shadow bg-border">
-        <view class="bg-2 bg-border">
-          <view class="bg-3 bg-border">
-            <view class="bg-content bg-border" bindtap='gocenter'>
-              <view>个人中心</view>
-            </view>
-          </view>
-        </view>
-
-
+    <view class="profile" wx:if="{{userInfo.avatarUrl}}" bindtap="gocenter">
+      <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+      <view class="profile-text">
+        <view class="profile-name">{{userInfo.realname || userInfo.nickName || '同学'}}</view>
+        <view class="profile-meta" wx:if="{{userInfo.department}}">{{userInfo.department}}</view>
+        <view class="profile-meta" wx:else>点击进入个人中心</view>
       </view>
-
+      <view class="chevron">›</view>
     </view>
 
-    <view class='bg-line-top'>
-      <!-- <navigator url="/pages/category/index?action=learn" class="bg-button-module css-shadow">
-        <image src="/images/icon_zhangjielianxi@3x.png" style="height:50px;width:50px;"></image>
-        <view>练习</view>
-      </navigator> -->
-      <navigator class="bg-button-module css-shadow" bindtap='goLearn'>
-        <image src="/images/icon_zhangjielianxi@3x.png" style="height:50px;width:50px;"></image>
-        <view>练习</view>
-      </navigator>
-
-      <navigator class="bg-button-module css-shadow" bindtap='goExam'>
-        <image src="/images/icon_monikaoshi@3x.png" style="height:50px;width:50px;"></image>
-        <view>答题</view>
-      </navigator>
-    </view>
-
-    <view class='bg-line-bottom'>
-      <navigator url="/pages/wrong/index" class="bg-button-module css-shadow">
-        <image src="/images/icon_cuotishoucang@3x.png" style="height:50px;width:50px;"></image>
-        <view>错题</view>
-      </navigator>
-
-      <navigator url="/pages/category/index?action=rank" class="bg-button-module css-shadow">
-        <image src="/images/icon_monichnegji@3x.png" style="height:50px;width:50px;"></image>
-        <view>排名</view>
-      </navigator>
+    <view class="profile guest" wx:else bindtap="login">
+      <image class="avatar" src="/images/header.png"></image>
+      <view class="profile-text">
+        <view class="profile-name">点击登录</view>
+        <view class="profile-meta">登录后可记录成绩与错题</view>
+      </view>
+      <view class="chevron">›</view>
     </view>
   </view>
-  <!-- <image class='bottimBG' src='/images/BG.png' ></image> -->
-</view>
+
+  <view class="content">
+    <view class="section-title">快捷功能</view>
+
+    <view class="grid">
+      <view class="card" bindtap="goLearn">
+        <image class="card-icon" src="/images/icon_zhangjielianxi@3x.png"></image>
+        <view class="card-title">练习</view>
+        <view class="card-desc" wx:if="{{useLearn}}">章节/随机练习</view>
+        <view class="card-desc disabled" wx:else>暂未开启</view>
+      </view>
+
+      <view class="card" bindtap="goExam">
+        <image class="card-icon" src="/images/icon_monikaoshi@3x.png"></image>
+        <view class="card-title">答题</view>
+        <view class="card-desc">开始一次测评</view>
+      </view>
+
+      <view class="card" bindtap="goWrong">
+        <image class="card-icon" src="/images/icon_cuotishoucang@3x.png"></image>
+        <view class="card-title">错题</view>
+        <view class="card-desc">针对复习巩固</view>
+      </view>
+
+      <view class="card" bindtap="goRank">
+        <image class="card-icon" src="/images/icon_monichnegji@3x.png"></image>
+        <view class="card-title">排名</view>
+        <view class="card-desc">查看成绩排行</view>
+      </view>
+    </view>
+  </view>
+
   <view class="warrant" wx:if="{{!is_login}}">
-     <view class='white'>
-        <view class='tap'>您还未登录</view>
-        <view class='tip'>请先登录再进行操作</view>
-        <view class='pictrue'></view>
-        <view style='display:flex;'>
-          <button class='no' type="primary" bindtap='login' lang="zh_CN">暂不登录</button> 
-          <button wx:if="{{canIUseGetUserProfile}}"  class='but' bindtap="getUserProfile">立即登录</button>
-          <button wx:else class='but' type="primary" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindgetuserinfo">立即登录</button> 
-        </view>
-     </view>
-     <view class='mask'></view>
+    <view class="white">
+      <view class="tap">您还未登录</view>
+      <view class="tip">请先登录再进行操作</view>
+      <view class="pictrue"></view>
+      <view class="actions">
+        <button class="no" type="primary" bindtap="login" lang="zh_CN">暂不登录</button>
+        <button wx:if="{{canIUseGetUserProfile}}" class="but" bindtap="getUserProfile">立即登录</button>
+        <button wx:else class="but" type="primary" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindgetuserinfo">立即登录</button>
+      </view>
+    </view>
+    <view class="mask"></view>
+  </view>
 </view>
+
