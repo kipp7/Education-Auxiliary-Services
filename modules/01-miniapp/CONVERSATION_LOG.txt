@@ -18,3 +18,9 @@
 决定/结论：本模块工作严格按 `KEYWORDS.md` 关键词归属；本轮最小可交付为完善小程序本地运行说明，降低上手成本。
 下一步：网络可用时重试 `git pull --rebase origin main`；继续按 MVP：验证“首页→题库列表→练习/考试”闭环与错题/收藏本地 storage 流程。
 
+--- 2026-01-20 21:03 ---
+用户：继续按本模块 `TASKS.md` 顺序推进：先 pull，再完成一个小点交付，并按流程提交推送。
+助手：执行 `git pull --rebase origin main` 失败（网络无法连接 GitHub）；新增 `miniprogram/LOCAL_DEV.md`（微信开发者工具导入 + Mock 跑通 MVP 步骤），并在 `miniprogram/PROJECT_NOTES.md` 增加引用。
+决定/结论：本轮最小可交付为补齐本地开发文档，确保同学可按步骤导入并用 Mock 验证 MVP；pull 失败原因记录为网络问题。
+下一步：网络恢复后优先重试 `git pull --rebase origin main`；按 MVP 继续推进“首页→题库列表→练习模式”可进入/做题/展示解析（必要时补齐页面入口与路由）。
+
