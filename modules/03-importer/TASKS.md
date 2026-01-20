@@ -15,10 +15,10 @@
   - [ ] `POST /import/upload`（zip 或多文件）
   - [ ] `GET /import/status?id=...`
 - [ ] 目录层级解析：把 folder path 解析为分类树节点（规则待确认）
-- [ ] 题目解析接口：先定义输入/输出中间格式（IR），再实现具体 parser
+- [x] 题目解析接口：先定义输入/输出中间格式（IR），再实现具体 parser（见 modules/03-importer/ir/question-ir.schema.json）
 
 ## 2. Parser 插件化（按优先级）
-- [ ] `txt` 模板解析（最快落地，先支持单选/多选/判断）
+- [x] `txt` 模板解析（最快落地；实现见 `modules/03-importer/tools/parse-txt.mjs`，样例见 `modules/03-importer/samples/txt/basic.txt`）
 - [ ] `doc/docx` 解析（按样例再定）
 - [ ] `pdf` 解析（按样例再定）
 - [ ] 图片 OCR（最后做；先支持人工校对流程）
@@ -30,6 +30,8 @@
 
 ## 3. 质量与可回滚
 - [ ] 幂等：重复导入同一份资源不会造成脏数据（策略由 99-hub 定）
-- [ ] 错误报告：行号/文件名/原因/建议修复
+- [x] 错误报告：行号/文件名/原因/建议修复（格式见 modules/03-importer/ir/error-report.schema.json）
 - [ ] 预览/抽检：导入后可预览前 N 道题
+
+
 
