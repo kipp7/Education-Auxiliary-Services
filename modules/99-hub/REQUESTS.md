@@ -37,3 +37,16 @@
   - `npm install`
   - `npm run dev`
   - 打开 `http://localhost:5174`，点击“开发登录”进入首页；退出后回到登录页
+
+## 合并请求：04-admin-console 题库管理最小骨架
+- 发起模块：`modules/04-admin-console`
+- 目标模块：`modules/99-hub`（总控合并到 `main`）
+- 分支：`feat/04-admin-console-question-bank-codex`
+- 原因：完成 `TASKS.md` 的“题库管理：科目/题库包/章节/题目列表”最小骨架（本地示例数据 + 占位 CRUD），为后续按契约接入真实 API 做界面与交互准备。
+- 变更范围：仅 `modules/04-admin-console/**`（外加本文件的请求条目）
+- 验收方式：
+  - `cd modules/04-admin-console/web`
+  - `npm install`
+  - `npm run dev`
+  - 打开 `http://localhost:5174` → 开发登录 → 进入“题库管理”
+  - 可新增/重命名/删除：科目、题库包、章节、题目；可点击“重置示例数据”
