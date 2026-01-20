@@ -32,17 +32,18 @@ Page({
   goquestion (e){
     var cateid = e.currentTarget.dataset.cateid
     var menu = e.currentTarget.dataset.menu
+    var safeMenu = encodeURIComponent(menu || '')
     if(this.data.action == 'learn')
       wx.navigateTo({
-        url: '../learn/index?cateid='+ cateid +'&menu='+menu,
+        url: '../learn/index?cateid='+ cateid +'&menu='+ safeMenu,
       })
     else if(this.data.action == 'rank')
       wx.navigateTo({
-        url: '../rank/index?cateid=' + cateid + '&menu=' + menu,
+        url: '../rank/index?cateid=' + cateid + '&menu=' + safeMenu,
       })
     else
       wx.navigateTo({
-        url: '../exam/index?cateid=' + cateid +'&menu=' + menu,
+        url: '../exam/index?cateid=' + cateid +'&menu=' + safeMenu,
       })
   }
 })

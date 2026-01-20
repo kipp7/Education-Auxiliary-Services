@@ -46,7 +46,7 @@ Page({
     const cateid = e.currentTarget.dataset.cateid
     const menu = e.currentTarget.dataset.menu
     wx.navigateTo({
-      url: `/pages/exam/index?cateid=${cateid}&menu=${menu}`,
+      url: `/pages/exam/index?cateid=${cateid}&menu=${encodeURIComponent(menu || '')}`,
     })
   },
 })
