@@ -12,3 +12,11 @@
 决定/结论：
 下一步：
 
+
+--- 2026-01-21 01:17 ---
+决定/结论：完成 AUTOPILOT M1 的 IR + txt parser + 错误报告格式（schema）。
+验收路径：
+- 运行：node modules/03-importer/tools/parse-txt.mjs modules/03-importer/samples/txt/basic.txt --category "数学/一年级" > modules/03-importer/output/basic.parsed.json
+- 查看：modules/03-importer/output/basic.parsed.json
+- IR schema：modules/03-importer/ir/question-ir.schema.json
+- 错误报告 schema：modules/03-importer/ir/error-report.schema.json
