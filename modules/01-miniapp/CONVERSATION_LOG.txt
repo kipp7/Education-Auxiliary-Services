@@ -24,3 +24,9 @@
 验收路径：底部 Tab → 题库 `pages/library/index` → 切换 `初中/单招` 与筛选项 → 点击任意单元卡片进入 `pages/library/unit/index`。
 证据：`modules/01-miniapp/_evidence/M2/README.md`。
 
+--- 2026-01-21 01:32 ---
+用户：按 `AUTOPILOT.md` 继续。
+助手：完成 M3 课程播放页续播记录（Mock）：播放页以 `wx.setStorageSync('course_progress_<id>')` 记录当前进度（通过“模拟播放 +10s”和滑块模拟），再次进入同一课程时弹窗提示并可选择“继续/重新开始”。
+验收路径：底部 Tab → 课程 `pages/course/index` → 点击任意课程进入 `pages/course/player?id=<id>` → 调整进度（按钮/滑块）→ 返回课程列表 → 再次进入同一课程，验证续播弹窗与恢复/重置。
+证据：`modules/01-miniapp/_evidence/M3/README.md`。
+
