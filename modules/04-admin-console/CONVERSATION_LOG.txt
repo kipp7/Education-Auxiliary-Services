@@ -40,3 +40,8 @@
 决定/结论：接口以 99-hub 定稿为准；本清单仅用于联调/拆分任务与识别缺口。
 下一步：push 分支；待 99-hub 冻结契约后，将清单映射到最终 OpenAPI 并开始实现登录+权限守卫与导入任务列表页骨架。
 
+--- 2026-01-20 23:44 ---
+用户：要求先 rebase 同步；确认 worktree；按 TASKS.md 下一条未完成任务实现；完成后推送 feat 分支并写 LOG.txt，最后在 99-hub/REQUESTS.md 留合并请求。
+助手：已在 04-admin-console worktree 上完成 rebase；实现并勾选了 MVP 的“登录与权限（管理员）”最小骨架（web/），包含开发占位登录、token 持久化与权限守卫；已本地 build 通过。
+决定/结论：在 99-hub RBAC/接口未冻结前，登录采用开发占位流程，不存储任何账号/密码，仅用于跑通路由与守卫。
+下一步：提交并推送到 feat/04-admin-console-auth-skeleton；在 99-hub/REQUESTS.md 提交合并请求（含验收方式）；等待契约定稿后接入真实登录接口与权限点。
