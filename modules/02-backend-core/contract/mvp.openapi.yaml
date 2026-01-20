@@ -1,0 +1,452 @@
+openapi: 3.1.0
+info:
+  title: 02-backend-core MVP API (Draft)
+  version: 0.1.0-draft
+  description: |
+    草案：用于 `modules/99-hub` 定稿的输入（非最终版本）。
+servers:
+  - url: http://localhost:3000
+
+tags:
+  - name: auth
+  - name: questionBank
+  - name: questions
+  - name: videos
+  - name: svip
+  - name: records
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    ErrorResponse:
+      type: object
+      additionalProperties: false
+      required: [code, message]
+      properties:
+        code:
+          type: string
+          description: 统一错误码（需 99-hub 定稿枚举）
+          examples: [UNAUTHORIZED, FORBIDDEN, INVALID_ARGUMENT, NOT_FOUND, INTERNAL]
+        message:
+          type: string
+        requestId:
+          type: string
+          nullable: true
+
+    AuthWechatRequest:
+      type: object
+      additionalProperties: false
+      required: [code]
+      properties:
+        code:
+          type: string
+          description: 微信登录 code
+
+    AuthWechatResponse:
+      type: object
+      additionalProperties: false
+      required: [token, expiresIn]
+      properties:
+        token:
+          type: string
+          description: 访问 token（草案：Authorization Bearer 传递）
+        expiresIn:
+          type: integer
+          minimum: 1
+          description: token 有效期（秒）
+        userId:
+          type: string
+          nullable: true
+        isNewUser:
+          type: boolean
+          nullable: true
+
+    Subject:
+      type: object
+      additionalProperties: false
+      required: [id, name]
+      properties:
+        id: { type: string }
+        name: { type: string }
+
+    Package:
+      type: object
+      additionalProperties: false
+      required: [id, subjectId, name]
+      properties:
+        id: { type: string }
+        subjectId: { type: string }
+        name: { type: string }
+
+    Chapter:
+      type: object
+      additionalProperties: false
+      required: [id, packageId, name]
+      properties:
+        id: { type: string }
+        packageId: { type: string }
+        name: { type: string }
+
+    Question:
+      type: object
+      additionalProperties: false
+      required: [id, chapterId, stem]
+      properties:
+        id: { type: string }
+        chapterId: { type: string }
+        stem: { type: string }
+        analysis:
+          type: string
+          nullable: true
+
+    Video:
+      type: object
+      additionalProperties: false
+      required: [id, title]
+      properties:
+        id: { type: string }
+        title: { type: string }
+        url:
+          type: string
+          nullable: true
+
+    VideoProgressUpsertRequest:
+      type: object
+      additionalProperties: false
+      required: [videoId, progress]
+      properties:
+        videoId: { type: string }
+        progress:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: 播放进度（0~1）
+
+    VideoProgressResponse:
+      type: object
+      additionalProperties: false
+      required: [videoId, progress]
+      properties:
+        videoId: { type: string }
+        progress:
+          type: number
+          minimum: 0
+          maximum: 1
+
+    SvipBindRequest:
+      type: object
+      additionalProperties: false
+      required: [code]
+      properties:
+        code:
+          type: string
+          description: SVIP/激活码（草案字段名，需 99-hub 定稿）
+
+    SvipBindResponse:
+      type: object
+      additionalProperties: false
+      required: [bound]
+      properties:
+        bound: { type: boolean }
+
+    StudyRecordUpsertRequest:
+      type: object
+      additionalProperties: false
+      required: [chapterId, payload]
+      properties:
+        chapterId: { type: string }
+        payload:
+          type: object
+          description: 草案：学习记录内容（后续可拆字段）
+
+    StudyRecordResponse:
+      type: object
+      additionalProperties: false
+      required: [id]
+      properties:
+        id: { type: string }
+
+  responses:
+    BadRequest:
+      description: 参数错误
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    Unauthorized:
+      description: 未认证
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    Forbidden:
+      description: 无权限
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+
+paths:
+  /auth/wechat:
+    post:
+      tags: [auth]
+      summary: 微信登录（code → token）
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthWechatRequest"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthWechatResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+
+  /subjects:
+    get:
+      tags: [questionBank]
+      summary: 获取科目列表
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Subject"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /packages:
+    get:
+      tags: [questionBank]
+      summary: 获取题库包列表
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: subjectId
+          in: query
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Package"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /chapters:
+    get:
+      tags: [questionBank]
+      summary: 获取章节列表
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: packageId
+          in: query
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Chapter"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /questions:
+    get:
+      tags: [questions]
+      summary: 获取题目列表
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: chapterId
+          in: query
+          required: true
+          schema: { type: string }
+        - name: limit
+          in: query
+          required: false
+          schema: { type: integer, minimum: 1, maximum: 200 }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Question"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /videos:
+    get:
+      tags: [videos]
+      summary: 获取视频列表
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: packageId
+          in: query
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Video"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /videos/progress:
+    get:
+      tags: [videos]
+      summary: 获取视频进度
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: videoId
+          in: query
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VideoProgressResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+    post:
+      tags: [videos]
+      summary: 更新视频进度
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VideoProgressUpsertRequest"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VideoProgressResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /svip/bind:
+    post:
+      tags: [svip]
+      summary: SVIP 绑定（草案）
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SvipBindRequest"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SvipBindResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /records:
+    get:
+      tags: [records]
+      summary: 获取学习记录（草案）
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: packageId
+          in: query
+          required: false
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StudyRecordResponse"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+    post:
+      tags: [records]
+      summary: 写入学习记录（草案）
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StudyRecordUpsertRequest"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StudyRecordResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+

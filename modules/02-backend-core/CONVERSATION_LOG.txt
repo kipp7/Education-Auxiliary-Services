@@ -12,3 +12,11 @@
 决定/结论：
 下一步：
 
+
+--- 2026-01-21 01:10 ---
+里程碑：M1 契约定稿草案（OpenAPI）
+验收方式（路径）：
+- 查看契约文件：modules/02-backend-core/contract/mvp.openapi.yaml
+- 关键接口 smoke（示例 curl，仅用于验收路径记录；服务端实现将在 M2 提供 mock）：
+  - curl -X POST http://localhost:3000/auth/wechat -H "Content-Type: application/json" -d '{"code":"demo"}'
+  - curl http://localhost:3000/subjects -H "Authorization: Bearer demo"
