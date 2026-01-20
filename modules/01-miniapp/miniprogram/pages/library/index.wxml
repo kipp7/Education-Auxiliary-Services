@@ -1,0 +1,21 @@
+<!-- pages/library/index.wxml -->
+<view class="page">
+  <view class="header">
+    <view class="title">题库</view>
+    <view class="seg">
+      <view class="seg-item {{mode === 'learn' ? 'active' : ''}}" bindtap="setMode" data-mode="learn">练习</view>
+      <view class="seg-item {{mode === 'exam' ? 'active' : ''}}" bindtap="setMode" data-mode="exam">答题</view>
+    </view>
+  </view>
+
+  <view class="list">
+    <view class="row" wx:for="{{cateList}}" wx:key="objectId" bindtap="goCate" data-cateid="{{item.objectId}}" data-menu="{{item.name}}">
+      <view class="left">
+        <view class="icon">{{index + 1}}</view>
+        <text class="name">{{item.name}}</text>
+      </view>
+      <image class="arrow" src="/images/jkt/right.png"></image>
+    </view>
+  </view>
+</view>
+

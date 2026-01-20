@@ -53,7 +53,7 @@ Page({
     wx.navigateTo({ url: '/pages/category/index?action=rank' })
   },
   goLearn() {
-    wx.switchTab({ url: '/pages/practice/index' })
+    wx.switchTab({ url: '/pages/library/index' })
   },
   login() {
     this.setData({

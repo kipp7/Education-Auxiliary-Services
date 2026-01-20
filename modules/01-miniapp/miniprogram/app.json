@@ -2,7 +2,7 @@
   "pages": [
     "pages/start/index",
     "pages/index/index",
-    "pages/practice/index",
+    "pages/library/index",
     "pages/exam-menu/index",
     "pages/my/index",
     "pages/register/index",
@@ -39,8 +39,8 @@
         "selectedIconPath": "images/star-active.png"
       },
       {
-        "pagePath": "pages/practice/index",
-        "text": "练习",
+        "pagePath": "pages/library/index",
+        "text": "题库",
         "iconPath": "images/icon_zhangjielianxi@3x.png",
         "selectedIconPath": "images/icon_zhangjielianxi@3x.png"
       },
