@@ -12,3 +12,12 @@
 决定/结论：
 下一步：
 
+
+--- 2026-01-20 20:11 ---
+用户：要求各模块按 TASKS.md 顺序推进；每轮结束追加记录到本模块 CONVERSATION_LOG.txt；按流程 git pull --rebase origin main → 最小可交付 → 记录 → commit/push 到 module/03-importer 分支；跨模块依赖写入 modules/99-hub/REQUESTS.md。
+助手：已在本 worktree 执行 git pull --rebase origin main；完成 TASKS.md 中“导入任务模型”草案，新增 IMPORT_TASK_DRAFT.md；并将需要对齐的点写入 modules/99-hub/REQUESTS.md。
+决定/结论：
+- 本轮最小可交付选定为“导入任务模型（ImportTask）草案”，先以草案方式推进，最终以 99-hub 汇总/契约为准。
+- 已向 99-hub 提出对齐请求：progress 精度、状态/阶段枚举、错误报告落地方式、权限与幂等等。
+下一步：
+- 等待 99-hub/02-backend-core 确认 ImportTask 口径后，再继续 TASKS.md 下一项“上传入口（建议）”的接口契约与实现拆分。
