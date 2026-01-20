@@ -87,6 +87,8 @@ page {
   height: 55%;
   margin-left: -500rpx;
   transition: all 0.35s ease;
+  z-index: 2;
+  pointer-events: none;
 }
 
 .logo {
@@ -167,9 +169,9 @@ page {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 58%;
-  padding: 140rpx 56rpx 220rpx;
-  background: rgba(255, 255, 255, 0.98);
+  height: 54%;
+  padding: 96rpx 56rpx 180rpx;
+  background: rgba(255, 255, 255, 0.96);
   border-top-left-radius: 44rpx;
   border-top-right-radius: 44rpx;
   display: flex;
@@ -179,6 +181,7 @@ page {
   opacity: 0;
   transform: translate3d(0, 80rpx, 0);
   animation: panel-in 0.9s cubic-bezier(0.23, 1, 0.32, 1) 0.5s forwards;
+  z-index: 1;
 }
 
 @keyframes panel-in {
@@ -193,10 +196,14 @@ page {
 }
 
 .hint {
-  margin: 0 auto 36rpx;
+  margin: 0 auto 16rpx;
   text-align: center;
   font-size: 28rpx;
   color: rgba(0, 0, 0, 0.55);
+}
+
+.spacer {
+  flex: 1;
 }
 
 .confirm-btn {
@@ -208,7 +215,8 @@ page {
   background: #1bd0ad;
   color: #ffffff;
   box-shadow: 0 18rpx 40rpx rgba(27, 208, 173, 0.32);
-  width: 100%;
+  width: 520rpx;
+  max-width: 100%;
 }
 
 .confirm-btn::after {
