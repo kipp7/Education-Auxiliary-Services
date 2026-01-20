@@ -39,3 +39,13 @@
 下一步：
 - 等待 99-hub/02-backend-core 确认分类树落库字段与幂等策略后，再推进下一项“题目解析 IR 定义”。
 - 网络恢复后重试 git push（将同时推送前一轮与本轮提交）。
+
+--- 2026-01-20 23:25 ---
+用户：继续。
+助手：已 git pull --rebase origin main；本轮最小可交付为“题目解析 IR 草案”，新增 modules/03-importer/QUESTION_IR_DRAFT.md，并在 modules/03-importer/TASKS.md 标记 IR 项为草案完成；跨模块对齐点已追加到 modules/99-hub/REQUESTS.md。
+决定/结论：
+- IR v0 先覆盖单选/多选/判断，答案字段先用简化 alue，v1 再结构化为数组等。
+- 解析器输出 IR，入库映射由后端/总控口径统一。
+下一步：
+- 等待 99-hub/02-backend-core 对齐题型/答案/富文本/资源引用口径。
+- 网络恢复后 git pull --rebase origin module/03-importer（如需要）并 git push。

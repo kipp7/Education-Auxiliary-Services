@@ -15,7 +15,7 @@
   - [x] `POST /import/upload`（zip 或多文件）
   - [x] `GET /import/status?id=...`
 - [x] 目录层级解析：把 folder path 解析为分类树节点（草案见 `FOLDER_HIERARCHY_RULES_DRAFT.md`）
-- [ ] 题目解析接口：先定义输入/输出中间格式（IR），再实现具体 parser
+- [x] 题目解析接口：先定义输入/输出中间格式（IR），再实现具体 parser（草案见 `QUESTION_IR_DRAFT.md`）
 
 ## 2. Parser 插件化（按优先级）
 - [ ] `txt` 模板解析（最快落地，先支持单选/多选/判断）
@@ -32,6 +32,7 @@
 - [ ] 幂等：重复导入同一份资源不会造成脏数据（策略由 99-hub 定）
 - [ ] 错误报告：行号/文件名/原因/建议修复
 - [ ] 预览/抽检：导入后可预览前 N 道题
+
 
 
 
