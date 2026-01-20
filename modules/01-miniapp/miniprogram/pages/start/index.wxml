@@ -19,6 +19,7 @@
 
       <view class="panel">
         <view class="hint">点击进入，先浏览首页功能</view>
+        <view class="spacer"></view>
         <button class="confirm-btn" bindtap="goSign">立即进入</button>
       </view>
     </view>
