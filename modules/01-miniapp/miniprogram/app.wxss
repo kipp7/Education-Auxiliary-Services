@@ -1,23 +1,72 @@
 
 page{
-  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
-  font-size: 10pt;
-  line-height: 150%;
+  font-family: -apple-system-font, "PingFang SC", Helvetica Neue, Helvetica, sans-serif;
+  font-size: 28rpx;
+  line-height: 1.6;
   min-height: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
+  color: #111827;
+  background: #f6f7fb;
 }
+
+/* Global helpers */
+.app-page{
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+
+.app-card{
+  background: #fff;
+  border-radius: 18rpx;
+  box-shadow: 0 12rpx 30rpx rgba(17,24,39,0.06);
+}
+
+.app-section-hd{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin: 18rpx 0 12rpx;
+}
+
+.app-section-title{
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.app-section-more{
+  font-size: 26rpx;
+  color: #1bd0ad;
+}
+
+.app-muted{
+  color: #6b7280;
+}
+
+.app-row{
+  display:flex;
+  align-items:center;
+}
+
+.app-between{
+  justify-content:space-between;
+}
+
+.app-tag{
+  font-size: 22rpx;
+  color: #fff;
+  background: #111;
+  padding: 2rpx 10rpx;
+  border-radius: 999rpx;
+}
+
 .container {
   position: relative;
   flex: 1;
   display: flex;
   flex-direction: column;
   min-height: 100%;
-  padding-bottom: 100rpx;
+  padding-bottom: 120rpx;
   box-sizing: border-box;
-} 
+}
 .remind-box {
   flex: 1;
   display: flex;
@@ -30,4 +79,8 @@ page{
   width: 250rpx;
   height: 250rpx;
   padding-bottom: 25rpx;
+}
+
+button::after{
+  border:none;
 }

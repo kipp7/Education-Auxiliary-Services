@@ -1,3 +1,7 @@
+page{
+  background: #f6f7fb;
+}
+
 /* pages/my/index.wxss */
 .topImage {
     width: 100%;
@@ -7,7 +11,7 @@
 }
 
 .topBG {
-    background-color: #1bd0ad;
+    background: linear-gradient(135deg, #1bd0ad, #22c55e);
     height: 250rpx;
     position: relative;
     width: 100%;
@@ -18,10 +22,11 @@
     width: 130rpx;
     height: 130rpx;
     border-radius: 50%;
-    border: 6rpx #ffffff solid;
+    border: 6rpx rgba(255,255,255,0.9) solid;
     margin: 0 auto;
     z-index: 3;
     position: relative;
+    margin-top: 30rpx;
 }
 
 .name {
@@ -40,7 +45,7 @@
 }
 
 .cell {
-    margin-left: 50rpx;
+    padding: 0 24rpx;
     height: 100rpx;
     border-bottom: 1px solid rgba(230,230,230,0.6);
     display: flex;
@@ -65,9 +70,9 @@
 }
 
 .cell-text {
-    width: 390rpx;
+    width: 430rpx;
     font-size: 33rpx;
-    color: #414141;
+    color: #111827;
     margin-left: 15rpx;
 }
 
@@ -90,7 +95,7 @@
     font-size: 30rpx;
     display: flex;
     align-items: center;
-    margin-right: 50rpx;
+    margin-right: 20rpx;
 }
 
 .cell-right image {
@@ -110,6 +115,14 @@ button::after,button {
     opacity: 0;
     position: relative;
     z-index: 99;
+}
+
+.cell-list{
+  margin: -40rpx 24rpx 0;
+  background: #fff;
+  border-radius: 18rpx;
+  overflow: hidden;
+  box-shadow: 0 12rpx 30rpx rgba(17,24,39,0.06);
 }
 button,button::after {
     background: none;

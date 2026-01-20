@@ -1,4 +1,3 @@
-// pages/start/index.js
 const config = require('../../config/index')
 
 Page({

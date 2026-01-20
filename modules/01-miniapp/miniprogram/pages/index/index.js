@@ -1,149 +1,159 @@
-//index.js
-const { APP_NAME } = require('../../config/index')
+const config = require('../../config/index')
 
 Page({
   data: {
-    appName: APP_NAME,
+    appName: config.APP_NAME,
     userInfo: {},
-    useLearn:true,
-    is_login:true,
+    useLearn: true,
+    is_login: true,
     checkUser: false,
     canIUseGetUserProfile: false,
+    cateList: [],
+    newsTop: {
+      id: "n1",
+      title: `欢迎使用${config.APP_NAME}（演示）`,
+      time: "2026-01-20",
+      cover: "/images/BG.png",
+      content: "这是一个演示资讯，用于给客户预览 UI 效果。"
+    }
   },
 
-  onLoad: function() {
+  onLoad() {
     if (wx.getUserProfile) {
-      this.setData({
-        canIUseGetUserProfile: true
-      })
+      this.setData({ canIUseGetUserProfile: true })
     }
+
     wx.u.getSetting('useLearn').then(res => {
       let useLearn = true
-      if (res.result.value == "false")
-        useLearn = false
-      this.setData({
-        useLearn: useLearn
-      })
+      if (res.result.value == "false") useLearn = false
+      this.setData({ useLearn })
     })
 
     wx.u.getSetting('checkUser').then(res => {
       let checkUser = false
-      if (res.result.value == "true")
-        checkUser = true
-      this.setData({
-        checkUser: checkUser
-      })
+      if (res.result.value == "true") checkUser = true
+      this.setData({ checkUser })
+    })
+
+    wx.u.getQuestionMenu().then((res) => {
+      const list = Array.isArray(res.result) ? res.result : []
+      this.setData({ cateList: list.slice(0, 3) })
     })
   },
-  onShow: function(){
-    wx.setNavigationBarTitle({ title: APP_NAME })
-    this.setData({
-      userInfo: wx.getStorageSync('userInfo')
-    })
+
+  onShow() {
+    wx.setNavigationBarTitle({ title: config.APP_NAME })
+    this.setData({ userInfo: wx.getStorageSync('userInfo') })
   },
-  gocenter() {
+
+  goMy() {
     wx.switchTab({ url: '/pages/my/index' })
   },
-  goWrong() {
-    wx.navigateTo({ url: '/pages/wrong/index' })
+
+  goMyOrLogin() {
+    const userInfo = this.data.userInfo || {}
+    if (userInfo.avatarUrl) {
+      this.goMy()
+      return
+    }
+    this.login()
   },
-  goRank() {
-    wx.navigateTo({ url: '/pages/category/index?action=rank' })
+
+  goLibrary() {
+    wx.switchTab({ url: '/pages/library/index' })
+  },
+
+  goNews() {
+    wx.switchTab({ url: '/pages/news/index' })
+  },
+
+  goNewsDetail() {
+    wx.navigateTo({ url: `/pages/newsDetail/index?id=${this.data.newsTop.id}` })
   },
   goLearn() {
-    if(this.data.useLearn){
-      wx.navigateTo({
-        url: '/pages/category/index?action=learn',
-      })
-    }else{
-      wx.showToast({
-        title: '练习模式未开启',
-        icon:'loading'
-      })
+    if (this.data.useLearn) {
+      wx.navigateTo({ url: '/pages/category/index?action=learn' })
+      return
     }
+    wx.showToast({ title: '练习模式未开启', icon: 'none' })
   },
+
+  goWrong() {
+    wx.navigateTo({ url: "/pages/wrong/index" })
+  },
+
+  goExam() {
+    if (this.data.userInfo.avatarUrl === undefined || this.data.userInfo.avatarUrl === '') {
+      this.login()
+      return
+    }
+
+    if (this.data.checkUser) {
+      const userInfo = this.data.userInfo
+      if (userInfo.status === '1') {
+        wx.navigateTo({ url: "/pages/category/index?action=exam" })
+      } else if (userInfo.status === '0') {
+        wx.navigateTo({ url: '../status/index' })
+      } else {
+        wx.navigateTo({ url: '../register/index' })
+      }
+      return
+    }
+
+    wx.navigateTo({ url: "/pages/category/index?action=exam" })
+  },
+
   login() {
-    this.setData({
-      is_login:!this.data.is_login
-    })
+    this.setData({ is_login: !this.data.is_login })
   },
-  bindgetuserinfo: function () {
+
+  bindgetuserinfo() {
     this.login()
-    var that = this
+    const that = this
     wx.getUserInfo({
       success(res) {
-        console.log(res)
-        wx.showLoading({
-          title: '授权登录中',
-        })
+        wx.showLoading({ title: '授权登录中' })
         wx.u.getUserInfo().then(res1 => {
-          var bmobUser = res1.result;
-          if (bmobUser.avatarUrl == '' || bmobUser.avatarUrl == undefined) {
-            wx.u.changeUserInfo(res.userInfo.avatarUrl, res.userInfo.nickName).then(res2 => { });
+          const bmobUser = res1.result
+          if (bmobUser.avatarUrl === '' || bmobUser.avatarUrl === undefined) {
+            wx.u.changeUserInfo(res.userInfo.avatarUrl, res.userInfo.nickName).then(() => { })
           }
-          res1.result.avatarUrl = res.userInfo.avatarUrl;
-          res1.result.nickName = res.userInfo.nickName;
+          res1.result.avatarUrl = res.userInfo.avatarUrl
+          res1.result.nickName = res.userInfo.nickName
           wx.setStorageSync('userInfo', res1.result)
-          that.setData({
-            userInfo: res1.result,
-          })
+          that.setData({ userInfo: res1.result })
           wx.hideLoading()
         })
       }
     })
   },
-  getUserProfile(e) {
-    console.log(this.data.canIUseGetUserProfile)
+
+  getUserProfile() {
     this.login()
-    var that = this
+    const that = this
     wx.getUserProfile({
       desc: '完善用户信息',
       success: (res) => {
-        console.log(res)
-        wx.showLoading({
-          title: '授权登录中',
-        })
+        wx.showLoading({ title: '授权登录中' })
         wx.u.getUserInfo().then(res1 => {
-          var bmobUser = res1.result;
-          if (bmobUser.avatarUrl == '' || bmobUser.avatarUrl == undefined) {
-            wx.u.changeUserInfo(res.userInfo.avatarUrl, res.userInfo.nickName).then(res2 => { });
+          const bmobUser = res1.result
+          if (bmobUser.avatarUrl === '' || bmobUser.avatarUrl === undefined) {
+            wx.u.changeUserInfo(res.userInfo.avatarUrl, res.userInfo.nickName).then(() => { })
           }
-          res1.result.avatarUrl = res.userInfo.avatarUrl;
-          res1.result.nickName = res.userInfo.nickName;
+          res1.result.avatarUrl = res.userInfo.avatarUrl
+          res1.result.nickName = res.userInfo.nickName
           wx.setStorageSync('userInfo', res1.result)
-          that.setData({
-            userInfo: res1.result,
-          })
+          that.setData({ userInfo: res1.result })
           wx.hideLoading()
         })
       }
     })
   },
-  goExam(){
-    if (this.data.userInfo.avatarUrl == undefined || this.data.userInfo.avatarUrl == '') {
-      this.login();
-      return
-    }
-    
-    if (this.data.checkUser) {
-      let userInfo = this.data.userInfo
-      if (userInfo.status == '1') {
-        wx.navigateTo({
-          url: "/pages/category/index?action=exam",
-        })
-      } else if (userInfo.status == '0') {
-        wx.navigateTo({
-          url: '../status/index',
-        })
-      } else {
-        wx.navigateTo({
-          url: '../register/index',
-        })
-      }
-    }else{
-      wx.navigateTo({
-        url: "/pages/category/index?action=exam",
-      })
-    }
+
+  goCate(e) {
+    const cateid = e.currentTarget.dataset.cateid
+    const name = e.currentTarget.dataset.name || ""
+    wx.navigateTo({ url: `/pages/learn/index?cateid=${cateid}&menu=${encodeURIComponent(name)}` })
   }
 })
+

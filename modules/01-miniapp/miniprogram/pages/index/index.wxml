@@ -1,74 +1,95 @@
-<!-- pages/index/index.wxml -->
 <view class="page">
   <view class="header">
     <view class="brand">
-      <text class="brand-title">{{appName}}</text>
-      <text class="brand-subtitle">学习训练与测评辅助</text>
+      <view class="brand-left">
+        <view class="app-name">{{appName}}</view>
+        <view class="app-sub">刷题练习 · 模拟考试 · 错题巩固</view>
+      </view>
+      <view class="brand-right" bindtap="goMyOrLogin">
+        <image class="avatar" wx:if="{{userInfo.avatarUrl}}" src="{{userInfo.avatarUrl}}"></image>
+        <image class="avatar" wx:else src="/images/header.png"></image>
+        <view class="avatar-text" wx:if="{{!userInfo.avatarUrl}}">登录</view>
+      </view>
     </view>
 
-    <view class="profile" wx:if="{{userInfo.avatarUrl}}" bindtap="gocenter">
-      <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
-      <view class="profile-text">
-        <view class="profile-name">{{userInfo.realname || userInfo.nickName || '同学'}}</view>
-        <view class="profile-meta" wx:if="{{userInfo.department}}">{{userInfo.department}}</view>
-        <view class="profile-meta" wx:else>点击进入个人中心</view>
-      </view>
-      <view class="chevron">›</view>
-    </view>
-
-    <view class="profile guest" wx:else bindtap="login">
-      <image class="avatar" src="/images/header.png"></image>
-      <view class="profile-text">
-        <view class="profile-name">点击登录</view>
-        <view class="profile-meta">登录后可记录成绩与错题</view>
-      </view>
-      <view class="chevron">›</view>
-    </view>
-  </view>
-
-  <view class="content">
-    <view class="section-title">快捷功能</view>
-
-    <view class="grid">
-      <view class="card" bindtap="goLearn">
-        <image class="card-icon" src="/images/icon_zhangjielianxi@3x.png"></image>
-        <view class="card-title">练习</view>
-        <view class="card-desc" wx:if="{{useLearn}}">章节/随机练习</view>
-        <view class="card-desc disabled" wx:else>暂未开启</view>
-      </view>
-
-      <view class="card" bindtap="goExam">
-        <image class="card-icon" src="/images/icon_monikaoshi@3x.png"></image>
-        <view class="card-title">答题</view>
-        <view class="card-desc">开始一次测评</view>
-      </view>
-
-      <view class="card" bindtap="goWrong">
-        <image class="card-icon" src="/images/icon_cuotishoucang@3x.png"></image>
-        <view class="card-title">错题</view>
-        <view class="card-desc">针对复习巩固</view>
-      </view>
-
-      <view class="card" bindtap="goRank">
-        <image class="card-icon" src="/images/icon_monichnegji@3x.png"></image>
-        <view class="card-title">排名</view>
-        <view class="card-desc">查看成绩排行</view>
+    <view class="hero" bindtap="goLibrary">
+      <image class="hero-bg" src="/images/BG.png" mode="aspectFill"></image>
+      <view class="hero-mask"></view>
+      <view class="hero-text">
+        <view class="hero-title">快速进入题库</view>
+        <view class="hero-desc">章节练习 / 真题模拟 / 收藏错题</view>
       </view>
     </view>
   </view>
 
-  <view class="warrant" wx:if="{{!is_login}}">
-    <view class="white">
-      <view class="tap">您还未登录</view>
-      <view class="tip">请先登录再进行操作</view>
-      <view class="pictrue"></view>
-      <view class="actions">
-        <button class="no" type="primary" bindtap="login" lang="zh_CN">暂不登录</button>
-        <button wx:if="{{canIUseGetUserProfile}}" class="but" bindtap="getUserProfile">立即登录</button>
-        <button wx:else class="but" type="primary" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindgetuserinfo">立即登录</button>
+  <view class="grid">
+    <view class="grid-item" bindtap="goLearn">
+      <image class="grid-icon" src="/images/icon_zhangjielianxi@3x.png"></image>
+      <text class="grid-text">章节练习</text>
+    </view>
+    <view class="grid-item" bindtap="goExam">
+      <image class="grid-icon" src="/images/icon_monikaoshi@3x.png"></image>
+      <text class="grid-text">模拟考试</text>
+    </view>
+    <view class="grid-item" bindtap="goWrong">
+      <image class="grid-icon" src="/images/icon_cuotishoucang@3x.png"></image>
+      <text class="grid-text">错题集</text>
+    </view>
+    <view class="grid-item" bindtap="goNews">
+      <image class="grid-icon" src="/images/icon_center_msg.png"></image>
+      <text class="grid-text">资讯</text>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-hd">
+      <text class="section-title">推荐题库</text>
+      <text class="section-more" bindtap="goLibrary">全部</text>
+    </view>
+    <view class="list">
+      <view class="card" wx:for="{{cateList}}" wx:key="objectId" data-cateid="{{item.objectId}}" data-name="{{item.name}}" bindtap="goCate">
+        <view class="card-left">
+          <view class="card-title">
+            <text>{{item.name}}</text>
+            <text class="vip" wx:if="{{item.isVip}}">VIP</text>
+          </view>
+          <view class="card-sub">
+            <text>已答 0/{{item.total || 0}}</text>
+            <text class="sep">|</text>
+            <text>正确率 0%</text>
+          </view>
+        </view>
+        <image class="arrow" src="/images/jkt/right.png"></image>
       </view>
     </view>
-    <view class="mask"></view>
   </view>
+
+  <view class="section">
+    <view class="section-hd">
+      <text class="section-title">最新资讯</text>
+      <text class="section-more" bindtap="goNews">更多</text>
+    </view>
+    <view class="news-card" bindtap="goNewsDetail">
+      <image class="news-thumb" src="{{newsTop.cover}}"></image>
+      <view class="news-body">
+        <view class="news-title">{{newsTop.title}}</view>
+        <view class="news-meta">{{newsTop.time}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="warrant" wx:if="{{!is_login}}">
+  <view class='white'>
+    <view class='tap'>您还未登录</view>
+    <view class='tip'>请先登录再进行操作</view>
+    <view class='pictrue'></view>
+    <view style='display:flex;'>
+      <button class='no' type="primary" bindtap='login' lang="zh_CN">暂不登录</button>
+      <button wx:if="{{canIUseGetUserProfile}}" class='but' bindtap="getUserProfile">立即登录</button>
+      <button wx:else class='but' type="primary" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindgetuserinfo">立即登录</button>
+    </view>
+  </view>
+  <view class='mask'></view>
 </view>
 
