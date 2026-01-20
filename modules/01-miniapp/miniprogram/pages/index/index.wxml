@@ -54,7 +54,7 @@
             <text class="vip" wx:if="{{item.isVip}}">VIP</text>
           </view>
           <view class="card-sub">
-            <text>已答 0/{{item.total || 0}}</text>
+            <text>已答 0/{{item.total || item.questionNum || 0}}</text>
             <text class="sep">|</text>
             <text>正确率 0%</text>
           </view>
