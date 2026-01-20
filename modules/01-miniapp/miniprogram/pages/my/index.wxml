@@ -24,7 +24,7 @@
       <button class="svip-btn" hover-class="none" bindtap="go_svip">{{svipBound ? '查看' : '去绑定'}}</button>
     </view>
   <view class="cell-list">
-    <view bindtap="go_view" class="cell" data-viewInd="{{index}}" wx:for="{{cellList}}" wx:key="{{index}}">
+    <view bindtap="go_view" class="cell" data-viewInd="{{index}}" wx:for="{{cellList}}" wx:key="index">
         <view class="cell-left">
           <view class="cell-icon">
             <image src="{{item.icon}}"></image>
