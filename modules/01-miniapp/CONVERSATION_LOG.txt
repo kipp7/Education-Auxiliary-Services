@@ -36,3 +36,9 @@
 验收路径：我的 `pages/my/index` → 点击“SVIP 权益/去绑定”或“SVIP码绑定” → `pages/svip/bind/index` → 输入错误码提示无效 → 输入 `JLXB-SVIP-OK` 提示绑定成功并显示状态；未绑定时进入 `pages/course/player?id=<id>` 可看到“SVIP 未开通（占位）”文案与入口。
 证据：`modules/01-miniapp/_evidence/M4/README.md`。
 
+--- 2026-01-21 01:58 ---
+用户：按 `AUTOPILOT.md` 继续。
+助手：完成 M5 视觉统一小改（以可演示为主）：全局统一浅灰背景；抽出通用 banner 样式，并在题库/课程页补齐顶部 banner，提高信息密度与展示效果。
+验收路径：`pages/start/index` → 立即进入 → 首页 `pages/index/index` → 题库 `pages/library/index`（banner+筛选+卡片）→ 课程 `pages/course/index`（banner+卡片）→ 我的 `pages/my/index`（SVIP 权益卡片）。
+证据：`modules/01-miniapp/_evidence/M5/README.md`。
+
