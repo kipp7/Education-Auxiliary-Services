@@ -105,7 +105,7 @@ Page({
     wx.navigateTo({ url: '/pages/record/index' })
   },
   goFavorite() {
-    wx.navigateTo({ url: '/pages/errorStar/index' })
+    wx.navigateTo({ url: '/pages/favorite/index' })
   },
   switchStage(e) {
     const stage = e.currentTarget.dataset.stage

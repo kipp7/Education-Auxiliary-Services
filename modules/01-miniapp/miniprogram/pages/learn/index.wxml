@@ -38,10 +38,9 @@
         <text>{{indexInd*1+1}}/{{questionList.length}}</text>
       </view>
     </view>
-    <view bindtap="starcollect" class="h-right" wx:if="{{!iconInd}}">
-      <!-- <image src="/images/nav_test_icon_fav.png" wx:if="{{!starshow}}"></image>
-      <image src="/images/star-active.png" wx:if="{{starshow}}"></image> -->
-      <text>{{menu}}</text>
+    <view bindtap="starcollect" class="h-right fav" wx:if="{{!iconInd}}">
+      <image class="fav-icon" src="{{starshow ? '/images/star-active.png' : '/images/nav_test_icon_fav.png'}}"></image>
+      <text class="fav-text">{{starshow ? '已收藏' : '收藏'}}</text>
     </view>
     <view bindtap="del_data" class="h-right" wx:if="{{iconInd}}">
       <text>清空记录</text>

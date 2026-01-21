@@ -1,0 +1,108 @@
+/** pages/favorite/index.wxss **/
+
+.page {
+  min-height: 100vh;
+  background: #f6f7fb;
+  padding-bottom: 32rpx;
+}
+
+.header {
+  padding: 56rpx 32rpx 26rpx;
+  background: linear-gradient(180deg, #1bd0ad 0%, #12c3a3 65%, rgba(246, 247, 251, 0) 100%);
+}
+
+.title {
+  font-size: 44rpx;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 2rpx;
+}
+
+.subtitle {
+  margin-top: 10rpx;
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.list {
+  padding: 24rpx 24rpx 0;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22rpx 22rpx;
+  border-radius: 22rpx;
+  background: #ffffff;
+  margin-bottom: 18rpx;
+  box-shadow: 0 14rpx 36rpx rgba(17, 24, 39, 0.06);
+}
+
+.body {
+  flex: 1;
+  overflow: hidden;
+}
+
+.item-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.88);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.item-desc {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chevron {
+  margin-left: 14rpx;
+  color: rgba(0, 0, 0, 0.35);
+}
+
+.empty {
+  padding: 90rpx 32rpx 0;
+  text-align: center;
+}
+
+.empty-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.78);
+}
+
+.empty-desc {
+  margin-top: 10rpx;
+  font-size: 26rpx;
+  color: rgba(0, 0, 0, 0.52);
+}
+
+.empty-actions {
+  margin-top: 28rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  height: 84rpx;
+  line-height: 84rpx;
+  padding: 0 40rpx;
+  border-radius: 999rpx;
+  font-size: 30rpx;
+}
+
+.btn::after {
+  border: none;
+}
+
+.btn.primary {
+  background: #1bd0ad;
+  color: #fff;
+}

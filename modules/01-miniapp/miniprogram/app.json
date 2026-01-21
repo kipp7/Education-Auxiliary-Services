@@ -19,6 +19,7 @@
     "pages/exam/index",
     "pages/feedback/index",
     "pages/record/index",
+    "pages/favorite/index",
     "pages/dati/index",
     "pages/examResult/index",
     "pages/errorStar/index",
