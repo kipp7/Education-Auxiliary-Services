@@ -111,6 +111,13 @@
 - 移除/替换指向不存在页面的 banner 跳转（原 `/pages/news/index` 改为 toast 占位）
 
 --- 2026-01-21 ---
+分支：feat/01-miniapp-fs-manager-savefile-winE3-v1
+验收：
+- 题库/考试页加载 Mock 题目无异常
+变更点：
+- Mock 题目选项中将 `wx.saveFile` 文案更新为 `wx.getFileSystemManager().saveFile`，对齐基础库废弃提示
+
+--- 2026-01-21 ---
 分支：feat/01-miniapp-home-ui-commercial-winE3-v1
 验收：
 - `pages/start/index` → 立即进入 → `pages/index/index`（首页）
