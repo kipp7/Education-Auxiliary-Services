@@ -177,6 +177,7 @@ function AutoEnqueue-FromModuleLogs {
     $prefix = "$Remote/feat/$moduleDir-"
     $logPath = "modules/$moduleDir/CONVERSATION_LOG.txt"
     $matched = 0
+    $missingLogs = 0
     $mrBlocks = 0
     $newItems = 0
 
@@ -201,6 +202,7 @@ function AutoEnqueue-FromModuleLogs {
       } catch {
         $logText = ""
       }
+      if (-not $logText) { $missingLogs++; continue }
 
       $mr = Try-ExtractMrInfoFromModuleLog -LogText $logText -BranchName $branch -ModuleDir $moduleDir
       if (-not $mr.HasMrBlock) { continue }
@@ -219,7 +221,7 @@ function AutoEnqueue-FromModuleLogs {
     }
 
     if ($matched -gt 0) {
-      Write-Log "AutoEnqueueFromModuleLogs: module=$moduleDir matched=$matched mrBlocks=$mrBlocks new=$newItems"
+      Write-Log "AutoEnqueueFromModuleLogs: module=$moduleDir matched=$matched missingLogs=$missingLogs mrBlocks=$mrBlocks new=$newItems"
     }
   }
 
