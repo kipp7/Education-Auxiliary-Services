@@ -55,3 +55,12 @@
 验收路径：
 - 运行：node modules/03-importer/tools/prepare-ocr-review.mjs modules/03-importer/samples/ocr/image-list.txt --category "示例题库" > modules/03-importer/output/ocr.review.json
 - 查看：modules/03-importer/output/ocr.review.json
+
+--- 2026-01-21 ---
+分支：feat/03-importer-mvp-w03
+验收：
+- node modules/03-importer/tools/prepare-ocr-review.mjs modules/03-importer/samples/ocr/image-list.txt --category "示例题库" > modules/03-importer/output/ocr.review.json
+- 查看 modules/03-importer/output/ocr.review.json
+变更点：
+- 新增 OCR 人工校对包生成工具（输出 IR 占位 + OCR_PENDING 错误项）
+- 补充 OCR 样例输入与输出（image-list.txt/blank.png/ocr.review.json）
