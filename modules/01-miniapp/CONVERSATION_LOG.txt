@@ -74,3 +74,12 @@
 - 题库页新增顶部 swiper 轮播（Mock 数据、指示器、自动/手动切换）
 - banner 点击支持 `switchTab/navigateTo/toast` 跳转占位
 
+--- 2026-01-21 ---
+分支：feat/01-miniapp-library-subject-gating-winE3
+验收：
+- `pages/start/index` → 立即进入 → 底部题库 `pages/library/index`
+- 初中学段：切换年级“初一/初二/初三”，观察科目 chips 动态隐藏（初一无物理/化学；初二无化学；初三全量）
+变更点：
+- 题库页按年级动态生成科目列表（教学进度 gating）
+- 切年级时自动纠正当前科目，避免选中不可见科目导致前缀异常
+
