@@ -8,6 +8,7 @@ import { ImportTaskDetailPage } from "./imports/ImportTaskDetailPage";
 import { ImportsListPage } from "./imports/ImportsListPage";
 import { AnnouncementsPage } from "./cms/AnnouncementsPage";
 import { SvipCodesPage } from "./svip/SvipCodesPage";
+import { DashboardPage } from "./dashboard/DashboardPage";
 
 export function App() {
   return (
@@ -18,6 +19,14 @@ export function App() {
         element={
           <RequireAuth>
             <HomePage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/dashboard"
+        element={
+          <RequireAuth>
+            <DashboardPage />
           </RequireAuth>
         }
       />
