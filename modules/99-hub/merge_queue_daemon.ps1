@@ -210,6 +210,7 @@ function AutoEnqueue-FromModuleLogs {
     }
   }
 
+  Write-Log "AutoEnqueueFromModuleLogs: scannedRefs=$($remoteRefs.Count) candidates=$($candidates.Count)"
   if ($candidates.Count -eq 0) { return $false }
 
   # Build a request branch that ONLY touches QueueFile.
