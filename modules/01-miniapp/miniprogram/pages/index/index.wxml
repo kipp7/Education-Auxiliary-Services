@@ -79,6 +79,21 @@
       </view>
     </view>
 
+    <view class="today">
+      <view class="today-head">
+        <view class="today-title">今日学习</view>
+        <view class="today-meta">{{today.learnedMinutes}} / {{today.targetMinutes}} 分钟</view>
+      </view>
+      <view class="today-bar">
+        <view class="today-bar-inner" style="width: {{today.percent}}%;"></view>
+      </view>
+      <view class="today-foot">
+        <view class="today-tip" wx:if="{{userInfo.avatarUrl}}">继续保持，离目标更近一步</view>
+        <view class="today-tip" wx:else>示例数据：登录后将记录学习进度</view>
+        <view class="today-cta" bindtap="goRecord">查看记录 ›</view>
+      </view>
+    </view>
+
     <view class="section-title">快捷功能</view>
 
     <view class="grid">
@@ -112,6 +127,18 @@
         <view class="card-title">课程</view>
         <view class="card-desc">精选视频课程</view>
       </view>
+
+      <view class="card" bindtap="goFavorite">
+        <image class="card-icon" src="/images/star-active.png"></image>
+        <view class="card-title">收藏</view>
+        <view class="card-desc">重点题目回看</view>
+      </view>
+
+      <view class="card" bindtap="goRecord">
+        <image class="card-icon" src="/images/nav_icon_time@2x.png"></image>
+        <view class="card-title">记录</view>
+        <view class="card-desc">学习进度汇总</view>
+      </view>
     </view>
 
     <view class="section-title">推荐课程</view>
@@ -140,6 +167,17 @@
           <view class="v-subtitle">{{item.subtitle}}</view>
         </view>
         <view class="chevron">›</view>
+      </view>
+    </view>
+
+    <view class="section-title">资讯</view>
+    <view class="news-list">
+      <view class="news-item" wx:for="{{newsList}}" wx:key="id" data-action="{{item.action}}" bindtap="handleAction">
+        <view class="news-body">
+          <view class="news-title">{{item.title}}</view>
+          <view class="news-desc">{{item.desc}}</view>
+        </view>
+        <view class="chevron">?</view>
       </view>
     </view>
   </view>

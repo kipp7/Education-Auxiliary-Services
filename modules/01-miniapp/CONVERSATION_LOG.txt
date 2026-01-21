@@ -148,6 +148,15 @@
 - `pages/index/index` banner 默认不显示指示器圆点；手指触摸/滑动 banner 时短暂显示圆点，松手后自动隐藏
 变更点：
 - banner 的 `indicator-dots` 改为交互触发显示（避免遮挡文案）
+
+--- 2026-01-21 ---
+分支：feat/01-miniapp-home-ui-sections-winE3-v6
+验收：
+- `pages/index/index`：出现“今日学习”卡片（进度条+分钟数），快捷功能新增“收藏/记录”，底部新增“资讯”列表（Mock）
+- MCP 截图：`modules/01-miniapp/_evidence/home-ui-v6/home-top.png`、`modules/01-miniapp/_evidence/home-ui-v6/home-today.png`、`modules/01-miniapp/_evidence/home-ui-v6/home-news-again.png`
+变更点：
+- 首页补齐今日学习卡（本地 storage mock：`today_target_min/today_learned_min`）并提供跳转到学习记录
+- 首页增加资讯列表商业位（Mock 配置来自 `pages/index/home-config.js`）
 --- 2026-01-21 ---
 分支：feat/01-miniapp-course-paywall-gating-winE3
 验收：

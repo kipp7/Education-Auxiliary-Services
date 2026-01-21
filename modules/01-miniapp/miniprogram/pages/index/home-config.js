@@ -78,5 +78,18 @@ module.exports = {
       action: { type: 'toast', text: '付费开通入口待接入' },
     },
   },
+  news: [
+    {
+      id: 'news_1',
+      title: '学习技巧：如何规划 30 分钟复习？',
+      desc: '高频建议 · 适合日常训练',
+      action: { type: 'toast', text: '资讯详情待接入（Mock）' },
+    },
+    {
+      id: 'news_2',
+      title: '答题技巧：错题本该怎么用？',
+      desc: '方法论 · 复盘与提升',
+      action: { type: 'toast', text: '资讯详情待接入（Mock）' },
+    },
+  ],
 }
-
