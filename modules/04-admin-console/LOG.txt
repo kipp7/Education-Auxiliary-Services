@@ -252,3 +252,18 @@
 - `npm install`
 - `npm run dev`
 - 打开 `http://localhost:5174` → 开发登录 → 首页检查入口按权限展示
+
+--- 2026-01-21 ---
+分支：`feat/04-admin-console-ui-polish-v1`
+
+变更点：
+- UI 样式小幅优化：按钮 hover/active/focus、输入框 focus、Link 按钮化、pre/表格可读性与移动端间距。
+
+验证日志：
+- `cd modules/04-admin-console/web && npm run build`（成功）
+
+验收方式（本地）：
+- `cd modules/04-admin-console/web`
+- `npm install`
+- `npm run dev`
+- 打开 `http://localhost:5174` → 任意页面检查 hover/focus 样式
