@@ -92,3 +92,12 @@
 - 题库页轮播配置改为本地 JSON 驱动（便于后续接后端配置）
 - 保留原跳转处理逻辑不变
 
+--- 2026-01-21 ---
+分支：feat/01-miniapp-library-online-winE3
+验收：
+- `pages/start/index` → 立即进入 → 底部题库 `pages/library/index` → 任意单元进入 `pages/library/unit/index`
+- 点击“在线做题(练习/测评)”选择“练习”进入 `pages/learn/index?cateid=menu_demo_1`；选择“测评”进入 `pages/exam/index?cateid=menu_demo_1` 并可交卷到 `pages/examResult/index`
+变更点：
+- 单元页“在线做题(练习/测评)”从占位改为可跳转现有练习/考试页（Mock）
+- 修复考试随机抽题在题量大于题库实际题数时的边界问题
+
