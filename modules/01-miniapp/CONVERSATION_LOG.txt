@@ -48,3 +48,9 @@
 验收路径：`pages/start/index` → 立即进入 → 首页点“答题”进入 `pages/exam-menu/index` → 选择任意题库进入 `pages/exam/index` → 作答若干题 → 点击右上角“交卷”确认 → 跳转 `pages/examResult/index` 展示得分/用时/错题入口。
 下一步：如需合并请求记录，请由 99-hub 窗口将分支 `feat/01-miniapp-mvp-exam-winE3` 的 MR 需求写入 `modules/99-hub/REQUESTS.md`（本窗口只改本模块目录）。
 
+--- 2026-01-21 03:06 ---
+用户：继续。
+助手：按 `TASKS.md` 推进 MVP：错题本地存储与回看链路可用；修复错题页在 storage 为空/非数组时的兼容性，保证空态与列表渲染稳定。
+验收路径：`pages/start/index` → 立即进入 → 底部题库 `pages/library/index` → 任意单元进入 `pages/library/unit/index` → 在线做题选择“练习/测评”进入做题页 → 故意答错 1 题（触发写入 `err_<cateid>` 与 `menuStorageList`）→ 首页点击“错题”进入 `pages/wrong/index` → 选择对应条目进入 `pages/errorStar/index` 回看错题并查看帮助/解析。
+下一步：如需合并请求记录，请由 99-hub 窗口将分支 `feat/01-miniapp-mvp-wrong-winE3` 的 MR 需求写入 `modules/99-hub/REQUESTS.md`（本窗口只改本模块目录）。
+

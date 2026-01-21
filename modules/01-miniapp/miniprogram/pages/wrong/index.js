@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list:{}
+    list:{},
+    menuStorageList: [],
   },
 
   /**
@@ -26,11 +27,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var menuStorageList = wx.getStorageSync('menuStorageList')
-    console.log(menuStorageList.length)
-    this.setData({
-      'menuStorageList':menuStorageList
-    })
+    const raw = wx.getStorageSync('menuStorageList')
+    const menuStorageList = Array.isArray(raw) ? raw : []
+    this.setData({ menuStorageList })
   },
 
   /**
