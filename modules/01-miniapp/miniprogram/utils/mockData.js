@@ -69,7 +69,7 @@ const questionsByMenuId = {
       type: "1",
       title: "在小程序中做本地持久化存储常用的 API 是？",
       optionA: "wx.setStorageSync",
-      optionB: "wx.saveFile",
+      optionB: "wx.getFileSystemManager().saveFile",
       optionC: "wx.openDocument",
       optionD: "wx.previewImage",
       answer: "A",
