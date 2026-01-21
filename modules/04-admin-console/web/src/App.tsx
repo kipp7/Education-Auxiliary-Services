@@ -13,6 +13,7 @@ import { OpsExportsPage } from "./exports/OpsExportsPage";
 import { SvipCodesPage } from "./svip/SvipCodesPage";
 import { DashboardPage } from "./dashboard/DashboardPage";
 import { PlansPage } from "./plans/PlansPage";
+import { HomeSlotsPage } from "./homeSlots/HomeSlotsPage";
 
 export function App() {
   return (
@@ -103,6 +104,14 @@ export function App() {
         element={
           <RequireAuth>
             <PlansPage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/home-slots"
+        element={
+          <RequireAuth>
+            <HomeSlotsPage />
           </RequireAuth>
         }
       />
