@@ -190,3 +190,14 @@
 - 首页 `index.wxss` 移除 tag selector（`page`/`button`），改为 class 选择器以兼容基础库校验
 - 登录弹窗按钮样式改用 `.action-btn` 统一承载，避免依赖 `button::after`
 
+--- 2026-01-21 ---
+分支：feat/01-miniapp-favorites-local-winE3-v1
+验收：
+- 从题库进入练习：`pages/library/index` → 选单元 → 在线做题(练习) → `pages/learn/index`
+- 在练习页点击右上“收藏/已收藏”可切换状态（本地 storage）
+- 首页点击“收藏”进入 `pages/favorite/index`，可看到按菜单聚合的收藏列表；点入后进入 `pages/errorStar/index?mode=fav...` 查看并可“移除”
+变更点：
+- 新增 `pages/favorite/index` 作为收藏入口页（按菜单聚合），首页“收藏”入口改为跳转到该页
+- 练习页新增收藏存储：`fav_<cateid>`（题目ID列表） + `fav_menuStorageList`（菜单聚合）
+- `pages/errorStar/index` 支持 `mode=fav` 展示/移除收藏；并移除 `page {}` 选择器避免基础库告警
+

@@ -32,9 +32,10 @@ Page({
       I: !1,
       J: !1
     },
-    objQuestionId:[],
+    objQuestionId:[], 
     arrQuestionId: [],
-    arrcheckQuestion:{},
+    arrcheckQuestion:{}, 
+    starshow: !1,
   },
 
   /**
@@ -133,6 +134,7 @@ Page({
           objQuestionId: objQuestionId,
           arrcheckQuestion: arrcheckQuestion
         })
+        that.syncStarState()
         setTimeout(function () {
           wx.hideLoading()
         }, 600)
@@ -155,18 +157,19 @@ Page({
       var u = []
       a.data.indexInd = o;
 
-      1 == this.data.current ? (a.data.indexInd <= 0 ? u.push(d[d.length - 1]) : u.push(d[a.data.indexInd - 1]),
-        u.push(d[a.data.indexInd]), a.data.indexInd >= d.length - 1 ? u.push(d[0]) : u.push(d[d.length - 1])) : 0 == this.data.current ? (u.push(d[a.data.indexInd]),
-        a.data.indexInd == d.length - 1 ? (u.push(d[0]), u.push(d[1])) : a.data.indexInd == d.length - 2 ? (u.push(d[a.data.indexInd + 1]),
-          u.push(d[0])) : (u.push(d[a.data.indexInd + 1]), u.push(d[a.data.indexInd + 2]))) : (0 == a.data.indexInd ? (u.push(d[d.length - 2]),
-        u.push(d[d.length - 1])) : 1 == a.data.indexInd ? (u.push(d[d.length - 1]), u.push(d[0])) : (u.push(d[a.data.indexInd - 2]),
-        u.push(d[a.data.indexInd - 1])), u.push(d[a.data.indexInd])), this.setData({
-        showQuestionList: u,
-        indexInd: o
-      })
-      setTimeout(function() {
-        wx.hideLoading()
-      }, 1000)
+	      1 == this.data.current ? (a.data.indexInd <= 0 ? u.push(d[d.length - 1]) : u.push(d[a.data.indexInd - 1]),
+	        u.push(d[a.data.indexInd]), a.data.indexInd >= d.length - 1 ? u.push(d[0]) : u.push(d[d.length - 1])) : 0 == this.data.current ? (u.push(d[a.data.indexInd]),
+	        a.data.indexInd == d.length - 1 ? (u.push(d[0]), u.push(d[1])) : a.data.indexInd == d.length - 2 ? (u.push(d[a.data.indexInd + 1]),
+	          u.push(d[0])) : (u.push(d[a.data.indexInd + 1]), u.push(d[a.data.indexInd + 2]))) : (0 == a.data.indexInd ? (u.push(d[d.length - 2]),
+	        u.push(d[d.length - 1])) : 1 == a.data.indexInd ? (u.push(d[d.length - 1]), u.push(d[0])) : (u.push(d[a.data.indexInd - 2]),
+	        u.push(d[a.data.indexInd - 1])), u.push(d[a.data.indexInd])), this.setData({
+	        showQuestionList: u,
+	        indexInd: o
+	      })
+	      this.syncStarState()
+	      setTimeout(function() {
+	        wx.hideLoading()
+	      }, 1000)
       setTimeout(function() {
         that.setData({
           recmend: !1
@@ -174,6 +177,64 @@ Page({
       }, 3000);
     }
 
+  },
+
+  getFavKey: function () {
+    return 'fav_' + this.data.cateid
+  },
+
+  syncStarState: function () {
+    var questionList = this.data.questionList || []
+    var indexInd = this.data.indexInd || 0
+    var current = questionList[indexInd] || {}
+    var qid = current.objectId
+    if (!qid) {
+      this.setData({ starshow: !1 })
+      return
+    }
+    var favList = wx.getStorageSync(this.getFavKey()) || []
+    if (!Array.isArray(favList)) favList = []
+    this.setData({ starshow: favList.indexOf(qid) !== -1 })
+  },
+
+  starcollect: function () {
+    var questionList = this.data.questionList || []
+    var indexInd = this.data.indexInd || 0
+    var current = questionList[indexInd] || {}
+    var qid = current.objectId
+    if (!qid) return
+
+    var key = this.getFavKey()
+    var favList = wx.getStorageSync(key) || []
+    if (!Array.isArray(favList)) favList = []
+
+    var idx = favList.indexOf(qid)
+    var nowFav = !1
+    if (idx === -1) {
+      favList.push(qid)
+      nowFav = !0
+    } else {
+      favList.splice(idx, 1)
+      nowFav = !1
+    }
+    wx.setStorageSync(key, favList)
+    this.setData({ starshow: nowFav })
+
+    var menuList = wx.getStorageSync('fav_menuStorageList') || []
+    if (!Array.isArray(menuList)) menuList = []
+    var cateid = this.data.cateid
+    var menu = this.data.menu
+    var hasCate = menuList.some((item) => item && item.cateid == cateid)
+    if (nowFav && !hasCate) {
+      menuList.push({ cateid: cateid, menu: menu })
+      wx.setStorageSync('fav_menuStorageList', menuList)
+    }
+    if (!nowFav && favList.length < 1) {
+      var next = menuList.filter((item) => item && item.cateid != cateid)
+      wx.setStorageSync('fav_menuStorageList', next)
+    }
+
+    wx.showToast({ title: nowFav ? '已收藏' : '已取消收藏', icon: 'none' })
   },
 
   changeTab(e) {
@@ -266,6 +327,7 @@ Page({
       indexInd: n,
       current: r
     })
+    this.syncStarState()
     console.log(o)
   },
   selectAnswer: function(t) {

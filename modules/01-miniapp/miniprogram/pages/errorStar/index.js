@@ -35,9 +35,14 @@ Page({
    */
   onLoad: function (options) {
     var cateid = options.cateid
+    var mode = options.mode || 'err'
+    var menu = options.menu || ''
     this.setData({
-      'cateid':cateid
+      'cateid':cateid,
+      'mode': mode,
+      'menu': menu
     })
+    wx.setNavigationBarTitle({ title: mode === 'fav' ? '收藏' : '错题' })
   },
 
   /**
@@ -55,12 +60,27 @@ Page({
     wx.showLoading({
       title: '正在加载',
     })
-    var errList = wx.getStorageSync('err_'+this.data.cateid)
-    console.log(errList)
+    if (!this.data.cateid) {
+      wx.hideLoading()
+      that.setData({ questionList: [] })
+      wx.showToast({ title: '请从列表进入', icon: 'none' })
+      return
+    }
+
+    var prefix = this.data.mode === 'fav' ? 'fav_' : 'err_'
+    var listKey = prefix + this.data.cateid
+    var idList = wx.getStorageSync(listKey) || []
+    if (!Array.isArray(idList)) idList = []
+    if (idList.length < 1) {
+      wx.hideLoading()
+      that.setData({ questionList: [] })
+      return
+    }
+
     wx.u.getQuestionsForMenu(this.data.cateid).then((res) => {
       const all = res.result || []
       let questionList = []
-      for (let object of errList || []) {
+      for (let object of idList || []) {
         var obj = all.find((element) => (element.objectId == object))
         if (obj) questionList.push(obj)
       }
@@ -231,11 +251,14 @@ Page({
   delCollect: function (t){
     var indexInd = this.data.indexInd
     var questionList = this.data.questionList
-    var errList = wx.getStorageSync('err_' + this.data.cateid)
-    var index = errList.indexOf(questionList[indexInd].objectId);
+    var prefix = this.data.mode === 'fav' ? 'fav_' : 'err_'
+    var listKey = prefix + this.data.cateid
+    var idList = wx.getStorageSync(listKey) || []
+    if (!Array.isArray(idList)) idList = []
+    var index = idList.indexOf(questionList[indexInd].objectId);
     questionList.splice(indexInd,1)
-    errList.splice(index,1)
-    wx.setStorageSync('err_' + this.data.cateid, errList)
+    if (index !== -1) idList.splice(index,1)
+    wx.setStorageSync(listKey, idList)
     console.log(indexInd)
     console.log(questionList.length)
     if(questionList.length>0){
@@ -250,7 +273,9 @@ Page({
     }
       
     else {
-      var menuStorageList = wx.getStorageSync('menuStorageList')
+      var menuKey = this.data.mode === 'fav' ? 'fav_menuStorageList' : 'menuStorageList'
+      var menuStorageList = wx.getStorageSync(menuKey) || []
+      if (!Array.isArray(menuStorageList)) menuStorageList = []
       var n = 0
       for(let object of menuStorageList){
         if(object.cateid == this.data.cateid){
@@ -259,8 +284,8 @@ Page({
         }
         n++
       }
-      wx.removeStorageSync('err_' + this.data.cateid)
-      wx.setStorageSync('menuStorageList', menuStorageList)
+      wx.removeStorageSync(listKey)
+      wx.setStorageSync(menuKey, menuStorageList)
       wx.navigateBack({
 
       })
