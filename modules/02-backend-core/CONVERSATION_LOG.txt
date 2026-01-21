@@ -210,3 +210,12 @@
 变更点：
 - 新增联调排障文档：TROUBLESHOOTING.md
 - 汇总端口占用/curl 转义/401/非法 JSON 等常见问题
+
+--- 2026-01-22 ---
+分支：feat/02-backend-core-clean-logs-script-codex
+验收：
+- 运行：powershell -ExecutionPolicy Bypass -File modules/02-backend-core/scripts/clean-temp-logs.ps1
+- 查看：modules/02-backend-core/logs/.gitignore
+变更点：
+- 新增清理脚本：scripts/clean-temp-logs.ps1（删除 logs 下 *-server.out/err 临时文件）
+- 便于本地保持 logs 目录干净
