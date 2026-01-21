@@ -103,7 +103,7 @@ function Get-RemoteFeatBranches {
 
 function Try-ExtractMrInfoFromModuleLog {
   param(
-    [string]$LogText,
+    [object]$LogText,
     [string]$BranchName,
     [string]$ModuleDir
   )
