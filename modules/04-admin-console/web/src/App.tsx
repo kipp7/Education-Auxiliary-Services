@@ -8,6 +8,7 @@ import { ImportTaskDetailPage } from "./imports/ImportTaskDetailPage";
 import { ImportsListPage } from "./imports/ImportsListPage";
 import { AnnouncementsPage } from "./cms/AnnouncementsPage";
 import { ExportsPage } from "./exports/ExportsPage";
+import { OpsExportsPage } from "./exports/OpsExportsPage";
 
 export function App() {
   return (
@@ -58,6 +59,14 @@ export function App() {
         element={
           <RequireAuth>
             <ExportsPage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/exports-ops"
+        element={
+          <RequireAuth>
+            <OpsExportsPage />
           </RequireAuth>
         }
       />
