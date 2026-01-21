@@ -40,6 +40,9 @@ $docxOut = Join-Path $outputDir "basic.docx.parsed.json"
 $irValidOut = Join-Path $outputDir "basic.parsed.validation.json"
 $taskValidOut = Join-Path $outputDir "import-task.sample.validation.json"
 $keywordsOut = Join-Path $outputDir "keywords.json"
+$unpackOutDir = Join-Path $outputDir "unpack-basic"
+$unpackFileList = Join-Path $outputDir "basic.zip.file-list.txt"
+$manifestOut = Join-Path $outputDir "import-manifest.json"
 
 & $node.Source (Join-Path $toolsDir "parse-txt.mjs") (Join-Path $samplesDir "txt/basic.txt") --category "数学/一年级" --out $txtOut | Out-Null
 if ($LASTEXITCODE -ne 0) { Fail "parse-txt failed" }
@@ -68,13 +71,28 @@ if ($LASTEXITCODE -ne 0) { Fail "validate-import-task failed" }
 & $node.Source (Join-Path $toolsDir "show-keywords.mjs") --out $keywordsOut | Out-Null
 if ($LASTEXITCODE -ne 0) { Fail "show-keywords failed" }
 
+# zip unpack + manifest (idempotency helpers)
+$basicZip = Join-Path $samplesDir "import-local/basic.zip"
+$basicSrc = Join-Path $samplesDir "import-local/basic_src"
+if (!(Test-Path -LiteralPath $basicZip)) { Fail "Missing sample zip: $basicZip" }
+if (!(Test-Path -LiteralPath $basicSrc)) { Fail "Missing sample src folder: $basicSrc" }
+
+pwsh -NoProfile -File (Join-Path $toolsDir "unpack-zip.ps1") $basicZip -OutDir $unpackOutDir -FileListOut $unpackFileList | Out-Null
+if ($LASTEXITCODE -ne 0) { Fail "unpack-zip failed" }
+
+& $node.Source (Join-Path $toolsDir "make-import-manifest.mjs") --root $basicSrc --source "modules/03-importer/samples/import-local/basic.zip" --out $manifestOut | Out-Null
+if ($LASTEXITCODE -ne 0) { Fail "make-import-manifest failed" }
+
 # Quick summaries
 $txt = Read-JsonUtf8 $txtOut
 $prev = Read-JsonUtf8 $previewOut
 $taskCheck = Read-JsonUtf8 $taskValidOut
+$manifest = Read-JsonUtf8 $manifestOut
 
 Write-Output ("txt.questions=" + $txt.questions.Count)
 Write-Output ("preview.count=" + $prev.previewCount)
 Write-Output ("importTask.sample.ok=" + $taskCheck.ok)
+Write-Output ("manifest.fileCount=" + $manifest.fileCount)
+Write-Output ("manifest.importHash=" + $manifest.importHash)
 
 Write-Output "ok=true"

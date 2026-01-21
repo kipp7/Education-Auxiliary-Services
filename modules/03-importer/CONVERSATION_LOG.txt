@@ -203,3 +203,10 @@
 变更点：
 - 新增 import-manifest.schema.json：定义导入清单格式（importHash + files），供后续幂等/去重校验
 - 保持与 make-import-manifest 输出一致
+
+--- 2026-01-21 ---
+分支：feat/03-importer-run-samples-w03-v2
+验收：
+- pwsh -NoProfile -File modules/03-importer/tools/run-samples.ps1
+变更点：
+- run-samples 增加 zip 解包与导入清单生成（unpack-zip + make-import-manifest），并输出 manifest.importHash/fileCount
