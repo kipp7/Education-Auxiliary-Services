@@ -83,3 +83,12 @@
 变更点：
 - 新增本地导入串联工具 import-local：zip 解包→（根目录折叠）→按目录生成 categoryPath→复用 txt parser→产出 import-task+questions+mapping
 - 提供可复现样例 zip 与输出（samples/import-local + output/import-local）
+
+--- 2026-01-21 ---
+分支：feat/03-importer-keywords-w03-v1
+验收：
+- node modules/03-importer/tools/show-keywords.mjs --out modules/03-importer/output/keywords.json
+- 查看 modules/03-importer/output/keywords.json
+变更点：
+- 新增关键词提取工具 show-keywords：从 TASKS.md 提取本模块关键词，便于按关键词执行
+- 修复本分支误操作：已将 TASKS.md 恢复为 origin/main 内容（仅新增工具与输出）
