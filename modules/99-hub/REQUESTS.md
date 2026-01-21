@@ -36,7 +36,7 @@
 - [!] feat/01-miniapp-mvp-star-winE3 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
 - [!] feat/01-miniapp-mvp-urlencode-winE → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
 - [!] feat/01-miniapp-mvp-wrong-winE3 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
-- [ ] feat/02-backend-core-contract-draft → 02-backend-core：验收：见 modules/02-backend-core/CONVERSATION_LOG.txt 最新一段
+- [!] feat/02-backend-core-contract-draft → 02-backend-core：验收：见 modules/02-backend-core/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
 - [ ] feat/02-backend-core-question-read-codex → 02-backend-core：验收：见 modules/02-backend-core/CONVERSATION_LOG.txt 最新一段
 - [ ] feat/04-admin-console-auth-skeleton → 04-admin-console：验收：见 modules/04-admin-console/CONVERSATION_LOG.txt 最新一段
 - [ ] feat/04-admin-console-news-v1 → 04-admin-console：验收：见 modules/04-admin-console/CONVERSATION_LOG.txt 最新一段
