@@ -2,6 +2,7 @@ const http = require("node:http");
 const { URL } = require("node:url");
 
 const orders = new Map();
+const favorites = new Set();
 
 function newRequestId() {
   return `req-${Date.now()}-${Math.random().toString(16).slice(2, 10)}`;
@@ -159,16 +160,21 @@ const server = http.createServer(async (req, res) => {
     }
 
     if (path === "/favorites") {
+      if (req.method === "GET") {
+        return json(res, 200, Array.from(favorites).map((questionId) => ({ questionId })));
+      }
       if (req.method === "POST") {
         const body = (await readJson(req)) || {};
         if (typeof body.questionId !== "string" || body.questionId.length === 0) {
           return error(res, 400, "INVALID_ARGUMENT", "Missing questionId", requestId);
         }
+        favorites.add(body.questionId);
         return json(res, 200, { favorited: true, questionId: body.questionId });
       }
       if (req.method === "DELETE") {
         const questionId = url.searchParams.get("questionId");
         if (!questionId) return error(res, 400, "INVALID_ARGUMENT", "Missing questionId", requestId);
+        favorites.delete(questionId);
         return json(res, 200, { unfavorited: true, questionId });
       }
     }

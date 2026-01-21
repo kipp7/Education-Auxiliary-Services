@@ -12,6 +12,15 @@
 决定/结论：
 下一步：
 
+--- 2026-01-21 ---
+分支：feat/02-backend-core-favorites-get-codex
+验收：
+- cd modules/02-backend-core && npm run dev
+- powershell -ExecutionPolicy Bypass -File modules/02-backend-core/scripts/gen-evidence-m14.ps1
+变更点：
+- 新增 mock 接口：GET /favorites（收藏列表）
+- 更新 OpenAPI 草案并新增证据输出：logs/m14-evidence.txt
+
 
 --- 2026-01-21 01:10 ---
 里程碑：M1 契约定稿草案（OpenAPI）

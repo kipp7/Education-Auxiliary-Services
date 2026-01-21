@@ -1,0 +1,29 @@
+﻿# M14 evidence
+GeneratedAt=2026-01-21 21:18:14
+PORT=3903
+
+$ curl -X POST http://localhost:3903/auth/wechat
+{"token":"demo-token","expiresIn":7200,"userId":"demo-user","isNewUser":false}
+exit=0
+
+$ GET /favorites (empty)
+[]
+exit=0
+
+$ POST /favorites
+{"favorited":true,"questionId":"q-1"}
+exit=0
+
+$ GET /favorites (after add)
+[{"questionId":"q-1"}]
+exit=0
+
+$ DELETE /favorites
+{"unfavorited":true,"questionId":"q-1"}
+exit=0
+
+$ GET /favorites (after delete)
+[]
+exit=0
+
+OK
