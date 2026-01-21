@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "root": "modules/03-importer/samples/import-local/basic_src",
+  "fileCount": 2,
+  "importHash": "9e2f7bda4b6ee0b807d21734f2c994d41bc01638510a823992627961583b5cd4",
+  "files": [
+    {
+      "path": "bank/english/grade7/reading/q2.txt",
+      "sha256": "f343c08a6431e1233191b5d8578554b78eb42ce1addcfbff85903ad0f506f981",
+      "bytes": 38
+    },
+    {
+      "path": "bank/math/grade1/q1.txt",
+      "sha256": "4e9d50b13e15e39d532d112a09da8b8b815414bd4a1f593c6f72bfb8d990ec74",
+      "bytes": 72
+    }
+  ],
+  "errorCount": 0,
+  "errors": []
+}
