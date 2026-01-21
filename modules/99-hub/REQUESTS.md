@@ -42,7 +42,7 @@
 - [!] feat/02-backend-core-evidence-all-codex → 02-backend-core：验收：见 modules/02-backend-core/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
 - [!] feat/03-importer-idempotency-w03-v1 → 03-importer：验收：见 modules/03-importer/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
 - [!] feat/04-admin-console-users-benefits-v2 → 04-admin-console：验收：见 modules/04-admin-console/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
-- [ ] feat/03-importer-run-samples-w03-v1 → 03-importer：验收：见 modules/03-importer/CONVERSATION_LOG.txt 最新一段
+- [x] feat/03-importer-run-samples-w03-v1 → 03-importer：验收：见 modules/03-importer/CONVERSATION_LOG.txt 最新一段
 - [ ] feat/04-admin-console-banners-v2 → 04-admin-console：验收：见 modules/04-admin-console/CONVERSATION_LOG.txt 最新一段
 - [x] feat/02-backend-core-logs-gitignore-codex → 02-backend-core：验收：见 modules/02-backend-core/CONVERSATION_LOG.txt 最新一段
 - [x] feat/01-miniapp-home-banner-dots-toggle-winE3-v5 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段
