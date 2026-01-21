@@ -5,7 +5,7 @@ export type Announcement = {
   title: string;
   body: string;
   status: AnnouncementStatus;
+  pinned: boolean;
   createdAt: string;
   updatedAt: string;
 };
-

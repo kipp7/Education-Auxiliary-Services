@@ -94,3 +94,14 @@
 变更点：
 - 新增 /plans 套餐管理页（名称/价格/有效期/上下线 + 权益条目，占位 localStorage）。
 - 首页增加入口，并补齐 dev 登录默认权限 plan:read/plan:write。
+--- 2026-01-21 ---
+分支：feat/04-admin-console-news-v1
+验收：
+- cd modules/04-admin-console/web
+- npm install
+- npm run dev
+- 打开 http://localhost:5174 → 开发登录 → 点击“公告管理”
+- 列表支持置顶；点击“详情”进入详情页；详情页支持发布/下线/置顶/编辑/删除（均为占位 localStorage）
+变更点：
+- 公告支持“置顶”字段并在列表置顶优先排序；新增 /cms/:id 详情页。
+- 修复 cms store 的占位更新不触发刷新的问题（改为 React state + localStorage 持久化）。
