@@ -147,3 +147,12 @@
 变更点：
 - 新增环境变量模板：.env.example（仅 PORT）
 - 在 ENVIRONMENT.md 补充模板入口
+
+--- 2026-01-21 ---
+分支：feat/02-backend-core-logs-gitignore-codex
+验收：
+- 查看：modules/02-backend-core/logs/.gitignore
+- （可选）运行任一证据脚本后确认无 m*-server.out/err 被纳入版本控制
+变更点：
+- 新增 logs/.gitignore，忽略证据脚本临时 server out/err 文件
+- 降低误提交临时日志的概率
