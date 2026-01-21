@@ -102,3 +102,12 @@
 变更点：
 - 所有响应新增 `X-Request-Id`，错误体回传 requestId 便于定位
 - 非法 JSON 统一返回 400（code=INVALID_ARGUMENT, message=Invalid JSON）
+
+--- 2026-01-21 ---
+分支：feat/02-backend-core-records-mock-codex
+验收：
+- cd modules/02-backend-core && npm run dev
+- powershell -ExecutionPolicy Bypass -File modules/02-backend-core/scripts/gen-evidence-m10.ps1
+变更点：
+- 新增 mock 接口：GET/POST /records（学习记录）
+- 新增证据脚本与日志：scripts/gen-evidence-m10.ps1、logs/m10-evidence.txt

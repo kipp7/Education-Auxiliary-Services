@@ -75,6 +75,13 @@ git checkout -b feat/02-backend-core-mvp
   - `modules/02-backend-core/logs/m9-evidence.txt`
   - `modules/02-backend-core/scripts/gen-evidence-m9.ps1`
 
+### M10：补齐 /records（mock）
+> 目标：补齐契约已包含的学习记录接口（GET/POST /records），用于联调与后续落库替换。
+- 输出：服务实现 + 证据文件
+  - `modules/02-backend-core/src/server.js`
+  - `modules/02-backend-core/logs/m10-evidence.txt`
+  - `modules/02-backend-core/scripts/gen-evidence-m10.ps1`
+
 ## 3. 输出与汇报
 每完成一个里程碑才提交/推送，并在 `modules/02-backend-core/CONVERSATION_LOG.txt` 记录验收方式（curl 示例）。
 

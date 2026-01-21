@@ -2,6 +2,8 @@ const http = require("node:http");
 const { URL } = require("node:url");
 
 const orders = new Map();
+const recordsById = new Map();
+const recordIdByChapterId = new Map();
 
 function newRequestId() {
   return `req-${Date.now()}-${Math.random().toString(16).slice(2, 10)}`;
@@ -47,6 +49,10 @@ function requireAuth(req, res) {
 
 function newOrderId() {
   return `ord-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`;
+}
+
+function newRecordId() {
+  return `rec-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`;
 }
 
 const server = http.createServer(async (req, res) => {
@@ -226,6 +232,40 @@ const server = http.createServer(async (req, res) => {
       return json(res, 200, [
         { id: "lr-1", chapterId: "ch-1", updatedAt: new Date().toISOString() }
       ]);
+    }
+
+    if (path === "/records") {
+      if (req.method === "GET") {
+        const packageId = url.searchParams.get("packageId");
+        const list = Array.from(recordsById.values()).filter((record) => {
+          if (!packageId) return true;
+          return record?.payload?.packageId === packageId;
+        });
+        return json(res, 200, list.map((record) => ({ id: record.id })));
+      }
+      if (req.method === "POST") {
+        const body = (await readJson(req)) || {};
+        if (typeof body.chapterId !== "string" || body.chapterId.length === 0) {
+          return error(res, 400, "INVALID_ARGUMENT", "Missing chapterId", requestId);
+        }
+        if (!body.payload || typeof body.payload !== "object" || Array.isArray(body.payload)) {
+          return error(res, 400, "INVALID_ARGUMENT", "Missing payload", requestId);
+        }
+
+        const existedId = recordIdByChapterId.get(body.chapterId);
+        const id = existedId || newRecordId();
+        const now = new Date().toISOString();
+        const record = {
+          id,
+          chapterId: body.chapterId,
+          payload: body.payload,
+          createdAt: existedId ? recordsById.get(id)?.createdAt || now : now,
+          updatedAt: now
+        };
+        recordsById.set(id, record);
+        recordIdByChapterId.set(body.chapterId, id);
+        return json(res, 200, { id });
+      }
     }
 
     if (req.method === "GET" && path === "/content/banners") {
