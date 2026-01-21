@@ -165,3 +165,12 @@
 变更点：
 - 新增模块级 .gitignore：忽略 node_modules 与本地 .env
 - 降低误提交本地依赖与环境文件的概率
+
+--- 2026-01-21 ---
+分支：feat/02-backend-core-npm-scripts-codex
+验收：
+- cd modules/02-backend-core && npm run evidence:all
+- 查看输出：modules/02-backend-core/logs/evidence-all.txt
+变更点：
+- package.json 增加 `evidence:all` 脚本，便于一键生成证据
+- 降低手动执行脚本的成本
