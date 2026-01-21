@@ -1,11 +1,13 @@
 param(
   [int]$IntervalSeconds = 120,
   [switch]$ForceFetch,
+  [switch]$AutoMergeQueueUpdates,
   [switch]$DryRun,
   [string]$Remote = "origin",
   [string]$MainBranch = "main",
   [string]$QueueFile = "modules/99-hub/REQUESTS.md",
-  [string]$LogFile = "modules/99-hub/merge_queue_daemon.log"
+  [string]$LogFile = "modules/99-hub/merge_queue_daemon.log",
+  [string]$QueueUpdateBranchPattern = "feat/99-hub-request-*"
 )
 
 $ErrorActionPreference = "Stop"
@@ -54,10 +56,81 @@ function Has-PendingQueueItems {
   return $false
 }
 
+function Sync-QueueUpdatesToMain {
+  if (-not $AutoMergeQueueUpdates) { return }
+
+  # If the daemon can't safely switch branches, skip.
+  $dirty = git status --porcelain=v1
+  if ($dirty) {
+    Write-Log "AutoMergeQueueUpdates: working tree not clean; skipping queue update sync."
+    return
+  }
+
+  if ($ForceFetch -and (-not $DryRun)) {
+    Write-Log "AutoMergeQueueUpdates: fetching all remotes..."
+    git fetch --all --prune | Out-Null
+  }
+
+  # Ensure main is up-to-date before merging queue update branches.
+  if (-not $DryRun) {
+    Write-Log "AutoMergeQueueUpdates: checking out $MainBranch..."
+    git checkout $MainBranch | Out-Null
+    Write-Log "AutoMergeQueueUpdates: rebasing on $Remote/$MainBranch..."
+    git pull --rebase $Remote $MainBranch | Out-Null
+  } else {
+    Write-Log "AutoMergeQueueUpdates: DryRun would checkout/pull $MainBranch"
+  }
+
+  $refs = @(
+    git for-each-ref --format="%(refname:short)" "refs/remotes/$Remote/$QueueUpdateBranchPattern" 2>$null
+    | Where-Object { $_ -and $_.Trim() -ne "" }
+  )
+
+  if ($refs.Count -eq 0) {
+    Write-Log "AutoMergeQueueUpdates: no remote branches match $Remote/$QueueUpdateBranchPattern"
+    return
+  }
+
+  foreach ($ref in $refs) {
+    $branch = $ref
+    if ($branch.StartsWith("$Remote/")) {
+      $branch = $branch.Substring($Remote.Length + 1)
+    }
+
+    # Skip already-merged branches.
+    git merge-base --is-ancestor "$Remote/$branch" $MainBranch | Out-Null
+    if ($LASTEXITCODE -eq 0) { continue }
+
+    # Only auto-merge branches that touch QueueFile and nothing else.
+    $changed = @(
+      git diff --name-only "$MainBranch..$Remote/$branch" 2>$null
+      | Where-Object { $_ -and $_.Trim() -ne "" }
+    )
+    if ($changed.Count -eq 0) { continue }
+    $outOfScope = @($changed | Where-Object { $_ -ne $QueueFile })
+    if ($outOfScope.Count -gt 0) {
+      Write-Log "AutoMergeQueueUpdates: skip $branch (touches other files: $($outOfScope -join ', '))"
+      continue
+    }
+
+    if ($DryRun) {
+      Write-Log "AutoMergeQueueUpdates: DryRun would merge $Remote/$branch into $MainBranch"
+      continue
+    }
+
+    Write-Log "AutoMergeQueueUpdates: merging $Remote/$branch into $MainBranch..."
+    git merge --no-ff "$Remote/$branch" -m "hub: merge queue update $branch" | Out-Null
+    Write-Log "AutoMergeQueueUpdates: pushing $MainBranch..."
+    git push $Remote $MainBranch | Out-Null
+  }
+}
+
 Write-Log "=== merge_queue_daemon start (IntervalSeconds=$IntervalSeconds, DryRun=$DryRun, ForceFetch=$ForceFetch) ==="
 
 while ($true) {
   try {
+    Sync-QueueUpdatesToMain
+
     if (Has-PendingQueueItems) {
       Write-Log "Pending items detected. Running merge_queue.ps1..."
       $args = @()
