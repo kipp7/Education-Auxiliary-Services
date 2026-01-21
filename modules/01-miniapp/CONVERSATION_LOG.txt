@@ -126,6 +126,14 @@
 - `pages/start/index` → 立即进入 → `pages/index/index`（首页）正常渲染 banner/学段/转化/推荐，点击跳转正常
 变更点：
 - 将首页配置从 `miniprogram/mock/home-config.js` 移到 `miniprogram/pages/index/home-config.js`，避免某些基础库下 mock 目录模块未注册导致 require 失败
+
+--- 2026-01-21 ---
+分支：feat/01-miniapp-home-ui-card-style-fix-winE3-v3
+验收：
+- `pages/start/index` → 立即进入 → `pages/index/index`（首页）
+- 首页“推荐课程”横向滑动卡片文字不再被裁切/遮挡（标题/副标题/标签/价格完整可见）
+变更点：
+- 修复横向滚动区在部分基础库下高度计算导致内容裁切：为 `scroll-view.h-list` 与 `.h-item` 设置高度，并用 flex 布局把 meta 行固定到底部
 --- 2026-01-21 ---
 分支：feat/01-miniapp-course-paywall-gating-winE3
 验收：
