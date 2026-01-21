@@ -178,3 +178,12 @@
 - pwsh -NoProfile -File modules/03-importer/tools/append-conversation-log.ps1 -Branch feat/03-importer-log-helper-w03-v1 -Date 2026-01-21 -Acceptance @('ok') -Changes @('ok')
 变更点：
 - 新增 append-conversation-log：按标准区块追加到 CONVERSATION_LOG.txt
+
+--- 2026-01-21 ---
+分支：feat/03-importer-unpack-zip-w03-v1
+验收：
+- pwsh -NoProfile -File modules/03-importer/tools/unpack-zip.ps1 modules/03-importer/samples/import-local/basic.zip -OutDir modules/03-importer/output/_unpack_tmp -FileListOut modules/03-importer/output/basic.zip.file-list.txt
+- 查看 modules/03-importer/output/basic.zip.file-list.txt
+变更点：
+- 新增 unpack-zip：zip 解包并输出 file-list.txt（UTF-8，无 BOM）
+- 补充 basic.zip.file-list.txt 样例输出
