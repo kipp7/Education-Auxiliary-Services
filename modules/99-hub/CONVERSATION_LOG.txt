@@ -51,3 +51,14 @@
 下一步：
 - 总控运行建议：在 `E:\学校\02 项目\98 其他小项目\02_YL\` 执行 daemon，确保 `git status --porcelain` 无输出。
 
+--- 2026-01-21（窗口监督：零转发推进）---
+同步来源（模块/分支）：99-hub / window_supervisor.ps1
+本次关键变化：
+- 新增“窗口监督”守护进程：无法读取其它窗口的屏幕输出，改用 Git 远端分支与模块 `CONVERSATION_LOG.txt` 作为可观测信号。
+- `window_supervisor.ps1` 会检测 `origin/feat/<模块>-*` 新提交，并在 `modules/99-hub/outbox/<模块>.txt` 写入下一步提示（默认“等待你的指令”，可加 `-AutoContinue` 自动提示继续）。
+- 可选：各模块窗口运行 `window_listener.ps1 -Module <模块>` 实时显示 outbox 最新消息。
+风险/阻塞：
+- 若模块分支未按模板追加“分支/验收/变更点”区块，supervisor 只能提示补齐，无法自动判断“完成一次任务”。
+下一步：
+- 统一要求各模块每次 push 都在自己模块 `CONVERSATION_LOG.txt` 追加模板区块；总控仅维持 daemon+supervisor 运行。
+

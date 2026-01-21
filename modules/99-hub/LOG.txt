@@ -24,3 +24,18 @@
 - 先确保在总控主仓 `E:\学校\02 项目\98 其他小项目\02_YL\`，且 `git status --porcelain` 无输出。
 - 守护进程：`pwsh modules/99-hub/merge_queue_daemon.ps1 -ForceFetch -AutoMergeQueueUpdates -AutoEnqueueFromModuleLogs -IntervalSeconds 120`
 - 单次触发：`pwsh modules/99-hub/merge_queue_daemon.ps1 -RunOnce -ForceFetch -AutoMergeQueueUpdates -AutoEnqueueFromModuleLogs`
+
+--- 2026-01-21 ---
+分支：`feat/99-hub-window-supervisor`
+
+变更点：
+- 新增 `modules/99-hub/window_supervisor.ps1`：监听远端 `origin/feat/<模块>-*` 分支更新，基于 `modules/<模块>/CONVERSATION_LOG.txt` 是否存在“分支/验收”区块判断“已完成一次提交”，并把下一步提示写入 `modules/99-hub/outbox/<模块>.txt`。
+- 新增 `modules/99-hub/window_listener.ps1`：模块窗口可选运行，用于实时查看 outbox 最新提示。
+- 新增 `modules/99-hub/.gitignore`：忽略 outbox 与 supervisor state/log 运行产物。
+
+使用方式：
+- 总控窗口：`pwsh -NoProfile modules/99-hub/window_supervisor.ps1 -ForceFetch -AutoContinue -IntervalSeconds 30`
+- 模块窗口（可选）：`pwsh -NoProfile modules/99-hub/window_listener.ps1 -Module 01-miniapp`
+
+限制说明：
+- 无法直接读取/控制其它 CLI 窗口屏幕输出；本工具使用 Git 远端分支与模块日志作为“可观测信号”，仅能“提示继续/提示补齐日志模板”。

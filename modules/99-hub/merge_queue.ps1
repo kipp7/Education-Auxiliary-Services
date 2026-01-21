@@ -56,6 +56,8 @@ function Parse-Queue([string[]]$Lines) {
     # Accept either:
     # - - [ ] `feat/...`
     # - - [ ] feat/...
+    # Blocked items:
+    # - - [!] feat/... (blocked: ...)
     if ($line -match '^\-\s+\[\s\]\s+`(feat\/[^`]+)`') {
       $branch = $Matches[1]
       $items += [pscustomobject]@{
@@ -79,6 +81,14 @@ function Parse-Queue([string[]]$Lines) {
 
 function Mark-Merged([string]$Line) {
   return ($Line -replace '^\-\s+\[\s\]\s+', '- [x] ')
+}
+
+function Mark-Blocked([string]$Line, [string]$Reason) {
+  $updated = ($Line -replace '^\-\s+\[\s\]\s+', '- [!] ')
+  if ($updated -notmatch '\(blocked:' ) {
+    $updated = "$updated (blocked: $Reason)"
+  }
+  return $updated
 }
 
 Write-Log "=== merge_queue start (DryRun=$DryRun, Remote=$Remote, MainBranch=$MainBranch) ==="
@@ -122,6 +132,8 @@ foreach ($item in $queue) {
   $branch = $item.Branch
   Write-Log "Processing: $branch"
 
+  Require-CleanWorktree
+
   if (-not $DryRun) {
     Ensure-Branch $branch
     if (Is-AlreadyMerged $branch) {
@@ -129,6 +141,20 @@ foreach ($item in $queue) {
     } else {
       Write-Log "Merging $Remote/$branch into $MainBranch..."
       git merge --no-ff "$Remote/$branch" -m "Merge $branch" | Out-Null
+      if ($LASTEXITCODE -ne 0) {
+        Write-Log "CONFLICT: merge failed for $branch. Aborting merge and marking queue item blocked."
+        git merge --abort 2>$null | Out-Null
+        Require-CleanWorktree
+
+        $lines[$item.Index] = Mark-Blocked $lines[$item.Index] "conflict"
+
+        Write-Log "Updating queue file (blocked item)..."
+        $lines | Set-Content -Path $QueueFile -Encoding UTF8
+        git add $QueueFile | Out-Null
+        git commit -m "hub: block $branch (conflict)" | Out-Null
+        git push $Remote $MainBranch | Out-Null
+        continue
+      }
     }
   } else {
     Write-Log "DryRun: would merge $Remote/$branch into $MainBranch"
