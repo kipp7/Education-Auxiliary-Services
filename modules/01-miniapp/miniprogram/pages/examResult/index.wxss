@@ -60,6 +60,28 @@
     color: #ffffff;
 }
 
+.metrics {
+    display: flex;
+    margin-top: 18rpx;
+}
+
+.metric {
+    width: 50%;
+    text-align: center;
+}
+
+.metric-k {
+    font-size: 26rpx;
+    color: rgba(225, 250, 251, 0.92);
+}
+
+.metric-v {
+    margin-top: 8rpx;
+    font-size: 34rpx;
+    font-weight: 700;
+    color: #ffffff;
+}
+
 .rankMore {
     display: flex;
     margin-top: 30rpx;

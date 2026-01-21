@@ -12,12 +12,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var ytimesf = options.useTime.split(":")[0]
-    var ytimesm = options.useTime.split(":")[1]
+    const rightNum = parseInt(options.rightNum || 0, 10) || 0
+    const errNum = parseInt(options.errNum || 0, 10) || 0
+    const unAnswerNum = parseInt(options.unAnswerNum || 0, 10) || 0
+    const totalNum = rightNum + errNum + unAnswerNum
+    const accuracy = totalNum > 0 ? Math.round((rightNum / totalNum) * 100) : 0
+
+    var ytimesf = String(options.useTime || '00:00').split(":")[0]
+    var ytimesm = String(options.useTime || '00:00').split(":")[1]
     this.setData({
-      rightNum:options.rightNum,
-      errNum:options.errNum,
-      unAnswerNum: options.unAnswerNum,
+      rightNum,
+      errNum,
+      unAnswerNum,
+      totalNum,
+      accuracy,
       ytimesf:ytimesf,
       ytimesm:ytimesm,
       cateid:options.cateid,

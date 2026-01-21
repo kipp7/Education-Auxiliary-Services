@@ -23,6 +23,16 @@
           </view>
         </view>
       </view>
+      <view class="metrics">
+        <view class="metric">
+          <view class="metric-k">总题数</view>
+          <view class="metric-v">{{totalNum}}</view>
+        </view>
+        <view class="metric">
+          <view class="metric-k">正确率</view>
+          <view class="metric-v">{{accuracy}}%</view>
+        </view>
+      </view>
       <view class="rankMore">
         <view bindtap="clickRank" class="rank">答题排行
         </view>

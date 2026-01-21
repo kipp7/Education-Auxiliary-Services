@@ -83,3 +83,12 @@
 - 题库页按年级动态生成科目列表（教学进度 gating）
 - 切年级时自动纠正当前科目，避免选中不可见科目导致前缀异常
 
+--- 2026-01-21 ---
+分支：feat/01-miniapp-exam-result-metrics-winE3
+验收：
+- 完成一次考试后进入 `pages/examResult/index`（由 `pages/exam/index` 交卷跳转）
+- 观察结果页新增“总题数/正确率”展示，且数值与 `rightNum/errNum/unAnswerNum` 一致
+变更点：
+- 结果页增加总题数与正确率（百分比）计算与展示
+- `useTime` 缺失时兼容默认值，避免 split 报错
+
