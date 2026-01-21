@@ -210,3 +210,12 @@
 变更点：
 - 新增联调排障文档：TROUBLESHOOTING.md
 - 汇总端口占用/curl 转义/401/非法 JSON 等常见问题
+
+--- 2026-01-22 ---
+分支：feat/02-backend-core-standards-doc-codex
+验收：
+- 查看：modules/02-backend-core/STANDARDS.md
+- （可选）对照接口行为：modules/02-backend-core/src/server.js
+变更点：
+- 新增 API 约定文档：STANDARDS.md（鉴权/requestId/错误格式/CORS 等）
+- 便于前后端联调对齐口径
