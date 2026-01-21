@@ -171,3 +171,11 @@
 变更点：
 - 新增 make-import-manifest：基于 hash-import 生成 importHash + files 清单，供后续幂等/去重使用
 - 补充导入清单样例输出文件
+
+--- 2026-01-21 ---
+分支：feat/03-importer-log-helper-w03-v2
+验收：
+- pwsh -NoProfile -File modules/03-importer/tools/append-conversation-log.ps1 -Branch feat/03-importer-log-helper-w03-v2 -Date 2026-01-21 -Acceptance @('cmd1') -Changes @('change1')
+- pwsh -NoProfile -File modules/03-importer/tools/append-conversation-log.ps1 -Branch feat/03-importer-log-helper-w03-v2 -Date 2026-01-21 -AcceptanceFile <utf8.txt> -ChangesFile <utf8.txt>
+变更点：
+- 新增 append-conversation-log：支持从文件读取验收/变更点，减少引号/数组传参错误
