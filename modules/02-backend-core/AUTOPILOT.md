@@ -39,6 +39,11 @@ git checkout -b feat/02-backend-core-mvp
 - 输出：`modules/02-backend-core/logs/m4-miniapp-checklist.md`
 - 验收：按 checklist 执行并把关键现象/错误码记录到文件中（可先留空，后续补充）
 
+### M5：一键生成证据日志（脚本）
+> 目标：减少人工复制粘贴命令导致的“证据不可用”，一键生成可提交的证据文件。
+- 输出：`modules/02-backend-core/logs/m5-evidence.txt`
+- 执行：`powershell -ExecutionPolicy Bypass -File modules/02-backend-core/scripts/gen-evidence.ps1`
+
 ## 3. 输出与汇报
 每完成一个里程碑才提交/推送，并在 `modules/02-backend-core/CONVERSATION_LOG.txt` 记录验收方式（curl 示例）。
 

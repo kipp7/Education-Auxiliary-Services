@@ -47,3 +47,9 @@
 里程碑：M4 联动验收记录（无 MCP 版）
 验收方式（路径）：
 - 查看/填写：modules/02-backend-core/logs/m4-miniapp-checklist.md
+
+--- 2026-01-21 16:33 ---
+里程碑：M5 一键生成证据日志
+验收方式（路径）：
+- 运行脚本：powershell -ExecutionPolicy Bypass -File modules/02-backend-core/scripts/gen-evidence.ps1
+- 产出文件：modules/02-backend-core/logs/m5-evidence.txt
