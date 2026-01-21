@@ -5,11 +5,15 @@ Page({
     tip: '',
     currentSeconds: 0,
     svipBound: false,
+    learned: false,
   },
 
   onLoad(options) {
     const id = options.id || ''
     this.setData({ id })
+
+    const learned = !!wx.getStorageSync(this.getLearnedKey(id))
+    this.setData({ learned })
 
     const key = this.getProgressKey(id)
     const seconds = Number(wx.getStorageSync(key) || 0)
@@ -47,6 +51,10 @@ Page({
     return `course_progress_${id}`
   },
 
+  getLearnedKey(id) {
+    return `course_learned_${id}`
+  },
+
   addTenSeconds() {
     const nextSeconds = (Number(this.data.currentSeconds) || 0) + 10
     this.setData({ currentSeconds: nextSeconds })
@@ -63,5 +71,12 @@ Page({
     wx.navigateTo({
       url: '/pages/svip/bind/index',
     })
+  },
+
+  toggleLearned() {
+    const next = !this.data.learned
+    this.setData({ learned: next })
+    wx.setStorageSync(this.getLearnedKey(this.data.id), next)
+    wx.showToast({ title: next ? '已标记为已学' : '已标记为未学', icon: 'none' })
   },
 })

@@ -83,3 +83,12 @@
 - 题库页按年级动态生成科目列表（教学进度 gating）
 - 切年级时自动纠正当前科目，避免选中不可见科目导致前缀异常
 
+--- 2026-01-21 ---
+分支：feat/01-miniapp-course-learned-toggle-winE3
+验收：
+- `pages/start/index` → 立即进入 → 底部课程 `pages/course/index` → 进入 `pages/course/player?id=c_demo_1`
+- 点击“标记为已学/未学”，重新进入同一课程播放页，观察“学习状态”仍保持
+变更点：
+- 播放页新增“已学/未学”本地标记（storage `course_learned_<id>`）
+- 播放页展示学习状态并提供一键切换按钮
+

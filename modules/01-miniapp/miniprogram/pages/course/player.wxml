@@ -6,6 +6,11 @@
     <view class="mock-desc">此页用于演示“进入播放页 + 记录进度（storage）”的后续里程碑。</view>
     <view class="mock-meta">课程ID：{{id}}</view>
     <view class="mock-meta">当前进度：{{currentSeconds}}s</view>
+    <view class="mock-meta">学习状态：{{learned ? '已学' : '未学'}}（本地）</view>
+  </view>
+
+  <view class="learned">
+    <button class="btn ghost" bindtap="toggleLearned">{{learned ? '标记为未学' : '标记为已学'}}</button>
   </view>
 
   <view class="paywall" wx:if="{{!svipBound}}">
