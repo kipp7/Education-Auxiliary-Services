@@ -351,6 +351,40 @@ components:
           type: string
           nullable: true
 
+    BillingOrder:
+      type: object
+      additionalProperties: false
+      required: [orderId, planId, status, createdAt, updatedAt]
+      properties:
+        orderId: { type: string }
+        planId: { type: string }
+        status:
+          type: string
+          examples: [CREATED, PAID, CANCELED]
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    BillingPaymentCallbackRequest:
+      type: object
+      additionalProperties: false
+      required: [orderId, status]
+      properties:
+        orderId: { type: string }
+        status:
+          type: string
+          examples: [PAID, CANCELED]
+
+    BillingPaymentCallbackResponse:
+      type: object
+      additionalProperties: false
+      required: [ok]
+      properties:
+        ok: { type: boolean }
+
     StudyRecordUpsertRequest:
       type: object
       additionalProperties: false
@@ -886,6 +920,49 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+
+  /billing/order/{orderId}:
+    get:
+      tags: [billing]
+      summary: 查询订单（草案）
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BillingOrder"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /billing/payment/callback:
+    post:
+      tags: [billing]
+      summary: 支付回调（预留，草案）
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BillingPaymentCallbackRequest"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BillingPaymentCallbackResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
 
   /records:
     get:

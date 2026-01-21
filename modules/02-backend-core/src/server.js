@@ -1,6 +1,8 @@
 const http = require("node:http");
 const { URL } = require("node:url");
 
+const orders = new Map();
+
 function json(res, statusCode, data) {
   const body = JSON.stringify(data);
   res.statusCode = statusCode;
@@ -33,6 +35,10 @@ function requireAuth(req, res) {
   return true;
 }
 
+function newOrderId() {
+  return `ord-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`;
+}
+
 const server = http.createServer(async (req, res) => {
   try {
     if (!req.url) return error(res, 400, "INVALID_ARGUMENT", "Missing URL");
@@ -63,6 +69,22 @@ const server = http.createServer(async (req, res) => {
         userId: "demo-user",
         isNewUser: false
       });
+    }
+
+    // Payment providers typically call back without Authorization.
+    if (req.method === "POST" && path === "/billing/payment/callback") {
+      const body = (await readJson(req)) || {};
+      if (typeof body.orderId !== "string" || body.orderId.length === 0) {
+        return error(res, 400, "INVALID_ARGUMENT", "Missing orderId");
+      }
+      const status = typeof body.status === "string" ? body.status : "PAID";
+      const order = orders.get(body.orderId);
+      if (order) {
+        order.status = status;
+        order.updatedAt = new Date().toISOString();
+        orders.set(body.orderId, order);
+      }
+      return json(res, 200, { ok: true });
     }
 
     if (!requireAuth(req, res)) return;
@@ -233,12 +255,29 @@ const server = http.createServer(async (req, res) => {
       if (typeof body.planId !== "string" || body.planId.length === 0) {
         return error(res, 400, "INVALID_ARGUMENT", "Missing planId");
       }
+      const orderId = newOrderId();
+      const now = new Date().toISOString();
+      orders.set(orderId, {
+        orderId,
+        planId: body.planId,
+        status: "CREATED",
+        createdAt: now,
+        updatedAt: now
+      });
       return json(res, 200, {
-        orderId: `ord-${Date.now()}`,
+        orderId,
         planId: body.planId,
         status: "CREATED",
         payUrl: null
       });
+    }
+
+    if (req.method === "GET" && path.startsWith("/billing/order/")) {
+      const orderId = path.split("/").pop();
+      if (!orderId) return error(res, 400, "INVALID_ARGUMENT", "Missing orderId");
+      const order = orders.get(orderId);
+      if (!order) return error(res, 404, "NOT_FOUND", "Order not found");
+      return json(res, 200, order);
     }
 
     return error(res, 404, "NOT_FOUND", "Not found");

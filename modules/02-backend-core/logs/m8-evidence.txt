@@ -1,0 +1,29 @@
+﻿# M8 evidence
+GeneratedAt=2026-01-21 19:47:15
+PORT=3730
+
+$ curl http://localhost:3730/health
+{"ok":true}
+exit=0
+
+$ curl -X POST http://localhost:3730/auth/wechat
+{"token":"demo-token","expiresIn":7200,"userId":"demo-user","isNewUser":false}
+exit=0
+
+$ curl -X POST http://localhost:3730/billing/order
+{"orderId":"ord-1768996036196-d9f5f1","planId":"plan-1","status":"CREATED","payUrl":null}
+exit=0
+
+$ curl http://localhost:3730/billing/order/ord-1768996036196-d9f5f1
+{"orderId":"ord-1768996036196-d9f5f1","planId":"plan-1","status":"CREATED","createdAt":"2026-01-21T11:47:16.196Z","updatedAt":"2026-01-21T11:47:16.196Z"}
+exit=0
+
+$ curl -X POST http://localhost:3730/billing/payment/callback
+{"ok":true}
+exit=0
+
+$ curl http://localhost:3730/billing/order/ord-1768996036196-d9f5f1 (after callback)
+{"orderId":"ord-1768996036196-d9f5f1","planId":"plan-1","status":"PAID","createdAt":"2026-01-21T11:47:16.196Z","updatedAt":"2026-01-21T11:47:16.263Z"}
+exit=0
+
+OK

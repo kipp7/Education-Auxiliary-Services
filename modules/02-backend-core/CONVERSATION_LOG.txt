@@ -84,3 +84,12 @@
 变更点：
 - 增加 mock 接口：POST /billing/order（创建订单）
 - 更新 OpenAPI 草案：新增 /billing/order 契约与证据输出（logs/m7-evidence.txt）
+
+--- 2026-01-21 ---
+分支：feat/02-backend-core-billing-order-query-codex
+验收：
+- cd modules/02-backend-core && npm run dev
+- powershell -ExecutionPolicy Bypass -File modules/02-backend-core/scripts/gen-evidence-m8.ps1
+变更点：
+- 预留订单查询：GET /billing/order/{orderId}（mock，需 Authorization）
+- 预留支付回调：POST /billing/payment/callback（mock，无需 Authorization，更新订单状态）
