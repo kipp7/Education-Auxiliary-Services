@@ -16,6 +16,11 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+$utf8 = [System.Text.UTF8Encoding]::new()
+$OutputEncoding = $utf8
+[Console]::OutputEncoding = $utf8
+[Console]::InputEncoding = $utf8
+
 function Write-Log([string]$Message) {
   $ts = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
   $line = "[$ts] $Message"
