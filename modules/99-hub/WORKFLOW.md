@@ -61,6 +61,38 @@ git push
 
 总控窗口可以用脚本从 `modules/99-hub/REQUESTS.md` 的“合并队列”读取待合并分支并自动合并到 `main`。
 
+### 6.1 文件路径约定（避免搞混）
+
+以下路径全部是“仓库根目录”下的相对路径：
+
+- 合并队列文件：`modules/99-hub/REQUESTS.md`
+- 队列执行脚本：`modules/99-hub/merge_queue.ps1`
+- 守护脚本：`modules/99-hub/merge_queue_daemon.ps1`
+- 守护日志：`modules/99-hub/merge_queue_daemon.log`
+- 合并日志：`modules/99-hub/merge_queue.log`
+
+Windows 示例（你的机器上仓库根目录可能是类似）：`E:\学校\02 项目\98 其他小项目\02_YL`
+因此队列文件就是：`E:\学校\02 项目\98 其他小项目\02_YL\modules\99-hub\REQUESTS.md`
+
+### 6.2 入队规则（让自动化真正生效）
+
+自动合并只看 `main` 上的 `modules/99-hub/REQUESTS.md`，并且只识别“待合并队列项”：
+
+- `- [ ] \`feat/xxx\``（推荐写法）
+- `- [ ] feat/xxx`（兼容写法）
+
+注意：仅仅 “push 了 feat 分支 / GitHub 出现 Compare & pull request” **不会**触发自动合并；必须把待合并分支写入队列。
+
+### 6.3 强烈推荐：所有窗口用“入队分支”提交合并请求（只改一个文件）
+
+为了进一步减少人工步骤（不用手工把队列更新合入 main），每个窗口在 push 自己的业务分支 `feat/<模块>-...` 后，再 push 一个“入队分支”：
+
+- 分支命名：`feat/99-hub-request-<模块>-<短描述>`
+- **只允许修改 1 个文件**：`modules/99-hub/REQUESTS.md`（不要带别的文件改动，否则会被守护脚本跳过）
+- 入队分支里必须在“合并队列”段落新增 `- [ ] ...`，并在下方新增 `## 合并请求：...` 的验收说明
+
+总控守护脚本开启 `-AutoMergeQueueUpdates` 时，会自动把满足条件的 `feat/99-hub-request-*` 合入 `main`，然后再按队列合并对应业务分支。
+
 推荐流程：
 
 ```powershell
@@ -78,6 +110,9 @@ pwsh modules/99-hub/merge_queue.ps1 -ForceFetch
 ```powershell
 # 每 2 分钟检查一次合并队列，有待合并项就自动 merge+push
 pwsh modules/99-hub/merge_queue_daemon.ps1 -ForceFetch -IntervalSeconds 120
+
+# 自动把入队分支（feat/99-hub-request-*）合入 main，并继续处理合并队列
+pwsh modules/99-hub/merge_queue_daemon.ps1 -ForceFetch -AutoMergeQueueUpdates -IntervalSeconds 120
 ```
 
 注意：
