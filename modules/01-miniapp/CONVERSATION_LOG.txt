@@ -157,6 +157,14 @@
 变更点：
 - 首页补齐今日学习卡（本地 storage mock：`today_target_min/today_learned_min`）并提供跳转到学习记录
 - 首页增加资讯列表商业位（Mock 配置来自 `pages/index/home-config.js`）
+
+--- 2026-01-21 ---
+分支：feat/01-miniapp-home-ui-shortcuts-winE3-v7
+验收：
+- `pages/index/index`：快捷功能新增“继续学习”；“答题”入口更名为“真题/模拟”
+- 继续学习：若无本地记录则提示“暂无学习记录”并切到课程页；若存在 `last_course_id/last_menu_id` 可跳到对应播放/练习页
+变更点：
+- 首页补齐快捷入口缺口（继续学习、真题/模拟），并保持兼容原 `goExam` 调用
 --- 2026-01-21 ---
 分支：feat/01-miniapp-course-paywall-gating-winE3
 验收：
