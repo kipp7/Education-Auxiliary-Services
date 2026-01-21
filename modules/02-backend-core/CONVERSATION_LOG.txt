@@ -62,3 +62,7 @@
 - 一键证据：powershell -ExecutionPolicy Bypass -File modules/02-backend-core/scripts/gen-evidence-m6.ps1
 - 产出文件：modules/02-backend-core/logs/m6-evidence.txt
 下一步：请 99-hub 确认契约中 /progress /wrongs /favorites 的字段与错误码枚举（contract/mvp.openapi.yaml）。
+
+--- 2026-01-21 17:05 ---
+决定/共识确认：以 `main` 上 `modules/99-hub/REQUESTS.md` 为合并队列准入；本窗口后续不再直接修改 `modules/99-hub/*`，仅向 99-hub 提交分支名 + 验收方式。
+下一步：将 `feat/02-backend-core-autopilot-codex` 的验收命令/证据路径发给 99-hub，等待其写入 `modules/99-hub/REQUESTS.md` 入队。
