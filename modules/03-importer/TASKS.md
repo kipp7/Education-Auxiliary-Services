@@ -11,9 +11,9 @@
 
 ## 1. MVP：导入任务流水线（不绑定具体格式）
 - [x] 导入任务模型：任务ID、状态、进度、错误报告、产出统计（见 `modules/03-importer/ir/import-task.schema.json`）
-- [ ] 上传入口（建议）
-  - [ ] `POST /import/upload`（zip 或多文件）
-  - [ ] `GET /import/status?id=...`
+- [x] 上传入口（建议）（草案见 `modules/03-importer/api/import.openapi.yaml`）
+  - [x] `POST /import/upload`（zip 或多文件）
+  - [x] `GET /import/status?id=...`
 - [ ] 目录层级解析：把 folder path 解析为分类树节点（规则待确认）
 - [x] 题目解析接口：先定义输入/输出中间格式（IR），再实现具体 parser（见 modules/03-importer/ir/question-ir.schema.json）
 

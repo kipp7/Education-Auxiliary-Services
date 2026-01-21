@@ -25,3 +25,9 @@
 决定/结论：完成 AUTOPILOT M2 的导入任务模型（占位）schema。
 验收路径：
 - 查看：modules/03-importer/ir/import-task.schema.json
+
+--- 2026-01-21 14:44 ---
+决定/结论：完成上传/状态接口契约草案（OpenAPI），用于后续服务端实现与联调对齐。
+验收路径：
+- 查看：modules/03-importer/api/import.openapi.yaml
+- 检查包含路径：/import/upload 与 /import/status
