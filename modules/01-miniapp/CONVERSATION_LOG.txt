@@ -83,3 +83,12 @@
 - 题库页按年级动态生成科目列表（教学进度 gating）
 - 切年级时自动纠正当前科目，避免选中不可见科目导致前缀异常
 
+--- 2026-01-21 ---
+分支：feat/01-miniapp-library-preview-winE3
+验收：
+- `pages/start/index` → 立即进入 → 底部题库 `pages/library/index` → 点击任意单元进入 `pages/library/unit/index`
+- 点击“同步试题(预览)”弹出题目预览（前 3 题），点“去练习”跳转 `pages/learn/index?cateid=menu_demo_1`
+变更点：
+- “同步试题(预览)”从 toast 占位升级为可预览题目（Mock 拉题并展示）
+- 预览弹窗提供“去练习”快捷入口（跳转到现有练习页）
+
