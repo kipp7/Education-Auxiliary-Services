@@ -55,6 +55,9 @@ Page({
   goLearn() {
     wx.switchTab({ url: '/pages/library/index' })
   },
+  goStar() {
+    wx.navigateTo({ url: '/pages/star/index' })
+  },
   login() {
     this.setData({
       is_login:!this.data.is_login

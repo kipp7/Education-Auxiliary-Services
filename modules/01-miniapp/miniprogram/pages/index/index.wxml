@@ -54,6 +54,12 @@
         <view class="card-title">排名</view>
         <view class="card-desc">查看成绩排行</view>
       </view>
+
+      <view class="card" bindtap="goStar">
+        <image class="card-icon" src="/images/star-active.png"></image>
+        <view class="card-title">收藏</view>
+        <view class="card-desc">回看收藏题目</view>
+      </view>
     </view>
   </view>
 

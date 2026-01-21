@@ -48,3 +48,9 @@
 验收路径：`pages/start/index` → 立即进入 → 首页点“答题”进入 `pages/exam-menu/index` → 选择任意题库进入 `pages/exam/index` → 作答若干题 → 点击右上角“交卷”确认 → 跳转 `pages/examResult/index` 展示得分/用时/错题入口。
 下一步：如需合并请求记录，请由 99-hub 窗口将分支 `feat/01-miniapp-mvp-exam-winE3` 的 MR 需求写入 `modules/99-hub/REQUESTS.md`（本窗口只改本模块目录）。
 
+--- 2026-01-21 03:18 ---
+用户：继续。
+助手：按 `TASKS.md` 推进 MVP：新增收藏/取消收藏（本地 storage）与收藏页回看；练习页底部增加“收藏”按钮并显示星标状态，收藏列表页展示已收藏题库并可进入回看页；回看页支持移除收藏。
+验收路径：`pages/start/index` → 立即进入 → 首页点击“收藏”进入 `pages/star/index`（空态）→ 题库进入任意单元在线做题（练习）→ 在 `pages/learn/index` 点击右下角“收藏”按钮收藏当前题 → 返回首页点击“收藏”进入 `pages/star/index` → 选择条目进入 `pages/errorStar/index?mode=star` 回看 → 点击“移除”取消收藏。
+下一步：如需合并请求记录，请由 99-hub 窗口将分支 `feat/01-miniapp-mvp-star-winE3` 的 MR 需求写入 `modules/99-hub/REQUESTS.md`（本窗口只改本模块目录）。
+

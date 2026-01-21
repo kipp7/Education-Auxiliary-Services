@@ -8,6 +8,7 @@
     "pages/course/player",
     "pages/exam-menu/index",
     "pages/my/index",
+    "pages/star/index",
     "pages/svip/bind/index",
     "pages/register/index",
     "pages/status/index",

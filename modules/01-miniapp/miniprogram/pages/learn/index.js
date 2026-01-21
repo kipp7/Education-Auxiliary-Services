@@ -35,6 +35,7 @@ Page({
     objQuestionId:[],
     arrQuestionId: [],
     arrcheckQuestion:{},
+    starshow: false,
   },
 
   /**
@@ -132,6 +133,8 @@ Page({
           showQuestionList: showQuestionList,
           objQuestionId: objQuestionId,
           arrcheckQuestion: arrcheckQuestion
+        }, () => {
+          that.refreshStarShow()
         })
         setTimeout(function () {
           wx.hideLoading()
@@ -163,6 +166,8 @@ Page({
         u.push(d[a.data.indexInd - 1])), u.push(d[a.data.indexInd])), this.setData({
         showQuestionList: u,
         indexInd: o
+      }, () => {
+        that.refreshStarShow()
       })
       setTimeout(function() {
         wx.hideLoading()
@@ -266,6 +271,7 @@ Page({
       indexInd: n,
       current: r
     })
+    this.refreshStarShow()
     console.log(o)
   },
   selectAnswer: function(t) {
@@ -494,6 +500,59 @@ Page({
     wx.setStorageSync('err_' + cateid, errQuestionList);
     console.log(menuQuestionList)
     console.log(errQuestionList)
+  },
+
+  refreshStarShow() {
+    const cateid = this.data.cateid
+    const questionList = this.data.questionList || []
+    const indexInd = this.data.indexInd || 0
+    const current = questionList[indexInd]
+    const currentId = current && current.objectId
+    const raw = wx.getStorageSync('star_' + cateid)
+    const list = Array.isArray(raw) ? raw : []
+    this.setData({
+      starshow: !!(currentId && list.indexOf(currentId) !== -1),
+    })
+  },
+
+  starcollect() {
+    const cateid = this.data.cateid
+    const questionList = this.data.questionList || []
+    const indexInd = this.data.indexInd || 0
+    const current = questionList[indexInd]
+    const currentId = current && current.objectId
+    if (!currentId) return
+
+    const raw = wx.getStorageSync('star_' + cateid)
+    const list = Array.isArray(raw) ? raw : []
+    const idx = list.indexOf(currentId)
+
+    const menu = this.data.menu || '练习（Mock）'
+    const rawMenu = wx.getStorageSync('starMenuStorageList')
+    const menuList = Array.isArray(rawMenu) ? rawMenu : []
+
+    if (idx === -1) {
+      list.push(currentId)
+      if (!menuList.find((m) => m.cateid === cateid)) {
+        menuList.push({ cateid, menu })
+      }
+      wx.setStorageSync('star_' + cateid, list)
+      wx.setStorageSync('starMenuStorageList', menuList)
+      this.setData({ starshow: true })
+      wx.showToast({ title: '已收藏', icon: 'none' })
+      return
+    }
+
+    list.splice(idx, 1)
+    if (list.length > 0) {
+      wx.setStorageSync('star_' + cateid, list)
+    } else {
+      wx.removeStorageSync('star_' + cateid)
+      const nextMenuList = menuList.filter((m) => m.cateid !== cateid)
+      wx.setStorageSync('starMenuStorageList', nextMenuList)
+    }
+    this.setData({ starshow: false })
+    wx.showToast({ title: '已取消收藏', icon: 'none' })
   },
   finish: function() {
     wx.showToast({

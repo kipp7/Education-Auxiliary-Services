@@ -1,0 +1,29 @@
+<view class="page">
+  <view wx:if="{{starMenuStorageList.length < 1}}">
+    <view class="no-record">
+      <image src="/images/no-record.png"></image>
+    </view>
+    <view bindtap="goLearn" class="empty-card">
+      <view class="empty-text">你收藏的题目会显示在这里</view>
+      <view class="empty-btn">去练习</view>
+    </view>
+  </view>
+
+  <view wx:else>
+    <view class="section-title">已收藏题库</view>
+    <view
+      bindtap="goStar"
+      class="item"
+      wx:for="{{starMenuStorageList}}"
+      wx:key="cateid"
+      data-cateid="{{item.cateid}}"
+      data-menu="{{item.menu}}"
+    >
+      <view class="left">
+        <view class="icon">{{index + 1}}</view>
+        <text class="name">{{item.menu}}</text>
+      </view>
+      <image class="direction" src="/images/jkt/right.png"></image>
+    </view>
+  </view>
+</view>

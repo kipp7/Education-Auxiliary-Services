@@ -28,6 +28,7 @@ Page({
       I: !1,
       J: !1
     },
+    mode: 'err',
   },
 
   /**
@@ -36,7 +37,8 @@ Page({
   onLoad: function (options) {
     var cateid = options.cateid
     this.setData({
-      'cateid':cateid
+      'cateid': cateid,
+      mode: options.mode || 'err',
     })
   },
 
@@ -55,12 +57,13 @@ Page({
     wx.showLoading({
       title: '正在加载',
     })
-    var errList = wx.getStorageSync('err_'+this.data.cateid)
-    console.log(errList)
+    const key = (this.data.mode === 'star' ? 'star_' : 'err_') + this.data.cateid
+    const idListRaw = wx.getStorageSync(key)
+    const idList = Array.isArray(idListRaw) ? idListRaw : []
     wx.u.getQuestionsForMenu(this.data.cateid).then((res) => {
       const all = res.result || []
       let questionList = []
-      for (let object of errList || []) {
+      for (let object of idList || []) {
         var obj = all.find((element) => (element.objectId == object))
         if (obj) questionList.push(obj)
       }
@@ -231,11 +234,14 @@ Page({
   delCollect: function (t){
     var indexInd = this.data.indexInd
     var questionList = this.data.questionList
-    var errList = wx.getStorageSync('err_' + this.data.cateid)
-    var index = errList.indexOf(questionList[indexInd].objectId);
+    const key = (this.data.mode === 'star' ? 'star_' : 'err_') + this.data.cateid
+    var idListRaw = wx.getStorageSync(key)
+    var errList = Array.isArray(idListRaw) ? idListRaw : []
+    var index = errList.indexOf(questionList[indexInd].objectId)
     questionList.splice(indexInd,1)
     errList.splice(index,1)
-    wx.setStorageSync('err_' + this.data.cateid, errList)
+    if (errList.length > 0) wx.setStorageSync(key, errList)
+    else wx.removeStorageSync(key)
     console.log(indexInd)
     console.log(questionList.length)
     if(questionList.length>0){
@@ -250,7 +256,9 @@ Page({
     }
       
     else {
-      var menuStorageList = wx.getStorageSync('menuStorageList')
+      var menuKey = this.data.mode === 'star' ? 'starMenuStorageList' : 'menuStorageList'
+      var menuStorageListRaw = wx.getStorageSync(menuKey)
+      var menuStorageList = Array.isArray(menuStorageListRaw) ? menuStorageListRaw : []
       var n = 0
       for(let object of menuStorageList){
         if(object.cateid == this.data.cateid){
@@ -259,8 +267,8 @@ Page({
         }
         n++
       }
-      wx.removeStorageSync('err_' + this.data.cateid)
-      wx.setStorageSync('menuStorageList', menuStorageList)
+      wx.removeStorageSync(key)
+      wx.setStorageSync(menuKey, menuStorageList)
       wx.navigateBack({
 
       })
