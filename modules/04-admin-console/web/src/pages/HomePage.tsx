@@ -41,6 +41,9 @@ export function HomePage() {
             <Link className="btn" to="/cms">
               公告管理（占位）
             </Link>
+            <Link className="btn" to="/dashboard">
+              数据看板（占位）
+            </Link>
           </div>
           <p className="muted" style={{ marginBottom: 0 }}>
             后续按 `TASKS.md` 逐步补齐页面与接口联调。
