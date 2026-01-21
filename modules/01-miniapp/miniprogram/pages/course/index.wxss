@@ -70,3 +70,27 @@
   font-size: 24rpx;
   color: #1bd0ad;
 }
+
+.meta-row {
+  margin-top: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12rpx;
+}
+
+.badge {
+  padding: 6rpx 12rpx;
+  border-radius: 999rpx;
+  background: rgba(27, 208, 173, 0.12);
+  color: #1bd0ad;
+  font-size: 22rpx;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.badge.ghost {
+  background: rgba(0, 0, 0, 0.06);
+  color: rgba(0, 0, 0, 0.55);
+  font-weight: 600;
+}

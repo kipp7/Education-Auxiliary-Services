@@ -25,7 +25,20 @@ Page({
 
   onShow() {
     const svipBound = !!wx.getStorageSync('svip_bound')
-    this.setData({ svipBound })
+    const courseList = (this.data.courseList || []).map((item) => {
+      const seconds = Number(wx.getStorageSync(this.getProgressKey(item.id)) || 0)
+      const progressSeconds = Number.isFinite(seconds) && seconds > 0 ? seconds : 0
+      return {
+        ...item,
+        progressSeconds,
+        progressText: progressSeconds ? `${Math.floor(progressSeconds)}s` : '',
+      }
+    })
+    this.setData({ svipBound, courseList })
+  },
+
+  getProgressKey(id) {
+    return `course_progress_${id}`
   },
 
   switchStage(e) {
@@ -36,6 +49,7 @@ Page({
 
   goPlay(e) {
     const id = e.currentTarget.dataset.id
+    if (id) wx.setStorageSync('last_course_id', id)
     if (!this.data.svipBound) {
       wx.showModal({
         title: 'SVIP 未开通',

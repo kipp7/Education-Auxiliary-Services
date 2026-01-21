@@ -10,6 +10,7 @@ Page({
   onLoad(options) {
     const id = options.id || ''
     this.setData({ id })
+    if (id) wx.setStorageSync('last_course_id', id)
 
     const key = this.getProgressKey(id)
     const seconds = Number(wx.getStorageSync(key) || 0)

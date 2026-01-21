@@ -209,3 +209,13 @@
 变更点：
 - 题库页 `index.wxss` 去掉 `page` tag selector，统一用 `.page` 承载背景样式，避免基础库对 component wxss 的选择器限制告警
 
+--- 2026-01-21 ---
+分支：feat/01-miniapp-M3-course-resume-winE3-v1
+验收：
+- 首页点击“课程”进入 `pages/course/index`，点任意课程进入 `pages/course/player`
+- 在播放页点击“模拟播放 +10s”或拖动滑块后返回列表，列表卡片出现“已学 xx s”
+- 再次进入同一课程：弹窗提示可“继续/重新开始”，选择继续后进度保持
+变更点：
+- 课程列表读取本地 `course_progress_<id>` 展示“已学/未开始”进度徽标
+- 进入课程时写入 `last_course_id`，用于首页“继续学习”入口联动
+

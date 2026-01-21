@@ -24,7 +24,11 @@
       <view class="body">
         <view class="title">{{item.title}}</view>
         <view class="desc">{{item.desc}}</view>
-        <view class="meta">时长：{{item.durationText}}</view>
+        <view class="meta-row">
+          <view class="meta">时长：{{item.durationText}}</view>
+          <view class="badge" wx:if="{{item.progressSeconds}}">已学 {{item.progressText}}</view>
+          <view class="badge ghost" wx:else>未开始</view>
+        </view>
       </view>
     </view>
   </view>
