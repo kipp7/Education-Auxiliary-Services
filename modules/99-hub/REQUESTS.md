@@ -33,7 +33,7 @@
 - [!] feat/01-miniapp-favorite-local-winE2 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
 - [!] feat/01-miniapp-m7-news-tab-winE3 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
 - [!] feat/01-miniapp-mvp-practice-winE3 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
-- [ ] feat/01-miniapp-mvp-star-winE3 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段
+- [!] feat/01-miniapp-mvp-star-winE3 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
 - [ ] feat/01-miniapp-mvp-urlencode-winE → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段
 - [ ] feat/01-miniapp-mvp-wrong-winE3 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段
 - [ ] feat/02-backend-core-contract-draft → 02-backend-core：验收：见 modules/02-backend-core/CONVERSATION_LOG.txt 最新一段
