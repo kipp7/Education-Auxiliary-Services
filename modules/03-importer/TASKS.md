@@ -19,7 +19,7 @@
 
 ## 2. Parser 插件化（按优先级）
 - [x] `txt` 模板解析（最快落地；实现见 `modules/03-importer/tools/parse-txt.mjs`，样例见 `modules/03-importer/samples/txt/basic.txt`）
-- [ ] `doc/docx` 解析（按样例再定）
+- [x] `doc/docx` 解析（最小实现：提取 document.xml 文本后复用 txt parser；工具见 `modules/03-importer/tools/parse-docx.ps1`；样例见 `modules/03-importer/samples/docx/basic.docx`；输出见 `modules/03-importer/output/basic.docx.parsed.json`）
 - [ ] `pdf` 解析（按样例再定）
 - [ ] 图片 OCR（最后做；先支持人工校对流程）
 

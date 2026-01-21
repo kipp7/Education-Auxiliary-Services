@@ -37,3 +37,9 @@
 验收路径：
 - 运行：node modules/03-importer/tools/parse-hierarchy.mjs modules/03-importer/samples/hierarchy/file-list.txt > modules/03-importer/output/hierarchy.json
 - 查看：modules/03-importer/output/hierarchy.json
+
+--- 2026-01-21 16:12 ---
+决定/结论：完成 doc/docx 最小解析（docx 解压提取文本 → 复用 txt parser 产出 IR JSON）。
+验收路径：
+- 运行：pwsh -File modules/03-importer/tools/parse-docx.ps1 modules/03-importer/samples/docx/basic.docx -Category "示例题库" > modules/03-importer/output/basic.docx.parsed.json
+- 查看：modules/03-importer/output/basic.docx.parsed.json
