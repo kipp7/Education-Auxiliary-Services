@@ -1,0 +1,15 @@
+{
+  "id": "local-basic",
+  "status": "done",
+  "progress": 100,
+  "stage": "local-import",
+  "createdAt": "2026-01-21T20:24:38.3724340+08:00",
+  "updatedAt": "2026-01-21T20:24:38.3724340+08:00",
+  "result": {
+    "errorCount": 0,
+    "parsedCount": 2,
+    "skippedCount": 0,
+    "importedCount": 0
+  },
+  "errors": []
+}

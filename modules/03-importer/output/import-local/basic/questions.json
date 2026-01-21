@@ -1,0 +1,41 @@
+[
+  {
+    "id": "q-0001",
+    "type": "judge",
+    "stem": "Score: 1\n地球是圆的。",
+    "answer": {
+      "value": "true"
+    },
+    "source": {
+      "filePath": "bank/english/grade7/reading/q2.txt",
+      "lineStart": 1,
+      "lineEnd": 5
+    },
+    "categoryPath": "示例题库/bank/english/grade7/reading"
+  },
+  {
+    "id": "q-0001",
+    "type": "single",
+    "stem": "Score: 2\n1+1=?",
+    "options": [
+      {
+        "key": "A",
+        "text": "1"
+      },
+      {
+        "key": "B",
+        "text": "2"
+      }
+    ],
+    "answer": {
+      "value": "B"
+    },
+    "analysis": "最简单的加法。",
+    "source": {
+      "filePath": "bank/math/grade1/q1.txt",
+      "lineStart": 1,
+      "lineEnd": 8
+    },
+    "categoryPath": "示例题库/bank/math/grade1"
+  }
+]

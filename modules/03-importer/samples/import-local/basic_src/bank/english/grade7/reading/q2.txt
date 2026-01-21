@@ -1,0 +1,4 @@
+Type: judge
+Score: 1
+地球是圆的。
+答案：对
