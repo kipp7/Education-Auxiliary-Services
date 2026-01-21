@@ -29,7 +29,7 @@
 - [!] feat/04-admin-console-questions-v1 → 04-admin-console：验收：见 modules/04-admin-console/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
 - [x] feat/99-hub-window-supervisor → 99-hub：验收：`pwsh -NoProfile modules/99-hub/window_supervisor.ps1 -RunOnce -ForceFetch`
 - [x] feat/02-backend-core-cors-delete-codex → 02-backend-core：验收：见 modules/02-backend-core/CONVERSATION_LOG.txt 最新一段
-- [ ] feat/04-admin-console-questions-v1 → 04-admin-console：验收：见 modules/04-admin-console/CONVERSATION_LOG.txt 最新一段
+- [!] feat/04-admin-console-questions-v1 → 04-admin-console：验收：见 modules/04-admin-console/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
 - [x] feat/01-miniapp-course-learned-toggle-winE3 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段
 - [x] feat/01-miniapp-course-progress-list-winE3 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段
 - [x] feat/01-miniapp-exam-result-metrics-winE3 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段
