@@ -2,14 +2,14 @@
   "file": {
     "path": "modules/03-importer/samples/pdf/basic.pdf"
   },
-  "categoryPath": "绀轰緥棰樺簱",
+  "categoryPath": "示例题库",
   "questions": [],
   "errors": [
     {
       "code": "PARSE_ERROR",
       "message": "Missing answer",
-      "suggestion": "Add a line like \"绛旀锛欱\" (choice) or \"绛旀锛氬\" (judge).",
-      "filePath": "C:/Users/Administrator/AppData/Local/Temp/03-importer-pdf-1768983997745.txt",
+      "suggestion": "Add a line like \"答案：B\" (choice) or \"答案：对\" (judge).",
+      "filePath": "modules/03-importer/samples/pdf/basic.pdf",
       "line": 1,
       "lineStart": 1,
       "lineEnd": 10
