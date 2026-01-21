@@ -21,7 +21,10 @@ $OutputEncoding = $utf8
 [Console]::OutputEncoding = $utf8
 [Console]::InputEncoding = $utf8
 
-$LockFile = "modules/99-hub/.merge_queue_daemon.lock"
+$RepoRoot = ""
+try { $RepoRoot = (git rev-parse --show-toplevel 2>$null).Trim() } catch { $RepoRoot = "" }
+if (-not $RepoRoot) { $RepoRoot = (Get-Location).Path }
+$LockFile = (Join-Path $RepoRoot ".git/.merge_queue_daemon.lock")
 
 function Write-Log([string]$Message) {
   $ts = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
