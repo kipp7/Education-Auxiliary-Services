@@ -47,7 +47,7 @@
 - [x] feat/03-importer-docx-out-w03-v1 → 03-importer：验收：见 modules/03-importer/CONVERSATION_LOG.txt 最新一段
 - [!] feat/03-importer-hash-w03-v1 → 03-importer：验收：见 modules/03-importer/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
 - [!] feat/03-importer-ocr-out-w03-v1 → 03-importer：验收：见 modules/03-importer/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
-- [ ] feat/04-admin-console-orders-v1 → 04-admin-console：验收：见 modules/04-admin-console/CONVERSATION_LOG.txt 最新一段
+- [x] feat/04-admin-console-orders-v1 → 04-admin-console：验收：见 modules/04-admin-console/CONVERSATION_LOG.txt 最新一段
 - [ ] feat/04-admin-console-question-items-v1 → 04-admin-console：验收：见 modules/04-admin-console/CONVERSATION_LOG.txt 最新一段
 - [x] feat/01-miniapp-home-ui-card-style-fix-winE3-v3 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段
 - [x] feat/01-miniapp-home-ui-commercial-winE3-v2 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段
