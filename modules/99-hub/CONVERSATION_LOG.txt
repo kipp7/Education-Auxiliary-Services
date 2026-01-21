@@ -12,3 +12,31 @@
 风险/阻塞：
 下一步：
 
+--- 2026-01-21 ---
+同步来源（模块/分支）：99-hub / main（总控脚本与合并队列）
+本次关键变化：
+- 约定本机目录用途：
+  - `E:\学校\02 项目\98 其他小项目\02_YL\`：总控主仓（只用来跑合并队列脚本/守护进程、汇总 REQUESTS，不在此做业务开发）。
+  - `E:\学校\02 项目\98 其他小项目\02_YL_worktrees\<模块>\`：各模块开发 worktree（只改自己模块目录）。
+- 合并队列来源：以 `main` 上的 `modules/99-hub/REQUESTS.md` 为准；“Compare & pull request”提示不等于已入队或可自动合并。
+- request 分支（用于自动把入队请求合入 main）：推荐命名 `feat/99-hub-request-*`，且必须只修改 `modules/99-hub/REQUESTS.md`，否则守护进程会跳过以避免越权改动。
+- 合并队列条目格式：支持 `- [ ] \`feat/xxx\`` 或 `- [ ] feat/xxx`；入队后由合并脚本勾选 `[x]` 并执行合并。
+风险/阻塞：
+- 若总控主仓工作区不干净（未提交/未清理），守护进程会跳过自动同步 request 分支，导致一直显示 “No pending items”。
+- 当前 `origin/main:modules/99-hub/REQUESTS.md` 仅检测到待处理：`feat/02-backend-core-autopilot-codex`。
+下一步：
+- 将 M1/M2 的接口契约对齐清单追加到 `modules/99-hub/REQUESTS.md`，并补齐各模块 MR 入队条目（由 99-hub 统一写入）。
+- 用 MCP 跑一遍小程序全路径验收并记录要点。
+
+--- 2026-01-21（MCP 小程序全路径验收）---
+同步来源（模块/分支）：01-miniapp / devtools（MCP ws://localhost:9420）
+本次关键变化：
+- 路径覆盖（switchTab）：`/pages/index/index`（首页）→ `/pages/library/index`（题库）→ `/pages/course/index`（课程）→ `/pages/my/index`（我的）
+- “我的”页数据核对（`page_getData`）：`cellList` 含“退出登录”；`is_login: true`；`userInfo.nickName`/`avatarUrl` 可读（Mock）
+- 尝试进入 `/pages/library/unit/index`（navigateTo）出现 timeout（疑似缺少必填 query 或页面加载较慢）
+- `mp_screenshot` 工具在当前环境多次 timeout（暂未能自动落截图）
+风险/阻塞：
+- 退出登录会弹 `wx.showModal` 确认框；当前自动化未完成“点击确认退出”的一步（需补 selector 或改用页面方法触发）
+下一步：
+- 补充“题库→章节/单元→做题页”的可复现跳转参数（由 01-miniapp 给出入口/必填 query），以便在 MCP 验收中覆盖做题闭环。
+
