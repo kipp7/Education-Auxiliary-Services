@@ -120,7 +120,30 @@ function Try-ExtractMrInfoFromModuleLog {
   $text = @($LogText) -join "`n"
   $lines = @($text -split "`r?`n")
 
-  # Try to find the last "分支：" / "branch:" line from bottom.
+  $wantedBranch = ($BranchName | ForEach-Object { $_.Trim() })
+
+  # Prefer matching the MR block that refers to THIS branch (BranchName).
+  # This avoids accidentally picking another newer "分支：" line that may exist in the same log file.
+  if ($wantedBranch) {
+    for ($i = $lines.Count - 1; $i -ge 0; $i--) {
+      $line = $lines[$i].Trim()
+      if (-not $line) { continue }
+
+      if ($line -match [regex]::Escape($wantedBranch)) {
+        $result.Branch = $wantedBranch
+        $result.HasMrBlock = $true
+        break
+      }
+
+      if ($line -match ("`" + [regex]::Escape($wantedBranch) + "`"")) {
+        $result.Branch = $wantedBranch
+        $result.HasMrBlock = $true
+        break
+      }
+    }
+  }
+
+  # Try to find the last "分支：" / "branch:" line from bottom (fallback).
   for ($i = $lines.Count - 1; $i -ge 0; $i--) {
     $line = $lines[$i].Trim()
     if ($line -match '^\s*(?:branch|\u5206\u652F)\s*[:：]\s*(feat\/\S+)') {
@@ -131,6 +154,13 @@ function Try-ExtractMrInfoFromModuleLog {
 
     # Fallback: tolerate mojibake separators (e.g. "ï¼š") and loose labels.
     if ($line -match '(?:[:：]|ï¼š)\s*(feat\/\S+)\s*$') {
+      $result.Branch = $Matches[1]
+      $result.HasMrBlock = $true
+      break
+    }
+
+    # Also accept backticked markdown code: 分支：`feat/...`
+    if ($line -match '^\s*(?:branch|\u5206\u652F)\s*(?:[:：]|ï¼š)\s*`(feat\/[^`]+)`') {
       $result.Branch = $Matches[1]
       $result.HasMrBlock = $true
       break
