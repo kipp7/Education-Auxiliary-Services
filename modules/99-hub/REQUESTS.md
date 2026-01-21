@@ -23,6 +23,8 @@
 
 - [x] `feat/04-admin-console-autopilot-codex` → 已合并到 `main`（管理台原型 M1–M4）
 
+- [ ] `feat/02-backend-core-autopilot-codex` → 02-backend-core Autopilot（M1–M6：OpenAPI 草案 + 可跑的 Mock API + 证据脚本）
+
 ## 当前 UI 决策（锁定）
 - Tab：`首页 / 题库 / 资讯 / 我的`
 - 首页承载：学习入口 + 转化入口 + 运营/商业位（banner/推荐/套餐）
@@ -58,5 +60,25 @@
 - 验收方式（建议）：
   - `git fetch origin && git checkout feat/03-importer-mvp-w03`
   - 按 `modules/03-importer/CONVERSATION_LOG.txt` 的“验收路径/命令清单”执行（关注：OpenAPI/目录层级解析/docx/pdf 解析可复现）
+
+## 合并请求：02-backend-core Autopilot（M1–M6）
+- 发起模块：modules/02-backend-core
+- 目标模块：main
+- 分支：`feat/02-backend-core-autopilot-codex`
+- 原因：提供可跑通的小程序联调 Mock API（含 /auth/wechat、题库树、作答提交、学习记录、内容/商业化接口、进度/错题/收藏），并输出可复现证据。
+- 验收方式（建议，Windows/PowerShell）：
+  - `git fetch origin && git checkout feat/02-backend-core-autopilot-codex`
+  - `cd modules/02-backend-core`
+  - `npm run dev`（另开窗口保持运行）
+  - `curl.exe http://localhost:3000/health`
+  - （可选，一键证据）
+    - `powershell -ExecutionPolicy Bypass -File .\\scripts\\gen-evidence.ps1`
+    - `powershell -ExecutionPolicy Bypass -File .\\scripts\\gen-evidence-m6.ps1`
+- 证据/输出：
+  - `modules/02-backend-core/contract/mvp.openapi.yaml`
+  - `modules/02-backend-core/logs/m3-curl.txt`
+  - `modules/02-backend-core/logs/m4-miniapp-checklist.md`
+  - `modules/02-backend-core/logs/m5-evidence.txt`
+  - `modules/02-backend-core/logs/m6-evidence.txt`
 
 --- 2026-01-21 14:43 ---
