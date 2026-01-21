@@ -18,6 +18,7 @@ import { OrderDetailPage } from "./orders/OrderDetailPage";
 import { OrdersPage } from "./orders/OrdersPage";
 import { BannersPage } from "./banners/BannersPage";
 import { CoursesPage } from "./courses/CoursesPage";
+import { QuestionItemsPage } from "./questionItems/QuestionItemsPage";
 
 export function App() {
   return (
@@ -148,6 +149,14 @@ export function App() {
         element={
           <RequireAuth>
             <CoursesPage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/question-items"
+        element={
+          <RequireAuth>
+            <QuestionItemsPage />
           </RequireAuth>
         }
       />
