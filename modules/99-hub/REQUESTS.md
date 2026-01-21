@@ -29,7 +29,7 @@
 > 规则：所有窗口只 push 自己的 `feat/*` 分支；总控窗口按优先级合并进 `main`。
 
 - [!] feat/01-miniapp-m7-home-commercial-winE3 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
-- [ ] feat/01-miniapp-autopilot-winE3 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段
+- [!] feat/01-miniapp-autopilot-winE3 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
 - [ ] feat/01-miniapp-favorite-local-winE2 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段
 - [ ] feat/01-miniapp-m7-news-tab-winE3 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段
 - [ ] feat/01-miniapp-mvp-practice-winE3 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段
