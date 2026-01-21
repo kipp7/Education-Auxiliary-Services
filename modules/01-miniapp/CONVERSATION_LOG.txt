@@ -134,6 +134,13 @@
 - 首页“推荐课程”横向滑动卡片文字不再被裁切/遮挡（标题/副标题/标签/价格完整可见）
 变更点：
 - 修复横向滚动区在部分基础库下高度计算导致内容裁切：为 `scroll-view.h-list` 与 `.h-item` 设置高度，并用 flex 布局把 meta 行固定到底部
+
+--- 2026-01-21 ---
+分支：feat/01-miniapp-home-banner-title-safe-winE3-v4
+验收：
+- `pages/index/index` 首页 banner 文案不被指示器圆点遮挡（底部留白足够）
+变更点：
+- 调整 banner 标题与 swiper dots 的底部间距（提升标题位置 + 增加渐变遮罩高度）
 --- 2026-01-21 ---
 分支：feat/01-miniapp-course-paywall-gating-winE3
 验收：

@@ -85,6 +85,21 @@ page {
 .banner-swiper {
   height: 280rpx;
   margin: 6rpx 0 18rpx;
+  position: relative;
+}
+
+.banner-swiper .wx-swiper-dots {
+  bottom: 18rpx;
+}
+
+.banner-swiper .wx-swiper-dot {
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 999rpx;
+}
+
+.banner-swiper .wx-swiper-dot-active {
+  width: 18rpx;
 }
 
 .banner {
@@ -105,7 +120,7 @@ page {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 120rpx;
+  height: 150rpx;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.55) 100%);
 }
 
@@ -113,7 +128,7 @@ page {
   position: absolute;
   left: 22rpx;
   right: 22rpx;
-  bottom: 18rpx;
+  bottom: 56rpx;
   font-size: 30rpx;
   font-weight: 800;
   color: rgba(255, 255, 255, 0.96);
