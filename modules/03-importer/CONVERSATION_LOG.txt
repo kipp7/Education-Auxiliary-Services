@@ -43,3 +43,9 @@
 验收路径：
 - 运行：pwsh -File modules/03-importer/tools/parse-docx.ps1 modules/03-importer/samples/docx/basic.docx -Category "示例题库" > modules/03-importer/output/basic.docx.parsed.json
 - 查看：modules/03-importer/output/basic.docx.parsed.json
+
+--- 2026-01-21 16:27 ---
+决定/结论：完成 pdf 最小解析（受限：仅支持未压缩文本流，用于 MVP 验证链路）。
+验收路径：
+- 运行：node modules/03-importer/tools/parse-pdf.mjs modules/03-importer/samples/pdf/basic.pdf --category "示例题库" > modules/03-importer/output/basic.pdf.parsed.json
+- 查看：modules/03-importer/output/basic.pdf.parsed.json
