@@ -23,6 +23,22 @@ function Require-CleanWorktree {
   }
 }
 
+function Sync-MainFromRemote {
+  if ($DryRun) {
+    Write-Log "DryRun: would sync $MainBranch from $Remote/$MainBranch via fetch+reset"
+    return
+  }
+
+  Write-Log "Checking out $MainBranch..."
+  git checkout $MainBranch | Out-Null
+
+  Write-Log "Fetching $Remote/$MainBranch..."
+  git fetch $Remote $MainBranch --prune | Out-Null
+
+  Write-Log "Resetting $MainBranch to $Remote/$MainBranch..."
+  git reset --hard "$Remote/$MainBranch" | Out-Null
+}
+
 function Ensure-Branch([string]$Branch) {
   $refs = git show-ref --verify --quiet "refs/remotes/$Remote/$Branch"
   if ($LASTEXITCODE -ne 0) {
@@ -108,14 +124,7 @@ if ($ForceFetch) {
   }
 }
 
-if (-not $DryRun) {
-  Write-Log "Checking out $MainBranch..."
-  git checkout $MainBranch | Out-Null
-  Write-Log "Rebasing on $Remote/$MainBranch..."
-  git pull --rebase $Remote $MainBranch | Out-Null
-} else {
-  Write-Log "DryRun: would checkout $MainBranch and pull --rebase $Remote $MainBranch"
-}
+Sync-MainFromRemote
 
 $lines = Get-Content -Path $QueueFile -Encoding UTF8
 $queue = Parse-Queue $lines

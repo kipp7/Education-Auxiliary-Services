@@ -21,11 +21,42 @@ $OutputEncoding = $utf8
 [Console]::OutputEncoding = $utf8
 [Console]::InputEncoding = $utf8
 
+$LockFile = "modules/99-hub/.merge_queue_daemon.lock"
+
 function Write-Log([string]$Message) {
   $ts = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
   $line = "[$ts] $Message"
   Write-Host $line
   Add-Content -Path $LogFile -Value $line -Encoding UTF8
+}
+
+function Acquire-Lock {
+  if ($DryRun) { return $null }
+  try {
+    $dir = Split-Path -Parent $LockFile
+    if ($dir) { New-Item -ItemType Directory -Force -Path $dir | Out-Null }
+    $fs = [System.IO.File]::Open($LockFile, [System.IO.FileMode]::CreateNew, [System.IO.FileAccess]::Write, [System.IO.FileShare]::None)
+    $bytes = [System.Text.Encoding]::UTF8.GetBytes((Get-Date).ToString("o"))
+    $fs.Write($bytes, 0, $bytes.Length)
+    $fs.Flush()
+    return $fs
+  } catch {
+    Write-Log "Another daemon instance is running (lock exists: $LockFile). Exiting."
+    exit 0
+  }
+}
+
+function Release-Lock([object]$Handle) {
+  if (-not $Handle) { return }
+  try { $Handle.Dispose() } catch {}
+  try { Remove-Item -Force $LockFile -ErrorAction SilentlyContinue } catch {}
+}
+
+function Sync-MainFromRemote {
+  if ($DryRun) { return }
+  git checkout $MainBranch | Out-Null
+  git fetch $Remote $MainBranch --prune | Out-Null
+  git reset --hard "$Remote/$MainBranch" | Out-Null
 }
 
 function Has-PendingQueueItems {
@@ -246,10 +277,8 @@ function AutoEnqueue-FromModuleLogs {
     return $false
   }
 
-  Write-Log "AutoEnqueueFromModuleLogs: checking out $MainBranch..."
-  git checkout $MainBranch | Out-Null
-  Write-Log "AutoEnqueueFromModuleLogs: rebasing on $Remote/$MainBranch..."
-  git pull --rebase $Remote $MainBranch | Out-Null
+  Write-Log "AutoEnqueueFromModuleLogs: syncing $MainBranch from $Remote/$MainBranch..."
+  Sync-MainFromRemote
 
   Write-Log "AutoEnqueueFromModuleLogs: creating request branch $requestBranch..."
   git checkout -b $requestBranch | Out-Null
@@ -311,12 +340,10 @@ function Sync-QueueUpdatesToMain {
 
   # Ensure main is up-to-date before merging queue update branches.
   if (-not $DryRun) {
-    Write-Log "AutoMergeQueueUpdates: checking out $MainBranch..."
-    git checkout $MainBranch | Out-Null
-    Write-Log "AutoMergeQueueUpdates: rebasing on $Remote/$MainBranch..."
-    git pull --rebase $Remote $MainBranch | Out-Null
+    Write-Log "AutoMergeQueueUpdates: syncing $MainBranch from $Remote/$MainBranch..."
+    Sync-MainFromRemote
   } else {
-    Write-Log "AutoMergeQueueUpdates: DryRun would checkout/pull $MainBranch"
+    Write-Log "AutoMergeQueueUpdates: DryRun would sync $MainBranch"
   }
 
   $refs = @(
@@ -365,43 +392,48 @@ function Sync-QueueUpdatesToMain {
 
 Write-Log "=== merge_queue_daemon start (IntervalSeconds=$IntervalSeconds, DryRun=$DryRun, ForceFetch=$ForceFetch) ==="
 
-while ($true) {
-  try {
-    Sync-QueueUpdatesToMain
-    $enqueued = AutoEnqueue-FromModuleLogs
-    if ($enqueued) {
-      # Merge the just-created request branch in the same tick to minimize manual waiting.
+$lockHandle = Acquire-Lock
+try {
+  while ($true) {
+    try {
       Sync-QueueUpdatesToMain
-    }
-
-    if (Has-PendingQueueItems) {
-      $dirty = git status --porcelain=v1
-      if ($dirty) {
-        Write-Log "Working tree is not clean; skipping merge_queue.ps1 run to avoid conflicts."
-        continue
+      $enqueued = AutoEnqueue-FromModuleLogs
+      if ($enqueued) {
+        # Merge the just-created request branch in the same tick to minimize manual waiting.
+        Sync-QueueUpdatesToMain
       }
 
-      Write-Log "Pending items detected. Running merge_queue.ps1..."
-      $args = @()
-      if ($DryRun) { $args += "-DryRun" }
-      if ($ForceFetch) { $args += "-ForceFetch" }
-      $args += "-Remote"; $args += $Remote
-      $args += "-MainBranch"; $args += $MainBranch
-      $args += "-QueueFile"; $args += $QueueFile
+      if (Has-PendingQueueItems) {
+        $dirty = git status --porcelain=v1
+        if ($dirty) {
+          Write-Log "Working tree is not clean; skipping merge_queue.ps1 run to avoid conflicts."
+          continue
+        }
 
-      pwsh -NoProfile -ExecutionPolicy Bypass -File modules/99-hub/merge_queue.ps1 @args
-      if ($LASTEXITCODE -ne 0) {
-        Write-Log "merge_queue.ps1 exited with code $LASTEXITCODE."
+        Write-Log "Pending items detected. Running merge_queue.ps1..."
+        $args = @()
+        if ($DryRun) { $args += "-DryRun" }
+        if ($ForceFetch) { $args += "-ForceFetch" }
+        $args += "-Remote"; $args += $Remote
+        $args += "-MainBranch"; $args += $MainBranch
+        $args += "-QueueFile"; $args += $QueueFile
+
+        pwsh -NoProfile -ExecutionPolicy Bypass -File modules/99-hub/merge_queue.ps1 @args
+        if ($LASTEXITCODE -ne 0) {
+          Write-Log "merge_queue.ps1 exited with code $LASTEXITCODE."
+        }
+        Write-Log "merge_queue.ps1 finished."
+      } else {
+        Write-Log "No pending items. Sleeping..."
       }
-      Write-Log "merge_queue.ps1 finished."
-    } else {
-      Write-Log "No pending items. Sleeping..."
+    } catch {
+      Write-Log ("ERROR: " + $_.Exception.Message)
+      Write-Log "Sleeping after error (no auto-retry merge until next interval)."
     }
-  } catch {
-    Write-Log ("ERROR: " + $_.Exception.Message)
-    Write-Log "Sleeping after error (no auto-retry merge until next interval)."
+
+    if ($RunOnce) { break }
+    Start-Sleep -Seconds $IntervalSeconds
   }
-
-  if ($RunOnce) { break }
-  Start-Sleep -Seconds $IntervalSeconds
+} finally {
+  Release-Lock $lockHandle
 }
