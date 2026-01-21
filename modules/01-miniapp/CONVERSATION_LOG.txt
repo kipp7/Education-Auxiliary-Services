@@ -65,3 +65,12 @@
 验收路径：`pages/start/index` → 立即进入 → 底部题库 `pages/library/index` → 顶部轮播可左右滑动/自动切换，点击三张 banner 分别：提示 toast / 进入 `pages/exam-menu/index` / 切换到 `pages/news/index`。
 下一步：请 99-hub 在 `modules/99-hub/REQUESTS.md` 入队：`feat/01-miniapp-library-swiper-winE3`（验收按上述路径）。
 
+--- 2026-01-21 ---
+分支：feat/01-miniapp-library-swiper-winE3
+验收：
+- `pages/start/index` → 立即进入 → 底部题库 `pages/library/index`
+- 顶部轮播可左右滑动/自动切换；点击三张 banner 分别：toast / `pages/exam-menu/index` / 切换到 `pages/news/index`
+变更点：
+- 题库页新增顶部 swiper 轮播（Mock 数据、指示器、自动/手动切换）
+- banner 点击支持 `switchTab/navigateTo/toast` 跳转占位
+
