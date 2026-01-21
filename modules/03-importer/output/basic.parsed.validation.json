@@ -1,0 +1,7 @@
+{
+  "ok": true,
+  "input": "modules/03-importer/output/basic.parsed.json",
+  "totalQuestions": 3,
+  "errorCount": 0,
+  "errors": []
+}
