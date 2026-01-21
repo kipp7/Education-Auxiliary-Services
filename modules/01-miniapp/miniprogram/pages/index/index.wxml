@@ -13,7 +13,7 @@
         <view class="profile-meta" wx:if="{{userInfo.department}}">{{userInfo.department}}</view>
         <view class="profile-meta" wx:else>点击进入个人中心</view>
       </view>
-      <view class="chevron">›</view>
+      <view class="chevron">></view>
     </view>
 
     <view class="profile guest" wx:else bindtap="login">
@@ -22,7 +22,7 @@
         <view class="profile-name">点击登录</view>
         <view class="profile-meta">登录后可记录成绩与错题</view>
       </view>
-      <view class="chevron">›</view>
+      <view class="chevron">></view>
     </view>
   </view>
 
@@ -90,13 +90,19 @@
       <view class="today-foot">
         <view class="today-tip" wx:if="{{userInfo.avatarUrl}}">继续保持，离目标更近一步</view>
         <view class="today-tip" wx:else>示例数据：登录后将记录学习进度</view>
-        <view class="today-cta" bindtap="goRecord">查看记录 ›</view>
+        <view class="today-cta" bindtap="goRecord">查看记录 ></view>
       </view>
     </view>
 
     <view class="section-title">快捷功能</view>
 
     <view class="grid">
+      <view class="card" bindtap="goContinue">
+        <image class="card-icon" src="/images/nav_icon_time@2x.png"></image>
+        <view class="card-title">继续学习</view>
+        <view class="card-desc">从上次进度继续</view>
+      </view>
+
       <view class="card" bindtap="goLearn">
         <image class="card-icon" src="/images/icon_zhangjielianxi@3x.png"></image>
         <view class="card-title">练习</view>
@@ -104,9 +110,9 @@
         <view class="card-desc disabled" wx:else>暂未开启</view>
       </view>
 
-      <view class="card" bindtap="goExam">
+      <view class="card" bindtap="goExamMenu">
         <image class="card-icon" src="/images/icon_monikaoshi@3x.png"></image>
-        <view class="card-title">答题</view>
+        <view class="card-title">真题/模拟</view>
         <view class="card-desc">开始一次测评</view>
       </view>
 
@@ -166,7 +172,7 @@
           </view>
           <view class="v-subtitle">{{item.subtitle}}</view>
         </view>
-        <view class="chevron">›</view>
+        <view class="chevron">></view>
       </view>
     </view>
 
@@ -177,7 +183,7 @@
           <view class="news-title">{{item.title}}</view>
           <view class="news-desc">{{item.desc}}</view>
         </view>
-        <view class="chevron">?</view>
+        <view class="chevron">></view>
       </view>
     </view>
   </view>
@@ -196,4 +202,6 @@
     <view class="mask"></view>
   </view>
 </view>
+
+
 
