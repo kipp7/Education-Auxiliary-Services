@@ -8,6 +8,27 @@ const juniorSubjects = ['语文', '数学', '英语', '物理', '化学']
 const singleSubjects = ['信息技术', '通用技术', '音乐鉴赏', '美术鉴赏', '劳动技术']
 const singleTypes = ['选择', '判断', '论述']
 
+const banners = [
+  {
+    id: 'lib_b1',
+    title: '章节练习',
+    desc: '快速进入题库筛选',
+    action: { type: 'toast', text: '章节练习后续接真实数据（Mock）' },
+  },
+  {
+    id: 'lib_b2',
+    title: '真题/测评',
+    desc: '开始一次模拟测评',
+    action: { type: 'navigateTo', url: '/pages/exam-menu/index' },
+  },
+  {
+    id: 'lib_b3',
+    title: '学习技巧',
+    desc: '查看最新资讯',
+    action: { type: 'switchTab', url: '/pages/news/index' },
+  },
+]
+
 function makeUnits(prefix) {
   return Array.from({ length: 6 }).map((_, idx) => ({
     id: `${prefix}_u${idx + 1}`,
@@ -36,6 +57,8 @@ Page({
 
     singleSubject: singleSubjects[0],
     singleType: singleTypes[0],
+
+    bannerList: banners,
 
     unitList: [],
   },
@@ -103,6 +126,26 @@ Page({
       `&unitTitle=${encode(unitTitle)}`
 
     wx.navigateTo({ url: `/pages/library/unit/index?${qs}` })
+  },
+
+  onBannerTap(e) {
+    const type = e.currentTarget.dataset.type || ''
+    const url = e.currentTarget.dataset.url || ''
+    const text = e.currentTarget.dataset.text || ''
+
+    if (type === 'switchTab' && url) {
+      wx.switchTab({ url })
+      return
+    }
+    if (type === 'navigateTo' && url) {
+      wx.navigateTo({ url })
+      return
+    }
+    if (type === 'toast') {
+      wx.showToast({ title: text || '功能后置（Mock）', icon: 'none' })
+      return
+    }
+    wx.showToast({ title: '跳转占位（Mock）', icon: 'none' })
   },
 })
 
