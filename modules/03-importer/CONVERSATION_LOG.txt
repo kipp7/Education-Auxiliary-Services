@@ -118,3 +118,13 @@
 变更点：
 - parse-hierarchy 支持 --out，避免 PowerShell 重定向导致的编码问题
 - 重新生成 hierarchy.json 样例输出（UTF-8，可正确显示中文）
+
+--- 2026-01-21 ---
+分支：feat/03-importer-validate-ir-w03-v2
+验收：
+- node modules/03-importer/tools/parse-txt.mjs modules/03-importer/samples/txt/basic.txt --category "数学/一年级" --out modules/03-importer/output/basic.parsed.json
+- node modules/03-importer/tools/validate-ir.mjs modules/03-importer/output/basic.parsed.json --out modules/03-importer/output/basic.parsed.validation.json
+- 查看 modules/03-importer/output/basic.parsed.validation.json
+变更点：
+- 新增题目 IR 校验工具 validate-ir（兼容 PS 重定向 UTF-16），用于快速发现解析结果不符合 IR 的问题
+- 补充 basic.parsed 的校验输出样例
