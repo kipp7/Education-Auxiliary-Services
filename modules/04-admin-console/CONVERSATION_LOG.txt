@@ -116,3 +116,14 @@
 变更点：
 - 新增 /home-slots 首页运营位配置页（banner + 推荐位，占位 localStorage + JSON 导出）。
 - 首页增加入口，并补齐 dev 登录默认权限 home:read/home:write。
+--- 2026-01-21 ---
+分支：feat/04-admin-console-users-benefits-v2
+验收：
+- cd modules/04-admin-console/web
+- npm install
+- npm run dev
+- 打开 http://localhost:5174 → 开发登录 → 点击“用户与权益（占位）”
+- 对任意用户点击“绑定激活码（占位）”，输入示例码 ABCD-EFGH-JKLM-NPQR，可生成绑定记录并刷新 VIP 有效期
+变更点：
+- 新增 /users 页面：用户列表（新增/重命名/启用禁用/删除）+ SVIP 激活码绑定记录（占位 localStorage）。
+- 补齐 SVIP 码的 redeemedBy 字段与“按码兑换”动作，并修复 store 读写后不刷新的问题（React state + 持久化）。
