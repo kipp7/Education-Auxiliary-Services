@@ -1,5 +1,6 @@
 //index.js
 const { APP_NAME } = require('../../config/index')
+const homeConfig = require('../../mock/home-config.json')
 
 Page({
   data: {
@@ -9,9 +10,23 @@ Page({
     is_login:true,
     checkUser: false,
     canIUseGetUserProfile: false,
+    svipBound: false,
+    newsTabAction: { type: 'switchTab', url: '/pages/news/index' },
+    home: {
+      banners: [],
+      recommend: { courses: [], banks: [] },
+      conversion: {},
+    },
   },
 
   onLoad: function() {
+    this.setData({
+      home: {
+        banners: homeConfig.banners || [],
+        recommend: homeConfig.recommend || { courses: [], banks: [] },
+        conversion: homeConfig.conversion || {},
+      },
+    })
     if (wx.getUserProfile) {
       this.setData({
         canIUseGetUserProfile: true
@@ -38,7 +53,8 @@ Page({
   onShow: function(){
     wx.setNavigationBarTitle({ title: APP_NAME })
     this.setData({
-      userInfo: wx.getStorageSync('userInfo')
+      userInfo: wx.getStorageSync('userInfo'),
+      svipBound: !!wx.getStorageSync('svip_bound'),
     })
   },
   gocenter() {
@@ -54,6 +70,9 @@ Page({
   },
   goLearn() {
     wx.switchTab({ url: '/pages/library/index' })
+  },
+  goCourse() {
+    wx.navigateTo({ url: '/pages/course/index' })
   },
   login() {
     this.setData({
@@ -113,6 +132,23 @@ Page({
     })
   },
   goExam(){
-    wx.switchTab({ url: '/pages/exam-menu/index' })
+    wx.navigateTo({ url: '/pages/exam-menu/index' })
+  },
+
+  handleAction(e) {
+    const action = e.currentTarget.dataset.action
+    if (!action || !action.type) return
+
+    const type = action.type
+    const url = action.url
+    if (type === 'switchTab' && url) return wx.switchTab({ url })
+    if (type === 'navigateTo' && url) return wx.navigateTo({ url })
+    if (type === 'reLaunch' && url) return wx.reLaunch({ url })
+    if (type === 'toast') {
+      return wx.showToast({
+        title: action.message || '敬请期待',
+        icon: 'none',
+      })
+    }
   }
 })

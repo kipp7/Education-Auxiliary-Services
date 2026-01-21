@@ -1,0 +1,13 @@
+<view class="page">
+  <view wx:if="{{item}}" class="card">
+    <image class="hero" src="{{item.cover}}"></image>
+    <view class="title">{{item.title}}</view>
+    <view class="content">{{item.content}}</view>
+  </view>
+
+  <view wx:else class="empty">
+    <view class="empty-title">内容不存在</view>
+    <view class="empty-desc">请返回列表重新选择（Mock）。</view>
+  </view>
+</view>
+

@@ -1,0 +1,13 @@
+<view class="page">
+  <view class="list">
+    <view class="item" wx:for="{{list}}" wx:key="id" data-id="{{item.id}}" bindtap="openDetail">
+      <image class="cover" src="{{item.cover}}"></image>
+      <view class="body">
+        <view class="title">{{item.title}}</view>
+        <view class="summary">{{item.summary}}</view>
+      </view>
+      <view class="chevron">›</view>
+    </view>
+  </view>
+</view>
+

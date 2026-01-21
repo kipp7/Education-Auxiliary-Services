@@ -1,0 +1,78 @@
+{
+  "banners": [
+    {
+      "id": "home_banner_1",
+      "image": "/images/BG.png",
+      "title": "题库上新 · 章节同步练习",
+      "action": { "type": "switchTab", "url": "/pages/library/index" }
+    },
+    {
+      "id": "home_banner_2",
+      "image": "/images/BG.png",
+      "title": "资讯速递 · 备考提分技巧",
+      "action": { "type": "navigateTo", "url": "/pages/news/detail?id=n_demo_1" }
+    },
+    {
+      "id": "home_banner_3",
+      "image": "/images/BG.png",
+      "title": "开通/绑定 SVIP · 解锁课程",
+      "action": { "type": "navigateTo", "url": "/pages/svip/bind/index" }
+    },
+    {
+      "id": "home_banner_4",
+      "image": "/images/BG.png",
+      "title": "外链活动 · 立即了解（占位）",
+      "action": { "type": "toast", "message": "外链活动待接入" }
+    }
+  ],
+  "recommend": {
+    "courses": [
+      {
+        "id": "c_demo_1",
+        "title": "数学基础精讲",
+        "subtitle": "函数与方程 · 45min",
+        "cover": "/images/BG.png",
+        "badge": "SVIP",
+        "price": "¥199",
+        "action": { "type": "navigateTo", "url": "/pages/course/index?from=home" }
+      },
+      {
+        "id": "c_demo_2",
+        "title": "英语阅读提分",
+        "subtitle": "答题技巧 · 30min",
+        "cover": "/images/BG.png",
+        "badge": "精品",
+        "price": "¥99",
+        "action": { "type": "navigateTo", "url": "/pages/course/index?from=home" }
+      }
+    ],
+    "banks": [
+      {
+        "id": "bank_demo_1",
+        "title": "七年级 · 数学题库",
+        "subtitle": "章节/随机练习",
+        "badge": "热门",
+        "action": { "type": "switchTab", "url": "/pages/library/index" }
+      },
+      {
+        "id": "bank_demo_2",
+        "title": "单招 · 英语题库",
+        "subtitle": "专项训练",
+        "badge": "推荐",
+        "action": { "type": "switchTab", "url": "/pages/library/index" }
+      }
+    ]
+  },
+  "conversion": {
+    "svipBind": {
+      "title": "绑定 SVIP",
+      "desc": "输入激活码，解锁课程与题库能力（Mock）",
+      "action": { "type": "navigateTo", "url": "/pages/svip/bind/index" }
+    },
+    "svipOpen": {
+      "title": "付费开通",
+      "desc": "购买入口待接入（占位）",
+      "action": { "type": "toast", "message": "付费开通入口待接入" }
+    }
+  }
+}

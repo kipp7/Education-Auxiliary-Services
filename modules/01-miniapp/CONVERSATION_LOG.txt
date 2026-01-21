@@ -101,3 +101,12 @@
 - 单元页“在线做题(练习/测评)”从占位改为可跳转现有练习/考试页（Mock）
 - 修复考试随机抽题在题量大于题库实际题数时的边界问题
 
+--- 2026-01-21 ---
+分支：feat/01-miniapp-m7-home-commercial-winE3
+验收：
+- `pages/start/index` → 立即进入 → tabBar 依次切换：`pages/index/index`（首页）/ `pages/library/index`（题库）/ `pages/news/index`（资讯）/ `pages/my/index`（我的）
+- 首页 `pages/index/index`：点击 banner（题库/资讯详情/SVIP 绑定/外链占位）均可跳转或提示；点击“绑定 SVIP/付费开通”转化卡；点击“推荐课程/推荐题库”商业位可跳转
+变更点：
+- tabBar 调整为「首页/题库/资讯/我的」，新增资讯页与详情页（Mock）
+- 首页商业位改为本地配置驱动：`miniprogram/mock/home-config.json`，统一用 `handleAction` 执行跳转
+

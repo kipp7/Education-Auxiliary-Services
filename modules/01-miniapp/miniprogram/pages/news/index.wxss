@@ -1,0 +1,57 @@
+page {
+  background: #f6f7fb;
+}
+
+.page {
+  padding: 24rpx 28rpx 40rpx;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  padding: 18rpx;
+  background: #ffffff;
+  border-radius: 22rpx;
+  box-shadow: 0 10rpx 24rpx rgba(0, 0, 0, 0.06);
+}
+
+.item:active {
+  opacity: 0.92;
+}
+
+.cover {
+  width: 124rpx;
+  height: 88rpx;
+  border-radius: 14rpx;
+}
+
+.body {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.85);
+  line-height: 1.25;
+}
+
+.summary {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.chevron {
+  font-size: 44rpx;
+  color: rgba(0, 0, 0, 0.22);
+}
+

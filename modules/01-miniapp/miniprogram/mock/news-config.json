@@ -1,0 +1,18 @@
+{
+  "list": [
+    {
+      "id": "n_demo_1",
+      "title": "期末复习冲刺：3 个高效方法",
+      "summary": "用更少时间覆盖更多知识点。",
+      "cover": "/images/BG.png",
+      "content": "这是资讯详情页（Mock）。后续可接入后端内容。"
+    },
+    {
+      "id": "n_demo_2",
+      "title": "单招备考：英语阅读常见陷阱",
+      "summary": "常见题型与应对策略。",
+      "cover": "/images/BG.png",
+      "content": "这是资讯详情页（Mock）。后续可接入后端内容。"
+    }
+  ]
+}

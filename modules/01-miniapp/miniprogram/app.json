@@ -6,6 +6,8 @@
     "pages/library/unit/index",
     "pages/course/index",
     "pages/course/player",
+    "pages/news/index",
+    "pages/news/detail",
     "pages/exam-menu/index",
     "pages/my/index",
     "pages/svip/bind/index",
@@ -49,10 +51,10 @@
         "selectedIconPath": "images/icon_zhangjielianxi@3x.png"
       },
       {
-        "pagePath": "pages/course/index",
-        "text": "课程",
-        "iconPath": "images/icon_center_msg.png",
-        "selectedIconPath": "images/icon_center_msg.png"
+        "pagePath": "pages/news/index",
+        "text": "资讯",
+        "iconPath": "images/icon_center_phone.png",
+        "selectedIconPath": "images/icon_center_phone.png"
       },
       {
         "pagePath": "pages/my/index",

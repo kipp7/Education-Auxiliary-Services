@@ -27,6 +27,41 @@
   </view>
 
   <view class="content">
+    <swiper
+      class="banner-swiper"
+      wx:if="{{home.banners.length}}"
+      indicator-dots="true"
+      autoplay="true"
+      interval="4000"
+      duration="500"
+      circular="true"
+    >
+      <swiper-item wx:for="{{home.banners}}" wx:key="id">
+        <view class="banner" data-action="{{item.action}}" bindtap="handleAction">
+          <image class="banner-img" src="{{item.image}}" mode="aspectFill"></image>
+          <view class="banner-mask"></view>
+          <view class="banner-title">{{item.title}}</view>
+        </view>
+      </swiper-item>
+    </swiper>
+
+    <view class="conversion" wx:if="{{!svipBound}}">
+      <view class="conversion-card primary" data-action="{{home.conversion.svipBind.action}}" bindtap="handleAction">
+        <view class="conversion-title">{{home.conversion.svipBind.title}}</view>
+        <view class="conversion-desc">{{home.conversion.svipBind.desc}}</view>
+      </view>
+      <view class="conversion-card" data-action="{{home.conversion.svipOpen.action}}" bindtap="handleAction">
+        <view class="conversion-title">{{home.conversion.svipOpen.title}}</view>
+        <view class="conversion-desc">{{home.conversion.svipOpen.desc}}</view>
+      </view>
+    </view>
+    <view class="conversion" wx:else>
+      <view class="conversion-card bound">
+        <view class="conversion-title">SVIP 已绑定</view>
+        <view class="conversion-desc">可进入课程与题库体验完整能力</view>
+      </view>
+    </view>
+
     <view class="section-title">快捷功能</view>
 
     <view class="grid">
@@ -53,6 +88,47 @@
         <image class="card-icon" src="/images/icon_monichnegji@3x.png"></image>
         <view class="card-title">排名</view>
         <view class="card-desc">查看成绩排行</view>
+      </view>
+
+      <view class="card" bindtap="goCourse">
+        <image class="card-icon" src="/images/icon_center_msg.png"></image>
+        <view class="card-title">课程</view>
+        <view class="card-desc">精选视频课程</view>
+      </view>
+
+      <view class="card" data-action="{{newsTabAction}}" bindtap="handleAction">
+        <image class="card-icon" src="/images/icon_center_phone.png"></image>
+        <view class="card-title">资讯</view>
+        <view class="card-desc">提分技巧速递</view>
+      </view>
+    </view>
+
+    <view class="section-title">推荐课程</view>
+    <scroll-view class="h-list" scroll-x="true" show-scrollbar="false">
+      <view class="h-list-inner">
+        <view class="h-item" wx:for="{{home.recommend.courses}}" wx:key="id" data-action="{{item.action}}" bindtap="handleAction">
+          <image class="h-cover" src="{{item.cover}}" mode="aspectFill"></image>
+          <view class="h-title">{{item.title}}</view>
+          <view class="h-subtitle">{{item.subtitle}}</view>
+          <view class="h-meta">
+            <text class="badge" wx:if="{{item.badge}}">{{item.badge}}</text>
+            <text class="price" wx:if="{{item.price}}">{{item.price}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+
+    <view class="section-title">推荐题库</view>
+    <view class="v-list">
+      <view class="v-item" wx:for="{{home.recommend.banks}}" wx:key="id" data-action="{{item.action}}" bindtap="handleAction">
+        <view class="v-body">
+          <view class="v-title">
+            <text>{{item.title}}</text>
+            <text class="badge" wx:if="{{item.badge}}">{{item.badge}}</text>
+          </view>
+          <view class="v-subtitle">{{item.subtitle}}</view>
+        </view>
+        <view class="chevron">›</view>
       </view>
     </view>
   </view>
