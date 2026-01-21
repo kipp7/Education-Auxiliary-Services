@@ -9,6 +9,7 @@ import { ImportsListPage } from "./imports/ImportsListPage";
 import { AnnouncementsPage } from "./cms/AnnouncementsPage";
 import { ExportsPage } from "./exports/ExportsPage";
 import { OpsExportsPage } from "./exports/OpsExportsPage";
+import { CoursesPage } from "./courses/CoursesPage";
 
 export function App() {
   return (
@@ -67,6 +68,14 @@ export function App() {
         element={
           <RequireAuth>
             <OpsExportsPage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/courses"
+        element={
+          <RequireAuth>
+            <CoursesPage />
           </RequireAuth>
         }
       />
