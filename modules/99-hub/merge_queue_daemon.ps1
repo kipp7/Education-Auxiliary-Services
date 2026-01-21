@@ -104,6 +104,7 @@ function Try-ExtractMrInfoFromModuleLog {
   $result = @{
     Branch = $BranchName
     Acceptance = "验收：见 `modules/$ModuleDir/CONVERSATION_LOG.txt` 最新一段"
+    HasMrBlock = $false
   }
 
   if (-not $LogText) { return $result }
@@ -115,6 +116,7 @@ function Try-ExtractMrInfoFromModuleLog {
     $line = $lines[$i].Trim()
     if ($line -match '^(分支|branch)\s*[:：]\s*(feat\/\S+)') {
       $result.Branch = $Matches[2]
+      $result.HasMrBlock = $true
       break
     }
   }
@@ -131,6 +133,7 @@ function Try-ExtractMrInfoFromModuleLog {
       }
       if ($block.Count -gt 0) {
         $result.Acceptance = ($block -join "`n")
+        $result.HasMrBlock = $true
       }
       break
     }
@@ -188,6 +191,7 @@ function AutoEnqueue-FromModuleLogs {
       }
 
       $mr = Try-ExtractMrInfoFromModuleLog -LogText $logText -BranchName $branch -ModuleDir $moduleDir
+      if (-not $mr.HasMrBlock) { continue }
       $featBranch = $mr.Branch
       if (-not $featBranch.StartsWith("feat/")) { continue }
       if ($queuedSet.Contains($featBranch)) { continue }
@@ -201,7 +205,7 @@ function AutoEnqueue-FromModuleLogs {
     }
   }
 
-  if ($candidates.Count -eq 0) { return }
+  if ($candidates.Count -eq 0) { return $false }
 
   # Build a request branch that ONLY touches QueueFile.
   $ts = Get-Date -Format "yyyyMMdd-HHmmss"
@@ -212,7 +216,7 @@ function AutoEnqueue-FromModuleLogs {
     foreach ($c in $candidates) {
       Write-Log "AutoEnqueueFromModuleLogs: would enqueue $($c.FeatBranch) (验收见 $($c.LogPath))"
     }
-    return
+    return $false
   }
 
   Write-Log "AutoEnqueueFromModuleLogs: checking out $MainBranch..."
@@ -261,6 +265,7 @@ function AutoEnqueue-FromModuleLogs {
 
   # Return to main for subsequent steps.
   git checkout $MainBranch | Out-Null
+  return $true
 }
 
 function Sync-QueueUpdatesToMain {
@@ -337,7 +342,11 @@ Write-Log "=== merge_queue_daemon start (IntervalSeconds=$IntervalSeconds, DryRu
 while ($true) {
   try {
     Sync-QueueUpdatesToMain
-    AutoEnqueue-FromModuleLogs
+    $enqueued = AutoEnqueue-FromModuleLogs
+    if ($enqueued) {
+      # Merge the just-created request branch in the same tick to minimize manual waiting.
+      Sync-QueueUpdatesToMain
+    }
 
     if (Has-PendingQueueItems) {
       $dirty = git status --porcelain=v1
