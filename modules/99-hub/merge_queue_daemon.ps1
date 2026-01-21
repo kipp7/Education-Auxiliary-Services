@@ -134,12 +134,6 @@ function Try-ExtractMrInfoFromModuleLog {
         $result.HasMrBlock = $true
         break
       }
-
-      if ($line -match ("`" + [regex]::Escape($wantedBranch) + "`"")) {
-        $result.Branch = $wantedBranch
-        $result.HasMrBlock = $true
-        break
-      }
     }
   }
 
