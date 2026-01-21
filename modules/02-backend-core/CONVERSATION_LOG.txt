@@ -201,3 +201,12 @@
 变更点：
 - 新增 contract 说明文档：contract/README.md
 - 明确 OpenAPI 草案用途与对齐建议
+
+--- 2026-01-22 ---
+分支：feat/02-backend-core-changelog-codex
+验收：
+- 查看：modules/02-backend-core/CHANGELOG.md
+- （可选）对照：modules/02-backend-core/contract/mvp.openapi.yaml、modules/02-backend-core/scripts/
+变更点：
+- 新增变更记录：CHANGELOG.md（记录 mock API/契约/证据脚本入口）
+- 便于联调追踪迭代要点
