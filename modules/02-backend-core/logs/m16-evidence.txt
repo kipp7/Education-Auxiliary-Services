@@ -1,0 +1,21 @@
+﻿# M16 evidence
+GeneratedAt=2026-01-22 00:32:17
+PORT=3514
+
+$ curl http://localhost:3514/health
+{"ok":true}
+exit=0
+
+$ curl -X POST http://localhost:3514/auth/wechat
+{"token":"demo-token","expiresIn":7200,"userId":"demo-user","isNewUser":false}
+exit=0
+
+--- server stdout (excerpt) ---
+[02-backend-core] listening on http://localhost:3514
+[02-backend-core] req-1769013137871-e22051b1 GET /health 200 3ms
+[02-backend-core] req-1769013137918-a8e74559 GET /health 200 1ms
+[02-backend-core] req-1769013137955-8be76782 POST /auth/wechat 200 1ms
+
+--- server stderr ---
+
+OK

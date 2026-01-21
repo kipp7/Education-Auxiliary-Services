@@ -52,6 +52,17 @@ function newOrderId() {
 const server = http.createServer(async (req, res) => {
   const requestId = newRequestId();
   res.setHeader("X-Request-Id", requestId);
+  const startedAt = Date.now();
+  const method = req.method || "UNKNOWN";
+  const rawUrl = req.url || "";
+  let pathForLog = "";
+
+  res.on("finish", () => {
+    const durationMs = Date.now() - startedAt;
+    const pathLabel = pathForLog || rawUrl || "-";
+    // eslint-disable-next-line no-console
+    console.log(`[02-backend-core] ${requestId} ${method} ${pathLabel} ${res.statusCode} ${durationMs}ms`);
+  });
   try {
     if (!req.url) return error(res, 400, "INVALID_ARGUMENT", "Missing URL", requestId);
 
@@ -65,6 +76,7 @@ const server = http.createServer(async (req, res) => {
 
     const url = new URL(req.url, "http://localhost");
     const path = url.pathname;
+    pathForLog = path;
 
     if (req.method === "GET" && path === "/health") {
       return json(res, 200, { ok: true });
