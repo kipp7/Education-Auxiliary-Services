@@ -84,7 +84,8 @@
     width: 550rpx;
 }
 
-.cell-text button,.cell-text button::after {
+.cell-text .share-btn,
+.cell-text .share-btn::after {
     background: none!important;
     border: none!important;
     text-align: left!important;
@@ -151,7 +152,9 @@
     border: none;
 }
 
-button::after,button {
+
+.plain-btn,
+.plain-btn::after {
     border: none;
     background: none;
 }
@@ -163,20 +166,12 @@ button::after,button {
     position: relative;
     z-index: 99;
 }
-button,button::after {
-    background: none;
-    border: none;
-}
-input{
-  outline:none;
-  border:none;
-  list-style: none;
-}
+
 .warrant .white{width:540rpx;height:580rpx;background-color:#fff;border-radius:15rpx;position:fixed;top:50%;left:54%;margin-left:-299.5rpx;margin-top:-345rpx;z-index:1000;}
 .warrant .white .pictrue{background-image:url("https://bmob-cdn-24322.bmobcloud.com/2019/07/25/f6e77de940d2441180ade9cacb7daf13.png");background-repeat:no-repeat;background-size:100% 100%;width:400rpx;height:270rpx;margin:10rpx auto 0 auto;}
 .warrant .white .tip{font-size:30rpx;color:#8a8a8a;text-align:center;margin-top:20rpx;padding:0 30rpx;}
 .warrant .white .tap{text-align:center;margin-top:20rpx;font-size:34rpx;font-weight:600;}
-.warrant .white button{width:200rpx;height:75rpx;line-height:75rpx;font-size:30rpx;border-radius:50rpx;margin-top:70rpx;}
+.warrant .white .action-btn{width:200rpx;height:75rpx;line-height:75rpx;font-size:30rpx;border-radius:50rpx;margin-top:70rpx;}
 .warrant .white .no{background-color:#fff;color:#1bd0ad;border: 1rpx solid #1bd0ad;}
 .warrant .white .but{background-color:#1bd0ad;color:#fff;}
 .warrant .white .but::after{border:none;}

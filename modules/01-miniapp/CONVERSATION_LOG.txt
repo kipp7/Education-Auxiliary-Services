@@ -219,3 +219,12 @@
 - 课程列表读取本地 `course_progress_<id>` 展示“已学/未开始”进度徽标
 - 进入课程时写入 `last_course_id`，用于首页“继续学习”入口联动
 
+--- 2026-01-21 ---
+分支：feat/01-miniapp-M4-svip-bind-mock-winE3-v1
+验收：
+- `switchTab` 到 `pages/my/index`，点击“SVIP 权益 / 去绑定”进入 `pages/svip/bind/index`
+- 输入错误码提示“无效（Mock）”；输入 `JLXB-SVIP-OK` 提示绑定成功并返回状态为已开通
+- `pages/my/index` 不再出现 component wxss 的 tag selector 警告（移除 `button/input` 等选择器）
+变更点：
+- 我的页 wxss 去除 tag selector（`button`/`input`），改用 `.plain-btn/.action-btn` class 以兼容基础库校验
+

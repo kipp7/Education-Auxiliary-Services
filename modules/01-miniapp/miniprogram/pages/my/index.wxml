@@ -7,7 +7,7 @@
           <view class="name">{{userInfo.realname || userInfo.nickName}}</view>
           <view class="meta" wx:if="{{userInfo.department}}">{{userInfo.department}}</view>
         </view>
-        <button hover-class='none' bindtap='login' style='background-color:transparent;' wx:else>
+        <button class="plain-btn" hover-class='none' bindtap='login' style='background-color:transparent;' wx:else>
           <view>
             <image class='head' style='z-index:9;' src='/images/header.png'></image>
             <view class="name">点击登录</view>
@@ -32,7 +32,7 @@
           </view>
           <view class="cell-text">
             <text wx:if="{{item.title!='分享好友'}}">{{item.title}}</text>
-            <button openType="share" style="width:150%" wx:if="{{item.title=='分享好友'}}">{{item.title}}</button>
+            <button class="plain-btn share-btn" openType="share" style="width:150%" wx:if="{{item.title=='分享好友'}}">{{item.title}}</button>
           </view>
         </view>
         <view class="cell-right">
@@ -47,9 +47,9 @@
         <view class='tip'>请先登录再进行操作</view>
         <view class='pictrue'></view>
         <view style='display:flex;'>
-          <button class='no' type="primary" bindtap='login' lang="zh_CN">暂不登录</button> 
-          <button wx:if="{{canIUseGetUserProfile}}"  class='but' bindtap="getUserProfile">立即登录</button>
-          <button wx:else class='but' type="primary" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindgetuserinfo">立即登录</button> 
+          <button class='action-btn no' type="primary" bindtap='login' lang="zh_CN">暂不登录</button> 
+          <button wx:if="{{canIUseGetUserProfile}}"  class='action-btn but' bindtap="getUserProfile">立即登录</button>
+          <button wx:else class='action-btn but' type="primary" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindgetuserinfo">立即登录</button> 
         </view>
      </view>
      <view class='mask'></view>
