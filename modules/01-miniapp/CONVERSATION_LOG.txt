@@ -238,3 +238,13 @@
 - 核心路径页面（start/题库/课程/我的）补齐 `min-height: 100vh` 与统一背景色
 - 题库/课程卡片补齐统一投影，提升整体视觉一致性
 
+--- 2026-01-21 ---
+分支：feat/01-miniapp-M6-key-interactions-winE3-v1
+验收：
+- 题库页：`pages/library/index` 可切换 初中/单招 并联动“单元列表”，点单元进入 `pages/library/unit/index` 可选择练习/测评
+- 课程页：`pages/course/index` 可切换 初中/单招，并可点选筛选项联动课程列表；点课程进入 `pages/course/player`
+- 我的页：`pages/my/index` 新增“学习记录”卡片入口，未登录提示登录，登录后跳转 `pages/record/index`
+变更点：
+- 课程页补齐筛选结构（初中：年级/上下册/科目；单招：科目/题型）并驱动 mock 列表
+- 我的页补齐学习记录入口，并将 cell 图标/箭头样式改为 class，避免使用 `image` tag selector
+

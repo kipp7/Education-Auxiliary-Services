@@ -15,29 +15,37 @@
         </button>
     </view>
 
-    <view class="svip-card">
-      <view class="svip-left">
-        <view class="svip-title">SVIP 权益</view>
-        <view class="svip-desc">
-          {{svipBound ? '已开通（本地 Mock）' : '未开通：部分内容将提示绑定（占位）'}}
+	    <view class="svip-card">
+	      <view class="svip-left">
+	        <view class="svip-title">SVIP 权益</view>
+	        <view class="svip-desc">
+	          {{svipBound ? '已开通（本地 Mock）' : '未开通：部分内容将提示绑定（占位）'}}
+	        </view>
+	      </view>
+	      <button class="svip-btn" hover-class="none" bindtap="go_svip">{{svipBound ? '查看' : '去绑定'}}</button>
+	    </view>
+
+      <view class="svip-card learn-card" bindtap="go_record">
+        <view class="svip-left">
+          <view class="svip-title">学习记录</view>
+          <view class="svip-desc">视频进度 / 做题记录（本地 Mock）</view>
         </view>
+        <view class="chevron">></view>
       </view>
-      <button class="svip-btn" hover-class="none" bindtap="go_svip">{{svipBound ? '查看' : '去绑定'}}</button>
-    </view>
-  <view class="cell-list">
-    <view bindtap="go_view" class="cell" data-viewInd="{{index}}" wx:for="{{cellList}}" wx:key="index">
-        <view class="cell-left">
-          <view class="cell-icon">
-            <image src="{{item.icon}}"></image>
-          </view>
+	  <view class="cell-list">
+	    <view bindtap="go_view" class="cell" data-viewInd="{{index}}" wx:for="{{cellList}}" wx:key="index">
+	        <view class="cell-left">
+	          <view class="cell-icon">
+	            <image class="cell-icon-img" src="{{item.icon}}"></image>
+	          </view>
           <view class="cell-text">
             <text wx:if="{{item.title!='分享好友'}}">{{item.title}}</text>
             <button class="plain-btn share-btn" openType="share" style="width:150%" wx:if="{{item.title=='分享好友'}}">{{item.title}}</button>
           </view>
         </view>
-        <view class="cell-right">
-          <image src="/images/jkt/right.png"></image>
-        </view>
+	        <view class="cell-right">
+	          <image class="cell-right-img" src="/images/jkt/right.png"></image>
+	        </view>
     </view>
   </view>
 </view>

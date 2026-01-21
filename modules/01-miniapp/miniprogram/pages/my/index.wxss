@@ -73,7 +73,7 @@
     height: 52rpx;
 }
 
-.cell-icon image {
+.cell-icon-img {
     width: 52rpx;
     height: 52rpx;
 }
@@ -108,7 +108,7 @@
     margin-right: 50rpx;
 }
 
-.cell-right image {
+.cell-right-img {
     width: 16rpx;
     height: 24rpx;
     margin-left: 12rpx;
@@ -123,6 +123,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.learn-card{
+    margin-top: 12rpx;
 }
 
 .svip-left{
@@ -155,6 +159,12 @@
 
 .svip-btn::after{
     border: none;
+}
+
+.chevron{
+    color: rgba(0, 0, 0, 0.35);
+    font-size: 36rpx;
+    margin-left: 14rpx;
 }
 
 

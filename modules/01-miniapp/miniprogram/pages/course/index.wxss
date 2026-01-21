@@ -28,6 +28,60 @@
   color: #fff;
 }
 
+.banner {
+  border-radius: 18rpx;
+  padding: 22rpx;
+  background: linear-gradient(135deg, #1bd0ad 0%, #0ea5e9 100%);
+  color: #fff;
+  box-shadow: 0 12rpx 26rpx rgba(27, 208, 173, 0.18);
+}
+
+.banner-title {
+  font-size: 34rpx;
+  font-weight: 900;
+}
+
+.banner-desc {
+  margin-top: 10rpx;
+  font-size: 26rpx;
+  opacity: 0.92;
+}
+
+.block {
+  margin-top: 16rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 16rpx;
+  box-shadow: 0 12rpx 26rpx rgba(17, 24, 39, 0.06);
+}
+
+.block-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #111827;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-top: 14rpx;
+}
+
+.chip {
+  padding: 10rpx 16rpx;
+  border-radius: 999rpx;
+  background: #f5f6f7;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 26rpx;
+}
+
+.chip.active {
+  background: rgba(27, 208, 173, 0.15);
+  color: #1bd0ad;
+  font-weight: 700;
+}
+
 .section-title {
   font-size: 30rpx;
   font-weight: 700;

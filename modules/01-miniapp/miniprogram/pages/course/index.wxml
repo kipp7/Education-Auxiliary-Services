@@ -16,6 +16,74 @@
     <view class="banner-desc">点击进入播放页，支持续播与 SVIP 提示（Mock）</view>
   </view>
 
+  <view class="block" wx:if="{{stage === '初中'}}">
+    <view class="block-title">初中</view>
+
+    <view class="chips">
+      <view
+        class="chip {{grade === item ? 'active' : ''}}"
+        wx:for="{{gradeList}}"
+        wx:key="*this"
+        data-value="{{item}}"
+        bindtap="selectGrade"
+      >
+        {{item}}
+      </view>
+    </view>
+
+    <view class="chips">
+      <view
+        class="chip {{semester === item ? 'active' : ''}}"
+        wx:for="{{semesterList}}"
+        wx:key="*this"
+        data-value="{{item}}"
+        bindtap="selectSemester"
+      >
+        {{item}}
+      </view>
+    </view>
+
+    <view class="chips">
+      <view
+        class="chip {{subject === item ? 'active' : ''}}"
+        wx:for="{{subjectList}}"
+        wx:key="*this"
+        data-value="{{item}}"
+        bindtap="selectSubject"
+      >
+        {{item}}
+      </view>
+    </view>
+  </view>
+
+  <view class="block" wx:else>
+    <view class="block-title">单招</view>
+
+    <view class="chips">
+      <view
+        class="chip {{singleSubject === item ? 'active' : ''}}"
+        wx:for="{{singleSubjectList}}"
+        wx:key="*this"
+        data-value="{{item}}"
+        bindtap="selectSingleSubject"
+      >
+        {{item}}
+      </view>
+    </view>
+
+    <view class="chips">
+      <view
+        class="chip {{singleType === item ? 'active' : ''}}"
+        wx:for="{{singleTypeList}}"
+        wx:key="*this"
+        data-value="{{item}}"
+        bindtap="selectSingleType"
+      >
+        {{item}}
+      </view>
+    </view>
+  </view>
+
   <view class="section-title">课程列表（Mock）</view>
 
   <view class="list">

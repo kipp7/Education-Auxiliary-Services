@@ -110,6 +110,15 @@ Page({
     })
   },
 
+  go_record() {
+    if (this.data.userInfo && this.data.userInfo.avatarUrl) {
+      wx.navigateTo({ url: '../record/index' })
+      return
+    }
+    wx.showToast({ title: '请先登录', icon: 'none' })
+    this.login()
+  },
+
   login() {
     this.setData({
       is_login: !this.data.is_login,
