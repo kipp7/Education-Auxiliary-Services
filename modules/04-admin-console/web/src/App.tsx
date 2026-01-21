@@ -7,6 +7,7 @@ import { QuestionBankPage } from "./questionBank/QuestionBankPage";
 import { ImportTaskDetailPage } from "./imports/ImportTaskDetailPage";
 import { ImportsListPage } from "./imports/ImportsListPage";
 import { AnnouncementsPage } from "./cms/AnnouncementsPage";
+import { ExportsPage } from "./exports/ExportsPage";
 
 export function App() {
   return (
@@ -49,6 +50,14 @@ export function App() {
         element={
           <RequireAuth>
             <AnnouncementsPage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/exports"
+        element={
+          <RequireAuth>
+            <ExportsPage />
           </RequireAuth>
         }
       />

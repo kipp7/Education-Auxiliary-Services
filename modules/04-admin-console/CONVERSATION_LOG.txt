@@ -43,3 +43,13 @@
 - npm run dev
 - 打开 http://localhost:5174 → 开发登录 → 点击“公告管理”
 - 可新增/编辑/删除公告；草稿可发布、已发布可下线；支持搜索与重置示例数据
+--- 2026-01-21 ---
+分支：feat/04-admin-console-config-export-v2
+验收：
+- cd modules/04-admin-console/web
+- npm install
+- npm run dev
+- 打开 http://localhost:5174 → 开发登录 → 点击“配置导出”并下载 admin-config.json
+变更点：
+- 新增 /exports 配置导出页面，导出 admin-config.json（公告 + 题库数据；轮播/课程暂为空数组）。
+- 首页增加“配置导出（占位）”入口，便于小程序 Mock 联调。

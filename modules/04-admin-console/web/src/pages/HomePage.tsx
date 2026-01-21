@@ -23,6 +23,9 @@ export function HomePage() {
         <h3 style={{ marginTop: 0 }}>入口</h3>
         <RequirePermission permission="admin:access">
           <div className="row">
+            <Link className="btn" to="/exports">
+              配置导出（占位）
+            </Link>
             <Link className="btn" to="/question-bank">
               题库管理（占位）
             </Link>
