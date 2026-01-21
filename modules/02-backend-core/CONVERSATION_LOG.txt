@@ -13,6 +13,15 @@
 下一步：
 
 --- 2026-01-21 ---
+分支：feat/02-backend-core-error-codes-doc-codex
+验收：
+- 查看：modules/02-backend-core/ERROR_CODES.md
+- 验证任一错误响应含 requestId：cd modules/02-backend-core && npm run dev；curl.exe http://localhost:3000/subjects
+变更点：
+- 新增错误码草案文档：ERROR_CODES.md
+- 说明错误响应格式与常见场景
+
+--- 2026-01-21 ---
 分支：feat/02-backend-core-environment-doc-codex
 验收：
 - 查看：modules/02-backend-core/ENVIRONMENT.md
