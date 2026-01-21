@@ -20,6 +20,14 @@
 - [ ] 定义鉴权方式（token/session）与刷新策略
 - [ ] 定义“题目通用数据结构”（题型、选项、答案、解析、素材）
 
+### 2.1 首页/商业内容（新增）
+> Tab 结构确认：`首页 / 题库 / 资讯 / 我的`。首页需要接入运营与商业内容。
+- [ ] Banner 配置：`GET /content/banners`（图片、跳转类型、目标）
+- [ ] 资讯：`GET /content/news`、`GET /content/news/:id`
+- [ ] 推荐：`GET /content/recommendations`（题库/课程/套餐）
+- [ ] 商品/套餐：`GET /billing/plans`、`POST /billing/order`
+- [ ] Paywall 文案：`GET /content/paywall-copy`（后置但需预留）
+
 ## 3. 联调与验收
 - [ ] 联调 checklist（逐条接口、逐条页面）
 - [ ] 测试数据准备与回归脚本（最小集合）

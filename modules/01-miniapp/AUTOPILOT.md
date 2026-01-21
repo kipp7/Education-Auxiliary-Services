@@ -25,13 +25,17 @@ git checkout -b feat/01-miniapp-prototype
 - 文件范围（尽量只动这些，避免冲突）：  
   - `miniprogram/app.json`（tabBar）
   - `miniprogram/pages/library/**`（题库页）
-  - `miniprogram/pages/course/**`（课程页，新建）
-  - `miniprogram/pages/my/**`（我的页）
+  - `miniprogram/pages/index/**`（首页页，含 banner/入口/商业位骨架）
+  - `miniprogram/pages/library/**`（题库 tab）
+  - `miniprogram/pages/news/**`（资讯 tab，新建）
+  - `miniprogram/pages/my/**`（我的 tab）
+
+> 备注：Tab 结构固定为：`首页 / 题库 / 资讯 / 我的`（课程入口放在首页与题库内，课程页可做二级页或后续加成 tab）。
 
 #### MCP 验收（必须）
 完成 M1 后，用 MCP 自动化跑一遍并截图留档：
 1) `mp_ensureConnection`（确保会话就绪）
-2) `mp_navigate`：`/pages/start/index` → 点击“立即进入” → 依次 `switchTab` 到 4 个 tab
+2) `mp_navigate`：`/pages/start/index` → 点击“立即进入” → 依次 `switchTab` 到 4 个 tab（首页/题库/资讯/我的）
 3) `mp_screenshot`：保存至少 5 张关键页面截图到 `modules/01-miniapp/_evidence/M1/`
 4) `mp_getLogs`：导出日志到 `modules/01-miniapp/_evidence/M1/logs.json`（获取后清空也可以）
 
@@ -86,6 +90,17 @@ git checkout -b feat/01-miniapp-prototype
 
 #### MCP 验收（必须）
 - 从首页/题库/课程/我的把关键入口全点一遍，截图保存到 `modules/01-miniapp/_evidence/M6/`
+
+### M7：首页商业位接入（配置驱动，先不依赖后端）
+> 目标：商业内容“可配置、可跳转、可替换”，方便机构运营。
+
+- [ ] Banner 配置：支持跳转（题库/资讯详情/开通页/外链占位）
+- [ ] 推荐课程/题库配置：支持 VIP/价格标签
+- [ ] 转化卡：SVIP 绑定入口 + 付费开通入口（按用户状态显示）
+- [ ] 配置来源：先用本地 `mock/home-config.json`（后续切 API）
+
+#### MCP 验收（必须）
+- 首页滚动全览 + 点击每个商业位跳转，截图保存到 `modules/01-miniapp/_evidence/M7/`
 
 ## 3. 输出与汇报（只在完成里程碑后做一次）
 每完成一个里程碑：
