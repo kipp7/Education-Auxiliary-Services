@@ -1,9 +1,6 @@
-page {
-  background: #f6f7fb;
-}
-
 .page {
   padding: 24rpx;
+  background: #f6f7fb;
 }
 
 .seg {

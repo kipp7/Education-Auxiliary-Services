@@ -200,3 +200,12 @@
 - TabBar 调整为 首页/题库/资讯/我的（课程页改为二级页面入口）
 - 新增 `pages/news/index`（资讯 tab）占位列表，复用 `pages/index/home-config.js` 的 mock 资讯配置
 
+--- 2026-01-21 ---
+分支：feat/01-miniapp-M2-library-structure-winE3-v1
+验收：
+- `switchTab` 到 `pages/library/index`（题库）
+- 切换学段：初中/单招；分别点选年级/上下册/科目（或单招科目/题型）后，单元列表随选择变化（Mock）
+- 点击任意单元进入 `pages/library/unit/index`，可点“在线做题(练习/测评)”进入练习/考试页占位
+变更点：
+- 题库页 `index.wxss` 去掉 `page` tag selector，统一用 `.page` 承载背景样式，避免基础库对 component wxss 的选择器限制告警
+
