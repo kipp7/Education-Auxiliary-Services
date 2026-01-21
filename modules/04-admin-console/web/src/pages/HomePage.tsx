@@ -41,6 +41,9 @@ export function HomePage() {
             <Link className="btn" to="/cms">
               公告管理（占位）
             </Link>
+            <Link className="btn" to="/home-slots">
+              首页运营位配置（占位）
+            </Link>
             <Link className="btn" to="/dashboard">
               数据看板（占位）
             </Link>
