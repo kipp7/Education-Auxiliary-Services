@@ -93,3 +93,12 @@
 变更点：
 - 预留订单查询：GET /billing/order/{orderId}（mock，需 Authorization）
 - 预留支付回调：POST /billing/payment/callback（mock，无需 Authorization，更新订单状态）
+
+--- 2026-01-21 ---
+分支：feat/02-backend-core-requestid-jsonerr-codex
+验收：
+- cd modules/02-backend-core && npm run dev
+- powershell -ExecutionPolicy Bypass -File modules/02-backend-core/scripts/gen-evidence-m9.ps1
+变更点：
+- 所有响应新增 `X-Request-Id`，错误体回传 requestId 便于定位
+- 非法 JSON 统一返回 400（code=INVALID_ARGUMENT, message=Invalid JSON）
