@@ -183,3 +183,12 @@
 变更点：
 - 增加基础请求日志：包含 requestId / method / path / status / duration
 - 新增证据脚本与日志：scripts/gen-evidence-m16.ps1、logs/m16-evidence.txt
+
+--- 2026-01-22 ---
+分支：feat/02-backend-core-logs-readme-codex
+验收：
+- 查看：modules/02-backend-core/logs/README.md
+- 查看忽略规则：modules/02-backend-core/logs/.gitignore
+变更点：
+- 新增 logs 说明文档：logs/README.md（证据文件用途与规则）
+- 说明临时 server out/err 文件的忽略约定
