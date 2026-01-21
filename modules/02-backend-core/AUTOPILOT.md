@@ -75,6 +75,13 @@ git checkout -b feat/02-backend-core-mvp
   - `modules/02-backend-core/logs/m9-evidence.txt`
   - `modules/02-backend-core/scripts/gen-evidence-m9.ps1`
 
+### M11：跨域可读 requestId（Expose Headers）
+> 目标：浏览器侧可读取 `X-Request-Id`（便于前端记录/上报），通过 `Access-Control-Expose-Headers` 暴露该 header。
+- 输出：服务实现 + 证据文件
+  - `modules/02-backend-core/src/server.js`
+  - `modules/02-backend-core/logs/m11-evidence.txt`
+  - `modules/02-backend-core/scripts/gen-evidence-m11.ps1`
+
 ## 3. 输出与汇报
 每完成一个里程碑才提交/推送，并在 `modules/02-backend-core/CONVERSATION_LOG.txt` 记录验收方式（curl 示例）。
 
