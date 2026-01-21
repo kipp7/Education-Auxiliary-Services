@@ -1,0 +1,13 @@
+--- 2026-01-21 ---
+分支：`feat/99-hub-m1m2-checklist-mcp`
+
+变更点：
+- 修复并重写 `modules/99-hub/REQUESTS.md` 的换行/格式（原文件存在 CR-only 导致“合并队列”多条内容挤在同一行，影响脚本/grep 检测）。
+- 在 `modules/99-hub/REQUESTS.md` 增补 M1/M2 的接口契约/数据结构/错误码对齐清单（用于 01/02/03/04 模块统一口径）。
+- 在合并队列中补充 04-admin-console M9（试题管理）继续合入 main 的待办条目（同分支二次合入）。
+
+验收日志要点（MCP 小程序全路径）：
+- 已连通 devtools：ws://localhost:9420
+- 覆盖路径（switchTab）：首页 `/pages/index/index` → 题库 `/pages/library/index` → 课程 `/pages/course/index` → 我的 `/pages/my/index`
+- “我的”页：`page_getData` 可读到 `cellList` 含“退出登录”，`userInfo.nickName`/`avatarUrl`（Mock）正常
+- 已触发“退出登录”点击；因 `wx.showModal` 确认框交互与 `mp_screenshot` 工具超时，未自动完成“确认退出/落截图”
