@@ -122,51 +122,34 @@ function Try-ExtractMrInfoFromModuleLog {
 
   $wantedBranch = ($BranchName | ForEach-Object { $_.Trim() })
 
-  # Prefer matching the MR block that refers to THIS branch (BranchName).
-  # This avoids accidentally picking another newer "分支：" line that may exist in the same log file.
+  # Only enqueue when THIS branch has an MR block near the end of the log.
+  # This prevents accidentally enqueueing historical branches just because their names appear somewhere in the log.
   if ($wantedBranch) {
-    for ($i = $lines.Count - 1; $i -ge 0; $i--) {
-      $line = $lines[$i].Trim()
-      if (-not $line) { continue }
+    $tailMax = 140
+    $start = [Math]::Max(0, $lines.Count - $tailMax)
+    $end = $lines.Count - 1
 
-      if ($line -match [regex]::Escape($wantedBranch)) {
-        $result.Branch = $wantedBranch
-        $result.HasMrBlock = $true
+    $branchIdx = -1
+    for ($i = $end; $i -ge $start; $i--) {
+      $t = $lines[$i].Trim()
+      if (-not $t) { continue }
+
+      if (($t -match '^\s*(?:branch|\u5206\u652F)\s*(?:[:：]|ï¼š)') -and ($t -match [regex]::Escape($wantedBranch))) {
+        $branchIdx = $i
         break
       }
     }
-  }
 
-  # Try to find the last "分支：" / "branch:" line from bottom (fallback).
-  for ($i = $lines.Count - 1; $i -ge 0; $i--) {
-    $line = $lines[$i].Trim()
-    if ($line -match '^\s*(?:branch|\u5206\u652F)\s*[:：]\s*(feat\/\S+)') {
-      $result.Branch = $Matches[1]
-      $result.HasMrBlock = $true
-      break
-    }
-
-    # Fallback: tolerate mojibake separators (e.g. "ï¼š") and loose labels.
-    if ($line -match '(?:[:：]|ï¼š)\s*(feat\/\S+)\s*$') {
-      $result.Branch = $Matches[1]
-      $result.HasMrBlock = $true
-      break
-    }
-
-    # Also accept backticked markdown code: 分支：`feat/...`
-    if ($line -match '^\s*(?:branch|\u5206\u652F)\s*(?:[:：]|ï¼š)\s*`(feat\/[^`]+)`') {
-      $result.Branch = $Matches[1]
-      $result.HasMrBlock = $true
-      break
-    }
-  }
-
-  # Try to find the last "验收" / "acceptance" block from bottom (capture up to 12 lines).
-  for ($i = $lines.Count - 1; $i -ge 0; $i--) {
-    $line = $lines[$i].Trim()
-    if ($line -match '^\s*(?:acceptance|\u9A8C\u6536\u65B9\u5F0F|\u9A8C\u6536|éªŒæ”¶)\s*(?:[:：]|ï¼š)') {
-      $result.HasMrBlock = $true
-      break
+    if ($branchIdx -ge 0) {
+      $acceptEnd = [Math]::Min($end, $branchIdx + 30)
+      for ($j = $branchIdx; $j -le $acceptEnd; $j++) {
+        $t = $lines[$j].Trim()
+        if ($t -match '^\s*(?:acceptance|\u9A8C\u6536\u65B9\u5F0F|\u9A8C\u6536|éªŒæ”¶)\s*(?:[:：]|ï¼š)') {
+          $result.Branch = $wantedBranch
+          $result.HasMrBlock = $true
+          break
+        }
+      }
     }
   }
 
