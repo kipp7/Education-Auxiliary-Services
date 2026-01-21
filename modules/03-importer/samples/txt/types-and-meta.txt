@@ -1,0 +1,41 @@
+Type: single
+Score: 2
+Difficulty: easy
+下列哪个数字是偶数？
+A. 1
+B. 2
+C. 3
+答案：B
+解析：能被 2 整除的是偶数。
+
+Type: multi
+分值：3分
+难度：medium
+下面哪些是质数？
+A. 2
+B. 3
+C. 4
+D. 5
+答案：ABD
+解析：2、3、5 是质数，4 不是。
+
+Type: judge
+Score: 1
+难度：easy
+地球是圆的。
+答案：对
+解析：地球近似球体。
+
+Type: blank
+分值：2
+难度：easy
+1+1=____。
+答案：2
+解析：基础加法。
+
+Type: essay
+Score: 10
+Difficulty: hard
+请简述光合作用的基本过程。
+答案：植物在叶绿体中利用光能将二氧化碳和水合成有机物，并释放氧气。
+解析：要点包括场所、原料、产物与能量转化。

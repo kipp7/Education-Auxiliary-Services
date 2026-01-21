@@ -100,6 +100,16 @@ function detectExplicitType(rawType) {
   return null;
 }
 
+function parseScoreValue(raw) {
+  if (raw == null) return null;
+  const s = String(raw).trim();
+  if (!s) return null;
+  const m = s.match(/-?\d+(?:\.\d+)?/);
+  if (!m) return null;
+  const n = Number.parseFloat(m[0]);
+  return Number.isFinite(n) ? n : null;
+}
+
 function parseBlock(block, filePath, categoryPath, index) {
   const lines = normalizeNewlines(block.raw).split('\n');
 
@@ -109,12 +119,26 @@ function parseBlock(block, filePath, categoryPath, index) {
 
   let rawAnswer = null;
   let rawType = null;
+  let rawScore = null;
+  let rawDifficulty = null;
   let inAnalysis = false;
 
   for (const line of lines) {
     const type = parseLabelValue(line, ['Type', '题型']);
     if (type != null) {
       rawType = type;
+      continue;
+    }
+
+    const score = parseLabelValue(line, ['Score', '分值']);
+    if (score != null) {
+      rawScore = score;
+      continue;
+    }
+
+    const difficulty = parseLabelValue(line, ['Difficulty', '难度']);
+    if (difficulty != null) {
+      rawDifficulty = difficulty;
       continue;
     }
 
@@ -147,6 +171,8 @@ function parseBlock(block, filePath, categoryPath, index) {
 
   const explicit = detectExplicitType(rawType);
   const type = explicit ?? (options.length > 0 ? detectChoiceTypeFromAnswer(rawAnswer) : rawAnswer && String(rawAnswer).match(/^(对|错|正确|错误|true|false)$/i) ? 'judge' : 'essay');
+  const score = parseScoreValue(rawScore);
+  const difficulty = rawDifficulty != null ? String(rawDifficulty).trim() : '';
 
   return {
     id: `q-${String(index).padStart(4, '0')}`,
@@ -155,6 +181,8 @@ function parseBlock(block, filePath, categoryPath, index) {
     options: options.length ? options : undefined,
     answer: { value: normalizeAnswerValue(type, rawAnswer) ?? '' },
     analysis: analysisLines.join('\n').trim() || undefined,
+    score: score == null ? undefined : score,
+    difficulty: difficulty ? difficulty : undefined,
     source: {
       filePath,
       lineStart: block.startLine,

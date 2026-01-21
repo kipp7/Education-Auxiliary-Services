@@ -24,8 +24,8 @@
 - [x] 图片 OCR（先支持人工校对流程：生成 OCR 校对包；工具见 `modules/03-importer/tools/prepare-ocr-review.mjs`；样例见 `modules/03-importer/samples/ocr/image-list.txt`；输出见 `modules/03-importer/output/ocr.review.json`）
 
 ## 2.1 需求补充（来自《需求规格说明书》）
-- [ ] 题型覆盖：选择题（单选/多选）、判断题、填空题、论述题/大题
-- [ ] 解析字段：题干、选项、答案、解析、分值、难度、题型、归属（学段/年级/科目/单元）
+- [x] 题型覆盖：选择题（单选/多选）、判断题、填空题、论述题/大题（见 samples/txt/types-and-meta.txt）
+- [x] 解析字段：题干、选项、答案、解析、分值、难度、题型、归属（见 tools/parse-txt.mjs）
 - [ ] “同步试题(预览)”与“在线做题(作答)”共用一套题目数据结构（由 99-hub 定义 IR）
 
 ## 3. 质量与可回滚

@@ -1,0 +1,126 @@
+{
+  "file": {
+    "path": "modules/03-importer/samples/txt/types-and-meta.txt"
+  },
+  "categoryPath": "示例题库/综合",
+  "questions": [
+    {
+      "id": "q-0001",
+      "type": "single",
+      "stem": "下列哪个数字是偶数？",
+      "options": [
+        {
+          "key": "A",
+          "text": "1"
+        },
+        {
+          "key": "B",
+          "text": "2"
+        },
+        {
+          "key": "C",
+          "text": "3"
+        }
+      ],
+      "answer": {
+        "value": "B"
+      },
+      "analysis": "能被 2 整除的是偶数。",
+      "score": 2,
+      "difficulty": "easy",
+      "source": {
+        "filePath": "modules/03-importer/samples/txt/types-and-meta.txt",
+        "lineStart": 1,
+        "lineEnd": 10
+      },
+      "categoryPath": "示例题库/综合"
+    },
+    {
+      "id": "q-0002",
+      "type": "multi",
+      "stem": "下面哪些是质数？",
+      "options": [
+        {
+          "key": "A",
+          "text": "2"
+        },
+        {
+          "key": "B",
+          "text": "3"
+        },
+        {
+          "key": "C",
+          "text": "4"
+        },
+        {
+          "key": "D",
+          "text": "5"
+        }
+      ],
+      "answer": {
+        "value": "ABD"
+      },
+      "analysis": "2、3、5 是质数，4 不是。",
+      "score": 3,
+      "difficulty": "medium",
+      "source": {
+        "filePath": "modules/03-importer/samples/txt/types-and-meta.txt",
+        "lineStart": 11,
+        "lineEnd": 21
+      },
+      "categoryPath": "示例题库/综合"
+    },
+    {
+      "id": "q-0003",
+      "type": "judge",
+      "stem": "地球是圆的。",
+      "answer": {
+        "value": "true"
+      },
+      "analysis": "地球近似球体。",
+      "score": 1,
+      "difficulty": "easy",
+      "source": {
+        "filePath": "modules/03-importer/samples/txt/types-and-meta.txt",
+        "lineStart": 22,
+        "lineEnd": 28
+      },
+      "categoryPath": "示例题库/综合"
+    },
+    {
+      "id": "q-0004",
+      "type": "blank",
+      "stem": "1+1=____。",
+      "answer": {
+        "value": "2"
+      },
+      "analysis": "基础加法。",
+      "score": 2,
+      "difficulty": "easy",
+      "source": {
+        "filePath": "modules/03-importer/samples/txt/types-and-meta.txt",
+        "lineStart": 29,
+        "lineEnd": 35
+      },
+      "categoryPath": "示例题库/综合"
+    },
+    {
+      "id": "q-0005",
+      "type": "essay",
+      "stem": "请简述光合作用的基本过程。",
+      "answer": {
+        "value": "植物在叶绿体中利用光能将二氧化碳和水合成有机物，并释放氧气。"
+      },
+      "analysis": "要点包括场所、原料、产物与能量转化。",
+      "score": 10,
+      "difficulty": "hard",
+      "source": {
+        "filePath": "modules/03-importer/samples/txt/types-and-meta.txt",
+        "lineStart": 36,
+        "lineEnd": 42
+      },
+      "categoryPath": "示例题库/综合"
+    }
+  ],
+  "errors": []
+}
