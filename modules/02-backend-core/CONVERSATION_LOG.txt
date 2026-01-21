@@ -138,3 +138,12 @@
 变更点：
 - 新增接口清单文档：API_ENDPOINTS.md（用于联调快速查阅）
 - 汇总各接口鉴权要求与用途
+
+--- 2026-01-21 ---
+分支：feat/02-backend-core-evidence-all-codex
+验收：
+- 运行：powershell -ExecutionPolicy Bypass -File modules/02-backend-core/scripts/gen-evidence-all.ps1
+- 查看输出：modules/02-backend-core/logs/evidence-all.txt
+变更点：
+- 新增一键运行所有证据脚本的 wrapper：scripts/gen-evidence-all.ps1
+- 汇总输出到 logs/evidence-all.txt 便于总控收集
