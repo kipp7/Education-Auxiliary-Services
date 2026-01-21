@@ -34,6 +34,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         "import:write",
         "cms:read",
         "cms:write",
+        "question:read",
+        "question:write",
       ],
     };
 
