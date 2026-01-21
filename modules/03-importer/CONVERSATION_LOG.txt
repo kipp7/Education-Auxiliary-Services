@@ -146,3 +146,10 @@
 变更点：
 - parse-docx 支持 -OutJson（UTF-8 写文件），避免 PowerShell 重定向编码问题
 - 解析结果 file.path 固定为源 docx 路径（不再指向临时 extracted.txt）
+
+--- 2026-01-21 ---
+分支：feat/03-importer-run-samples-w03-v1
+验收：
+- pwsh -NoProfile -File modules/03-importer/tools/run-samples.ps1
+变更点：
+- 新增 run-samples 脚本：一键跑通本模块所有样例链路（txt/preview/hierarchy/pdf/ocr/docx + 校验），输出写入临时目录
