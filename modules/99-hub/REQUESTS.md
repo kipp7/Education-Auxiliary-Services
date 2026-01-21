@@ -51,7 +51,7 @@
 - [!] feat/01-miniapp-M3-course-resume-winE3-v1 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
 - [!] feat/01-miniapp-M4-svip-bind-mock-winE3-v1 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
 - [!] feat/01-miniapp-M5-visual-unify-winE3-v1 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
-- [ ] feat/02-backend-core-clean-logs-script-codex → 02-backend-core：验收：见 modules/02-backend-core/CONVERSATION_LOG.txt 最新一段
+- [!] feat/02-backend-core-clean-logs-script-codex → 02-backend-core：验收：见 modules/02-backend-core/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
 - [ ] feat/03-importer-manifest-schema-w03-v1 → 03-importer：验收：见 modules/03-importer/CONVERSATION_LOG.txt 最新一段
 - [ ] feat/04-admin-console-home-permissions-v1 → 04-admin-console：验收：见 modules/04-admin-console/CONVERSATION_LOG.txt 最新一段
 - [x] feat/02-backend-core-standards-doc-codex → 02-backend-core：验收：见 modules/02-backend-core/CONVERSATION_LOG.txt 最新一段
