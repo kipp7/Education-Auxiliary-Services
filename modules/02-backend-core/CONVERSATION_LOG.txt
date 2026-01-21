@@ -12,6 +12,15 @@
 决定/结论：
 下一步：
 
+--- 2026-01-21 ---
+分支：feat/02-backend-core-environment-doc-codex
+验收：
+- 查看：modules/02-backend-core/ENVIRONMENT.md
+- 启动：cd modules/02-backend-core && npm run dev
+变更点：
+- 新增本模块环境变量说明：ENVIRONMENT.md（目前仅 PORT）
+- 给出最小验收命令与端口说明
+
 
 --- 2026-01-21 01:10 ---
 里程碑：M1 契约定稿草案（OpenAPI）
