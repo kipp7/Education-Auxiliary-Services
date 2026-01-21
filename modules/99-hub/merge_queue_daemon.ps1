@@ -140,16 +140,7 @@ function Try-ExtractMrInfoFromModuleLog {
   for ($i = $lines.Count - 1; $i -ge 0; $i--) {
     $line = $lines[$i].Trim()
     if ($line -match '^\s*(?:acceptance|\u9A8C\u6536\u65B9\u5F0F|\u9A8C\u6536|éªŒæ”¶)\s*(?:[:：]|ï¼š)') {
-      $block = @()
-      for ($j = $i; $j -lt [Math]::Min($i + 12, $lines.Count); $j++) {
-        $t = $lines[$j].TrimEnd()
-        if ($j -gt $i -and $t.Trim() -eq "") { break }
-        $block += $t
-      }
-      if ($block.Count -gt 0) {
-        $result.Acceptance = ($block -join "`n")
-        $result.HasMrBlock = $true
-      }
+      $result.HasMrBlock = $true
       break
     }
   }
@@ -274,8 +265,7 @@ function AutoEnqueue-FromModuleLogs {
 
   $newLines = @()
   foreach ($c in $candidates | Sort-Object FeatBranch -Unique) {
-    $acceptanceOneLine = ($c.Acceptance -replace "`r?`n", " " -replace "\s{2,}", " ").Trim()
-    $newLines += "- [ ] `"$($c.FeatBranch)`" → $($c.ModuleDir)：$acceptanceOneLine"
+    $newLines += "- [ ] $($c.FeatBranch) → $($c.ModuleDir)：$($c.Acceptance)"
   }
 
   $updated = @()

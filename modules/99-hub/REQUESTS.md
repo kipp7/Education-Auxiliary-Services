@@ -18,7 +18,7 @@
 ## 合并队列（总控窗口执行）
 > 规则：所有窗口只 push 自己的 `feat/*` 分支；总控窗口按优先级合并进 `main`。
 
-- [ ] "feat/01-miniapp-library-swiper-winE3" → 01-miniapp：验收： - `pages/start/index` → 立即进入 → 底部题库 `pages/library/index` - 顶部轮播可左右滑动/自动切换；点击三张 banner 分别：toast / `pages/exam-menu/index` / 切换到 `pages/news/index` 变更点： - 题库页新增顶部 swiper 轮播（Mock 数据、指示器、自动/手动切换） - banner 点击支持 `switchTab/navigateTo/toast` 跳转占位
+- [ ] feat/01-miniapp-library-swiper-winE3 → 01-miniapp：验收：见 `modules/01-miniapp/CONVERSATION_LOG.txt` 最新一段
 - [x] `feat/99-hub-autoenqueue-from-module-logs` → 99-hub：daemon 自动从各模块日志入队（A 流程零转发）
 - [x] `feat/99-hub-m1m2-checklist-mcp` → 99-hub：M1/M2 对齐清单 + MCP 小程序验收日志（合并后修复队列可读性）
 - [x] `feat/01-miniapp-mvp-my-login-winE3` → 01-miniapp 我的页：登录本地缓存/展示信息/退出登录（MVP）
