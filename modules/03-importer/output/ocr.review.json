@@ -1,11 +1,11 @@
 {
   "input": "modules/03-importer/samples/ocr/image-list.txt",
-  "categoryPath": "绀轰緥棰樺簱",
+  "categoryPath": "示例题库",
   "questions": [
     {
       "id": "q-ocr-0002",
       "type": "essay",
-      "stem": "銆怬CR寰呭鐞嗐€戣鍦ㄦ牎瀵圭晫闈㈠綍鍏ラ骞?閫夐」/绛旀锛歜lank.png",
+      "stem": "【OCR待处理】请在校对界面录入题干/选项/答案：blank.png",
       "answer": {
         "value": ""
       },
@@ -13,7 +13,7 @@
       "source": {
         "filePath": "modules/03-importer/samples/ocr/modules/03-importer/samples/ocr/blank.png"
       },
-      "categoryPath": "绀轰緥棰樺簱"
+      "categoryPath": "示例题库"
     }
   ],
   "errors": [

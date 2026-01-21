@@ -137,3 +137,12 @@
 变更点：
 - parse-pdf 支持 --out（UTF-8 写文件），避免 PowerShell 重定向编码问题
 - 修正 pdf 解析错误项的 filePath 指向源 PDF（不再指向临时 txt 路径）
+
+--- 2026-01-21 ---
+分支：feat/03-importer-ocr-out-w03-v1
+验收：
+- node modules/03-importer/tools/prepare-ocr-review.mjs modules/03-importer/samples/ocr/image-list.txt --category "示例题库" --out modules/03-importer/output/ocr.review.json
+- 查看 modules/03-importer/output/ocr.review.json
+变更点：
+- prepare-ocr-review 支持 --out（UTF-8 写文件），避免 PowerShell 重定向编码问题
+- 重新生成 ocr.review.json 样例输出（UTF-8）
