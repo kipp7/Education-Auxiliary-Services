@@ -73,3 +73,12 @@
 变更点：
 - parse-txt 支持 --out，避免 PowerShell 重定向导致的编码/JSON 损坏
 - 新增 preview-ir 工具：从已解析 IR 预览前 N 道题并支持 --out
+
+--- 2026-01-21 ---
+分支：feat/03-importer-validate-ir-w03-v1
+验收：
+- node modules/03-importer/tools/parse-txt.mjs modules/03-importer/samples/txt/basic.txt --category "数学/一年级" --out modules/03-importer/output/basic.parsed.json
+- node modules/03-importer/tools/validate-ir.mjs modules/03-importer/output/basic.parsed.json
+变更点：
+- 新增 IR 校验工具 validate-ir：对解析出的 questions 做必填字段/题型约束校验，失败返回非 0
+- TASKS 增加 IR 校验项，便于后续联调时快速发现不符合 IR 的输入

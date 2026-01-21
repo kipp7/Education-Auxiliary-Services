@@ -32,6 +32,7 @@
 - [ ] 幂等：重复导入同一份资源不会造成脏数据（策略由 99-hub 定）
 - [x] 错误报告：行号/文件名/原因/建议修复（格式见 modules/03-importer/ir/error-report.schema.json）
 - [x] 预览/抽检：导入后可预览前 N 道题（工具见 modules/03-importer/tools/preview-ir.mjs）
+- [x] IR 校验：校验解析结果符合题目 IR 约束（工具见 modules/03-importer/tools/validate-ir.mjs）
 
 
 
