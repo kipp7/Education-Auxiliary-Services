@@ -26,6 +26,9 @@ export function HomePage() {
             <Link className="btn" to="/exports">
               配置导出（占位）
             </Link>
+            <Link className="btn" to="/exports-ops">
+              运营配置导出（占位）
+            </Link>
             <Link className="btn" to="/question-bank">
               题库管理（占位）
             </Link>
