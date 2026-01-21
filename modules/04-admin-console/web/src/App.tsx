@@ -7,6 +7,7 @@ import { QuestionBankPage } from "./questionBank/QuestionBankPage";
 import { ImportTaskDetailPage } from "./imports/ImportTaskDetailPage";
 import { ImportsListPage } from "./imports/ImportsListPage";
 import { AnnouncementsPage } from "./cms/AnnouncementsPage";
+import { AnnouncementDetailPage } from "./cms/AnnouncementDetailPage";
 import { ExportsPage } from "./exports/ExportsPage";
 import { OpsExportsPage } from "./exports/OpsExportsPage";
 import { SvipCodesPage } from "./svip/SvipCodesPage";
@@ -54,6 +55,14 @@ export function App() {
         element={
           <RequireAuth>
             <AnnouncementsPage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/cms/:id"
+        element={
+          <RequireAuth>
+            <AnnouncementDetailPage />
           </RequireAuth>
         }
       />

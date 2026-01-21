@@ -109,3 +109,20 @@
 - `npm install`
 - `npm run dev`
 - 打开 `http://localhost:5174` → 开发登录 → 点击“套餐管理（占位）”
+
+--- 2026-01-21 ---
+分支：`feat/04-admin-console-news-v1`
+
+变更点：
+- 公告管理补齐“置顶 + 详情”：列表支持置顶优先排序，新增 `/cms/:id` 详情页。
+- 修复 cms store 占位更新不刷新的问题（改为 React state + localStorage 持久化）。
+
+验证日志：
+- `cd modules/04-admin-console/web && npm run build`（成功）
+
+验收方式（本地）：
+- `cd modules/04-admin-console/web`
+- `npm install`
+- `npm run dev`
+- 打开 `http://localhost:5174` → 开发登录 → 点击“公告管理”
+  - 可置顶/取消置顶；点击“详情”进入详情页操作发布/下线/编辑/删除

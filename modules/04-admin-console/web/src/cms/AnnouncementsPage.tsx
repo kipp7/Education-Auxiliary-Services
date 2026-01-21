@@ -19,6 +19,13 @@ export function AnnouncementsPage() {
     );
   }, [query, state.announcements]);
 
+  const sorted = React.useMemo(() => {
+    return [...filtered].sort((a, b) => {
+      if (a.pinned !== b.pinned) return a.pinned ? -1 : 1;
+      return b.updatedAt.localeCompare(a.updatedAt);
+    });
+  }, [filtered]);
+
   return (
     <div className="container">
       <div className="nav">
@@ -56,26 +63,30 @@ export function AnnouncementsPage() {
       </div>
 
       <div style={{ display: "grid", gap: 10, marginTop: 12 }}>
-        {filtered.length === 0 ? (
+        {sorted.length === 0 ? (
           <div className="card">
             <p className="muted" style={{ margin: 0 }}>
               无数据
             </p>
           </div>
         ) : (
-          filtered.map((a) => (
+          sorted.map((a) => (
             <div key={a.id} className="card">
               <div className="row" style={{ justifyContent: "space-between" }}>
                 <div style={{ flex: 1, minWidth: 260 }}>
                   <div className="muted" style={{ fontSize: 12 }}>
-                    {a.id} · {a.status} · {formatTime(a.updatedAt)}
+                    {a.id} · {a.status}
+                    {a.pinned ? " · PINNED" : ""} · {formatTime(a.updatedAt)}
                   </div>
                   <div style={{ fontWeight: 700 }}>{a.title}</div>
                   <div className="muted" style={{ whiteSpace: "pre-wrap" }}>
-                    {a.body}
+                    {a.body.length > 120 ? `${a.body.slice(0, 120)}…` : a.body}
                   </div>
                 </div>
                 <div className="row" style={{ alignItems: "flex-start" }}>
+                  <Link className="btn" to={`/cms/${a.id}`}>
+                    详情
+                  </Link>
                   <button
                     className="btn"
                     onClick={() => {
@@ -89,6 +100,9 @@ export function AnnouncementsPage() {
                     }}
                   >
                     编辑
+                  </button>
+                  <button className="btn" onClick={() => actions.togglePinned(a.id)}>
+                    {a.pinned ? "取消置顶" : "置顶"}
                   </button>
                   {a.status === "DRAFT" ? (
                     <button
