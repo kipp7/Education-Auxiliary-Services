@@ -137,3 +137,12 @@
 变更点：
 - parse-pdf 支持 --out（UTF-8 写文件），避免 PowerShell 重定向编码问题
 - 修正 pdf 解析错误项的 filePath 指向源 PDF（不再指向临时 txt 路径）
+
+--- 2026-01-21 ---
+分支：feat/03-importer-hash-w03-v1
+验收：
+- node modules/03-importer/tools/hash-import.mjs --root modules/03-importer/samples/import-local/basic_src --out modules/03-importer/output/import-local.basic.hash.json
+- 查看 modules/03-importer/output/import-local.basic.hash.json
+变更点：
+- 新增 hash-import 工具：对导入文件夹计算稳定 SHA256（用于后续幂等/去重策略的 key 生成）
+- 提供 import-local.basic.hash.json 样例输出
