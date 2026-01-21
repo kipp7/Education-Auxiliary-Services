@@ -119,20 +119,20 @@ function Try-ExtractMrInfoFromModuleLog {
   $text = @($LogText) -join "`n"
   $lines = @($text -split "`r?`n")
 
-  # Try to find the last "分支：" line from bottom.
+  # Try to find the last "分支：" / "branch:" line from bottom.
   for ($i = $lines.Count - 1; $i -ge 0; $i--) {
     $line = $lines[$i].Trim()
-    if ($line -match '^(分支|branch)\s*[:：]\s*(feat\/\S+)') {
-      $result.Branch = $Matches[2]
+    if ($line -match '^\s*(?:branch|\u5206\u652F)\s*[:：]\s*(feat\/\S+)') {
+      $result.Branch = $Matches[1]
       $result.HasMrBlock = $true
       break
     }
   }
 
-  # Try to find the last "验收" block from bottom (capture up to 12 lines).
+  # Try to find the last "验收" / "acceptance" block from bottom (capture up to 12 lines).
   for ($i = $lines.Count - 1; $i -ge 0; $i--) {
     $line = $lines[$i].Trim()
-    if ($line -match '^(验收方式|验收)\s*[:：]') {
+    if ($line -match '^\s*(?:acceptance|\u9A8C\u6536\u65B9\u5F0F|\u9A8C\u6536)\s*[:：]') {
       $block = @()
       for ($j = $i; $j -lt [Math]::Min($i + 12, $lines.Count); $j++) {
         $t = $lines[$j].TrimEnd()
