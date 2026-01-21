@@ -75,6 +75,13 @@ git checkout -b feat/02-backend-core-mvp
   - `modules/02-backend-core/logs/m9-evidence.txt`
   - `modules/02-backend-core/scripts/gen-evidence-m9.ps1`
 
+### M12：CORS 支持 DELETE（/favorites）
+> 目标：修正 `Access-Control-Allow-Methods`，使浏览器可对 `/favorites` 发起 DELETE 请求（含预检 OPTIONS）。
+- 输出：服务实现 + 证据文件
+  - `modules/02-backend-core/src/server.js`
+  - `modules/02-backend-core/logs/m12-evidence.txt`
+  - `modules/02-backend-core/scripts/gen-evidence-m12.ps1`
+
 ## 3. 输出与汇报
 每完成一个里程碑才提交/推送，并在 `modules/02-backend-core/CONVERSATION_LOG.txt` 记录验收方式（curl 示例）。
 
