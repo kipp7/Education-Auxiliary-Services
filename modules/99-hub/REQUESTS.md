@@ -17,6 +17,7 @@
 
 ## 合并队列（总控窗口执行）
 > 规则：所有窗口只 push 自己的 `feat/*` 分支；总控窗口按优先级合并进 `main`。
+
 - [ ] `feat/99-hub-autoenqueue-from-module-logs` → 99-hub：daemon 自动从各模块日志入队（A 流程零转发）
 - [x] `feat/99-hub-m1m2-checklist-mcp` → 99-hub：M1/M2 对齐清单 + MCP 小程序验收日志（合并后修复队列可读性）
 - [x] `feat/01-miniapp-mvp-my-login-winE3` → 01-miniapp 我的页：登录本地缓存/展示信息/退出登录（MVP）
@@ -24,21 +25,19 @@
 - [x] `feat/01-miniapp-mvp-exam-winE3` → 01-miniapp MVP 答题闭环（验收见下方【合并请求】段落）
 
 - [x] `feat/04-admin-console-autopilot-codex` → 已合并到 `main`（管理台原型 M1–M4）
-
 - [x] `feat/02-backend-core-autopilot-codex` → 02-backend-core Autopilot（M1–M6：OpenAPI 草案 + 可跑的 Mock API + 证据脚本）
 
 ## 当前 UI 决策（锁定）
 - Tab：`首页 / 题库 / 资讯 / 我的`
 - 首页承载：学习入口 + 转化入口 + 运营/商业位（banner/推荐/套餐）
 
-
 ## 合并请求：01-miniapp MVP 答题闭环
-- 发起模块：modules/01-miniapp
-- 目标模块：main
+- 发起模块：`modules/01-miniapp`
+- 目标模块：`main`
 - 分支：`feat/01-miniapp-mvp-exam-winE3`
 - 原因：01-miniapp 窗口仅修改自身模块目录，需 99-hub 代为发起/跟进 MR。
 - 验收方式（建议）：
-  - git fetch origin && git checkout feat/01-miniapp-mvp-exam-winE3
+  - `git fetch origin && git checkout feat/01-miniapp-mvp-exam-winE3`
   - 打开微信开发者工具运行小程序（开发环境）
   - 走通 tabBar：首页 → 题库 → 答题 → 我的，并在“答题”页完成一次练习/提交（如页面提供入口）
   - 检查控制台无阻断性报错（warnings 可记录）
@@ -75,8 +74,8 @@
     - 查看 `modules/03-importer/api/import.openapi.yaml` 包含 `/import/upload` 与 `/import/status`
 
 ## 合并请求：02-backend-core Autopilot（M1–M6）
-- 发起模块：modules/02-backend-core
-- 目标模块：main
+- 发起模块：`modules/02-backend-core`
+- 目标模块：`main`
 - 分支：`feat/02-backend-core-autopilot-codex`
 - 原因：提供可跑通的小程序联调 Mock API（含 /auth/wechat、题库树、作答提交、学习记录、内容/商业化接口、进度/错题/收藏），并输出可复现证据。
 - 验收方式（建议，Windows/PowerShell）：
