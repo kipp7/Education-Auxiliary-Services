@@ -42,3 +42,9 @@
 验收路径：`pages/start/index` → 立即进入 → 首页 `pages/index/index` → 题库 `pages/library/index`（banner+筛选+卡片）→ 课程 `pages/course/index`（banner+卡片）→ 我的 `pages/my/index`（SVIP 权益卡片）。
 证据：`modules/01-miniapp/_evidence/M5/README.md`。
 
+--- 2026-01-21 02:24 ---
+用户：继续。
+助手：按 `TASKS.md` 推进 MVP：考试模式在 Mock 下完整走通（随机抽题 + 倒计时 + 交卷到结果页），并扩充 mock 题目以满足题量抽取；同时在 `USE_MOCK` 下放宽考试入口的登录限制，方便演示。
+验收路径：`pages/start/index` → 立即进入 → 首页点“答题”进入 `pages/exam-menu/index` → 选择任意题库进入 `pages/exam/index` → 作答若干题 → 点击右上角“交卷”确认 → 跳转 `pages/examResult/index` 展示得分/用时/错题入口。
+下一步：如需合并请求记录，请由 99-hub 窗口将分支 `feat/01-miniapp-mvp-exam-winE3` 的 MR 需求写入 `modules/99-hub/REQUESTS.md`（本窗口只改本模块目录）。
+
