@@ -19,8 +19,8 @@ Page({
     checkUser: false,
     canIUseGetUserProfile: false,
     svipBound: false,
-    stageList: homeConfig.stageList || ['初中', '单招'],
-    stage: (homeConfig.stageList && homeConfig.stageList[0]) || '初中',
+    stageList: homeConfig.stageList || [],
+    stage: (homeConfig.stageList && homeConfig.stageList[0]) || '',
     banners: homeConfig.banners || [],
     conversion: homeConfig.conversion || {},
     recommend: { courses: [], banks: [] },
@@ -34,6 +34,9 @@ Page({
   },
 
   onLoad: function() {
+    if (!this.data.stage && Array.isArray(this.data.stageList) && this.data.stageList.length > 0) {
+      this.setData({ stage: this.data.stageList[0] })
+    }
     this.refreshHomeByStage()
     this.refreshToday()
     if (wx.getUserProfile) {
@@ -82,6 +85,20 @@ Page({
     wx.switchTab({ url: '/pages/library/index' })
   },
   goCourse() {
+    wx.switchTab({ url: '/pages/course/index' })
+  },
+  goContinue() {
+    const lastCourseId = wx.getStorageSync('last_course_id')
+    const lastMenuId = wx.getStorageSync('last_menu_id')
+    if (lastCourseId) {
+      wx.navigateTo({ url: `/pages/course/player?id=${encodeURIComponent(lastCourseId)}` })
+      return
+    }
+    if (lastMenuId) {
+      wx.navigateTo({ url: `/pages/learn/index?cateid=${encodeURIComponent(lastMenuId)}` })
+      return
+    }
+    wx.showToast({ title: '暂无学习记录', icon: 'none' })
     wx.switchTab({ url: '/pages/course/index' })
   },
   goRecord() {
@@ -184,8 +201,11 @@ Page({
       }
     })
   },
-  goExam(){
+  goExamMenu(){
     wx.navigateTo({ url: '/pages/exam-menu/index' })
+  },
+  goExam() {
+    this.goExamMenu()
   },
 
   onBannerTouchStart() {
