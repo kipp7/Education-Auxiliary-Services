@@ -88,8 +88,9 @@ function Get-QueuedFeatBranches {
     # Accept either:
     # - - [ ] `feat/...`
     # - - [x] feat/...
-    if ($l -match '^\-\s+\[[ x]\]\s+`(feat\/[^`]+)`') { $branches.Add($Matches[1]) | Out-Null; continue }
-    if ($l -match '^\-\s+\[[ x]\]\s+(feat\/\S+)') { $branches.Add($Matches[1]) | Out-Null; continue }
+    # - - [!] feat/... (blocked)
+    if ($l -match '^\-\s+\[[ x!]\]\s+`(feat\/[^`]+)`') { $branches.Add($Matches[1]) | Out-Null; continue }
+    if ($l -match '^\-\s+\[[ x!]\]\s+(feat\/\S+)') { $branches.Add($Matches[1]) | Out-Null; continue }
   }
   return @($branches)
 }
