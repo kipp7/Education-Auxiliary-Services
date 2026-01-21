@@ -17,6 +17,7 @@
 
 ## 合并队列（总控窗口执行）
 > 规则：所有窗口只 push 自己的 `feat/*` 分支；总控窗口按优先级合并进 `main`。
+- [ ] `feat/99-hub-m1m2-checklist-mcp` → 99-hub：M1/M2 对齐清单 + MCP 小程序验收日志（合并后修复队列可读性）
 - [x] `feat/01-miniapp-mvp-my-login-winE3` → 01-miniapp 我的页：登录本地缓存/展示信息/退出登录（MVP）
 - [ ] `feat/03-importer-mvp-w03` → 03-importer：目录层级解析 + OpenAPI + docx/pdf 解析（MVP w03）
 - [x] `feat/01-miniapp-mvp-exam-winE3` → 01-miniapp MVP 答题闭环（验收见下方【合并请求】段落）
