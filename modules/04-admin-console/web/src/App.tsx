@@ -17,6 +17,7 @@ import { HomeSlotsPage } from "./homeSlots/HomeSlotsPage";
 import { OrderDetailPage } from "./orders/OrderDetailPage";
 import { OrdersPage } from "./orders/OrdersPage";
 import { BannersPage } from "./banners/BannersPage";
+import { CoursesPage } from "./courses/CoursesPage";
 
 export function App() {
   return (
@@ -139,6 +140,14 @@ export function App() {
         element={
           <RequireAuth>
             <BannersPage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/courses"
+        element={
+          <RequireAuth>
+            <CoursesPage />
           </RequireAuth>
         }
       />
