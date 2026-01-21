@@ -41,6 +41,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         "plan:write",
         "home:read",
         "home:write",
+        "question:read",
+        "question:write",
       ],
     };
 

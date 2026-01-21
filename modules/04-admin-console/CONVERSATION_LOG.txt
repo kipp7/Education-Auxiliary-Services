@@ -116,3 +116,14 @@
 变更点：
 - 新增 /home-slots 首页运营位配置页（banner + 推荐位，占位 localStorage + JSON 导出）。
 - 首页增加入口，并补齐 dev 登录默认权限 home:read/home:write。
+--- 2026-01-21 ---
+分支：feat/04-admin-console-question-items-v1
+验收：
+- cd modules/04-admin-console/web
+- npm install
+- npm run dev
+- 打开 http://localhost:5174 → 开发登录 → 点击“试题管理（占位）”
+- 支持按学段/科目/单元/题型筛选；导出 CSV；选择 CSV 文件批量导入（占位 localStorage）
+变更点：
+- 新增 /question-items 试题管理页（按学段/科目/单元/题型归档 + CSV 批量导入/导出，占位 localStorage）。
+- 首页增加入口，并补齐 dev 登录默认权限 question:read/question:write。
