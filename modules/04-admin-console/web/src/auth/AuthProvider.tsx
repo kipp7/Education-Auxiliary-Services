@@ -41,6 +41,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         "plan:write",
         "home:read",
         "home:write",
+        "banner:read",
+        "banner:write",
         "order:read",
         "order:write",
       ],

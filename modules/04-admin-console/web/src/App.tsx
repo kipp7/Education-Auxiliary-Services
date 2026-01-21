@@ -16,6 +16,7 @@ import { PlansPage } from "./plans/PlansPage";
 import { HomeSlotsPage } from "./homeSlots/HomeSlotsPage";
 import { OrderDetailPage } from "./orders/OrderDetailPage";
 import { OrdersPage } from "./orders/OrdersPage";
+import { BannersPage } from "./banners/BannersPage";
 
 export function App() {
   return (
@@ -130,6 +131,14 @@ export function App() {
         element={
           <RequireAuth>
             <OrderDetailPage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/banners"
+        element={
+          <RequireAuth>
+            <BannersPage />
           </RequireAuth>
         }
       />
