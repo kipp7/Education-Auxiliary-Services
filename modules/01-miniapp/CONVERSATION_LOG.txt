@@ -109,6 +109,15 @@
 变更点：
 - 将 `miniprogram/mock/library-config.json` 改为 `miniprogram/mock/library-config.js`（`module.exports`），避免 require JSON 在 3.12.1 下报 “module ... is not defined”
 - 移除/替换指向不存在页面的 banner 跳转（原 `/pages/news/index` 改为 toast 占位）
+
+--- 2026-01-21 ---
+分支：feat/01-miniapp-home-ui-commercial-winE3-v1
+验收：
+- `pages/start/index` → 立即进入 → `pages/index/index`（首页）
+- 首页可见：顶部 banner 轮播、学段切换（初中/单招）、转化卡（未绑定显示“绑定SVIP/付费开通”，已绑定显示状态）、推荐课程/题库列表；点击 banner/推荐项可跳转到题库/课程/考试菜单/SVIP 绑定
+变更点：
+- 首页 UI 补齐“商业位骨架”（banner/学段/转化/推荐），配置改为本地 `miniprogram/mock/home-config.js` 驱动（避免 JSON require 兼容问题）
+- 修正首页“答题”入口从 `switchTab` 改为 `navigateTo /pages/exam-menu/index`
 --- 2026-01-21 ---
 分支：feat/01-miniapp-course-paywall-gating-winE3
 验收：
