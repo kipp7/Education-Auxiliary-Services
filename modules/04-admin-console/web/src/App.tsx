@@ -9,6 +9,7 @@ import { ImportsListPage } from "./imports/ImportsListPage";
 import { AnnouncementsPage } from "./cms/AnnouncementsPage";
 import { SvipCodesPage } from "./svip/SvipCodesPage";
 import { DashboardPage } from "./dashboard/DashboardPage";
+import { BannersPage } from "./banners/BannersPage";
 
 export function App() {
   return (
@@ -67,6 +68,14 @@ export function App() {
         element={
           <RequireAuth>
             <SvipCodesPage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/banners"
+        element={
+          <RequireAuth>
+            <BannersPage />
           </RequireAuth>
         }
       />
