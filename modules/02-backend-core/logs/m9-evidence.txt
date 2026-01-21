@@ -1,0 +1,33 @@
+﻿# M9 evidence
+GeneratedAt=2026-01-21 19:57:20
+PORT=3391
+
+$ curl http://localhost:3391/health
+HTTP/1.1 200 OK
+X-Request-Id: req-1768996641308-d77522eb
+Content-Type: application/json; charset=utf-8
+Content-Length: 11
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Content-Type, Authorization
+Access-Control-Allow-Methods: GET,POST,OPTIONS
+Date: Wed, 21 Jan 2026 11:57:21 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+exit=0
+
+$ invalid json -> /billing/order (should be 400 + requestId)
+HTTP/1.1 400 Bad Request
+X-Request-Id: req-1768996641344-1892e6f3
+Content-Type: application/json; charset=utf-8
+Content-Length: 93
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Content-Type, Authorization
+Access-Control-Allow-Methods: GET,POST,OPTIONS
+Date: Wed, 21 Jan 2026 11:57:21 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"code":"INVALID_ARGUMENT","message":"Invalid JSON","requestId":"req-1768996641344-1892e6f3"}
+exit=0
+
+OK
