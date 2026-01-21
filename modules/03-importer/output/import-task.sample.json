@@ -1,0 +1,15 @@
+{
+  "id": "local-sample",
+  "status": "done",
+  "progress": 100,
+  "stage": "local-import",
+  "createdAt": "2026-01-21T00:00:00.000Z",
+  "updatedAt": "2026-01-21T00:00:00.000Z",
+  "result": {
+    "parsedCount": 3,
+    "importedCount": 0,
+    "skippedCount": 0,
+    "errorCount": 0
+  },
+  "errors": []
+}
