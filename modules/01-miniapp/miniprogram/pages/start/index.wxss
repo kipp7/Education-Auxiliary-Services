@@ -1,9 +1,5 @@
 /** pages/start/index.wxss **/
 
-page {
-  height: 100%;
-}
-
 .container {
   position: relative;
   height: 100%;

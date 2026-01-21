@@ -228,3 +228,13 @@
 变更点：
 - 我的页 wxss 去除 tag selector（`button`/`input`），改用 `.plain-btn/.action-btn` class 以兼容基础库校验
 
+--- 2026-01-21 ---
+分支：feat/01-miniapp-M5-visual-unify-winE3-v1
+验收：
+- `pages/start/index` 点击“立即进入”到首页；再进入题库/课程/我的
+- 题库/课程/我的页面背景与卡片阴影风格与首页一致（统一浅灰底 + 卡片投影）
+- 微信开发者工具不再针对 start/题库/课程/我的页面的 wxss 报 `page` tag selector 相关告警（已移除核心路径页面的 `page {}`）
+变更点：
+- 核心路径页面（start/题库/课程/我的）补齐 `min-height: 100vh` 与统一背景色
+- 题库/课程卡片补齐统一投影，提升整体视觉一致性
+
