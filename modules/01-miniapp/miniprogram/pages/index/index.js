@@ -1,6 +1,6 @@
 //index.js
 const { APP_NAME } = require('../../config/index')
-const homeConfig = require('../../mock/home-config.js')
+const homeConfig = require('./home-config.js')
 
 Page({
   data: {
