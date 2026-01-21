@@ -1,5 +1,6 @@
 // pages/exam-menu/index.js
 const { APP_NAME } = require('../../config/index')
+const config = require('../../config/index')
 
 Page({
   data: {
@@ -25,7 +26,7 @@ Page({
 
   goquestion(e) {
     const userInfo = wx.getStorageSync('userInfo') || {}
-    if (userInfo.avatarUrl == undefined || userInfo.avatarUrl == '') {
+    if (!config.USE_MOCK && (userInfo.avatarUrl == undefined || userInfo.avatarUrl == '')) {
       wx.showToast({ title: '请先登录', icon: 'none' })
       wx.switchTab({ url: '/pages/my/index' })
       return
