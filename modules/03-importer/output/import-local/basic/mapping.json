@@ -1,0 +1,12 @@
+[
+  {
+    "physical": "bank/english/grade7/reading/q2.txt",
+    "logical": "bank/english/grade7/reading/q2.txt",
+    "categoryPath": "bank/english/grade7/reading"
+  },
+  {
+    "physical": "bank/math/grade1/q1.txt",
+    "logical": "bank/math/grade1/q1.txt",
+    "categoryPath": "bank/math/grade1"
+  }
+]

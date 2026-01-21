@@ -73,3 +73,13 @@
 变更点：
 - parse-txt 支持 --out，避免 PowerShell 重定向导致的编码/JSON 损坏
 - 新增 preview-ir 工具：从已解析 IR 预览前 N 道题并支持 --out
+
+--- 2026-01-21 ---
+分支：feat/03-importer-import-local-w03-v1
+验收：
+- pwsh -NoProfile -File modules/03-importer/tools/import-local.ps1 modules/03-importer/samples/import-local/basic.zip -OutDir modules/03-importer/output/import-local/basic -CategoryPrefix "示例题库"
+- 查看 modules/03-importer/output/import-local/basic/import-task.json
+- 查看 modules/03-importer/output/import-local/basic/questions.json
+变更点：
+- 新增本地导入串联工具 import-local：zip 解包→（根目录折叠）→按目录生成 categoryPath→复用 txt parser→产出 import-task+questions+mapping
+- 提供可复现样例 zip 与输出（samples/import-local + output/import-local）
