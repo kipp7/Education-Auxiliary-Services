@@ -15,6 +15,7 @@
   - [x] `POST /import/upload`（zip 或多文件）
   - [x] `GET /import/status?id=...`
 - [x] 目录层级解析：把 folder path 解析为分类树节点（实现见 `modules/03-importer/tools/parse-hierarchy.mjs`，样例见 `modules/03-importer/samples/hierarchy/file-list.txt`，输出见 `modules/03-importer/output/hierarchy.json`）
+- [x] zip 解包与遍历（本地工具见 `modules/03-importer/tools/unpack-zip.ps1`；样例见 `modules/03-importer/samples/zip/basic.zip`）
 - [x] 题目解析接口：先定义输入/输出中间格式（IR），再实现具体 parser（见 modules/03-importer/ir/question-ir.schema.json）
 
 ## 2. Parser 插件化（按优先级）

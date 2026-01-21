@@ -1,0 +1,42 @@
+{
+  "tree": [
+    {
+      "name": "english",
+      "path": "english",
+      "children": [
+        {
+          "name": "grade7",
+          "path": "english/grade7",
+          "children": [
+            {
+              "name": "reading",
+              "path": "english/grade7/reading",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "math",
+      "path": "math",
+      "children": [
+        {
+          "name": "grade1",
+          "path": "math/grade1",
+          "children": []
+        }
+      ]
+    }
+  ],
+  "fileToCategory": [
+    {
+      "file": "english/grade7/reading/q2.txt",
+      "categoryPath": "english/grade7/reading"
+    },
+    {
+      "file": "math/grade1/q1.txt",
+      "categoryPath": "math/grade1"
+    }
+  ]
+}
