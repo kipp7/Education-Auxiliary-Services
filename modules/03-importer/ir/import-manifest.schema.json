@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "03-importer/import-manifest.schema.json",
+  "title": "Import Manifest v0",
+  "type": "object",
+  "required": ["schema", "createdAt", "root", "importHash", "fileCount", "files"],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "03-importer/import-manifest.v0"
+    },
+    "createdAt": { "type": "string" },
+    "source": { "type": "string" },
+    "root": { "type": "string", "minLength": 1 },
+    "importHash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "fileCount": { "type": "integer", "minimum": 0 },
+    "files": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/FileEntry" }
+    }
+  },
+  "$defs": {
+    "FileEntry": {
+      "type": "object",
+      "required": ["path", "sha256", "bytes"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1 },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "bytes": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
