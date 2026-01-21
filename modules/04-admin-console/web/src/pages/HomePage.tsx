@@ -32,6 +32,9 @@ export function HomePage() {
             <Link className="btn" to="/courses">
               课程视频管理（占位）
             </Link>
+            <Link className="btn" to="/questions">
+              试题管理（占位）
+            </Link>
             <Link className="btn" to="/question-bank">
               题库管理（占位）
             </Link>
