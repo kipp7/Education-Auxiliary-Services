@@ -33,6 +33,15 @@
     position: relative;
 }
 
+.meta {
+    margin-top: 8rpx;
+    font-size: 24rpx;
+    text-align: center;
+    z-index: 3;
+    color: rgba(255, 255, 255, 0.9);
+    position: relative;
+}
+
 .city {
     color: #8d8d8d;
     font-size: 30rpx;

@@ -4,7 +4,8 @@
         <image class="topImage" src="https://upload-images.jianshu.io/upload_images/6673460-bc716a04d5f6091c.png"></image>
         <view wx:if="{{userInfo.avatarUrl}}">
           <image class="head" src="{{userInfo.avatarUrl}}"></image>
-          <view class="name">{{userInfo.nickName}}</view>
+          <view class="name">{{userInfo.realname || userInfo.nickName}}</view>
+          <view class="meta" wx:if="{{userInfo.department}}">{{userInfo.department}}</view>
         </view>
         <button hover-class='none' bindtap='login' style='background-color:transparent;' wx:else>
           <view>
