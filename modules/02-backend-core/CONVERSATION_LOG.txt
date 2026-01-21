@@ -138,3 +138,12 @@
 变更点：
 - 新增接口清单文档：API_ENDPOINTS.md（用于联调快速查阅）
 - 汇总各接口鉴权要求与用途
+
+--- 2026-01-21 ---
+分支：feat/02-backend-core-scripts-readme-codex
+验收：
+- 查看：modules/02-backend-core/scripts/README.md
+- （可选）运行任一证据脚本：powershell -ExecutionPolicy Bypass -File modules/02-backend-core/scripts/gen-evidence.ps1
+变更点：
+- 新增 scripts 使用说明：scripts/README.md
+- 统一说明证据脚本命名与输出目录约定
