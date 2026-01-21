@@ -48,3 +48,9 @@
 验收路径：`pages/start/index` → 立即进入 → 首页点“答题”进入 `pages/exam-menu/index` → 选择任意题库进入 `pages/exam/index` → 作答若干题 → 点击右上角“交卷”确认 → 跳转 `pages/examResult/index` 展示得分/用时/错题入口。
 下一步：如需合并请求记录，请由 99-hub 窗口将分支 `feat/01-miniapp-mvp-exam-winE3` 的 MR 需求写入 `modules/99-hub/REQUESTS.md`（本窗口只改本模块目录）。
 
+--- 2026-01-21 03:32 ---
+用户：继续。
+助手：按 `TASKS.md` 推进 MVP：我的页授权登录保持本地（Mock）存储并展示基础信息；补充“退出登录（清空本地 userInfo）”入口；启动页在 `USE_MOCK` 下不再强行调用 `wx.getUserInfo`，直接读取本地缓存并提供默认头像，避免未授权时报错。
+验收路径：`pages/start/index` → 立即进入 → 底部“我的” `pages/my/index` → 点击“点击登录”弹出授权层 → “立即登录”完成后显示头像/昵称（及 department 如有）→ 点击列表“退出登录”确认清空本地 userInfo，页面恢复未登录态。
+下一步：如需合并请求记录，请由 99-hub 窗口将分支 `feat/01-miniapp-mvp-my-login-winE3` 的 MR 需求写入 `modules/99-hub/REQUESTS.md`（本窗口只改本模块目录）。
+

@@ -24,6 +24,10 @@ const cellList = [
     title: 'SVIP码绑定',
     page: '../svip/bind/index',
   },
+  {
+    icon: '/images/icon_center_msg.png',
+    title: '退出登录',
+  },
 ]
 
 Page({
@@ -86,6 +90,9 @@ Page({
           url: '../svip/bind/index',
         })
         break
+      case 5:
+        this.logout()
+        break
     }
   },
 
@@ -106,6 +113,24 @@ Page({
   login() {
     this.setData({
       is_login: !this.data.is_login,
+    })
+  },
+
+  logout() {
+    wx.showModal({
+      title: '退出登录',
+      content: '将清空本地 userInfo（Mock）。',
+      confirmText: '退出',
+      cancelText: '取消',
+      success: (res) => {
+        if (!res.confirm) return
+        wx.removeStorageSync('userInfo')
+        this.setData({
+          userInfo: {},
+          is_login: true,
+        })
+        wx.showToast({ title: '已退出', icon: 'none' })
+      },
     })
   },
 
