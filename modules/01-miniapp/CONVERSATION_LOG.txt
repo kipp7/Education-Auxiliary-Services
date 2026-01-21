@@ -148,6 +148,13 @@
 - `pages/index/index` 首页 banner 文案不被指示器圆点遮挡（底部留白足够）
 变更点：
 - 调整 banner 标题与 swiper dots 的底部间距（提升标题位置 + 增加渐变遮罩高度）
+
+--- 2026-01-21 ---
+分支：feat/01-miniapp-home-banner-dots-toggle-winE3-v5
+验收：
+- `pages/index/index` banner 默认不显示指示器圆点；手指触摸/滑动 banner 时短暂显示圆点，松手后自动隐藏
+变更点：
+- banner 的 `indicator-dots` 改为交互触发显示（避免遮挡文案）
 --- 2026-01-21 ---
 分支：feat/01-miniapp-course-paywall-gating-winE3
 验收：
