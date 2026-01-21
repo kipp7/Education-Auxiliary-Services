@@ -228,6 +228,19 @@ const server = http.createServer(async (req, res) => {
       ]);
     }
 
+    if (req.method === "POST" && path === "/billing/order") {
+      const body = (await readJson(req)) || {};
+      if (typeof body.planId !== "string" || body.planId.length === 0) {
+        return error(res, 400, "INVALID_ARGUMENT", "Missing planId");
+      }
+      return json(res, 200, {
+        orderId: `ord-${Date.now()}`,
+        planId: body.planId,
+        status: "CREATED",
+        payUrl: null
+      });
+    }
+
     return error(res, 404, "NOT_FOUND", "Not found");
   } catch (e) {
     return error(res, 500, "INTERNAL", e instanceof Error ? e.message : "Internal error");

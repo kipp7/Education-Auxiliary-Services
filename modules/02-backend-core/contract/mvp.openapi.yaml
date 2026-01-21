@@ -329,6 +329,28 @@ components:
         priceCents: { type: integer, minimum: 0 }
         currency: { type: string }
 
+    BillingOrderCreateRequest:
+      type: object
+      additionalProperties: false
+      required: [planId]
+      properties:
+        planId: { type: string }
+
+    BillingOrderCreateResponse:
+      type: object
+      additionalProperties: false
+      required: [orderId, planId, status]
+      properties:
+        orderId: { type: string }
+        planId: { type: string }
+        status:
+          type: string
+          description: 订单状态（草案枚举）
+          examples: [CREATED, PAID, CANCELED]
+        payUrl:
+          type: string
+          nullable: true
+
     StudyRecordUpsertRequest:
       type: object
       additionalProperties: false
@@ -838,6 +860,30 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/BillingPlan"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /billing/order:
+    post:
+      tags: [billing]
+      summary: 创建订单（草案）
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BillingOrderCreateRequest"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BillingOrderCreateResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
 

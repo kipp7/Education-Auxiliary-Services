@@ -52,6 +52,14 @@ git checkout -b feat/02-backend-core-mvp
   - `modules/02-backend-core/logs/m6-evidence.txt`
   - `modules/02-backend-core/scripts/gen-evidence-m6.ps1`
 
+### M7：补齐商业化下单接口（mock）
+> 目标：对齐 `TASKS.md` 的商业化 MVP 需求，补齐创建订单接口（先 mock）。
+- 输出：契约更新 + Mock 路由 + 证据文件
+  - `modules/02-backend-core/contract/mvp.openapi.yaml`
+  - `modules/02-backend-core/src/server.js`
+  - `modules/02-backend-core/logs/m7-evidence.txt`
+  - `modules/02-backend-core/scripts/gen-evidence-m7.ps1`
+
 ## 3. 输出与汇报
 每完成一个里程碑才提交/推送，并在 `modules/02-backend-core/CONVERSATION_LOG.txt` 记录验收方式（curl 示例）。
 
