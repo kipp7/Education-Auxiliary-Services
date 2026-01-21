@@ -216,6 +216,68 @@ page {
   color: rgba(255, 255, 255, 0.86);
 }
 
+.today {
+  margin: 0 0 22rpx;
+  padding: 18rpx 18rpx 16rpx;
+  border-radius: 22rpx;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 10rpx 24rpx rgba(0, 0, 0, 0.06);
+}
+
+.today-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.today-title {
+  font-size: 28rpx;
+  font-weight: 800;
+  color: rgba(0, 0, 0, 0.82);
+}
+
+.today-meta {
+  font-size: 24rpx;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.today-bar {
+  height: 14rpx;
+  border-radius: 999rpx;
+  background: rgba(27, 208, 173, 0.12);
+  overflow: hidden;
+  margin-top: 14rpx;
+}
+
+.today-bar-inner {
+  height: 100%;
+  border-radius: 999rpx;
+  background: linear-gradient(90deg, #1bd0ad 0%, #19c0ff 100%);
+}
+
+.today-foot {
+  margin-top: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12rpx;
+}
+
+.today-tip {
+  font-size: 24rpx;
+  color: rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.today-cta {
+  font-size: 24rpx;
+  font-weight: 700;
+  color: rgba(27, 208, 173, 0.95);
+}
+
 .section-title {
   margin: 16rpx 0 18rpx;
   font-size: 28rpx;
@@ -381,6 +443,50 @@ page {
   margin-top: 8rpx;
   font-size: 24rpx;
   color: rgba(0, 0, 0, 0.55);
+}
+
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14rpx;
+}
+
+.news-item {
+  background: #ffffff;
+  border-radius: 22rpx;
+  padding: 18rpx 18rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14rpx;
+  box-shadow: 0 10rpx 24rpx rgba(0, 0, 0, 0.06);
+}
+
+.news-item:active {
+  opacity: 0.92;
+}
+
+.news-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.news-title {
+  font-size: 28rpx;
+  font-weight: 800;
+  color: rgba(0, 0, 0, 0.85);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.news-desc {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 button::after {

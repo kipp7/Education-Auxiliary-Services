@@ -2,6 +2,14 @@
 const { APP_NAME } = require('../../config/index')
 const homeConfig = require('./home-config.js')
 
+function clampNumber(value, min, max) {
+  const n = Number(value)
+  if (Number.isNaN(n)) return min
+  if (n < min) return min
+  if (n > max) return max
+  return n
+}
+
 Page({
   data: {
     appName: APP_NAME,
@@ -17,18 +25,17 @@ Page({
     conversion: homeConfig.conversion || {},
     recommend: { courses: [], banks: [] },
     showBannerDots: false,
-    stageList: homeConfig.stageList || ['初中', '单招'],
-    stage: (homeConfig.stageList && homeConfig.stageList[0]) || '初中',
+    today: {
+      targetMinutes: 45,
+      learnedMinutes: 12,
+      percent: 0,
+    },
+    newsList: homeConfig.news || [],
   },
 
   onLoad: function() {
-    this.setData(
-      {
-        stageList: homeConfig.stageList || [],
-        stage: (homeConfig.stageList && homeConfig.stageList[0]) || '',
-      },
-      () => this.refreshHomeByStage(),
-    )
+    this.refreshHomeByStage()
+    this.refreshToday()
     if (wx.getUserProfile) {
       this.setData({
         canIUseGetUserProfile: true
@@ -58,6 +65,7 @@ Page({
       userInfo: wx.getStorageSync('userInfo'),
       svipBound: !!wx.getStorageSync('svip_bound'),
     })
+    this.refreshToday()
   },
   gocenter() {
     wx.navigateTo({
@@ -76,6 +84,12 @@ Page({
   goCourse() {
     wx.switchTab({ url: '/pages/course/index' })
   },
+  goRecord() {
+    wx.navigateTo({ url: '/pages/record/index' })
+  },
+  goFavorite() {
+    wx.navigateTo({ url: '/pages/errorStar/index' })
+  },
   switchStage(e) {
     const stage = e.currentTarget.dataset.stage
     if (!stage) return
@@ -87,6 +101,18 @@ Page({
     const map = homeConfig.recommendByStage || {}
     const payload = map[stage] || { courses: [], banks: [] }
     this.setData({ recommend: payload })
+  },
+  refreshToday() {
+    const targetMinutes = clampNumber(wx.getStorageSync('today_target_min') || 45, 10, 240)
+    const learnedMinutes = clampNumber(wx.getStorageSync('today_learned_min') || 12, 0, targetMinutes)
+    const percent = targetMinutes > 0 ? Math.round((learnedMinutes / targetMinutes) * 100) : 0
+    this.setData({
+      today: {
+        targetMinutes,
+        learnedMinutes,
+        percent,
+      },
+    })
   },
   handleAction(e) {
     const action = e.currentTarget.dataset.action
