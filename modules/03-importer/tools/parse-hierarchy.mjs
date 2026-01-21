@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 function usage() {
-  console.error('Usage: node modules/03-importer/tools/parse-hierarchy.mjs <fileList.txt>');
+  console.error('Usage: node modules/03-importer/tools/parse-hierarchy.mjs <fileList.txt> [--out <jsonFile>]');
   process.exit(2);
 }
 
@@ -91,9 +91,28 @@ function buildTree(filePaths) {
 const args = process.argv.slice(2);
 if (args.length < 1) usage();
 
-const listFile = path.resolve(process.cwd(), args[0]);
+let listArg = null;
+let outFile = '';
+for (let i = 0; i < args.length; i++) {
+  const a = args[i];
+  if (a === '--out') {
+    outFile = args[i + 1] || '';
+    i++;
+    continue;
+  }
+  if (!listArg) listArg = a;
+}
+if (!listArg) usage();
+
+const listFile = path.resolve(process.cwd(), listArg);
 const raw = fs.readFileSync(listFile, 'utf8');
 const filePaths = raw.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
 
 const result = buildTree(filePaths);
-process.stdout.write(JSON.stringify(result, null, 2));
+const json = JSON.stringify(result, null, 2);
+if (outFile) {
+  const outAbs = path.resolve(process.cwd(), outFile);
+  fs.writeFileSync(outAbs, json, 'utf8');
+} else {
+  process.stdout.write(json);
+}

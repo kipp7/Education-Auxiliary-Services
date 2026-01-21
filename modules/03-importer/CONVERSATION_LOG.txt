@@ -109,3 +109,12 @@
 变更点：
 - 新增导入任务校验工具 validate-import-task：校验 Import Task JSON（状态/进度/统计/错误项）
 - 补充 import-task.sample.json 与校验输出样例，便于对齐 schema 与联调
+
+--- 2026-01-21 ---
+分支：feat/03-importer-hierarchy-out-w03-v1
+验收：
+- node modules/03-importer/tools/parse-hierarchy.mjs modules/03-importer/samples/hierarchy/file-list.txt --out modules/03-importer/output/hierarchy.json
+- 查看 modules/03-importer/output/hierarchy.json
+变更点：
+- parse-hierarchy 支持 --out，避免 PowerShell 重定向导致的编码问题
+- 重新生成 hierarchy.json 样例输出（UTF-8，可正确显示中文）
