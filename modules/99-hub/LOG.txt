@@ -11,3 +11,16 @@
 - 覆盖路径（switchTab）：首页 `/pages/index/index` → 题库 `/pages/library/index` → 课程 `/pages/course/index` → 我的 `/pages/my/index`
 - “我的”页：`page_getData` 可读到 `cellList` 含“退出登录”，`userInfo.nickName`/`avatarUrl`（Mock）正常
 - 已触发“退出登录”点击；因 `wx.showModal` 确认框交互与 `mp_screenshot` 工具超时，未自动完成“确认退出/落截图”
+
+--- 2026-01-21 ---
+分支：`feat/99-hub-autoenqueue-from-module-logs`
+
+变更点：
+- `modules/99-hub/merge_queue_daemon.ps1` 新增 `-AutoEnqueueFromModuleLogs`：自动从各模块 `CONVERSATION_LOG.txt` 抽取 MR 信息并入队（通过生成 `feat/99-hub-request-autoenqueue-*` request 分支）。
+- `modules/99-hub/merge_queue_daemon.ps1` 新增 `-RunOnce`：只跑一轮便退出，便于手动触发/排查。
+- `modules/99-hub/merge_queue_daemon.ps1` 增强安全：工作区不干净时跳过运行 `merge_queue.ps1`，避免冲突（`UU`）。
+
+使用方式：
+- 先确保在总控主仓 `E:\学校\02 项目\98 其他小项目\02_YL\`，且 `git status --porcelain` 无输出。
+- 守护进程：`pwsh modules/99-hub/merge_queue_daemon.ps1 -ForceFetch -AutoMergeQueueUpdates -AutoEnqueueFromModuleLogs -IntervalSeconds 120`
+- 单次触发：`pwsh modules/99-hub/merge_queue_daemon.ps1 -RunOnce -ForceFetch -AutoMergeQueueUpdates -AutoEnqueueFromModuleLogs`

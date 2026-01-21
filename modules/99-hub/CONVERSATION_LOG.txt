@@ -40,3 +40,14 @@
 下一步：
 - 补充“题库→章节/单元→做题页”的可复现跳转参数（由 01-miniapp 给出入口/必填 query），以便在 MCP 验收中覆盖做题闭环。
 
+--- 2026-01-21（自动入队 A 流程）---
+同步来源（模块/分支）：99-hub / merge_queue_daemon.ps1
+本次关键变化：
+- 新增 daemon 功能：`-AutoEnqueueFromModuleLogs` 自动扫描 `origin/feat/<模块>-*` 分支，并从 `modules/<模块>/CONVERSATION_LOG.txt` 抽取分支/验收信息，生成“只改 REQUESTS.md”的 request 分支入队。
+- 新增 `-RunOnce`：方便手动触发一次循环，避免开多个 daemon 导致冲突。
+- 安全措施：仓库工作区不干净时跳过自动入队/合并队列执行，避免出现 `UU` 冲突状态。
+风险/阻塞：
+- 为实现“零转发”，各模块需在自己的分支里把 MR 信息追加到 `modules/<模块>/CONVERSATION_LOG.txt`（至少包含“分支：feat/...”，“验收：...”）。
+下一步：
+- 总控运行建议：在 `E:\学校\02 项目\98 其他小项目\02_YL\` 执行 daemon，确保 `git status --porcelain` 无输出。
+
