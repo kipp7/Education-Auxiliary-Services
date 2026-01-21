@@ -53,7 +53,19 @@ function Parse-Queue([string[]]$Lines) {
   $items = @()
   for ($i = 0; $i -lt $Lines.Count; $i++) {
     $line = $Lines[$i]
-    if ($line -match '^\-\s+\[\s\]\s+`([^`]+)`') {
+    # Accept either:
+    # - - [ ] `feat/...`
+    # - - [ ] feat/...
+    if ($line -match '^\-\s+\[\s\]\s+`(feat\/[^`]+)`') {
+      $branch = $Matches[1]
+      $items += [pscustomobject]@{
+        Index = $i
+        RawLine = $line
+        Branch = (Normalize-Branch $branch)
+      }
+      continue
+    }
+    if ($line -match '^\-\s+\[\s\]\s+(feat\/\S+)') {
       $branch = $Matches[1]
       $items += [pscustomobject]@{
         Index = $i

@@ -18,10 +18,38 @@ function Write-Log([string]$Message) {
 }
 
 function Has-PendingQueueItems {
-  if (-not (Test-Path $QueueFile)) { return $false }
-  $lines = Get-Content -Path $QueueFile -Encoding UTF8
+  # Prefer reading queue from remote main (if fetch enabled) so the daemon can
+  # see newly-enqueued items even when the local working tree isn't updated.
+  $lines = @()
+
+  if ($ForceFetch -and (-not $DryRun)) {
+    try {
+      git fetch --all --prune | Out-Null
+    } catch {
+      # Ignore fetch errors; fall back to local file.
+    }
+  }
+
+  try {
+    $remoteQueue = git show "$Remote/$MainBranch`:$QueueFile" 2>$null
+    if ($LASTEXITCODE -eq 0 -and $remoteQueue) {
+      $lines = @($remoteQueue -split "`r?`n")
+    }
+  } catch {
+    # ignore and fall back
+  }
+
+  if ($lines.Count -eq 0) {
+    if (-not (Test-Path $QueueFile)) { return $false }
+    $lines = Get-Content -Path $QueueFile -Encoding UTF8
+  }
+
   foreach ($l in $lines) {
-    if ($l -match '^\-\s+\[\s\]\s+`([^`]+)`') { return $true }
+    # Accept either:
+    # - - [ ] `feat/...`
+    # - - [ ] feat/...
+    if ($l -match '^\-\s+\[\s\]\s+`(feat\/[^`]+)`') { return $true }
+    if ($l -match '^\-\s+\[\s\]\s+(feat\/\S+)') { return $true }
   }
   return $false
 }
@@ -51,4 +79,3 @@ while ($true) {
 
   Start-Sleep -Seconds $IntervalSeconds
 }
-
