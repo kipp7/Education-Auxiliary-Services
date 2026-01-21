@@ -11,10 +11,20 @@
     </view>
   </view>
 
-  <view class="banner" style="margin-top: 16rpx;">
-    <view class="banner-title">题库精选</view>
-    <view class="banner-desc">按年级/科目快速进入单元练习（Mock）</view>
-  </view>
+  <swiper class="swiper" indicator-dots autoplay interval="3200" duration="300" circular style="margin-top:16rpx;">
+    <swiper-item wx:for="{{bannerList}}" wx:key="id">
+      <view
+        class="swiper-item"
+        bindtap="onBannerTap"
+        data-type="{{item.action.type}}"
+        data-url="{{item.action.url}}"
+        data-text="{{item.action.text}}"
+      >
+        <view class="swiper-title">{{item.title}}</view>
+        <view class="swiper-desc">{{item.desc}}</view>
+      </view>
+    </swiper-item>
+  </swiper>
 
   <view class="block" wx:if="{{stage === '初中'}}">
     <view class="block-title">初中</view>

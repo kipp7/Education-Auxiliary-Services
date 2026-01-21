@@ -59,3 +59,18 @@
 助手：已知悉该流程要求；本窗口遵守“只改本模块目录”约束，无法直接修改 `modules/99-hub/REQUESTS.md`，将统一由 99-hub 窗口代写对应的 request 分支。
 下一步：请 99-hub 为以下分支分别补一行 request（含验收方式）：`feat/01-miniapp-m7-news-tab-winE3`、`feat/01-miniapp-mvp-wrong-winE3`、`feat/01-miniapp-mvp-star-winE3`、`feat/01-miniapp-mvp-my-login-winE3`。
 
+--- 2026-01-21 03:55 ---
+用户：继续。
+助手：按 `TASKS.md`（2.1 题库页）补齐顶部轮播（Mock 可配置）：题库页新增 swiper（自动/手动切换 + 指示器），并支持点击 banner 进行 `switchTab/navigateTo/toast` 跳转占位。
+验收路径：`pages/start/index` → 立即进入 → 底部题库 `pages/library/index` → 顶部轮播可左右滑动/自动切换，点击三张 banner 分别：提示 toast / 进入 `pages/exam-menu/index` / 切换到 `pages/news/index`。
+下一步：请 99-hub 在 `modules/99-hub/REQUESTS.md` 入队：`feat/01-miniapp-library-swiper-winE3`（验收按上述路径）。
+
+--- 2026-01-21 ---
+分支：feat/01-miniapp-library-swiper-winE3
+验收：
+- `pages/start/index` → 立即进入 → 底部题库 `pages/library/index`
+- 顶部轮播可左右滑动/自动切换；点击三张 banner 分别：toast / `pages/exam-menu/index` / 切换到 `pages/news/index`
+变更点：
+- 题库页新增顶部 swiper 轮播（Mock 数据、指示器、自动/手动切换）
+- banner 点击支持 `switchTab/navigateTo/toast` 跳转占位
+

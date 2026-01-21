@@ -30,6 +30,33 @@ page {
   color: #ffffff;
 }
 
+.swiper {
+  height: 200rpx;
+}
+
+.swiper-item {
+  height: 200rpx;
+  border-radius: 18rpx;
+  padding: 22rpx;
+  background: linear-gradient(135deg, #1bd0ad 0%, #0ea5e9 100%);
+  color: #fff;
+  box-shadow: 0 12rpx 26rpx rgba(27, 208, 173, 0.18);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.swiper-title {
+  font-size: 34rpx;
+  font-weight: 900;
+}
+
+.swiper-desc {
+  margin-top: 10rpx;
+  font-size: 26rpx;
+  opacity: 0.92;
+}
+
 .block {
   margin-top: 16rpx;
   background: #fff;
