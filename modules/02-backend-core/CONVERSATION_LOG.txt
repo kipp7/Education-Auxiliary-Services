@@ -219,3 +219,12 @@
 变更点：
 - 新增 API 约定文档：STANDARDS.md（鉴权/requestId/错误格式/CORS 等）
 - 便于前后端联调对齐口径
+
+--- 2026-01-22 ---
+分支：feat/02-backend-core-faq-codex
+验收：
+- 查看：modules/02-backend-core/FAQ.md
+- （可选）运行证据脚本：powershell -ExecutionPolicy Bypass -File modules/02-backend-core/scripts/gen-evidence.ps1
+变更点：
+- 新增常见问答：FAQ.md（token/401/curl.exe/证据输出位置）
+- 降低联调沟通成本
