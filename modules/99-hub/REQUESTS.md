@@ -41,7 +41,7 @@
 - [!] feat/04-admin-console-auth-skeleton → 04-admin-console：验收：见 modules/04-admin-console/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
 - [x] feat/01-miniapp-fs-manager-savefile-winE3-v1 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段
 - [x] feat/01-miniapp-home-banner-title-safe-winE3-v4 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段
-- [ ] feat/02-backend-core-env-example-codex → 02-backend-core：验收：见 modules/02-backend-core/CONVERSATION_LOG.txt 最新一段
+- [x] feat/02-backend-core-env-example-codex → 02-backend-core：验收：见 modules/02-backend-core/CONVERSATION_LOG.txt 最新一段
 - [ ] feat/02-backend-core-readme-codex → 02-backend-core：验收：见 modules/02-backend-core/CONVERSATION_LOG.txt 最新一段
 - [ ] feat/02-backend-core-scripts-readme-codex → 02-backend-core：验收：见 modules/02-backend-core/CONVERSATION_LOG.txt 最新一段
 - [ ] feat/03-importer-docx-out-w03-v1 → 03-importer：验收：见 modules/03-importer/CONVERSATION_LOG.txt 最新一段
