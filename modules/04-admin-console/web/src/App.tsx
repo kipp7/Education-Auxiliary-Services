@@ -14,6 +14,8 @@ import { SvipCodesPage } from "./svip/SvipCodesPage";
 import { DashboardPage } from "./dashboard/DashboardPage";
 import { PlansPage } from "./plans/PlansPage";
 import { HomeSlotsPage } from "./homeSlots/HomeSlotsPage";
+import { OrderDetailPage } from "./orders/OrderDetailPage";
+import { OrdersPage } from "./orders/OrdersPage";
 
 export function App() {
   return (
@@ -112,6 +114,22 @@ export function App() {
         element={
           <RequireAuth>
             <HomeSlotsPage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/orders"
+        element={
+          <RequireAuth>
+            <OrdersPage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/orders/:id"
+        element={
+          <RequireAuth>
+            <OrderDetailPage />
           </RequireAuth>
         }
       />
