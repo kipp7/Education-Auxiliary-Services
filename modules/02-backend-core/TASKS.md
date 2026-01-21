@@ -23,6 +23,14 @@
   - [ ] `GET /wrongs`
   - [ ] `POST /favorites` / `DELETE /favorites`
 
+## 1.1 内容与商业化（首页/资讯/套餐）
+> Tab 结构：`首页 / 题库 / 资讯 / 我的`，商业内容建议配置驱动。
+- [ ] Banner：`GET /content/banners`
+- [ ] 资讯：`GET /content/news`、`GET /content/news/:id`
+- [ ] 推荐：`GET /content/recommendations`（题库/课程/套餐）
+- [ ] 套餐：`GET /billing/plans`、`POST /billing/order`（后置实现，先定契约）
+- [ ] 支付回调/订单查询（后置，但预留路由/错误码）
+
 ## 2. 权限（VIP/激活码）
 - [ ] 数据模型：激活码、权益（科目/题库包）
 - [ ] `POST /activation/redeem`

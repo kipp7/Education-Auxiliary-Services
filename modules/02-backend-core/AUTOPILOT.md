@@ -31,6 +31,8 @@ git checkout -b feat/02-backend-core-mvp
 - [ ] `/videos` `/videos/progress`
 - [ ] `/activation/redeem` `/me/entitlements`
 - [ ] `/me/learning-records`
+- [ ] `/content/banners` `/content/news` `/content/news/:id`
+- [ ] `/content/recommendations` `/billing/plans`（先 mock）
 
 ## 3. 输出与汇报
 每完成一个里程碑才提交/推送，并在 `modules/02-backend-core/CONVERSATION_LOG.txt` 记录验收方式（curl 示例）。
