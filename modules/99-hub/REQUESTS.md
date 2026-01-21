@@ -20,3 +20,7 @@
 
 - [x] `feat/04-admin-console-autopilot-codex` → 已合并到 `main`（管理台原型 M1–M4）
 
+## 当前 UI 决策（锁定）
+- Tab：`首页 / 题库 / 资讯 / 我的`
+- 首页承载：学习入口 + 转化入口 + 运营/商业位（banner/推荐/套餐）
+
