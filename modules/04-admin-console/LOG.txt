@@ -158,3 +158,19 @@
 - `npm install`
 - `npm run dev`
 - 打开 `http://localhost:5174` → 开发登录 → 点击“订单管理（占位）”
+
+--- 2026-01-21 ---
+分支：`feat/04-admin-console-banners-v2`
+
+变更点：
+- 新增轮播图管理最小骨架：banner 列表 + 排序 + 跳转链接 + 开关 + 间隔秒（占位 localStorage，图片用 URL 代替上传）。
+- 首页增加入口，并补齐 dev 登录默认权限 `banner:read` / `banner:write`。
+
+验证日志：
+- `cd modules/04-admin-console/web && npm run build`（成功）
+
+验收方式（本地）：
+- `cd modules/04-admin-console/web`
+- `npm install`
+- `npm run dev`
+- 打开 `http://localhost:5174` → 开发登录 → 点击“轮播图管理（占位）”
