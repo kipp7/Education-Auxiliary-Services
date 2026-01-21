@@ -194,9 +194,9 @@
       <view class="tip">请先登录再进行操作</view>
       <view class="pictrue"></view>
       <view class="actions">
-        <button class="no" type="primary" bindtap="login" lang="zh_CN">暂不登录</button>
-        <button wx:if="{{canIUseGetUserProfile}}" class="but" bindtap="getUserProfile">立即登录</button>
-        <button wx:else class="but" type="primary" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindgetuserinfo">立即登录</button>
+        <button class="action-btn no" type="primary" bindtap="login" lang="zh_CN">暂不登录</button>
+        <button wx:if="{{canIUseGetUserProfile}}" class="action-btn but" bindtap="getUserProfile">立即登录</button>
+        <button wx:else class="action-btn but" type="primary" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindgetuserinfo">立即登录</button>
       </view>
     </view>
     <view class="mask"></view>
