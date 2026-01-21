@@ -1,5 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useCmsStore } from "../cms/store";
+
+function readJson<T>(key: string, fallback: T): T {
+  const raw = localStorage.getItem(key);
+  if (!raw) return fallback;
+  try {
+    return JSON.parse(raw) as T;
+  } catch {
+    return fallback;
+  }
+}
 
 function downloadJson(filename: string, data: unknown) {
   const text = JSON.stringify(data, null, 2);
@@ -13,37 +24,62 @@ function downloadJson(filename: string, data: unknown) {
 }
 
 export function OpsExportsPage() {
+  const cms = useCmsStore();
+
   const opsConfig = React.useMemo(() => {
+    const homeSlots = readJson<any>("adminConsole.homeSlots.v1", null);
+    const plansState = readJson<{ plans?: any[] }>("adminConsole.plans.v1", {});
+    const courseState = readJson<{ videos?: any[] }>("adminConsole.courses.v1", {});
+
+    const news = [...cms.state.announcements]
+      .filter((a) => a.status === "PUBLISHED")
+      .sort((a, b) => {
+        const ap = Boolean((a as any).pinned);
+        const bp = Boolean((b as any).pinned);
+        if (ap !== bp) return ap ? -1 : 1;
+        return b.updatedAt.localeCompare(a.updatedAt);
+      })
+      .map((a) => ({
+        id: a.id,
+        title: a.title,
+        summary: a.body.slice(0, 80),
+        content: a.body,
+        status: a.status,
+        pinned: Boolean((a as any).pinned ?? false),
+        updatedAt: a.updatedAt,
+      }));
+
     return {
       version: 1,
       generatedAt: new Date().toISOString(),
-      news: [
-        {
-          id: "news_1",
-          title: "公告：系统维护说明（占位）",
-          summary: "这里是摘要（占位），真实字段以 99-hub 定稿为准。",
-          content: "这里是正文（占位）。",
-          status: "PUBLISHED",
-          updatedAt: new Date(Date.now() - 1000 * 60 * 60).toISOString(),
-        },
-      ],
+      news,
       recommendations: {
-        questionBanks: [{ id: "pkg_math_1", title: "初一上·同步题（占位）" }],
-        courses: [{ id: "crs_1", title: "有理数入门（占位）" }],
-        plans: [{ id: "plan_1", title: "月度会员（占位）" }],
+        questionBanks: homeSlots?.recommendedQuestionBanks ?? [],
+        courses: homeSlots?.recommendedCourses ?? [],
+        plans: homeSlots?.recommendedPlans ?? [],
       },
-      plans: [
-        {
-          id: "plan_1",
-          name: "月度会员（占位）",
-          priceCents: 2999,
-          durationDays: 30,
-          benefits: "解锁所有题库（占位）",
-          enabled: true,
-        },
-      ],
+      plans: (Array.isArray(plansState.plans) ? plansState.plans : []).map((p) => ({
+        id: String(p.id ?? ""),
+        name: String(p.name ?? ""),
+        priceCents: Math.round(Number(p.priceCny ?? 0) * 100),
+        durationDays: Number(p.durationDays ?? 0),
+        benefits: Array.isArray(p.benefits) ? p.benefits.map((b: any) => String(b.text ?? "")).join("；") : "",
+        enabled: String(p.status ?? "DRAFT") === "ACTIVE",
+      })),
+      courses: (Array.isArray(courseState.videos) ? courseState.videos : [])
+        .filter((v) => Boolean(v.enabled ?? true))
+        .map((v) => ({
+          id: String(v.id ?? ""),
+          title: String(v.title ?? ""),
+          coverUrl: String(v.coverUrl ?? ""),
+          durationSeconds: Number(v.durationSeconds ?? 0),
+          stage: String(v.stage ?? ""),
+          grade: String(v.grade ?? ""),
+          subject: String(v.subject ?? ""),
+          unit: String(v.unit ?? ""),
+        })),
     };
-  }, []);
+  }, [cms.state.announcements]);
 
   return (
     <div className="container">
@@ -72,4 +108,3 @@ export function OpsExportsPage() {
     </div>
   );
 }
-
