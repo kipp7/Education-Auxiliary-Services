@@ -6,14 +6,17 @@ param(
   [string]$Category = "",
 
   [Parameter(Mandatory=$false)]
-  [string]$SourcePath = ""
+  [string]$SourcePath = "",
+
+  [Parameter(Mandatory=$false)]
+  [string]$OutJson = ""
 )
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
 function Usage {
-  Write-Error "Usage: pwsh -File modules/03-importer/tools/parse-docx.ps1 <docxPath> [-Category <path>] [-SourcePath <path>]"
+  Write-Error "Usage: pwsh -File modules/03-importer/tools/parse-docx.ps1 <docxPath> [-Category <path>] [-SourcePath <path>] [-OutJson <file>]"
   exit 2
 }
 
@@ -61,15 +64,36 @@ try {
   Set-Content -Encoding UTF8 -LiteralPath $tmpTxt -Value $plainText
 
   $node = Get-Command node -ErrorAction Stop
+  $tmpOut = Join-Path $tempRoot 'parsed.json'
 
   $args = @(
     $txtParser.Path,
     $tmpTxt,
     '--category', $Category
+    '--out', $tmpOut
   )
 
-  & $node.Source @args
+  & $node.Source @args | Out-Null
   if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+  $raw = Get-Content -LiteralPath $tmpOut -Raw -Encoding UTF8
+  $parsed = $raw | ConvertFrom-Json -Depth 50
+  $parsed.file = @{ path = ($SourcePath -replace '\\', '/') }
+  if ($parsed.errors) {
+    foreach ($e in $parsed.errors) {
+      if ($e) { $e.filePath = ($SourcePath -replace '\\', '/') }
+    }
+  }
+
+  $json = $parsed | ConvertTo-Json -Depth 50
+  if ($OutJson) {
+    $outAbs = [IO.Path]::GetFullPath($OutJson)
+    $outDir = [IO.Path]::GetDirectoryName($outAbs)
+    if ($outDir) { New-Item -ItemType Directory -Force -Path $outDir | Out-Null }
+    [IO.File]::WriteAllText($outAbs, $json, [Text.UTF8Encoding]::new($false))
+  } else {
+    Write-Output $json
+  }
 } finally {
   Remove-Item -LiteralPath $tempRoot -Recurse -Force -ErrorAction SilentlyContinue
 }
