@@ -1,0 +1,20 @@
+{
+  "schema": "03-importer/import-manifest.v0",
+  "createdAt": "2026-01-21T15:40:44.136Z",
+  "source": "modules/03-importer/samples/import-local/basic.zip",
+  "root": "modules/03-importer/samples/import-local/basic_src",
+  "importHash": "9e2f7bda4b6ee0b807d21734f2c994d41bc01638510a823992627961583b5cd4",
+  "fileCount": 2,
+  "files": [
+    {
+      "path": "bank/english/grade7/reading/q2.txt",
+      "sha256": "12296cb72c3cd138527b0802d56afb4b86a7605d8da6b70000ede6b7abe857ad",
+      "bytes": 57
+    },
+    {
+      "path": "bank/math/grade1/q1.txt",
+      "sha256": "66ba0b5039fb451e6d2d0b16ff1192c11877fe681c8a5695f67e2d7edc1ed671",
+      "bytes": 87
+    }
+  ]
+}
