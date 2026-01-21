@@ -62,3 +62,11 @@
 下一步：
 - 统一要求各模块每次 push 都在自己模块 `CONVERSATION_LOG.txt` 追加模板区块；总控仅维持 daemon+supervisor 运行。
 
+--- 2026-01-21（01-miniapp 页面未注册排查）---
+同步来源（模块/分支）：用户本机 / main（微信开发者工具）
+本次关键变化：
+- 现象：控制台报 `Page "pages/course/index" has not been registered yet.`，且 `pages/library/index` 报错 `module 'mock/library-config.json.js' is not defined`（require `../../mock/library-config.json`）。
+- 结论：这是“题库页 require mock JSON 失败导致 app 初始化中断”的连锁反应；即便 `app.json` 已注册 `pages/course/index`，也会因初始化失败而显示“未注册”。
+下一步：
+- 已在 `modules/99-hub/REQUESTS.md` 提交跨模块请求：将 mock 配置从 `.json` 改为 `.js` CommonJS 导出，并修正 banner 指向不存在页面的 url。
+

@@ -2,6 +2,16 @@
 
 当某模块需要改动别的模块目录内的文件时，请在这里新增一条请求，由总控窗口统一处理。
 
+## 01-miniapp：修复题库页 require JSON 导致页面未注册
+- 发起模块：`modules/99-hub`
+- 目标模块：`modules/01-miniapp`
+- 原因：在基础库 3.x（含稳定版 3.12.1）下，`pages/library/index.js` 里的 `require('../../mock/library-config.json')` 报错 `module 'mock/library-config.json.js' is not defined`，导致 app 初始化中断，进而出现 `Page "pages/course/index" has not been registered yet.`。
+- 期望改动：
+  - 将 `modules/01-miniapp/miniprogram/mock/library-config.json` 改为 `modules/01-miniapp/miniprogram/mock/library-config.js`（CommonJS：`module.exports = { ... }`）。
+  - 将 `modules/01-miniapp/miniprogram/pages/library/index.js` 的 require 改为 `require('../../mock/library-config.js')`。
+  - 同步修正 banner 示例里指向不存在页面的跳转（目前 JSON 内有 `/pages/news/index` 但 `pages/news/*` 不存在，建议改成已有页面或补齐注册页）。
+- 影响评估：仅影响 mock 配置加载方式；不改动真实接口；可减少不同基础库版本下的兼容问题。
+
 模板：
 
 ```markdown
