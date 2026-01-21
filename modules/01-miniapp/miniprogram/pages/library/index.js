@@ -1,5 +1,6 @@
 // pages/library/index.js
 const config = require('../../config/index')
+const libraryConfig = require('../../mock/library-config.json')
 
 const juniorGrades = ['初一', '初二', '初三']
 const juniorSemesters = ['上册', '下册']
@@ -8,26 +9,7 @@ const juniorSubjects = ['语文', '数学', '英语', '物理', '化学']
 const singleSubjects = ['信息技术', '通用技术', '音乐鉴赏', '美术鉴赏', '劳动技术']
 const singleTypes = ['选择', '判断', '论述']
 
-const banners = [
-  {
-    id: 'lib_b1',
-    title: '章节练习',
-    desc: '快速进入题库筛选',
-    action: { type: 'toast', text: '章节练习后续接真实数据（Mock）' },
-  },
-  {
-    id: 'lib_b2',
-    title: '真题/测评',
-    desc: '开始一次模拟测评',
-    action: { type: 'navigateTo', url: '/pages/exam-menu/index' },
-  },
-  {
-    id: 'lib_b3',
-    title: '学习技巧',
-    desc: '查看最新资讯',
-    action: { type: 'switchTab', url: '/pages/news/index' },
-  },
-]
+const banners = Array.isArray(libraryConfig?.banners) ? libraryConfig.banners : []
 
 function makeUnits(prefix) {
   return Array.from({ length: 6 }).map((_, idx) => ({
