@@ -23,45 +23,71 @@ export function HomePage() {
         <h3 style={{ marginTop: 0 }}>入口</h3>
         <RequirePermission permission="admin:access">
           <div className="row">
-            <Link className="btn" to="/exports">
-              配置导出（占位）
-            </Link>
-            <Link className="btn" to="/exports-ops">
-              运营配置导出（占位）
-            </Link>
-            <Link className="btn" to="/svip-codes">
-              SVIP 码管理（占位）
-            </Link>
-            <Link className="btn" to="/question-bank">
-              题库管理（占位）
-            </Link>
-            <Link className="btn" to="/question-items">
-              试题管理（占位）
-            </Link>
-            <Link className="btn" to="/banners">
-              轮播图管理（占位）
-            </Link>
-            <Link className="btn" to="/courses">
-              课程视频管理（占位）
-            </Link>
-            <Link className="btn" to="/imports">
-              导入管理（占位）
-            </Link>
-            <Link className="btn" to="/cms">
-              公告管理（占位）
-            </Link>
-            <Link className="btn" to="/home-slots">
-              首页运营位配置（占位）
-            </Link>
-            <Link className="btn" to="/dashboard">
-              数据看板（占位）
-            </Link>
-            <Link className="btn" to="/plans">
-              套餐管理（占位）
-            </Link>
-            <Link className="btn" to="/orders">
-              订单管理（占位）
-            </Link>
+            <RequirePermission permission="admin:access" fallback={null}>
+              <Link className="btn" to="/exports">
+                配置导出（占位）
+              </Link>
+            </RequirePermission>
+            <RequirePermission permission="admin:access" fallback={null}>
+              <Link className="btn" to="/exports-ops">
+                运营配置导出（占位）
+              </Link>
+            </RequirePermission>
+            <RequirePermission permission="svip:read" fallback={null}>
+              <Link className="btn" to="/svip-codes">
+                SVIP 码管理（占位）
+              </Link>
+            </RequirePermission>
+            <RequirePermission permission="question-bank:read" fallback={null}>
+              <Link className="btn" to="/question-bank">
+                题库管理（占位）
+              </Link>
+            </RequirePermission>
+            <RequirePermission permission="question:read" fallback={null}>
+              <Link className="btn" to="/question-items">
+                试题管理（占位）
+              </Link>
+            </RequirePermission>
+            <RequirePermission permission="banner:read" fallback={null}>
+              <Link className="btn" to="/banners">
+                轮播图管理（占位）
+              </Link>
+            </RequirePermission>
+            <RequirePermission permission="course:read" fallback={null}>
+              <Link className="btn" to="/courses">
+                课程视频管理（占位）
+              </Link>
+            </RequirePermission>
+            <RequirePermission permission="import:read" fallback={null}>
+              <Link className="btn" to="/imports">
+                导入管理（占位）
+              </Link>
+            </RequirePermission>
+            <RequirePermission permission="cms:read" fallback={null}>
+              <Link className="btn" to="/cms">
+                公告管理（占位）
+              </Link>
+            </RequirePermission>
+            <RequirePermission permission="home:read" fallback={null}>
+              <Link className="btn" to="/home-slots">
+                首页运营位配置（占位）
+              </Link>
+            </RequirePermission>
+            <RequirePermission permission="dashboard:read" fallback={null}>
+              <Link className="btn" to="/dashboard">
+                数据看板（占位）
+              </Link>
+            </RequirePermission>
+            <RequirePermission permission="plan:read" fallback={null}>
+              <Link className="btn" to="/plans">
+                套餐管理（占位）
+              </Link>
+            </RequirePermission>
+            <RequirePermission permission="order:read" fallback={null}>
+              <Link className="btn" to="/orders">
+                订单管理（占位）
+              </Link>
+            </RequirePermission>
           </div>
           <p className="muted" style={{ marginBottom: 0 }}>
             后续按 `TASKS.md` 逐步补齐页面与接口联调。
