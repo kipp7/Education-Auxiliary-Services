@@ -137,3 +137,12 @@
 变更点：
 - parse-pdf 支持 --out（UTF-8 写文件），避免 PowerShell 重定向编码问题
 - 修正 pdf 解析错误项的 filePath 指向源 PDF（不再指向临时 txt 路径）
+
+--- 2026-01-21 ---
+分支：feat/03-importer-docx-out-w03-v1
+验收：
+- pwsh -NoProfile -File modules/03-importer/tools/parse-docx.ps1 modules/03-importer/samples/docx/basic.docx -Category "示例题库" -SourcePath "modules/03-importer/samples/docx/basic.docx" -OutJson modules/03-importer/output/basic.docx.parsed.json
+- 查看 modules/03-importer/output/basic.docx.parsed.json
+变更点：
+- parse-docx 支持 -OutJson（UTF-8 写文件），避免 PowerShell 重定向编码问题
+- 解析结果 file.path 固定为源 docx 路径（不再指向临时 extracted.txt）

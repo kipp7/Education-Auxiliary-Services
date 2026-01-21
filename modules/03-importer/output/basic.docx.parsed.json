@@ -1,8 +1,8 @@
 {
   "file": {
-    "path": "C:/Users/Administrator/AppData/Local/Temp/03-importer-docx-0a42fdda391d43d3a24d1785648bfe7a/extracted.txt"
+    "path": "modules/03-importer/samples/docx/basic.docx"
   },
-  "categoryPath": "绀轰緥棰樺簱",
+  "categoryPath": "示例题库",
   "questions": [
     {
       "id": "q-0001",
@@ -27,26 +27,26 @@
       },
       "analysis": "2+2=4",
       "source": {
-        "filePath": "C:/Users/Administrator/AppData/Local/Temp/03-importer-docx-0a42fdda391d43d3a24d1785648bfe7a/extracted.txt",
+        "filePath": "C:/Users/Administrator/AppData/Local/Temp/03-importer-docx-48e199e7b8f84b6f8172db72861ad592/extracted.txt",
         "lineStart": 1,
         "lineEnd": 7
       },
-      "categoryPath": "绀轰緥棰樺簱"
+      "categoryPath": "示例题库"
     },
     {
       "id": "q-0002",
       "type": "judge",
-      "stem": "2. 鍦扮悆鏄渾鐨勩€?,
+      "stem": "2. 地球是圆的。",
       "answer": {
         "value": "true"
       },
-      "analysis": "甯歌瘑",
+      "analysis": "常识",
       "source": {
-        "filePath": "C:/Users/Administrator/AppData/Local/Temp/03-importer-docx-0a42fdda391d43d3a24d1785648bfe7a/extracted.txt",
+        "filePath": "C:/Users/Administrator/AppData/Local/Temp/03-importer-docx-48e199e7b8f84b6f8172db72861ad592/extracted.txt",
         "lineStart": 8,
         "lineEnd": 12
       },
-      "categoryPath": "绀轰緥棰樺簱"
+      "categoryPath": "示例题库"
     }
   ],
   "errors": []
