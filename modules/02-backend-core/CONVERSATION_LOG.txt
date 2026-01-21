@@ -28,3 +28,10 @@
 - 健康检查：curl http://localhost:3000/health
 - 登录获取 token：curl -X POST http://localhost:3000/auth/wechat -H "Content-Type: application/json" -d '{"code":"demo"}'
 - 带 token 访问：curl http://localhost:3000/subjects -H "Authorization: Bearer demo-token"
+
+--- 2026-01-21 14:41 ---
+里程碑：M3 端到端 Mock API（可被小程序调用）
+验收方式（路径）：
+- 启动：cd modules/02-backend-core && npm run dev
+- 证据日志：modules/02-backend-core/logs/m3-curl.txt
+- 关键接口：/subjects /packages /chapters /questions /answers/submit /videos /videos/progress /activation/redeem /me/entitlements /me/learning-records

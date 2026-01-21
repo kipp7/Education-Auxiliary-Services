@@ -91,6 +91,17 @@ const server = http.createServer(async (req, res) => {
       ]);
     }
 
+    if (req.method === "POST" && path === "/answers/submit") {
+      const body = (await readJson(req)) || {};
+      if (typeof body.chapterId !== "string" || body.chapterId.length === 0) {
+        return error(res, 400, "INVALID_ARGUMENT", "Missing chapterId");
+      }
+      if (!Array.isArray(body.answers)) {
+        return error(res, 400, "INVALID_ARGUMENT", "Missing answers");
+      }
+      return json(res, 200, { submitted: body.answers.length });
+    }
+
     if (req.method === "GET" && path === "/videos") {
       const packageId = url.searchParams.get("packageId");
       if (!packageId) return error(res, 400, "INVALID_ARGUMENT", "Missing packageId");
@@ -124,17 +135,26 @@ const server = http.createServer(async (req, res) => {
       return json(res, 200, { bound: true });
     }
 
-    if (path === "/records") {
-      if (req.method === "GET") {
-        return json(res, 200, [{ id: "rec-1" }]);
+    if (req.method === "POST" && path === "/activation/redeem") {
+      const body = (await readJson(req)) || {};
+      if (typeof body.code !== "string" || body.code.length === 0) {
+        return error(res, 400, "INVALID_ARGUMENT", "Missing code");
       }
-      if (req.method === "POST") {
-        const body = (await readJson(req)) || {};
-        if (typeof body.chapterId !== "string" || body.chapterId.length === 0) {
-          return error(res, 400, "INVALID_ARGUMENT", "Missing chapterId");
-        }
-        return json(res, 200, { id: "rec-1" });
-      }
+      return json(res, 200, { redeemed: true });
+    }
+
+    if (req.method === "GET" && path === "/me/entitlements") {
+      return json(res, 200, {
+        active: true,
+        subjects: ["sub-1"],
+        packages: ["pkg-1"]
+      });
+    }
+
+    if (req.method === "GET" && path === "/me/learning-records") {
+      return json(res, 200, [
+        { id: "lr-1", chapterId: "ch-1", updatedAt: new Date().toISOString() }
+      ]);
     }
 
     return error(res, 404, "NOT_FOUND", "Not found");
@@ -148,4 +168,3 @@ server.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`[02-backend-core] listening on http://localhost:${port}`);
 });
-
