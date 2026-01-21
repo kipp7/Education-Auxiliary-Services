@@ -1,0 +1,6 @@
+{
+  "ok": true,
+  "input": "modules/03-importer/output/import-manifest.sample.json",
+  "errorCount": 0,
+  "errors": []
+}

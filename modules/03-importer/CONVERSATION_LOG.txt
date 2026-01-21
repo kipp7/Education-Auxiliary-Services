@@ -194,3 +194,12 @@
 - pwsh -NoProfile -File modules/03-importer/tools/append-conversation-log.ps1 -Branch feat/03-importer-log-helper-w03-v3 -Date 2026-01-21 -AcceptanceFile <utf8.txt> -ChangesFile <utf8.txt>
 变更点：
 - append-conversation-log 支持 -AcceptanceFile/-ChangesFile，减少命令行转义/数组传参错误
+
+--- 2026-01-21 ---
+分支：feat/03-importer-validate-manifest-w03-v1
+验收：
+- node modules/03-importer/tools/validate-import-manifest.mjs modules/03-importer/output/import-manifest.sample.json --out modules/03-importer/output/import-manifest.sample.validation.json
+- 查看 modules/03-importer/output/import-manifest.sample.validation.json
+变更点：
+- 新增 validate-import-manifest：校验导入清单格式（schema/importHash/files/fileCount），失败返回非 0
+- 补充 import-manifest.sample 的校验输出样例
