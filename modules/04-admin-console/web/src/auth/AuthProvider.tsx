@@ -36,6 +36,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         "cms:write",
         "svip:read",
         "svip:write",
+        "dashboard:read",
       ],
     };
 
