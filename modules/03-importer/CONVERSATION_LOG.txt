@@ -100,3 +100,12 @@
 - （可选）在 modules/03-importer/output/<any>/unpacked/ 生成文件后执行 git status，应不出现该目录
 变更点：
 - 新增模块级 .gitignore：忽略导入过程产生的 unpacked/ 与临时 JSON，避免误提交大目录
+
+--- 2026-01-21 ---
+分支：feat/03-importer-validate-task-w03-v1
+验收：
+- node modules/03-importer/tools/validate-import-task.mjs modules/03-importer/output/import-task.sample.json --out modules/03-importer/output/import-task.sample.validation.json
+- 查看 modules/03-importer/output/import-task.sample.validation.json
+变更点：
+- 新增导入任务校验工具 validate-import-task：校验 Import Task JSON（状态/进度/统计/错误项）
+- 补充 import-task.sample.json 与校验输出样例，便于对齐 schema 与联调
