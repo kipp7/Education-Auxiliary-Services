@@ -39,7 +39,7 @@
 - [!] feat/02-backend-core-contract-draft → 02-backend-core：验收：见 modules/02-backend-core/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
 - [!] feat/02-backend-core-question-read-codex → 02-backend-core：验收：见 modules/02-backend-core/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
 - [!] feat/04-admin-console-auth-skeleton → 04-admin-console：验收：见 modules/04-admin-console/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
-- [ ] feat/04-admin-console-news-v1 → 04-admin-console：验收：见 modules/04-admin-console/CONVERSATION_LOG.txt 最新一段
+- [x] feat/04-admin-console-news-v1 → 04-admin-console：验收：见 modules/04-admin-console/CONVERSATION_LOG.txt 最新一段
 - [x] feat/03-importer-validate-task-w03-v1 → 03-importer：验收：见 modules/03-importer/CONVERSATION_LOG.txt 最新一段
 - [x] feat/04-admin-console-plans-v1 → 04-admin-console：验收：见 modules/04-admin-console/CONVERSATION_LOG.txt 最新一段
 - [x] feat/03-importer-gitignore-w03-v1 → 03-importer：验收：见 modules/03-importer/CONVERSATION_LOG.txt 最新一段
