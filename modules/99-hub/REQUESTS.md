@@ -29,6 +29,7 @@
 > 规则：所有窗口只 push 自己的 `feat/*` 分支；总控窗口按优先级合并进 `main`。
 
 - [!] feat/01-miniapp-m7-home-commercial-winE3 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
+- [ ] feat/03-importer-gitignore-w03-v1 → 03-importer：验收：见 modules/03-importer/CONVERSATION_LOG.txt 最新一段
 - [x] feat/01-miniapp-course-paywall-gating-winE3 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段
 - [!] feat/02-backend-core-me-profile-codex → 02-backend-core：验收：见 modules/02-backend-core/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
 - [x] feat/03-importer-keywords-w03-v1 → 03-importer：验收：见 modules/03-importer/CONVERSATION_LOG.txt 最新一段
