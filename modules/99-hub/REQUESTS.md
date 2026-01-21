@@ -49,7 +49,7 @@
 - [!] feat/01-miniapp-M1-tabbar-news-winE3-v1 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
 - [!] feat/01-miniapp-M2-library-structure-winE3-v1 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
 - [!] feat/01-miniapp-M3-course-resume-winE3-v1 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
-- [ ] feat/01-miniapp-M4-svip-bind-mock-winE3-v1 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段
+- [!] feat/01-miniapp-M4-svip-bind-mock-winE3-v1 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
 - [x] feat/03-importer-log-helper-w03-v3 → 03-importer：验收：见 modules/03-importer/CONVERSATION_LOG.txt 最新一段
 - [x] feat/03-importer-unpack-zip-w03-v1 → 03-importer：验收：见 modules/03-importer/CONVERSATION_LOG.txt 最新一段
 - [x] feat/04-admin-console-ops-export-v2 → 04-admin-console：验收：见 modules/04-admin-console/CONVERSATION_LOG.txt 最新一段
