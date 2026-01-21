@@ -11,6 +11,7 @@ import { ExportsPage } from "./exports/ExportsPage";
 import { OpsExportsPage } from "./exports/OpsExportsPage";
 import { SvipCodesPage } from "./svip/SvipCodesPage";
 import { DashboardPage } from "./dashboard/DashboardPage";
+import { PlansPage } from "./plans/PlansPage";
 
 export function App() {
   return (
@@ -85,6 +86,14 @@ export function App() {
         element={
           <RequireAuth>
             <DashboardPage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/plans"
+        element={
+          <RequireAuth>
+            <PlansPage />
           </RequireAuth>
         }
       />
