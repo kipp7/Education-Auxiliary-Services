@@ -101,3 +101,12 @@
 - 单元页“在线做题(练习/测评)”从占位改为可跳转现有练习/考试页（Mock）
 - 修复考试随机抽题在题量大于题库实际题数时的边界问题
 
+--- 2026-01-21 ---
+分支：feat/01-miniapp-course-paywall-gating-winE3
+验收：
+- `pages/start/index` → 立即进入 → 底部课程 `pages/course/index`
+- 未绑定 SVIP 时点击任意课程卡片弹出“SVIP 未开通”提示，点“去绑定”进入 `pages/svip/bind/index`；绑定成功后返回课程页再次点击可进入 `pages/course/player`
+变更点：
+- 课程页增加 SVIP 权限拦截占位（未绑定时引导去绑定）
+- 不改变课程卡片展示内容，仅控制进入播放页的入口
+
