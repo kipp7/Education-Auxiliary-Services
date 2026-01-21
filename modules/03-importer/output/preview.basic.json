@@ -1,9 +1,8 @@
 {
-  "file": {
-    "path": "modules/03-importer/samples/txt/basic.txt"
-  },
-  "categoryPath": "数学/一年级",
-  "questions": [
+  "input": "modules/03-importer/output/basic.parsed.json",
+  "totalQuestions": 3,
+  "previewCount": 2,
+  "preview": [
     {
       "id": "q-0001",
       "type": "single",
@@ -65,22 +64,6 @@
         "lineEnd": 15
       },
       "categoryPath": "数学/一年级"
-    },
-    {
-      "id": "q-0003",
-      "type": "judge",
-      "stem": "3. 地球是圆的。",
-      "answer": {
-        "value": "true"
-      },
-      "analysis": "常识",
-      "source": {
-        "filePath": "modules/03-importer/samples/txt/basic.txt",
-        "lineStart": 16,
-        "lineEnd": 20
-      },
-      "categoryPath": "数学/一年级"
     }
-  ],
-  "errors": []
+  ]
 }

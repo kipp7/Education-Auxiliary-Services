@@ -64,3 +64,12 @@
 变更点：
 - 新增 OCR 人工校对包生成工具（输出 IR 占位 + OCR_PENDING 错误项）
 - 补充 OCR 样例输入与输出（image-list.txt/blank.png/ocr.review.json）
+
+--- 2026-01-21 ---
+分支：feat/03-importer-preview-w03-v1
+验收：
+- node modules/03-importer/tools/parse-txt.mjs modules/03-importer/samples/txt/basic.txt --category "数学/一年级" --out modules/03-importer/output/basic.parsed.json
+- node modules/03-importer/tools/preview-ir.mjs modules/03-importer/output/basic.parsed.json --limit 2 --out modules/03-importer/output/preview.basic.json
+变更点：
+- parse-txt 支持 --out，避免 PowerShell 重定向导致的编码/JSON 损坏
+- 新增 preview-ir 工具：从已解析 IR 预览前 N 道题并支持 --out
