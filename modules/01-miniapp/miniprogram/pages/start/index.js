@@ -1,5 +1,6 @@
 // pages/start/index.js
 const { APP_NAME, COMPANY_NAME } = require('../../config/index')
+const config = require('../../config/index')
 
 Page({
   data: {
@@ -18,6 +19,18 @@ Page({
   },
 
   onShow() {
+    const cached = wx.getStorageSync('userInfo') || {}
+    if (config.USE_MOCK) {
+      this.setData({
+        userInfo: {
+          avatarUrl: cached.avatarUrl || '/images/header.png',
+          nickName: cached.nickName || '同学',
+          ...cached,
+        },
+      })
+      return
+    }
+
     const that = this
     wx.getUserInfo({
       success(res) {
@@ -31,6 +44,15 @@ Page({
             userInfo: res1.result,
             finish: true,
           })
+        })
+      },
+      fail() {
+        that.setData({
+          userInfo: {
+            avatarUrl: cached.avatarUrl || '/images/header.png',
+            nickName: cached.nickName || '同学',
+            ...cached,
+          },
         })
       },
     })
