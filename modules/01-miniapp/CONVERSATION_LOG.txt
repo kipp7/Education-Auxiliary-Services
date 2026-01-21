@@ -102,6 +102,14 @@
 - 修复考试随机抽题在题量大于题库实际题数时的边界问题
 
 --- 2026-01-21 ---
+分支：feat/01-miniapp-library-config-require-fix-winE3-v2
+验收：
+- 微信开发者工具（基础库 3.12.1）启动无报错
+- 可进入 `pages/library/index`（题库 tab）与 `pages/course/index`（课程 tab）且页面正常注册
+变更点：
+- 将 `miniprogram/mock/library-config.json` 改为 `miniprogram/mock/library-config.js`（`module.exports`），避免 require JSON 在 3.12.1 下报 “module ... is not defined”
+- 移除/替换指向不存在页面的 banner 跳转（原 `/pages/news/index` 改为 toast 占位）
+--- 2026-01-21 ---
 分支：feat/01-miniapp-course-paywall-gating-winE3
 验收：
 - `pages/start/index` → 立即进入 → 底部课程 `pages/course/index`

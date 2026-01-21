@@ -1,6 +1,6 @@
 // pages/library/index.js
 const config = require('../../config/index')
-const libraryConfig = require('../../mock/library-config.json')
+const libraryConfig = require('../../mock/library-config.js')
 
 const juniorGrades = ['初一', '初二', '初三']
 const juniorSemesters = ['上册', '下册']
@@ -9,7 +9,7 @@ const juniorSubjects = ['语文', '数学', '英语', '物理', '化学']
 const singleSubjects = ['信息技术', '通用技术', '音乐鉴赏', '美术鉴赏', '劳动技术']
 const singleTypes = ['选择', '判断', '论述']
 
-const banners = Array.isArray(libraryConfig?.banners) ? libraryConfig.banners : []
+const banners = libraryConfig && Array.isArray(libraryConfig.banners) ? libraryConfig.banners : []
 
 function makeUnits(prefix) {
   return Array.from({ length: 6 }).map((_, idx) => ({
