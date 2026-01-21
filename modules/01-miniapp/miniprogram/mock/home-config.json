@@ -1,0 +1,62 @@
+{
+  "banners": [
+    {
+      "id": "b1",
+      "title": "题库上新",
+      "subtitle": "初中/单招 单元练习",
+      "image": "",
+      "action": { "type": "switchTab", "url": "/pages/library/index" }
+    },
+    {
+      "id": "b2",
+      "title": "最新资讯",
+      "subtitle": "学习技巧与公告",
+      "image": "",
+      "action": { "type": "navigateTo", "url": "/pages/news/detail?id=n2" }
+    }
+  ],
+  "recommend": {
+    "courses": [
+      {
+        "id": "c_1",
+        "title": "高效复习方法课",
+        "desc": "三步法提升正确率",
+        "durationText": "12:30",
+        "vip": false,
+        "price": "¥9.9",
+        "action": { "type": "navigateTo", "url": "/pages/course/player?id=c_1" }
+      },
+      {
+        "id": "c_2",
+        "title": "单招基础冲刺课",
+        "desc": "重点题型速通",
+        "durationText": "20:00",
+        "vip": true,
+        "price": "SVIP",
+        "action": { "type": "navigateTo", "url": "/pages/course/player?id=c_2" }
+      }
+    ],
+    "banks": [
+      {
+        "id": "qb_1",
+        "title": "示例题库（单选）",
+        "tag": "推荐",
+        "vip": false,
+        "price": "免费",
+        "action": { "type": "navigateTo", "url": "/pages/exam-menu/index" }
+      }
+    ]
+  },
+  "conversion": {
+    "svip": {
+      "title": "SVIP 码绑定",
+      "desc": "机构学生开通权益入口",
+      "action": { "type": "navigateTo", "url": "/pages/svip/bind/index" }
+    },
+    "pay": {
+      "title": "付费开通（占位）",
+      "desc": "非机构学生按套餐开通",
+      "action": { "type": "toast", "text": "付费开通后置（Mock）" }
+    }
+  }
+}

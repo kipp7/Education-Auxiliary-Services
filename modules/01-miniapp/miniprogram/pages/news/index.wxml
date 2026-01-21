@@ -1,0 +1,14 @@
+<view class="page">
+  <view class="banner">
+    <view class="banner-title">资讯</view>
+    <view class="banner-desc">运营内容展示（Mock），点击进入详情</view>
+  </view>
+
+  <view class="list">
+    <view class="card" wx:for="{{newsList}}" wx:key="id" data-id="{{item.id}}" bindtap="goDetail">
+      <view class="title">{{item.title}}</view>
+      <view class="meta">{{item.date}} · {{item.tag}}</view>
+      <view class="desc">{{item.summary}}</view>
+    </view>
+  </view>
+</view>

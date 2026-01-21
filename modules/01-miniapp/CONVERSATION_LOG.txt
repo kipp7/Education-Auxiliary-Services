@@ -48,3 +48,9 @@
 验收路径：`pages/start/index` → 立即进入 → 首页点“答题”进入 `pages/exam-menu/index` → 选择任意题库进入 `pages/exam/index` → 作答若干题 → 点击右上角“交卷”确认 → 跳转 `pages/examResult/index` 展示得分/用时/错题入口。
 下一步：如需合并请求记录，请由 99-hub 窗口将分支 `feat/01-miniapp-mvp-exam-winE3` 的 MR 需求写入 `modules/99-hub/REQUESTS.md`（本窗口只改本模块目录）。
 
+--- 2026-01-21 02:46 ---
+用户：按 `AUTOPILOT.md`：把 tabBar 调整为 首页/题库/资讯/我的，并完成 M7（首页商业位配置驱动 + 跳转）。
+助手：按 AUTOPILOT 的 Tab 结构调整 `miniprogram/app.json` 为 首页/题库/资讯/我的，并新增 `pages/news/**`（资讯列表+详情 Mock）；首页接入本地 `mock/home-config.json` 作为商业位配置源，渲染 banner/推荐课程&题库/转化卡，并通过统一的跳转处理支持 switchTab / navigateTo / toast（外链/付费占位）。
+验收路径：`pages/start/index` → 立即进入 → 底部 Tab 切换：`pages/index/index` / `pages/library/index` / `pages/news/index` / `pages/my/index`；首页滚动并依次点击：banner(跳题库/资讯详情) → 转化卡(去绑定/付费占位) → 推荐课程(进播放页) → 推荐题库(进答题菜单)；资讯页点任一条进入 `pages/news/detail`。
+下一步：如需合并请求记录，请由 99-hub 窗口将分支 `feat/01-miniapp-m7-news-tab-winE3` 的 MR 需求写入 `modules/99-hub/REQUESTS.md`（本窗口只改本模块目录）。
+

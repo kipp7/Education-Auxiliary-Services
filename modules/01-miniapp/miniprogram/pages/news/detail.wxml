@@ -1,0 +1,7 @@
+<view class="page">
+  <view class="card">
+    <view class="title">{{detail.title}}</view>
+    <view class="meta">{{detail.date}} · {{detail.tag}}</view>
+    <view class="content">{{detail.content}}</view>
+  </view>
+</view>

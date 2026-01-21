@@ -1,5 +1,6 @@
 //index.js
 const { APP_NAME } = require('../../config/index')
+const homeConfig = require('../../mock/home-config.json')
 
 Page({
   data: {
@@ -9,6 +10,8 @@ Page({
     is_login:true,
     checkUser: false,
     canIUseGetUserProfile: false,
+    homeConfig,
+    svipBound: false,
   },
 
   onLoad: function() {
@@ -38,7 +41,8 @@ Page({
   onShow: function(){
     wx.setNavigationBarTitle({ title: APP_NAME })
     this.setData({
-      userInfo: wx.getStorageSync('userInfo')
+      userInfo: wx.getStorageSync('userInfo'),
+      svipBound: !!wx.getStorageSync('svip_bound'),
     })
   },
   gocenter() {
@@ -54,6 +58,9 @@ Page({
   },
   goLearn() {
     wx.switchTab({ url: '/pages/library/index' })
+  },
+  goNews() {
+    wx.switchTab({ url: '/pages/news/index' })
   },
   login() {
     this.setData({
@@ -113,6 +120,24 @@ Page({
     })
   },
   goExam(){
-    wx.switchTab({ url: '/pages/exam-menu/index' })
-  }
+    wx.navigateTo({ url: '/pages/exam-menu/index' })
+  },
+  onBizTap(e) {
+    const type = e.currentTarget.dataset.type || ''
+    const url = e.currentTarget.dataset.url || ''
+    const text = e.currentTarget.dataset.text || ''
+    if (type === 'switchTab' && url) {
+      wx.switchTab({ url })
+      return
+    }
+    if (type === 'navigateTo' && url) {
+      wx.navigateTo({ url })
+      return
+    }
+    if (type === 'toast') {
+      wx.showToast({ title: text || '功能后置（Mock）', icon: 'none' })
+      return
+    }
+    wx.showToast({ title: '跳转占位（Mock）', icon: 'none' })
+  },
 })

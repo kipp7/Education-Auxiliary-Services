@@ -57,6 +57,95 @@
     </view>
   </view>
 
+  <view class="content">
+    <view class="section-title">首页商业位（配置驱动）</view>
+
+    <swiper class="biz-swiper" indicator-dots autoplay interval="3500" duration="300" circular>
+      <swiper-item wx:for="{{homeConfig.banners}}" wx:key="id">
+        <view
+          class="biz-banner"
+          bindtap="onBizTap"
+          data-type="{{item.action.type}}"
+          data-url="{{item.action.url}}"
+          data-text="{{item.action.text}}"
+        >
+          <view class="biz-banner-title">{{item.title}}</view>
+          <view class="biz-banner-desc">{{item.subtitle}}</view>
+        </view>
+      </swiper-item>
+    </swiper>
+
+    <view class="convert">
+      <view
+        class="convert-card"
+        bindtap="onBizTap"
+        data-type="{{homeConfig.conversion.svip.action.type}}"
+        data-url="{{homeConfig.conversion.svip.action.url}}"
+        data-text="{{homeConfig.conversion.svip.action.text}}"
+      >
+        <view class="convert-title">{{homeConfig.conversion.svip.title}}</view>
+        <view class="convert-desc">{{svipBound ? '已开通（本地 Mock）' : homeConfig.conversion.svip.desc}}</view>
+        <view class="convert-tag">{{svipBound ? '已绑定' : '去绑定'}}</view>
+      </view>
+
+      <view
+        class="convert-card alt"
+        bindtap="onBizTap"
+        data-type="{{homeConfig.conversion.pay.action.type}}"
+        data-url="{{homeConfig.conversion.pay.action.url}}"
+        data-text="{{homeConfig.conversion.pay.action.text}}"
+      >
+        <view class="convert-title">{{homeConfig.conversion.pay.title}}</view>
+        <view class="convert-desc">{{homeConfig.conversion.pay.desc}}</view>
+        <view class="convert-tag">了解</view>
+      </view>
+    </view>
+
+    <view class="sub-title">推荐课程</view>
+    <scroll-view class="h-scroll" scroll-x>
+      <view class="h-list">
+        <view
+          class="h-card"
+          wx:for="{{homeConfig.recommend.courses}}"
+          wx:key="id"
+          bindtap="onBizTap"
+          data-type="{{item.action.type}}"
+          data-url="{{item.action.url}}"
+          data-text="{{item.action.text}}"
+        >
+          <view class="h-title">{{item.title}}</view>
+          <view class="h-desc">{{item.desc}}</view>
+          <view class="h-meta">
+            <text class="pill">{{item.durationText}}</text>
+            <text class="pill price {{item.vip ? 'vip' : ''}}">{{item.price}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+
+    <view class="sub-title">推荐题库</view>
+    <view class="list">
+      <view
+        class="mini-card"
+        wx:for="{{homeConfig.recommend.banks}}"
+        wx:key="id"
+        bindtap="onBizTap"
+        data-type="{{item.action.type}}"
+        data-url="{{item.action.url}}"
+        data-text="{{item.action.text}}"
+      >
+        <view class="mini-left">
+          <view class="mini-title">{{item.title}}</view>
+          <view class="mini-meta">{{item.tag}}</view>
+        </view>
+        <view class="mini-right">
+          <view class="mini-price {{item.vip ? 'vip' : ''}}">{{item.price}}</view>
+          <view class="mini-go">进入</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
   <view class="warrant" wx:if="{{!is_login}}">
     <view class="white">
       <view class="tap">您还未登录</view>
