@@ -192,3 +192,12 @@
 变更点：
 - 新增 logs 说明文档：logs/README.md（证据文件用途与规则）
 - 说明临时 server out/err 文件的忽略约定
+
+--- 2026-01-22 ---
+分支：feat/02-backend-core-contract-readme-codex
+验收：
+- 查看：modules/02-backend-core/contract/README.md
+- 对照：modules/02-backend-core/contract/mvp.openapi.yaml
+变更点：
+- 新增 contract 说明文档：contract/README.md
+- 明确 OpenAPI 草案用途与对齐建议
