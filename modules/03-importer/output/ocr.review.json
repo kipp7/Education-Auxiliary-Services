@@ -1,0 +1,39 @@
+{
+  "input": "modules/03-importer/samples/ocr/image-list.txt",
+  "categoryPath": "绀轰緥棰樺簱",
+  "questions": [
+    {
+      "id": "q-ocr-0002",
+      "type": "essay",
+      "stem": "銆怬CR寰呭鐞嗐€戣鍦ㄦ牎瀵圭晫闈㈠綍鍏ラ骞?閫夐」/绛旀锛歜lank.png",
+      "answer": {
+        "value": ""
+      },
+      "analysis": "",
+      "source": {
+        "filePath": "modules/03-importer/samples/ocr/modules/03-importer/samples/ocr/blank.png"
+      },
+      "categoryPath": "绀轰緥棰樺簱"
+    }
+  ],
+  "errors": [
+    {
+      "code": "OCR_INPUT_INVALID",
+      "message": "Not an image file",
+      "suggestion": "Provide .png/.jpg/.jpeg/.webp/.bmp paths.",
+      "filePath": "modules/03-importer/samples/ocr/# Provide either image paths directly, or list them here (one per line)"
+    },
+    {
+      "code": "FILE_NOT_FOUND",
+      "message": "Image file not found",
+      "suggestion": "Check the path or ensure the file is uploaded/extracted.",
+      "filePath": "modules/03-importer/samples/ocr/modules/03-importer/samples/ocr/blank.png"
+    },
+    {
+      "code": "OCR_PENDING",
+      "message": "OCR not implemented; manual review required",
+      "suggestion": "Open the review output and fill in stem/options/answer based on the image.",
+      "filePath": "modules/03-importer/samples/ocr/modules/03-importer/samples/ocr/blank.png"
+    }
+  ]
+}

@@ -25,3 +25,42 @@
 决定/结论：完成 AUTOPILOT M2 的导入任务模型（占位）schema。
 验收路径：
 - 查看：modules/03-importer/ir/import-task.schema.json
+
+--- 2026-01-21 14:44 ---
+决定/结论：完成上传/状态接口契约草案（OpenAPI），用于后续服务端实现与联调对齐。
+验收路径：
+- 查看：modules/03-importer/api/import.openapi.yaml
+- 检查包含路径：/import/upload 与 /import/status
+
+--- 2026-01-21 15:24 ---
+决定/结论：完成目录层级解析最小实现（支持根目录折叠、过滤垃圾文件、根目录文件归入“未分类”）。
+验收路径：
+- 运行：node modules/03-importer/tools/parse-hierarchy.mjs modules/03-importer/samples/hierarchy/file-list.txt > modules/03-importer/output/hierarchy.json
+- 查看：modules/03-importer/output/hierarchy.json
+
+--- 2026-01-21 16:12 ---
+决定/结论：完成 doc/docx 最小解析（docx 解压提取文本 → 复用 txt parser 产出 IR JSON）。
+验收路径：
+- 运行：pwsh -File modules/03-importer/tools/parse-docx.ps1 modules/03-importer/samples/docx/basic.docx -Category "示例题库" > modules/03-importer/output/basic.docx.parsed.json
+- 查看：modules/03-importer/output/basic.docx.parsed.json
+
+--- 2026-01-21 16:27 ---
+决定/结论：完成 pdf 最小解析（受限：仅支持未压缩文本流，用于 MVP 验证链路）。
+验收路径：
+- 运行：node modules/03-importer/tools/parse-pdf.mjs modules/03-importer/samples/pdf/basic.pdf --category "示例题库" > modules/03-importer/output/basic.pdf.parsed.json
+- 查看：modules/03-importer/output/basic.pdf.parsed.json
+
+--- 2026-01-21 17:31 ---
+决定/结论：完成图片 OCR 的“人工校对流程”最小实现（生成待录入的题目 IR 占位 + OCR_PENDING 错误项）。
+验收路径：
+- 运行：node modules/03-importer/tools/prepare-ocr-review.mjs modules/03-importer/samples/ocr/image-list.txt --category "示例题库" > modules/03-importer/output/ocr.review.json
+- 查看：modules/03-importer/output/ocr.review.json
+
+--- 2026-01-21 ---
+分支：feat/03-importer-mvp-w03
+验收：
+- node modules/03-importer/tools/prepare-ocr-review.mjs modules/03-importer/samples/ocr/image-list.txt --category "示例题库" > modules/03-importer/output/ocr.review.json
+- 查看 modules/03-importer/output/ocr.review.json
+变更点：
+- 新增 OCR 人工校对包生成工具（输出 IR 占位 + OCR_PENDING 错误项）
+- 补充 OCR 样例输入与输出（image-list.txt/blank.png/ocr.review.json）

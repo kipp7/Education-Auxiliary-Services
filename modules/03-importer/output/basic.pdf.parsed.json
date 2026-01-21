@@ -1,0 +1,19 @@
+{
+  "file": {
+    "path": "modules/03-importer/samples/pdf/basic.pdf"
+  },
+  "categoryPath": "绀轰緥棰樺簱",
+  "questions": [],
+  "errors": [
+    {
+      "code": "PARSE_ERROR",
+      "message": "Missing answer",
+      "suggestion": "Add a line like \"绛旀锛欱\" (choice) or \"绛旀锛氬\" (judge).",
+      "filePath": "C:/Users/Administrator/AppData/Local/Temp/03-importer-pdf-1768983997745.txt",
+      "line": 1,
+      "lineStart": 1,
+      "lineEnd": 10
+    }
+  ],
+  "extractedTextPreview": "1. 2+2= ?\nA. 3\nB. 4\nC. 5\n???B\n???2+2=4\n2. ??????\n?????\n????\n?????"
+}

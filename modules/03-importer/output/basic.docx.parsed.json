@@ -1,0 +1,53 @@
+{
+  "file": {
+    "path": "C:/Users/Administrator/AppData/Local/Temp/03-importer-docx-0a42fdda391d43d3a24d1785648bfe7a/extracted.txt"
+  },
+  "categoryPath": "绀轰緥棰樺簱",
+  "questions": [
+    {
+      "id": "q-0001",
+      "type": "single",
+      "stem": "1. 2+2= ?",
+      "options": [
+        {
+          "key": "A",
+          "text": "3"
+        },
+        {
+          "key": "B",
+          "text": "4"
+        },
+        {
+          "key": "C",
+          "text": "5"
+        }
+      ],
+      "answer": {
+        "value": "B"
+      },
+      "analysis": "2+2=4",
+      "source": {
+        "filePath": "C:/Users/Administrator/AppData/Local/Temp/03-importer-docx-0a42fdda391d43d3a24d1785648bfe7a/extracted.txt",
+        "lineStart": 1,
+        "lineEnd": 7
+      },
+      "categoryPath": "绀轰緥棰樺簱"
+    },
+    {
+      "id": "q-0002",
+      "type": "judge",
+      "stem": "2. 鍦扮悆鏄渾鐨勩€?,
+      "answer": {
+        "value": "true"
+      },
+      "analysis": "甯歌瘑",
+      "source": {
+        "filePath": "C:/Users/Administrator/AppData/Local/Temp/03-importer-docx-0a42fdda391d43d3a24d1785648bfe7a/extracted.txt",
+        "lineStart": 8,
+        "lineEnd": 12
+      },
+      "categoryPath": "绀轰緥棰樺簱"
+    }
+  ],
+  "errors": []
+}

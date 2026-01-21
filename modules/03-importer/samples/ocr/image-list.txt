@@ -1,0 +1,2 @@
+# Provide either image paths directly, or list them here (one per line)
+modules/03-importer/samples/ocr/blank.png

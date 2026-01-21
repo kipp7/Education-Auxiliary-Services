@@ -11,17 +11,17 @@
 
 ## 1. MVP：导入任务流水线（不绑定具体格式）
 - [x] 导入任务模型：任务ID、状态、进度、错误报告、产出统计（见 `modules/03-importer/ir/import-task.schema.json`）
-- [ ] 上传入口（建议）
-  - [ ] `POST /import/upload`（zip 或多文件）
-  - [ ] `GET /import/status?id=...`
-- [ ] 目录层级解析：把 folder path 解析为分类树节点（规则待确认）
+- [x] 上传入口（建议）（草案见 `modules/03-importer/api/import.openapi.yaml`）
+  - [x] `POST /import/upload`（zip 或多文件）
+  - [x] `GET /import/status?id=...`
+- [x] 目录层级解析：把 folder path 解析为分类树节点（实现见 `modules/03-importer/tools/parse-hierarchy.mjs`，样例见 `modules/03-importer/samples/hierarchy/file-list.txt`，输出见 `modules/03-importer/output/hierarchy.json`）
 - [x] 题目解析接口：先定义输入/输出中间格式（IR），再实现具体 parser（见 modules/03-importer/ir/question-ir.schema.json）
 
 ## 2. Parser 插件化（按优先级）
 - [x] `txt` 模板解析（最快落地；实现见 `modules/03-importer/tools/parse-txt.mjs`，样例见 `modules/03-importer/samples/txt/basic.txt`）
-- [ ] `doc/docx` 解析（按样例再定）
-- [ ] `pdf` 解析（按样例再定）
-- [ ] 图片 OCR（最后做；先支持人工校对流程）
+- [x] `doc/docx` 解析（最小实现：提取 document.xml 文本后复用 txt parser；工具见 `modules/03-importer/tools/parse-docx.ps1`；样例见 `modules/03-importer/samples/docx/basic.docx`；输出见 `modules/03-importer/output/basic.docx.parsed.json`）
+- [x] `pdf` 解析（最小实现：仅支持未压缩文本流，抽取 (.. ) Tj/T*；工具见 `modules/03-importer/tools/parse-pdf.mjs`；样例见 `modules/03-importer/samples/pdf/basic.pdf`；输出见 `modules/03-importer/output/basic.pdf.parsed.json`）
+- [x] 图片 OCR（先支持人工校对流程：生成 OCR 校对包；工具见 `modules/03-importer/tools/prepare-ocr-review.mjs`；样例见 `modules/03-importer/samples/ocr/image-list.txt`；输出见 `modules/03-importer/output/ocr.review.json`）
 
 ## 2.1 需求补充（来自《需求规格说明书》）
 - [ ] 题型覆盖：选择题（单选/多选）、判断题、填空题、论述题/大题

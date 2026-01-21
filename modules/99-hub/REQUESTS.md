@@ -19,12 +19,12 @@
 > 规则：所有窗口只 push 自己的 `feat/*` 分支；总控窗口按优先级合并进 `main`。
 - [x] `feat/99-hub-m1m2-checklist-mcp` → 99-hub：M1/M2 对齐清单 + MCP 小程序验收日志（合并后修复队列可读性）
 - [x] `feat/01-miniapp-mvp-my-login-winE3` → 01-miniapp 我的页：登录本地缓存/展示信息/退出登录（MVP）
-- [ ] `feat/03-importer-mvp-w03` → 03-importer：目录层级解析 + OpenAPI + docx/pdf 解析（MVP w03）
+- [x] `feat/03-importer-mvp-w03` → 03-importer：目录层级解析 + OpenAPI + docx/pdf 解析（MVP w03）
 - [x] `feat/01-miniapp-mvp-exam-winE3` → 01-miniapp MVP 答题闭环（验收见下方【合并请求】段落）
 
 - [x] `feat/04-admin-console-autopilot-codex` → 已合并到 `main`（管理台原型 M1–M4）
 
-- [ ] `feat/02-backend-core-autopilot-codex` → 02-backend-core Autopilot（M1–M6：OpenAPI 草案 + 可跑的 Mock API + 证据脚本）
+- [x] `feat/02-backend-core-autopilot-codex` → 02-backend-core Autopilot（M1–M6：OpenAPI 草案 + 可跑的 Mock API + 证据脚本）
 
 ## 当前 UI 决策（锁定）
 - Tab：`首页 / 题库 / 资讯 / 我的`
