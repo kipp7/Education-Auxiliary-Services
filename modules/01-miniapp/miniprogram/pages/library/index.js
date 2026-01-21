@@ -37,6 +37,13 @@ function makeUnits(prefix) {
   }))
 }
 
+function getJuniorSubjectList(grade) {
+  const g = String(grade || '')
+  if (g === '初一') return ['语文', '数学', '英语']
+  if (g === '初二') return ['语文', '数学', '英语', '物理']
+  return juniorSubjects
+}
+
 Page({
   data: {
     appName: config.APP_NAME,
@@ -46,14 +53,14 @@ Page({
 
     gradeList: juniorGrades,
     semesterList: juniorSemesters,
-    subjectList: juniorSubjects,
+    subjectList: getJuniorSubjectList(juniorGrades[0]),
 
     singleSubjectList: singleSubjects,
     singleTypeList: singleTypes,
 
     grade: juniorGrades[0],
     semester: juniorSemesters[0],
-    subject: juniorSubjects[0],
+    subject: getJuniorSubjectList(juniorGrades[0])[0],
 
     singleSubject: singleSubjects[0],
     singleType: singleTypes[0],
@@ -76,7 +83,10 @@ Page({
   },
 
   selectGrade(e) {
-    this.setData({ grade: e.currentTarget.dataset.value })
+    const grade = e.currentTarget.dataset.value
+    const subjectList = getJuniorSubjectList(grade)
+    const subject = subjectList.includes(this.data.subject) ? this.data.subject : subjectList[0]
+    this.setData({ grade, subjectList, subject })
     this.refreshUnits()
   },
 
