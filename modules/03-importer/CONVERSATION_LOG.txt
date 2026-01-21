@@ -49,3 +49,9 @@
 验收路径：
 - 运行：node modules/03-importer/tools/parse-pdf.mjs modules/03-importer/samples/pdf/basic.pdf --category "示例题库" > modules/03-importer/output/basic.pdf.parsed.json
 - 查看：modules/03-importer/output/basic.pdf.parsed.json
+
+--- 2026-01-21 17:31 ---
+决定/结论：完成图片 OCR 的“人工校对流程”最小实现（生成待录入的题目 IR 占位 + OCR_PENDING 错误项）。
+验收路径：
+- 运行：node modules/03-importer/tools/prepare-ocr-review.mjs modules/03-importer/samples/ocr/image-list.txt --category "示例题库" > modules/03-importer/output/ocr.review.json
+- 查看：modules/03-importer/output/ocr.review.json
