@@ -8,6 +8,7 @@
   - 说明：HTTP 服务监听端口
   - 默认：`3000`
   - 示例：`set PORT=3000`（Windows CMD）/ `$env:PORT="3000"`（PowerShell）
+  - 模板：`.env.example`（仅示例，不包含敏感信息）
 
 ## 可选
 
@@ -17,4 +18,3 @@
 
 - 启动：`cd modules/02-backend-core && npm run dev`
 - 健康检查：`curl.exe http://localhost:%PORT%/health`（按实际端口替换）
-

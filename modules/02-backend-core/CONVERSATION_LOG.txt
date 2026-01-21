@@ -138,3 +138,12 @@
 变更点：
 - 新增接口清单文档：API_ENDPOINTS.md（用于联调快速查阅）
 - 汇总各接口鉴权要求与用途
+
+--- 2026-01-21 ---
+分支：feat/02-backend-core-env-example-codex
+验收：
+- 查看：modules/02-backend-core/.env.example
+- 查看：modules/02-backend-core/ENVIRONMENT.md
+变更点：
+- 新增环境变量模板：.env.example（仅 PORT）
+- 在 ENVIRONMENT.md 补充模板入口
