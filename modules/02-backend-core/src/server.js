@@ -1,6 +1,8 @@
 const http = require("node:http");
 const { URL } = require("node:url");
 
+const orders = new Map();
+
 function json(res, statusCode, data) {
   const body = JSON.stringify(data);
   res.statusCode = statusCode;
@@ -31,6 +33,10 @@ function requireAuth(req, res) {
     return false;
   }
   return true;
+}
+
+function newOrderId() {
+  return `ord-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`;
 }
 
 const server = http.createServer(async (req, res) => {
@@ -65,6 +71,22 @@ const server = http.createServer(async (req, res) => {
       });
     }
 
+    // Payment providers typically call back without Authorization.
+    if (req.method === "POST" && path === "/billing/payment/callback") {
+      const body = (await readJson(req)) || {};
+      if (typeof body.orderId !== "string" || body.orderId.length === 0) {
+        return error(res, 400, "INVALID_ARGUMENT", "Missing orderId");
+      }
+      const status = typeof body.status === "string" ? body.status : "PAID";
+      const order = orders.get(body.orderId);
+      if (order) {
+        order.status = status;
+        order.updatedAt = new Date().toISOString();
+        orders.set(body.orderId, order);
+      }
+      return json(res, 200, { ok: true });
+    }
+
     if (!requireAuth(req, res)) return;
 
     if (req.method === "GET" && path === "/subjects") {
@@ -89,6 +111,54 @@ const server = http.createServer(async (req, res) => {
       return json(res, 200, [
         { id: "q-1", chapterId, stem: "示例题目 1", analysis: "示例解析" }
       ]);
+    }
+
+    if (req.method === "POST" && path === "/answers/submit") {
+      const body = (await readJson(req)) || {};
+      if (typeof body.chapterId !== "string" || body.chapterId.length === 0) {
+        return error(res, 400, "INVALID_ARGUMENT", "Missing chapterId");
+      }
+      if (!Array.isArray(body.answers)) {
+        return error(res, 400, "INVALID_ARGUMENT", "Missing answers");
+      }
+      return json(res, 200, { submitted: body.answers.length });
+    }
+
+    if (req.method === "GET" && path === "/progress") {
+      const packageId = url.searchParams.get("packageId");
+      if (!packageId) return error(res, 400, "INVALID_ARGUMENT", "Missing packageId");
+      return json(res, 200, {
+        packageId,
+        answeredCount: 1,
+        correctCount: 1,
+        totalCount: 10,
+        updatedAt: new Date().toISOString()
+      });
+    }
+
+    if (req.method === "GET" && path === "/wrongs") {
+      return json(res, 200, [
+        {
+          questionId: "q-1",
+          chapterId: "ch-1",
+          wrongAt: new Date().toISOString()
+        }
+      ]);
+    }
+
+    if (path === "/favorites") {
+      if (req.method === "POST") {
+        const body = (await readJson(req)) || {};
+        if (typeof body.questionId !== "string" || body.questionId.length === 0) {
+          return error(res, 400, "INVALID_ARGUMENT", "Missing questionId");
+        }
+        return json(res, 200, { favorited: true, questionId: body.questionId });
+      }
+      if (req.method === "DELETE") {
+        const questionId = url.searchParams.get("questionId");
+        if (!questionId) return error(res, 400, "INVALID_ARGUMENT", "Missing questionId");
+        return json(res, 200, { unfavorited: true, questionId });
+      }
     }
 
     if (req.method === "GET" && path === "/videos") {
@@ -124,17 +194,90 @@ const server = http.createServer(async (req, res) => {
       return json(res, 200, { bound: true });
     }
 
-    if (path === "/records") {
-      if (req.method === "GET") {
-        return json(res, 200, [{ id: "rec-1" }]);
+    if (req.method === "POST" && path === "/activation/redeem") {
+      const body = (await readJson(req)) || {};
+      if (typeof body.code !== "string" || body.code.length === 0) {
+        return error(res, 400, "INVALID_ARGUMENT", "Missing code");
       }
-      if (req.method === "POST") {
-        const body = (await readJson(req)) || {};
-        if (typeof body.chapterId !== "string" || body.chapterId.length === 0) {
-          return error(res, 400, "INVALID_ARGUMENT", "Missing chapterId");
-        }
-        return json(res, 200, { id: "rec-1" });
+      return json(res, 200, { redeemed: true });
+    }
+
+    if (req.method === "GET" && path === "/me/entitlements") {
+      return json(res, 200, {
+        active: true,
+        subjects: ["sub-1"],
+        packages: ["pkg-1"]
+      });
+    }
+
+    if (req.method === "GET" && path === "/me/learning-records") {
+      return json(res, 200, [
+        { id: "lr-1", chapterId: "ch-1", updatedAt: new Date().toISOString() }
+      ]);
+    }
+
+    if (req.method === "GET" && path === "/content/banners") {
+      return json(res, 200, [
+        { id: "b-1", title: "运营 Banner", imageUrl: null, link: null }
+      ]);
+    }
+
+    if (req.method === "GET" && path === "/content/news") {
+      return json(res, 200, [
+        { id: "n-1", title: "资讯标题", summary: "资讯摘要", publishedAt: new Date().toISOString() }
+      ]);
+    }
+
+    if (req.method === "GET" && path.startsWith("/content/news/")) {
+      const id = path.split("/").pop();
+      return json(res, 200, {
+        id: id || "n-1",
+        title: "资讯标题",
+        content: "资讯正文（mock）",
+        publishedAt: new Date().toISOString()
+      });
+    }
+
+    if (req.method === "GET" && path === "/content/recommendations") {
+      return json(res, 200, [
+        { id: "r-1", title: "推荐内容", type: "package", refId: "pkg-1" }
+      ]);
+    }
+
+    if (req.method === "GET" && path === "/billing/plans") {
+      return json(res, 200, [
+        { id: "plan-1", name: "月卡", priceCents: 1999, currency: "CNY" }
+      ]);
+    }
+
+    if (req.method === "POST" && path === "/billing/order") {
+      const body = (await readJson(req)) || {};
+      if (typeof body.planId !== "string" || body.planId.length === 0) {
+        return error(res, 400, "INVALID_ARGUMENT", "Missing planId");
       }
+      const orderId = newOrderId();
+      const now = new Date().toISOString();
+      orders.set(orderId, {
+        orderId,
+        planId: body.planId,
+        status: "CREATED",
+        createdAt: now,
+        updatedAt: now
+      });
+      return json(res, 200, {
+        orderId,
+        planId: body.planId,
+        status: "CREATED",
+        payUrl: null
+      });
+    }
+
+    if (req.method === "GET" && path.startsWith("/billing/order/")) {
+      const orderId = path.split("/").pop();
+      if (!orderId) return error(res, 400, "INVALID_ARGUMENT", "Missing orderId");
+      const order = orders.get(orderId);
+      if (!order) return error(res, 404, "NOT_FOUND", "Order not found");
+      return json(res, 200, order);
     }
 
     return error(res, 404, "NOT_FOUND", "Not found");
@@ -148,4 +291,3 @@ server.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`[02-backend-core] listening on http://localhost:${port}`);
 });
-

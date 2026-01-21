@@ -13,7 +13,14 @@ tags:
   - name: questions
   - name: videos
   - name: svip
+  - name: activation
+  - name: me
   - name: records
+  - name: content
+  - name: billing
+  - name: progress
+  - name: wrongs
+  - name: favorites
 
 components:
   securitySchemes:
@@ -104,6 +111,76 @@ components:
           type: string
           nullable: true
 
+    AnswerSubmitRequest:
+      type: object
+      additionalProperties: false
+      required: [chapterId, answers]
+      properties:
+        chapterId: { type: string }
+        answers:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            required: [questionId, value]
+            properties:
+              questionId: { type: string }
+              value: { type: string }
+
+    AnswerSubmitResponse:
+      type: object
+      additionalProperties: false
+      required: [submitted]
+      properties:
+        submitted: { type: integer, minimum: 0 }
+
+    ProgressResponse:
+      type: object
+      additionalProperties: false
+      required: [packageId, answeredCount, correctCount, totalCount, updatedAt]
+      properties:
+        packageId: { type: string }
+        answeredCount: { type: integer, minimum: 0 }
+        correctCount: { type: integer, minimum: 0 }
+        totalCount: { type: integer, minimum: 0 }
+        updatedAt:
+          type: string
+          format: date-time
+
+    WrongItem:
+      type: object
+      additionalProperties: false
+      required: [questionId, chapterId, wrongAt]
+      properties:
+        questionId: { type: string }
+        chapterId: { type: string }
+        wrongAt:
+          type: string
+          format: date-time
+
+    FavoriteUpsertRequest:
+      type: object
+      additionalProperties: false
+      required: [questionId]
+      properties:
+        questionId: { type: string }
+
+    FavoriteUpsertResponse:
+      type: object
+      additionalProperties: false
+      required: [favorited, questionId]
+      properties:
+        favorited: { type: boolean }
+        questionId: { type: string }
+
+    FavoriteDeleteResponse:
+      type: object
+      additionalProperties: false
+      required: [unfavorited, questionId]
+      properties:
+        unfavorited: { type: boolean }
+        questionId: { type: string }
+
     Video:
       type: object
       additionalProperties: false
@@ -153,6 +230,160 @@ components:
       required: [bound]
       properties:
         bound: { type: boolean }
+
+    ActivationRedeemRequest:
+      type: object
+      additionalProperties: false
+      required: [code]
+      properties:
+        code: { type: string }
+
+    ActivationRedeemResponse:
+      type: object
+      additionalProperties: false
+      required: [redeemed]
+      properties:
+        redeemed: { type: boolean }
+
+    MeEntitlementsResponse:
+      type: object
+      additionalProperties: false
+      required: [active, subjects, packages]
+      properties:
+        active: { type: boolean }
+        subjects:
+          type: array
+          items: { type: string }
+        packages:
+          type: array
+          items: { type: string }
+
+    LearningRecord:
+      type: object
+      additionalProperties: false
+      required: [id, chapterId, updatedAt]
+      properties:
+        id: { type: string }
+        chapterId: { type: string }
+        updatedAt:
+          type: string
+          format: date-time
+
+    Banner:
+      type: object
+      additionalProperties: false
+      required: [id, title]
+      properties:
+        id: { type: string }
+        title: { type: string }
+        imageUrl:
+          type: string
+          nullable: true
+        link:
+          type: string
+          nullable: true
+
+    NewsItem:
+      type: object
+      additionalProperties: false
+      required: [id, title, publishedAt]
+      properties:
+        id: { type: string }
+        title: { type: string }
+        summary:
+          type: string
+          nullable: true
+        publishedAt:
+          type: string
+          format: date-time
+
+    NewsDetail:
+      type: object
+      additionalProperties: false
+      required: [id, title, content, publishedAt]
+      properties:
+        id: { type: string }
+        title: { type: string }
+        content: { type: string }
+        publishedAt:
+          type: string
+          format: date-time
+
+    Recommendation:
+      type: object
+      additionalProperties: false
+      required: [id, title, type, refId]
+      properties:
+        id: { type: string }
+        title: { type: string }
+        type: { type: string }
+        refId: { type: string }
+
+    BillingPlan:
+      type: object
+      additionalProperties: false
+      required: [id, name, priceCents, currency]
+      properties:
+        id: { type: string }
+        name: { type: string }
+        priceCents: { type: integer, minimum: 0 }
+        currency: { type: string }
+
+    BillingOrderCreateRequest:
+      type: object
+      additionalProperties: false
+      required: [planId]
+      properties:
+        planId: { type: string }
+
+    BillingOrderCreateResponse:
+      type: object
+      additionalProperties: false
+      required: [orderId, planId, status]
+      properties:
+        orderId: { type: string }
+        planId: { type: string }
+        status:
+          type: string
+          description: 订单状态（草案枚举）
+          examples: [CREATED, PAID, CANCELED]
+        payUrl:
+          type: string
+          nullable: true
+
+    BillingOrder:
+      type: object
+      additionalProperties: false
+      required: [orderId, planId, status, createdAt, updatedAt]
+      properties:
+        orderId: { type: string }
+        planId: { type: string }
+        status:
+          type: string
+          examples: [CREATED, PAID, CANCELED]
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    BillingPaymentCallbackRequest:
+      type: object
+      additionalProperties: false
+      required: [orderId, status]
+      properties:
+        orderId: { type: string }
+        status:
+          type: string
+          examples: [PAID, CANCELED]
+
+    BillingPaymentCallbackResponse:
+      type: object
+      additionalProperties: false
+      required: [ok]
+      properties:
+        ok: { type: boolean }
 
     StudyRecordUpsertRequest:
       type: object
@@ -309,6 +540,116 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
 
+  /answers/submit:
+    post:
+      tags: [records]
+      summary: 提交作答（草案）
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnswerSubmitRequest"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AnswerSubmitResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /progress:
+    get:
+      tags: [progress]
+      summary: 获取做题进度（草案）
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: packageId
+          in: query
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProgressResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /wrongs:
+    get:
+      tags: [wrongs]
+      summary: 获取错题列表（草案）
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/WrongItem"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /favorites:
+    post:
+      tags: [favorites]
+      summary: 收藏题目（草案）
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FavoriteUpsertRequest"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FavoriteUpsertResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+    delete:
+      tags: [favorites]
+      summary: 取消收藏（草案）
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: questionId
+          in: query
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FavoriteDeleteResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
   /videos:
     get:
       tags: [videos]
@@ -405,6 +746,224 @@ paths:
         "403":
           $ref: "#/components/responses/Forbidden"
 
+  /activation/redeem:
+    post:
+      tags: [activation]
+      summary: 激活码兑换（草案）
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ActivationRedeemRequest"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ActivationRedeemResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /me/entitlements:
+    get:
+      tags: [me]
+      summary: 获取我的权益（草案）
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MeEntitlementsResponse"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /me/learning-records:
+    get:
+      tags: [me]
+      summary: 获取学习记录（草案）
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/LearningRecord"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /content/banners:
+    get:
+      tags: [content]
+      summary: 获取 banner（草案）
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Banner"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /content/news:
+    get:
+      tags: [content]
+      summary: 获取资讯列表（草案）
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/NewsItem"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /content/news/{id}:
+    get:
+      tags: [content]
+      summary: 获取资讯详情（草案）
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NewsDetail"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /content/recommendations:
+    get:
+      tags: [content]
+      summary: 获取推荐内容（草案）
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Recommendation"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /billing/plans:
+    get:
+      tags: [billing]
+      summary: 获取套餐列表（草案）
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BillingPlan"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /billing/order:
+    post:
+      tags: [billing]
+      summary: 创建订单（草案）
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BillingOrderCreateRequest"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BillingOrderCreateResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /billing/order/{orderId}:
+    get:
+      tags: [billing]
+      summary: 查询订单（草案）
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BillingOrder"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /billing/payment/callback:
+    post:
+      tags: [billing]
+      summary: 支付回调（预留，草案）
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BillingPaymentCallbackRequest"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BillingPaymentCallbackResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+
   /records:
     get:
       tags: [records]
@@ -449,4 +1008,3 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
-

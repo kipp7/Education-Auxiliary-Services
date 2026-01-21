@@ -1,0 +1,49 @@
+﻿# M6 evidence
+GeneratedAt=2026-01-21 16:51:33
+PORT=3956
+
+$ curl http://localhost:3956/health
+{"ok":true}
+exit=0
+
+$ curl -X POST http://localhost:3956/auth/wechat
+{"token":"demo-token","expiresIn":7200,"userId":"demo-user","isNewUser":false}
+exit=0
+
+$ curl http://localhost:3956/subjects
+[{"id":"sub-1","name":"绉戠洰A"}]
+exit=0
+
+$ curl http://localhost:3956/packages?subjectId=sub-1
+[{"id":"pkg-1","subjectId":"sub-1","name":"棰樺簱鍖匒"}]
+exit=0
+
+$ curl http://localhost:3956/chapters?packageId=pkg-1
+[{"id":"ch-1","packageId":"pkg-1","name":"绔犺妭A"}]
+exit=0
+
+$ curl http://localhost:3956/questions?chapterId=ch-1
+[{"id":"q-1","chapterId":"ch-1","stem":"绀轰緥棰樼洰 1","analysis":"绀轰緥瑙ｆ瀽"}]
+exit=0
+
+$ curl -X POST http://localhost:3956/answers/submit
+{"submitted":1}
+exit=0
+
+$ curl http://localhost:3956/progress?packageId=pkg-1
+{"packageId":"pkg-1","answeredCount":1,"correctCount":1,"totalCount":10,"updatedAt":"2026-01-21T08:51:34.139Z"}
+exit=0
+
+$ curl http://localhost:3956/wrongs
+[{"questionId":"q-1","chapterId":"ch-1","wrongAt":"2026-01-21T08:51:34.161Z"}]
+exit=0
+
+$ curl -X POST http://localhost:3956/favorites
+{"favorited":true,"questionId":"q-1"}
+exit=0
+
+$ curl -X DELETE http://localhost:3956/favorites?questionId=q-1
+{"unfavorited":true,"questionId":"q-1"}
+exit=0
+
+OK

@@ -1,0 +1,21 @@
+﻿# M7 evidence
+GeneratedAt=2026-01-21 17:41:09
+PORT=3358
+
+$ curl http://localhost:3358/health
+{"ok":true}
+exit=0
+
+$ curl -X POST http://localhost:3358/auth/wechat
+{"token":"demo-token","expiresIn":7200,"userId":"demo-user","isNewUser":false}
+exit=0
+
+$ curl http://localhost:3358/billing/plans
+[{"id":"plan-1","name":"鏈堝崱","priceCents":1999,"currency":"CNY"}]
+exit=0
+
+$ curl -X POST http://localhost:3358/billing/order
+{"orderId":"ord-1768988469833","planId":"plan-1","status":"CREATED","payUrl":null}
+exit=0
+
+OK

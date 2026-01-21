@@ -1,0 +1,53 @@
+# M3 curl evidence
+PORT=3103
+
+$ curl http://localhost:3103/health
+{"ok":true}
+
+$ curl -X POST http://localhost:3103/auth/wechat
+{"token":"demo-token","expiresIn":7200,"userId":"demo-user","isNewUser":false}
+
+$ curl http://localhost:3103/subjects
+[{"id":"sub-1","name":"绉戠洰A"}]
+
+$ curl http://localhost:3103/packages?subjectId=sub-1
+[{"id":"pkg-1","subjectId":"sub-1","name":"棰樺簱鍖匒"}]
+
+$ curl http://localhost:3103/chapters?packageId=pkg-1
+[{"id":"ch-1","packageId":"pkg-1","name":"绔犺妭A"}]
+
+$ curl http://localhost:3103/questions?chapterId=ch-1
+[{"id":"q-1","chapterId":"ch-1","stem":"绀轰緥棰樼洰 1","analysis":"绀轰緥瑙ｆ瀽"}]
+
+$ curl -X POST http://localhost:3103/answers/submit
+{"submitted":1}
+
+$ curl http://localhost:3103/videos?packageId=pkg-1
+[{"id":"v-1","title":"绀轰緥瑙嗛 1","url":null}]
+
+$ curl http://localhost:3103/videos/progress?videoId=v-1
+{"videoId":"v-1","progress":0.25}
+
+$ curl -X POST http://localhost:3103/activation/redeem
+{"redeemed":true}
+
+$ curl http://localhost:3103/me/entitlements
+{"active":true,"subjects":["sub-1"],"packages":["pkg-1"]}
+
+$ curl http://localhost:3103/me/learning-records
+[{"id":"lr-1","chapterId":"ch-1","updatedAt":"2026-01-21T07:29:08.280Z"}]
+
+$ curl http://localhost:3103/content/banners
+[{"id":"b-1","title":"杩愯惀 Banner","imageUrl":null,"link":null}]
+
+$ curl http://localhost:3103/content/news
+[{"id":"n-1","title":"璧勮鏍囬","summary":"璧勮鎽樿","publishedAt":"2026-01-21T07:29:08.312Z"}]
+
+$ curl http://localhost:3103/content/news/n-1
+{"id":"n-1","title":"璧勮鏍囬","content":"璧勮姝ｆ枃锛坢ock锛?,"publishedAt":"2026-01-21T07:29:08.330Z"}
+
+$ curl http://localhost:3103/content/recommendations
+[{"id":"r-1","title":"鎺ㄨ崘鍐呭","type":"package","refId":"pkg-1"}]
+
+$ curl http://localhost:3103/billing/plans
+[{"id":"plan-1","name":"鏈堝崱","priceCents":1999,"currency":"CNY"}]
