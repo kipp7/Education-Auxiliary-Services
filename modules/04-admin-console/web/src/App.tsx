@@ -10,6 +10,7 @@ import { AnnouncementsPage } from "./cms/AnnouncementsPage";
 import { AnnouncementDetailPage } from "./cms/AnnouncementDetailPage";
 import { ExportsPage } from "./exports/ExportsPage";
 import { OpsExportsPage } from "./exports/OpsExportsPage";
+import { MePage } from "./pages/MePage";
 import { SvipCodesPage } from "./svip/SvipCodesPage";
 import { DashboardPage } from "./dashboard/DashboardPage";
 import { PlansPage } from "./plans/PlansPage";
@@ -24,6 +25,14 @@ export function App() {
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
+      <Route
+        path="/me"
+        element={
+          <RequireAuth>
+            <MePage />
+          </RequireAuth>
+        }
+      />
       <Route
         path="/"
         element={
