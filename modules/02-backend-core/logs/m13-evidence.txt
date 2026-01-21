@@ -1,0 +1,17 @@
+﻿# M13 evidence
+GeneratedAt=2026-01-21 20:28:56
+PORT=3425
+
+$ curl http://localhost:3425/health
+{"ok":true}
+exit=0
+
+$ curl -X POST http://localhost:3425/auth/wechat
+{"token":"demo-token","expiresIn":7200,"userId":"demo-user","isNewUser":false}
+exit=0
+
+$ curl http://localhost:3425/me
+{"userId":"demo-user","roles":["user"],"nickName":"demo","updatedAt":"2026-01-21T12:28:57.343Z"}
+exit=0
+
+OK

@@ -258,6 +258,22 @@ components:
           type: array
           items: { type: string }
 
+    MeProfile:
+      type: object
+      additionalProperties: false
+      required: [userId, roles, updatedAt]
+      properties:
+        userId: { type: string }
+        roles:
+          type: array
+          items: { type: string }
+        nickName:
+          type: string
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+
     LearningRecord:
       type: object
       additionalProperties: false
@@ -783,6 +799,22 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/MeEntitlementsResponse"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /me:
+    get:
+      tags: [me]
+      summary: 获取我的基础信息（草案）
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MeProfile"
         "401":
           $ref: "#/components/responses/Unauthorized"
 

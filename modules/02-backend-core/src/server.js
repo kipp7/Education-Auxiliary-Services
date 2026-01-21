@@ -101,6 +101,17 @@ const server = http.createServer(async (req, res) => {
 
     if (!requireAuth(req, res)) return;
 
+    if (req.method === "GET" && path === "/me") {
+      const auth = req.headers.authorization || "";
+      const token = auth.startsWith("Bearer ") ? auth.slice("Bearer ".length).trim() : "";
+      return json(res, 200, {
+        userId: token === "demo-token" ? "demo-user" : "unknown",
+        roles: ["user"],
+        nickName: "demo",
+        updatedAt: new Date().toISOString()
+      });
+    }
+
     if (req.method === "GET" && path === "/subjects") {
       return json(res, 200, [{ id: "sub-1", name: "科目A" }]);
     }

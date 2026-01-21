@@ -102,3 +102,12 @@
 变更点：
 - 所有响应新增 `X-Request-Id`，错误体回传 requestId 便于定位
 - 非法 JSON 统一返回 400（code=INVALID_ARGUMENT, message=Invalid JSON）
+
+--- 2026-01-21 ---
+分支：feat/02-backend-core-me-profile-codex
+验收：
+- cd modules/02-backend-core && npm run dev
+- powershell -ExecutionPolicy Bypass -File modules/02-backend-core/scripts/gen-evidence-m13.ps1
+变更点：
+- 新增 mock 接口：GET /me（基础用户信息）
+- 更新 OpenAPI 草案并新增证据输出：logs/m13-evidence.txt
