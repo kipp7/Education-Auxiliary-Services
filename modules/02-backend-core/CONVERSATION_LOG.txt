@@ -129,3 +129,12 @@
 变更点：
 - CORS 允许 `DELETE`：`Access-Control-Allow-Methods` 增加 `DELETE`
 - 新增证据脚本与日志：scripts/gen-evidence-m12.ps1、logs/m12-evidence.txt
+
+--- 2026-01-21 ---
+分支：feat/02-backend-core-api-endpoints-doc-codex
+验收：
+- 查看：modules/02-backend-core/API_ENDPOINTS.md
+- 对照：modules/02-backend-core/contract/mvp.openapi.yaml
+变更点：
+- 新增接口清单文档：API_ENDPOINTS.md（用于联调快速查阅）
+- 汇总各接口鉴权要求与用途
