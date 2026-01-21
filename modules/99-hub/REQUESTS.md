@@ -60,7 +60,18 @@
 - 分支：`feat/03-importer-mvp-w03`
 - 验收方式（建议）：
   - `git fetch origin && git checkout feat/03-importer-mvp-w03`
-  - 按 `modules/03-importer/CONVERSATION_LOG.txt` 的“验收路径/命令清单”执行（关注：OpenAPI/目录层级解析/docx/pdf 解析可复现）
+  - txt：
+    - `node modules/03-importer/tools/parse-txt.mjs modules/03-importer/samples/txt/basic.txt --category "数学/一年级" > modules/03-importer/output/basic.parsed.json`
+  - hierarchy：
+    - `node modules/03-importer/tools/parse-hierarchy.mjs modules/03-importer/samples/hierarchy/file-list.txt > modules/03-importer/output/hierarchy.json`
+  - docx：
+    - `pwsh -File modules/03-importer/tools/parse-docx.ps1 modules/03-importer/samples/docx/basic.docx -Category "示例题库" > modules/03-importer/output/basic.docx.parsed.json`
+  - pdf：
+    - `node modules/03-importer/tools/parse-pdf.mjs modules/03-importer/samples/pdf/basic.pdf --category "示例题库" > modules/03-importer/output/basic.pdf.parsed.json`
+  - ocr-review：
+    - `node modules/03-importer/tools/prepare-ocr-review.mjs modules/03-importer/samples/ocr/image-list.txt --category "示例题库" > modules/03-importer/output/ocr.review.json`
+  - api：
+    - 查看 `modules/03-importer/api/import.openapi.yaml` 包含 `/import/upload` 与 `/import/status`
 
 ## 合并请求：02-backend-core Autopilot（M1–M6）
 - 发起模块：modules/02-backend-core
