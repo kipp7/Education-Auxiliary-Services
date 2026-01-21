@@ -4,7 +4,7 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 
 function usage() {
-  console.error('Usage: node modules/03-importer/tools/parse-pdf.mjs <pdfFile> [--category <path>]');
+  console.error('Usage: node modules/03-importer/tools/parse-pdf.mjs <pdfFile> [--category <path>] [--out <jsonFile>]');
   process.exit(2);
 }
 
@@ -69,10 +69,16 @@ if (args.length < 1) usage();
 
 let file = null;
 let category = '';
+let outFile = '';
 for (let i = 0; i < args.length; i++) {
   const a = args[i];
   if (a === '--category') {
     category = args[i + 1] || '';
+    i++;
+    continue;
+  }
+  if (a === '--out') {
+    outFile = args[i + 1] || '';
     i++;
     continue;
   }
@@ -105,5 +111,16 @@ if (result.status !== 0) {
 const parsed = JSON.parse(result.stdout);
 parsed.file = { path: normalizeRel(file) };
 parsed.extractedTextPreview = text.slice(0, 200);
+if (Array.isArray(parsed.errors)) {
+  for (const e of parsed.errors) {
+    if (e && typeof e === 'object') e.filePath = normalizeRel(file);
+  }
+}
 
-process.stdout.write(JSON.stringify(parsed, null, 2));
+const json = JSON.stringify(parsed, null, 2);
+if (outFile) {
+  const outAbs = path.resolve(process.cwd(), outFile);
+  fs.writeFileSync(outAbs, json, 'utf8');
+} else {
+  process.stdout.write(json);
+}

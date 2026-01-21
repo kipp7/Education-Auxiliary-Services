@@ -128,3 +128,12 @@
 变更点：
 - 新增题目 IR 校验工具 validate-ir（兼容 PS 重定向 UTF-16），用于快速发现解析结果不符合 IR 的问题
 - 补充 basic.parsed 的校验输出样例
+
+--- 2026-01-21 ---
+分支：feat/03-importer-pdf-out-w03-v1
+验收：
+- node modules/03-importer/tools/parse-pdf.mjs modules/03-importer/samples/pdf/basic.pdf --category "示例题库" --out modules/03-importer/output/basic.pdf.parsed.json
+- 查看 modules/03-importer/output/basic.pdf.parsed.json
+变更点：
+- parse-pdf 支持 --out（UTF-8 写文件），避免 PowerShell 重定向编码问题
+- 修正 pdf 解析错误项的 filePath 指向源 PDF（不再指向临时 txt 路径）
