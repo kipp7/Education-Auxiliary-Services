@@ -35,3 +35,10 @@
 - 启动：cd modules/02-backend-core && npm run dev
 - 证据日志：modules/02-backend-core/logs/m3-curl.txt
 - 关键接口：/subjects /packages /chapters /questions /answers/submit /videos /videos/progress /activation/redeem /me/entitlements /me/learning-records
+
+--- 2026-01-21 15:27 ---
+里程碑：M3 端到端 Mock API（扩展：资讯/套餐）
+验收方式（路径）：
+- 启动：cd modules/02-backend-core && npm run dev
+- 证据日志：modules/02-backend-core/logs/m3-curl.txt
+- 新增接口：/content/banners /content/news /content/news/:id /content/recommendations /billing/plans

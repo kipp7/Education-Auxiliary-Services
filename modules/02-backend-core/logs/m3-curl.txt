@@ -1,56 +1,66 @@
 # M3 curl evidence
-PORT=3100
+PORT=3102
 
-$ curl -s http://localhost:3100/health
-{"ok":true}
+$ curl -s http://localhost:3102/health
+curl: try 'curl --help' or 'curl --manual' for more information
 
-$ curl -s -X POST http://localhost:3100/auth/wechat -H 'Content-Type: application/json' -d '{\
-Invoke-Expression: 
-Line |
-  15 |      $out = Invoke-Expression $cmd 2>&1 | Out-String
-     |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     | The string is missing the terminator: '.
+$ curl -s -X POST http://localhost:3102/auth/wechat ...
+curl: try 'curl --help' or 'curl --manual' for more information
 
+$ curl -s http://localhost:3102/subjects -H \
+curl: option -s http://localhost:3102/subjects -H Authorization: Bearer demo-token: is unknown
+curl: try 'curl --help' or 'curl --manual' for more information
 
+$ curl -s http://localhost:3102/packages?subjectId=sub-1 -H \
+curl: option -s http://localhost:3102/packages?subjectId=sub-1 -H Authorization: Bearer demo-token: is unknown
+curl: try 'curl --help' or 'curl --manual' for more information
 
-$ curl -s http://localhost:3100/subjects -H 'Authorization: Bearer demo-token'
-[{"id":"sub-1","name":"绉戠洰A"}]
+$ curl -s http://localhost:3102/chapters?packageId=pkg-1 -H \
+curl: option -s http://localhost:3102/chapters?packageId=pkg-1 -H Authorization: Bearer demo-token: is unknown
+curl: try 'curl --help' or 'curl --manual' for more information
 
-$ curl -s http://localhost:3100/packages?subjectId=sub-1 -H 'Authorization: Bearer demo-token'
-[{"id":"pkg-1","subjectId":"sub-1","name":"棰樺簱鍖匒"}]
+$ curl -s http://localhost:3102/questions?chapterId=ch-1 -H \
+curl: option -s http://localhost:3102/questions?chapterId=ch-1 -H Authorization: Bearer demo-token: is unknown
+curl: try 'curl --help' or 'curl --manual' for more information
 
-$ curl -s http://localhost:3100/chapters?packageId=pkg-1 -H 'Authorization: Bearer demo-token'
-[{"id":"ch-1","packageId":"pkg-1","name":"绔犺妭A"}]
+$ curl -s -X POST http://localhost:3102/answers/submit ...
+curl: try 'curl --help' or 'curl --manual' for more information
 
-$ curl -s http://localhost:3100/questions?chapterId=ch-1 -H 'Authorization: Bearer demo-token'
-[{"id":"q-1","chapterId":"ch-1","stem":"绀轰緥棰樼洰 1","analysis":"绀轰緥瑙ｆ瀽"}]
+$ curl -s http://localhost:3102/videos?packageId=pkg-1 -H \
+curl: option -s http://localhost:3102/videos?packageId=pkg-1 -H Authorization: Bearer demo-token: is unknown
+curl: try 'curl --help' or 'curl --manual' for more information
 
-$ curl -s -X POST http://localhost:3100/answers/submit -H 'Authorization: Bearer demo-token' -H 'Content-Type: application/json' -d '{\
-Invoke-Expression: 
-Line |
-  15 |      $out = Invoke-Expression $cmd 2>&1 | Out-String
-     |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     | The string is missing the terminator: '.
+$ curl -s http://localhost:3102/videos/progress?videoId=v-1 -H \
+curl: option -s http://localhost:3102/videos/progress?videoId=v-1 -H Authorization: Bearer demo-token: is unknown
+curl: try 'curl --help' or 'curl --manual' for more information
 
+$ curl -s -X POST http://localhost:3102/activation/redeem ...
+curl: try 'curl --help' or 'curl --manual' for more information
 
+$ curl -s http://localhost:3102/me/entitlements -H \
+curl: option -s http://localhost:3102/me/entitlements -H Authorization: Bearer demo-token: is unknown
+curl: try 'curl --help' or 'curl --manual' for more information
 
-$ curl -s http://localhost:3100/videos?packageId=pkg-1 -H 'Authorization: Bearer demo-token'
-[{"id":"v-1","title":"绀轰緥瑙嗛 1","url":null}]
+$ curl -s http://localhost:3102/me/learning-records -H \
+curl: option -s http://localhost:3102/me/learning-records -H Authorization: Bearer demo-token: is unknown
+curl: try 'curl --help' or 'curl --manual' for more information
 
-$ curl -s http://localhost:3100/videos/progress?videoId=v-1 -H 'Authorization: Bearer demo-token'
-{"videoId":"v-1","progress":0.25}
+$ curl -s http://localhost:3102/content/banners -H \
+curl: option -s http://localhost:3102/content/banners -H Authorization: Bearer demo-token: is unknown
+curl: try 'curl --help' or 'curl --manual' for more information
 
-$ curl -s -X POST http://localhost:3100/activation/redeem -H 'Authorization: Bearer demo-token' -H 'Content-Type: application/json' -d '{\
-Invoke-Expression: 
-Line |
-  15 |      $out = Invoke-Expression $cmd 2>&1 | Out-String
-     |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     | The string is missing the terminator: '.
+$ curl -s http://localhost:3102/content/news -H \
+curl: option -s http://localhost:3102/content/news -H Authorization: Bearer demo-token: is unknown
+curl: try 'curl --help' or 'curl --manual' for more information
 
+$ curl -s http://localhost:3102/content/news/n-1 -H \
+curl: option -s http://localhost:3102/content/news/n-1 -H Authorization: Bearer demo-token: is unknown
+curl: try 'curl --help' or 'curl --manual' for more information
 
+$ curl -s http://localhost:3102/content/recommendations -H \
+curl: option -s http://localhost:3102/content/recommendations -H Authorization: Bearer demo-token: is unknown
+curl: try 'curl --help' or 'curl --manual' for more information
 
-$ curl -s http://localhost:3100/me/entitlements -H 'Authorization: Bearer demo-token'
-{"active":true,"subjects":["sub-1"],"packages":["pkg-1"]}
-
-$ curl -s http://localhost:3100/me/learning-records -H 'Authorization: Bearer demo-token'
-[{"id":"lr-1","chapterId":"ch-1","updatedAt":"2026-01-21T06:39:35.087Z"}]
+$ curl -s http://localhost:3102/billing/plans -H \
+curl: option -s http://localhost:3102/billing/plans -H Authorization: Bearer demo-token: is unknown
+curl: try 'curl --help' or 'curl --manual' for more information

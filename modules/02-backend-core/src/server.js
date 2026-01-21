@@ -157,6 +157,40 @@ const server = http.createServer(async (req, res) => {
       ]);
     }
 
+    if (req.method === "GET" && path === "/content/banners") {
+      return json(res, 200, [
+        { id: "b-1", title: "运营 Banner", imageUrl: null, link: null }
+      ]);
+    }
+
+    if (req.method === "GET" && path === "/content/news") {
+      return json(res, 200, [
+        { id: "n-1", title: "资讯标题", summary: "资讯摘要", publishedAt: new Date().toISOString() }
+      ]);
+    }
+
+    if (req.method === "GET" && path.startsWith("/content/news/")) {
+      const id = path.split("/").pop();
+      return json(res, 200, {
+        id: id || "n-1",
+        title: "资讯标题",
+        content: "资讯正文（mock）",
+        publishedAt: new Date().toISOString()
+      });
+    }
+
+    if (req.method === "GET" && path === "/content/recommendations") {
+      return json(res, 200, [
+        { id: "r-1", title: "推荐内容", type: "package", refId: "pkg-1" }
+      ]);
+    }
+
+    if (req.method === "GET" && path === "/billing/plans") {
+      return json(res, 200, [
+        { id: "plan-1", name: "月卡", priceCents: 1999, currency: "CNY" }
+      ]);
+    }
+
     return error(res, 404, "NOT_FOUND", "Not found");
   } catch (e) {
     return error(res, 500, "INTERNAL", e instanceof Error ? e.message : "Internal error");

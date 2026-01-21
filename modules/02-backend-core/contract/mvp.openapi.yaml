@@ -16,6 +16,8 @@ tags:
   - name: activation
   - name: me
   - name: records
+  - name: content
+  - name: billing
 
 components:
   securitySchemes:
@@ -216,6 +218,66 @@ components:
         updatedAt:
           type: string
           format: date-time
+
+    Banner:
+      type: object
+      additionalProperties: false
+      required: [id, title]
+      properties:
+        id: { type: string }
+        title: { type: string }
+        imageUrl:
+          type: string
+          nullable: true
+        link:
+          type: string
+          nullable: true
+
+    NewsItem:
+      type: object
+      additionalProperties: false
+      required: [id, title, publishedAt]
+      properties:
+        id: { type: string }
+        title: { type: string }
+        summary:
+          type: string
+          nullable: true
+        publishedAt:
+          type: string
+          format: date-time
+
+    NewsDetail:
+      type: object
+      additionalProperties: false
+      required: [id, title, content, publishedAt]
+      properties:
+        id: { type: string }
+        title: { type: string }
+        content: { type: string }
+        publishedAt:
+          type: string
+          format: date-time
+
+    Recommendation:
+      type: object
+      additionalProperties: false
+      required: [id, title, type, refId]
+      properties:
+        id: { type: string }
+        title: { type: string }
+        type: { type: string }
+        refId: { type: string }
+
+    BillingPlan:
+      type: object
+      additionalProperties: false
+      required: [id, name, priceCents, currency]
+      properties:
+        id: { type: string }
+        name: { type: string }
+        priceCents: { type: integer, minimum: 0 }
+        currency: { type: string }
 
     StudyRecordUpsertRequest:
       type: object
@@ -547,6 +609,99 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/LearningRecord"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /content/banners:
+    get:
+      tags: [content]
+      summary: 获取 banner（草案）
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Banner"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /content/news:
+    get:
+      tags: [content]
+      summary: 获取资讯列表（草案）
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/NewsItem"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /content/news/{id}:
+    get:
+      tags: [content]
+      summary: 获取资讯详情（草案）
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NewsDetail"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /content/recommendations:
+    get:
+      tags: [content]
+      summary: 获取推荐内容（草案）
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Recommendation"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /billing/plans:
+    get:
+      tags: [billing]
+      summary: 获取套餐列表（草案）
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BillingPlan"
         "401":
           $ref: "#/components/responses/Unauthorized"
 
