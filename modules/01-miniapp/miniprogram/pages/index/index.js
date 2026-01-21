@@ -16,10 +16,19 @@ Page({
     banners: homeConfig.banners || [],
     conversion: homeConfig.conversion || {},
     recommend: { courses: [], banks: [] },
+    showBannerDots: false,
+    stageList: homeConfig.stageList || ['初中', '单招'],
+    stage: (homeConfig.stageList && homeConfig.stageList[0]) || '初中',
   },
 
   onLoad: function() {
-    this.refreshHomeByStage()
+    this.setData(
+      {
+        stageList: homeConfig.stageList || [],
+        stage: (homeConfig.stageList && homeConfig.stageList[0]) || '',
+      },
+      () => this.refreshHomeByStage(),
+    )
     if (wx.getUserProfile) {
       this.setData({
         canIUseGetUserProfile: true
@@ -151,5 +160,18 @@ Page({
   },
   goExam(){
     wx.navigateTo({ url: '/pages/exam-menu/index' })
+  },
+
+  onBannerTouchStart() {
+    if (this._bannerDotsTimer) clearTimeout(this._bannerDotsTimer)
+    if (!this.data.showBannerDots) this.setData({ showBannerDots: true })
+  },
+
+  onBannerTouchEnd() {
+    if (this._bannerDotsTimer) clearTimeout(this._bannerDotsTimer)
+    this._bannerDotsTimer = setTimeout(() => {
+      this._bannerDotsTimer = null
+      if (this.data.showBannerDots) this.setData({ showBannerDots: false })
+    }, 1200)
   }
 })

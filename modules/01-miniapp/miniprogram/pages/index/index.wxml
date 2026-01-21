@@ -30,11 +30,13 @@
     <swiper
       class="banner-swiper"
       wx:if="{{banners.length}}"
-      indicator-dots="true"
+      indicator-dots="{{showBannerDots}}"
       autoplay="true"
       interval="4000"
       duration="500"
       circular="true"
+      bindtouchstart="onBannerTouchStart"
+      bindtouchend="onBannerTouchEnd"
     >
       <swiper-item wx:for="{{banners}}" wx:key="id">
         <view class="banner" data-action="{{item.action}}" bindtap="handleAction">
