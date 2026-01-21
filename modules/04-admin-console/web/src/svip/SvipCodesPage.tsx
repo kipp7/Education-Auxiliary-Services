@@ -10,9 +10,9 @@ function formatTime(iso: string | null) {
 }
 
 function toCsv(items: SvipCode[]) {
-  const header = ["code", "status", "validUntil", "createdAt", "redeemedAt"].join(",");
+  const header = ["code", "status", "validUntil", "createdAt", "redeemedAt", "redeemedBy"].join(",");
   const rows = items.map((c) =>
-    [c.code, c.status, c.validUntil ?? "", c.createdAt, c.redeemedAt ?? ""]
+    [c.code, c.status, c.validUntil ?? "", c.createdAt, c.redeemedAt ?? "", c.redeemedBy ?? ""]
       .map((x) => `"${String(x).replaceAll("\"", "\"\"")}"`)
       .join(","),
   );
@@ -110,6 +110,7 @@ export function SvipCodesPage() {
                   </div>
                   <div className="muted">
                     createdAt: {formatTime(c.createdAt)} · validUntil: {formatTime(c.validUntil)}
+                    {c.redeemedBy ? ` · redeemedBy: ${c.redeemedBy}` : ""}
                   </div>
                 </div>
                 <div className="row" style={{ alignItems: "flex-start" }}>

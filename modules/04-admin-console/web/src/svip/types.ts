@@ -7,5 +7,6 @@ export type SvipCode = {
   validUntil: string | null;
   createdAt: string;
   redeemedAt: string | null;
+  redeemedBy?: string | null;
 };
 

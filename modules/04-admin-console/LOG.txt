@@ -77,3 +77,21 @@
   - 可新增公告、编辑标题/内容
   - 草稿可“发布”，已发布可“下线”
   - 支持搜索标题/内容、删除、重置示例数据
+
+--- 2026-01-21 ---
+分支：`feat/04-admin-console-users-benefits-v1`
+
+变更点：
+- 新增“用户与权益（占位）”页面：用户列表 + 激活码绑定记录（localStorage）。
+- SVIP 码支持“被绑定”状态记录：导出 CSV 增加 `redeemedBy` 字段，并修复 store 读写后不刷新的问题。
+
+验证日志：
+- `cd modules/04-admin-console/web && npm run build`（成功，vite build 输出见控制台）
+
+验收方式（本地）：
+- `cd modules/04-admin-console/web`
+- `npm install`
+- `npm run dev`
+- 打开 `http://localhost:5174` → 开发登录 → 点击“用户与权益（占位）”
+  - 新增用户/重命名/启用禁用/删除
+  - 绑定激活码：输入 `ABCD-EFGH-JKLM-NPQR`，出现绑定记录且 VIP 有效期更新

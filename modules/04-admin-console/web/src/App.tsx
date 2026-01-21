@@ -10,6 +10,7 @@ import { AnnouncementsPage } from "./cms/AnnouncementsPage";
 import { ExportsPage } from "./exports/ExportsPage";
 import { OpsExportsPage } from "./exports/OpsExportsPage";
 import { SvipCodesPage } from "./svip/SvipCodesPage";
+import { UsersPage } from "./users/UsersPage";
 
 export function App() {
   return (
@@ -76,6 +77,14 @@ export function App() {
         element={
           <RequireAuth>
             <SvipCodesPage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/users"
+        element={
+          <RequireAuth>
+            <UsersPage />
           </RequireAuth>
         }
       />
