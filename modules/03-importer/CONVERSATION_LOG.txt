@@ -31,3 +31,9 @@
 验收路径：
 - 查看：modules/03-importer/api/import.openapi.yaml
 - 检查包含路径：/import/upload 与 /import/status
+
+--- 2026-01-21 15:24 ---
+决定/结论：完成目录层级解析最小实现（支持根目录折叠、过滤垃圾文件、根目录文件归入“未分类”）。
+验收路径：
+- 运行：node modules/03-importer/tools/parse-hierarchy.mjs modules/03-importer/samples/hierarchy/file-list.txt > modules/03-importer/output/hierarchy.json
+- 查看：modules/03-importer/output/hierarchy.json
