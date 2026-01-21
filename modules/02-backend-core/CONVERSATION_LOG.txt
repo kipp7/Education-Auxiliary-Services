@@ -42,3 +42,8 @@
 - 启动：cd modules/02-backend-core && npm run dev
 - 证据日志：modules/02-backend-core/logs/m3-curl.txt
 - 新增接口：/content/banners /content/news /content/news/:id /content/recommendations /billing/plans
+
+--- 2026-01-21 16:11 ---
+里程碑：M4 联动验收记录（无 MCP 版）
+验收方式（路径）：
+- 查看/填写：modules/02-backend-core/logs/m4-miniapp-checklist.md

@@ -34,6 +34,11 @@ git checkout -b feat/02-backend-core-mvp
 - [ ] `/content/banners` `/content/news` `/content/news/:id`
 - [ ] `/content/recommendations` `/billing/plans`（先 mock）
 
+### M4：联动验收记录（无 MCP 版）
+> 目标：提供可复用的联动验收路径与记录模板，方便总控/测试按步骤验证。
+- 输出：`modules/02-backend-core/logs/m4-miniapp-checklist.md`
+- 验收：按 checklist 执行并把关键现象/错误码记录到文件中（可先留空，后续补充）
+
 ## 3. 输出与汇报
 每完成一个里程碑才提交/推送，并在 `modules/02-backend-core/CONVERSATION_LOG.txt` 记录验收方式（curl 示例）。
 
