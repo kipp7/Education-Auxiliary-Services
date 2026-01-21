@@ -18,6 +18,9 @@ tags:
   - name: records
   - name: content
   - name: billing
+  - name: progress
+  - name: wrongs
+  - name: favorites
 
 components:
   securitySchemes:
@@ -130,6 +133,53 @@ components:
       required: [submitted]
       properties:
         submitted: { type: integer, minimum: 0 }
+
+    ProgressResponse:
+      type: object
+      additionalProperties: false
+      required: [packageId, answeredCount, correctCount, totalCount, updatedAt]
+      properties:
+        packageId: { type: string }
+        answeredCount: { type: integer, minimum: 0 }
+        correctCount: { type: integer, minimum: 0 }
+        totalCount: { type: integer, minimum: 0 }
+        updatedAt:
+          type: string
+          format: date-time
+
+    WrongItem:
+      type: object
+      additionalProperties: false
+      required: [questionId, chapterId, wrongAt]
+      properties:
+        questionId: { type: string }
+        chapterId: { type: string }
+        wrongAt:
+          type: string
+          format: date-time
+
+    FavoriteUpsertRequest:
+      type: object
+      additionalProperties: false
+      required: [questionId]
+      properties:
+        questionId: { type: string }
+
+    FavoriteUpsertResponse:
+      type: object
+      additionalProperties: false
+      required: [favorited, questionId]
+      properties:
+        favorited: { type: boolean }
+        questionId: { type: string }
+
+    FavoriteDeleteResponse:
+      type: object
+      additionalProperties: false
+      required: [unfavorited, questionId]
+      properties:
+        unfavorited: { type: boolean }
+        questionId: { type: string }
 
     Video:
       type: object
@@ -453,6 +503,92 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/AnswerSubmitResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /progress:
+    get:
+      tags: [progress]
+      summary: 获取做题进度（草案）
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: packageId
+          in: query
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProgressResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /wrongs:
+    get:
+      tags: [wrongs]
+      summary: 获取错题列表（草案）
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/WrongItem"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /favorites:
+    post:
+      tags: [favorites]
+      summary: 收藏题目（草案）
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FavoriteUpsertRequest"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FavoriteUpsertResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+    delete:
+      tags: [favorites]
+      summary: 取消收藏（草案）
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: questionId
+          in: query
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FavoriteDeleteResponse"
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":

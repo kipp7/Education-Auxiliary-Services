@@ -102,6 +102,43 @@ const server = http.createServer(async (req, res) => {
       return json(res, 200, { submitted: body.answers.length });
     }
 
+    if (req.method === "GET" && path === "/progress") {
+      const packageId = url.searchParams.get("packageId");
+      if (!packageId) return error(res, 400, "INVALID_ARGUMENT", "Missing packageId");
+      return json(res, 200, {
+        packageId,
+        answeredCount: 1,
+        correctCount: 1,
+        totalCount: 10,
+        updatedAt: new Date().toISOString()
+      });
+    }
+
+    if (req.method === "GET" && path === "/wrongs") {
+      return json(res, 200, [
+        {
+          questionId: "q-1",
+          chapterId: "ch-1",
+          wrongAt: new Date().toISOString()
+        }
+      ]);
+    }
+
+    if (path === "/favorites") {
+      if (req.method === "POST") {
+        const body = (await readJson(req)) || {};
+        if (typeof body.questionId !== "string" || body.questionId.length === 0) {
+          return error(res, 400, "INVALID_ARGUMENT", "Missing questionId");
+        }
+        return json(res, 200, { favorited: true, questionId: body.questionId });
+      }
+      if (req.method === "DELETE") {
+        const questionId = url.searchParams.get("questionId");
+        if (!questionId) return error(res, 400, "INVALID_ARGUMENT", "Missing questionId");
+        return json(res, 200, { unfavorited: true, questionId });
+      }
+    }
+
     if (req.method === "GET" && path === "/videos") {
       const packageId = url.searchParams.get("packageId");
       if (!packageId) return error(res, 400, "INVALID_ARGUMENT", "Missing packageId");

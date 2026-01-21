@@ -1,0 +1,12 @@
+--- 2026-01-21 16:55 ---
+变更点（M6）：
+- 新增 mock 接口：GET /progress、GET /wrongs、POST/DELETE /favorites
+- 更新契约草案：modules/02-backend-core/contract/mvp.openapi.yaml（新增 progress/wrongs/favorites schemas + paths）
+- 新增一键证据脚本：modules/02-backend-core/scripts/gen-evidence-m6.ps1
+
+验收路径：
+- 启动：cd modules/02-backend-core && npm run dev
+- 健康检查：curl.exe http://localhost:3000/health
+- 证据脚本：powershell -ExecutionPolicy Bypass -File modules/02-backend-core/scripts/gen-evidence-m6.ps1
+- 证据文件：modules/02-backend-core/logs/m6-evidence.txt
+

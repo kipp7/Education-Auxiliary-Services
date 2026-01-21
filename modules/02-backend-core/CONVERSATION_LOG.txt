@@ -53,3 +53,12 @@
 验收方式（路径）：
 - 运行脚本：powershell -ExecutionPolicy Bypass -File modules/02-backend-core/scripts/gen-evidence.ps1
 - 产出文件：modules/02-backend-core/logs/m5-evidence.txt
+
+--- 2026-01-21 16:55 ---
+里程碑：M6 补齐 MVP 扩展接口（进度/错题/收藏）
+验收方式（路径）：
+- 启动：cd modules/02-backend-core && npm run dev
+- 新增接口：/progress /wrongs /favorites (POST/DELETE)
+- 一键证据：powershell -ExecutionPolicy Bypass -File modules/02-backend-core/scripts/gen-evidence-m6.ps1
+- 产出文件：modules/02-backend-core/logs/m6-evidence.txt
+下一步：请 99-hub 确认契约中 /progress /wrongs /favorites 的字段与错误码枚举（contract/mvp.openapi.yaml）。

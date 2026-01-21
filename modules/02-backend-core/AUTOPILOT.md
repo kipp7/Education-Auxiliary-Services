@@ -44,6 +44,14 @@ git checkout -b feat/02-backend-core-mvp
 - 输出：`modules/02-backend-core/logs/m5-evidence.txt`
 - 执行：`powershell -ExecutionPolicy Bypass -File modules/02-backend-core/scripts/gen-evidence.ps1`
 
+### M6：补齐 MVP 扩展接口（进度/错题/收藏）
+> 目标：对齐 `TASKS.md` 的 MVP 需求，补齐最常用的进度与错题/收藏接口（先 mock）。
+- 输出：契约更新 + Mock 路由 + 证据文件
+  - `modules/02-backend-core/contract/mvp.openapi.yaml`
+  - `modules/02-backend-core/src/server.js`
+  - `modules/02-backend-core/logs/m6-evidence.txt`
+  - `modules/02-backend-core/scripts/gen-evidence-m6.ps1`
+
 ## 3. 输出与汇报
 每完成一个里程碑才提交/推送，并在 `modules/02-backend-core/CONVERSATION_LOG.txt` 记录验收方式（curl 示例）。
 
