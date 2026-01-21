@@ -190,3 +190,13 @@
 - 首页 `index.wxss` 移除 tag selector（`page`/`button`），改为 class 选择器以兼容基础库校验
 - 登录弹窗按钮样式改用 `.action-btn` 统一承载，避免依赖 `button::after`
 
+--- 2026-01-21 ---
+分支：feat/01-miniapp-M1-tabbar-news-winE3-v1
+验收：
+- 微信开发者工具点击“编译/重新编译”，进入 `pages/start/index` 点击“立即进入”
+- 底部 Tab 可切换：`pages/index/index`（首页）/ `pages/library/index`（题库）/ `pages/news/index`（资讯）/ `pages/my/index`（我的）
+- 证据：`modules/01-miniapp/_evidence/M1/README.md`、`modules/01-miniapp/_evidence/M1/logs.json`
+变更点：
+- TabBar 调整为 首页/题库/资讯/我的（课程页改为二级页面入口）
+- 新增 `pages/news/index`（资讯 tab）占位列表，复用 `pages/index/home-config.js` 的 mock 资讯配置
+

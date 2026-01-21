@@ -4,6 +4,7 @@
     "pages/index/index",
     "pages/library/index",
     "pages/library/unit/index",
+    "pages/news/index",
     "pages/course/index",
     "pages/course/player",
     "pages/exam-menu/index",
@@ -49,8 +50,8 @@
         "selectedIconPath": "images/icon_zhangjielianxi@3x.png"
       },
       {
-        "pagePath": "pages/course/index",
-        "text": "课程",
+        "pagePath": "pages/news/index",
+        "text": "资讯",
         "iconPath": "images/icon_center_msg.png",
         "selectedIconPath": "images/icon_center_msg.png"
       },

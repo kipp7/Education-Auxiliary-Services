@@ -85,7 +85,7 @@ Page({
     wx.switchTab({ url: '/pages/library/index' })
   },
   goCourse() {
-    wx.switchTab({ url: '/pages/course/index' })
+    wx.navigateTo({ url: '/pages/course/index' })
   },
   goContinue() {
     const lastCourseId = wx.getStorageSync('last_course_id')
@@ -99,7 +99,7 @@ Page({
       return
     }
     wx.showToast({ title: '暂无学习记录', icon: 'none' })
-    wx.switchTab({ url: '/pages/course/index' })
+    wx.navigateTo({ url: '/pages/course/index' })
   },
   goRecord() {
     wx.navigateTo({ url: '/pages/record/index' })

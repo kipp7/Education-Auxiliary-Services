@@ -30,7 +30,7 @@ module.exports = {
           cover: '/images/BG.png',
           badge: 'SVIP',
           price: '¥199',
-          action: { type: 'switchTab', url: '/pages/course/index' },
+          action: { type: 'navigateTo', url: '/pages/course/index' },
         },
       ],
       banks: [
@@ -52,7 +52,7 @@ module.exports = {
           cover: '/images/BG.png',
           badge: '精品',
           price: '¥99',
-          action: { type: 'switchTab', url: '/pages/course/index' },
+          action: { type: 'navigateTo', url: '/pages/course/index' },
         },
       ],
       banks: [
