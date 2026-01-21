@@ -1,0 +1,8 @@
+# Generated outputs (keep sample JSONs committed only when intentional)
+output/**/unpacked/
+output/**/tmp.*.json
+output/**/.DS_Store
+output/**/Thumbs.db
+
+# Zip expansion caches created during local runs
+output/import-local/**/unpacked/
