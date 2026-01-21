@@ -44,7 +44,8 @@ function Has-PendingQueueItems {
   try {
     $remoteQueue = git show "$Remote/$MainBranch`:$QueueFile" 2>$null
     if ($LASTEXITCODE -eq 0 -and $remoteQueue) {
-      $lines = @($remoteQueue -split "`r?`n")
+      $text = @($remoteQueue) -join "`n"
+      $lines = @($text -split "`r?`n")
     }
   } catch {
     # ignore and fall back
@@ -70,7 +71,8 @@ function Get-QueuedFeatBranches {
   try {
     $remoteQueue = git show "$Remote/$MainBranch`:$QueueFile" 2>$null
     if ($LASTEXITCODE -eq 0 -and $remoteQueue) {
-      $lines = @($remoteQueue -split "`r?`n")
+      $text = @($remoteQueue) -join "`n"
+      $lines = @($text -split "`r?`n")
     }
   } catch {
     # ignore and fall back
@@ -114,7 +116,8 @@ function Try-ExtractMrInfoFromModuleLog {
 
   if (-not $LogText) { return $result }
 
-  $lines = @($LogText -split "`r?`n")
+  $text = @($LogText) -join "`n"
+  $lines = @($text -split "`r?`n")
 
   # Try to find the last "分支：" line from bottom.
   for ($i = $lines.Count - 1; $i -ge 0; $i--) {
