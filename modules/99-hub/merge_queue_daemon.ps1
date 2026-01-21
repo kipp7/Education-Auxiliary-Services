@@ -127,12 +127,19 @@ function Try-ExtractMrInfoFromModuleLog {
       $result.HasMrBlock = $true
       break
     }
+
+    # Fallback: tolerate mojibake separators (e.g. "ï¼š") and loose labels.
+    if ($line -match '(?:[:：]|ï¼š)\s*(feat\/\S+)\s*$') {
+      $result.Branch = $Matches[1]
+      $result.HasMrBlock = $true
+      break
+    }
   }
 
   # Try to find the last "验收" / "acceptance" block from bottom (capture up to 12 lines).
   for ($i = $lines.Count - 1; $i -ge 0; $i--) {
     $line = $lines[$i].Trim()
-    if ($line -match '^\s*(?:acceptance|\u9A8C\u6536\u65B9\u5F0F|\u9A8C\u6536)\s*[:：]') {
+    if ($line -match '^\s*(?:acceptance|\u9A8C\u6536\u65B9\u5F0F|\u9A8C\u6536|éªŒæ”¶)\s*(?:[:：]|ï¼š)') {
       $block = @()
       for ($j = $i; $j -lt [Math]::Min($i + 12, $lines.Count); $j++) {
         $t = $lines[$j].TrimEnd()
