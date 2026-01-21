@@ -156,3 +156,12 @@
 变更点：
 - 新增 logs/.gitignore，忽略证据脚本临时 server out/err 文件
 - 降低误提交临时日志的概率
+
+--- 2026-01-21 ---
+分支：feat/02-backend-core-gitignore-codex
+验收：
+- 查看：modules/02-backend-core/.gitignore
+- （可选）在 modules/02-backend-core 执行 npm i 后确认 node_modules 不入库
+变更点：
+- 新增模块级 .gitignore：忽略 node_modules 与本地 .env
+- 降低误提交本地依赖与环境文件的概率
