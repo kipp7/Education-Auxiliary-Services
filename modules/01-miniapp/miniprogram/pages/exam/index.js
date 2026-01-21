@@ -90,7 +90,9 @@ Page({
             return
           }
           const num = parseInt(res.result.questionNum, 10)
-          var questionList = that.getRandomArrayElements(list, Number.isFinite(num) ? num : list.length)
+          const wanted = Number.isFinite(num) ? num : list.length
+          const count = Math.max(1, Math.min(wanted, list.length))
+          var questionList = that.getRandomArrayElements(list, count)
           showQuestionList.push(questionList[0])
           showQuestionList.push(questionList[1] || questionList[0])
           showQuestionList.push(questionList[2] || questionList[0])
