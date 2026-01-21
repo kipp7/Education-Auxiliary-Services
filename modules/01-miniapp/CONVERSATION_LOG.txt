@@ -181,3 +181,12 @@
 - 课程页增加 SVIP 权限拦截占位（未绑定时引导去绑定）
 - 不改变课程卡片展示内容，仅控制进入播放页的入口
 
+--- 2026-01-21 ---
+分支：feat/01-miniapp-warnings-fix-winE3-v1
+验收：
+- 微信开发者工具启动后进入 `pages/index/index`（首页）不再报 “Some selectors are not allowed in component wxss”
+- MCP：`mp_getLogs` 无新增错误日志；首页可正常渲染并可切换到题库/课程
+变更点：
+- 首页 `index.wxss` 移除 tag selector（`page`/`button`），改为 class 选择器以兼容基础库校验
+- 登录弹窗按钮样式改用 `.action-btn` 统一承载，避免依赖 `button::after`
+
