@@ -138,3 +138,12 @@
 变更点：
 - 新增接口清单文档：API_ENDPOINTS.md（用于联调快速查阅）
 - 汇总各接口鉴权要求与用途
+
+--- 2026-01-21 ---
+分支：feat/02-backend-core-readme-codex
+验收：
+- 查看：modules/02-backend-core/README.md
+- 启动：cd modules/02-backend-core && npm run dev
+变更点：
+- 新增模块根目录说明：README.md（运行方式/契约/环境变量/证据入口）
+- 将联调入口集中到模块根目录便于查找
