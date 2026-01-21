@@ -1,3 +1,4 @@
+import React from "react";
 import { SvipCode, SvipCodeStatus } from "./types";
 
 function newId(prefix: string) {
@@ -26,6 +27,7 @@ const seed: SvipState = {
       validUntil: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30).toISOString(),
       createdAt: new Date(Date.now() - 1000 * 60 * 25).toISOString(),
       redeemedAt: null,
+      redeemedBy: null,
     },
   ],
 };
@@ -45,17 +47,18 @@ function writeState(state: SvipState) {
 }
 
 export function useSvipStore() {
-  const state = readState();
+  const [state, setState] = React.useState<SvipState>(() => readState());
 
-  const setState = (next: SvipState) => {
+  const setAndPersist = React.useCallback((next: SvipState) => {
+    setState(next);
     writeState(next);
-  };
+  }, []);
 
   return {
     state,
     actions: {
       resetToSeed() {
-        writeState(seed);
+        setAndPersist(seed);
       },
 
       generateBatch(count: number, validDays: number | null) {
@@ -72,15 +75,36 @@ export function useSvipStore() {
           validUntil,
           createdAt: now,
           redeemedAt: null,
+          redeemedBy: null,
         }));
 
-        setState({ codes: [...items, ...state.codes] });
+        setAndPersist({ codes: [...items, ...state.codes] });
       },
 
       revoke(id: string) {
-        setState({
+        setAndPersist({
           codes: state.codes.map((c) => (c.id === id ? { ...c, status: "REVOKED" } : c)),
         });
+      },
+
+      redeemByCode(codeRaw: string, redeemedBy: string | null) {
+        const code = codeRaw.trim().toUpperCase();
+        if (!code) return { ok: false as const, reason: "激活码不能为空" };
+
+        const item = state.codes.find((c) => c.code.toUpperCase() === code);
+        if (!item) return { ok: false as const, reason: "未找到该激活码" };
+        if (item.status !== "ACTIVE") return { ok: false as const, reason: `该码状态为 ${item.status}` };
+        if (item.validUntil) {
+          const expireAt = new Date(item.validUntil).getTime();
+          if (Number.isFinite(expireAt) && expireAt < Date.now()) {
+            return { ok: false as const, reason: "该码已过期" };
+          }
+        }
+
+        const now = new Date().toISOString();
+        const next: SvipCode = { ...item, status: "REDEEMED", redeemedAt: now, redeemedBy };
+        setAndPersist({ codes: state.codes.map((c) => (c.id === item.id ? next : c)) });
+        return { ok: true as const, code: next };
       },
     },
   };

@@ -10,9 +10,9 @@ function formatTime(iso: string | null) {
 }
 
 function toCsv(items: SvipCode[]) {
-  const header = ["code", "status", "validUntil", "createdAt", "redeemedAt"].join(",");
+  const header = ["code", "status", "validUntil", "createdAt", "redeemedAt", "redeemedBy"].join(",");
   const rows = items.map((c) =>
-    [c.code, c.status, c.validUntil ?? "", c.createdAt, c.redeemedAt ?? ""]
+    [c.code, c.status, c.validUntil ?? "", c.createdAt, c.redeemedAt ?? "", c.redeemedBy ?? ""]
       .map((x) => `"${String(x).replaceAll("\"", "\"\"")}"`)
       .join(","),
   );
@@ -110,9 +110,21 @@ export function SvipCodesPage() {
                   </div>
                   <div className="muted">
                     createdAt: {formatTime(c.createdAt)} · validUntil: {formatTime(c.validUntil)}
+                    {c.redeemedBy ? ` · redeemedBy: ${c.redeemedBy}` : ""}
                   </div>
                 </div>
                 <div className="row" style={{ alignItems: "flex-start" }}>
+                  <button
+                    className="btn"
+                    disabled={c.status !== "ACTIVE"}
+                    onClick={() => {
+                      const who = prompt("绑定到用户（ID/昵称，占位）", "user_1") ?? "";
+                      const res = actions.redeemByCode(c.code, who.trim() || null);
+                      if (!res.ok) alert(res.reason);
+                    }}
+                  >
+                    绑定（占位）
+                  </button>
                   <button
                     className="btn"
                     disabled={c.status === "REVOKED"}
