@@ -176,9 +176,13 @@ function AutoEnqueue-FromModuleLogs {
   foreach ($moduleDir in $AutoEnqueueModuleDirs) {
     $prefix = "$Remote/feat/$moduleDir-"
     $logPath = "modules/$moduleDir/CONVERSATION_LOG.txt"
+    $matched = 0
+    $mrBlocks = 0
+    $newItems = 0
 
     foreach ($ref in $remoteRefs) {
       if (-not $ref.StartsWith($prefix)) { continue }
+      $matched++
 
       $branch = $ref.Substring($Remote.Length + 1) # strip "origin/"
 
@@ -200,6 +204,7 @@ function AutoEnqueue-FromModuleLogs {
 
       $mr = Try-ExtractMrInfoFromModuleLog -LogText $logText -BranchName $branch -ModuleDir $moduleDir
       if (-not $mr.HasMrBlock) { continue }
+      $mrBlocks++
       $featBranch = $mr.Branch
       if (-not $featBranch.StartsWith("feat/")) { continue }
       if ($queuedSet.Contains($featBranch)) { continue }
@@ -210,6 +215,11 @@ function AutoEnqueue-FromModuleLogs {
         Acceptance = $mr.Acceptance
         LogPath = $logPath
       }
+      $newItems++
+    }
+
+    if ($matched -gt 0) {
+      Write-Log "AutoEnqueueFromModuleLogs: module=$moduleDir matched=$matched mrBlocks=$mrBlocks new=$newItems"
     }
   }
 
