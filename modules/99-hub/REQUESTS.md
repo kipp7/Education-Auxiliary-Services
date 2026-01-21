@@ -54,6 +54,7 @@
 - [!] feat/02-backend-core-clean-logs-script-codex → 02-backend-core：验收：见 modules/02-backend-core/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
 - [!] feat/01-miniapp-M6-key-interactions-winE3-v1 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
 - [!] feat/01-miniapp-M7-home-commercial-actions-winE3-v1 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段 (blocked: conflict)
+- [ ] feat/01-miniapp-favorites-local-winE3-v1 → 01-miniapp：验收：见 modules/01-miniapp/CONVERSATION_LOG.txt 最新一段
 - [x] feat/03-importer-run-samples-w03-v2 → 03-importer：验收：见 modules/03-importer/CONVERSATION_LOG.txt 最新一段
 - [x] feat/04-admin-console-ui-polish-v1 → 04-admin-console：验收：见 modules/04-admin-console/CONVERSATION_LOG.txt 最新一段
 - [x] feat/02-backend-core-faq-codex → 02-backend-core：验收：见 modules/02-backend-core/CONVERSATION_LOG.txt 最新一段
