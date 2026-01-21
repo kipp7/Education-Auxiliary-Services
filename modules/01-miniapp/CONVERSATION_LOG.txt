@@ -83,3 +83,12 @@
 - 题库页按年级动态生成科目列表（教学进度 gating）
 - 切年级时自动纠正当前科目，避免选中不可见科目导致前缀异常
 
+--- 2026-01-21 ---
+分支：feat/01-miniapp-course-progress-list-winE3
+验收：
+- `pages/start/index` → 立即进入 → 底部课程 `pages/course/index`
+- 进入播放页 `pages/course/player?id=c_demo_1` 点击“模拟播放 +10s”后返回课程列表，观察该课程显示“进度：xx%（xxs）”
+变更点：
+- 课程列表读取本地 `course_progress_<id>` 并展示观看进度
+- 回到课程页时自动刷新进度（onShow）
+

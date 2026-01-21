@@ -25,6 +25,7 @@
         <view class="title">{{item.title}}</view>
         <view class="desc">{{item.desc}}</view>
         <view class="meta">时长：{{item.durationText}}</view>
+        <view class="meta">{{item.progressText}}</view>
       </view>
     </view>
   </view>
