@@ -86,3 +86,13 @@
 - 打开 http://localhost:5174 → 开发登录 → 点击“试题管理”
 - 可新增试题（学段/科目/单元/题型、题干）；可编辑/删除；可按关键字筛选；可导出 CSV
 - 刷新页面验证 localStorage 持久化
+--- 2026-01-21 17:37 ---
+里程碑：M12 订单/套餐管理（最小骨架）
+验收路径：
+- cd modules/04-admin-console/web
+- npm install
+- npm run dev
+- 打开 http://localhost:5174 → 开发登录 → 点击“订单/套餐管理”
+- 套餐：可新增/编辑/删除/启用停用
+- 订单：可新增占位订单、改状态、删除、导出 CSV
+- 刷新页面验证 localStorage 持久化

@@ -35,6 +35,9 @@ export function HomePage() {
             <Link className="btn" to="/questions">
               试题管理（占位）
             </Link>
+            <Link className="btn" to="/orders">
+              订单/套餐管理（占位）
+            </Link>
             <Link className="btn" to="/question-bank">
               题库管理（占位）
             </Link>
