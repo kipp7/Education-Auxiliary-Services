@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 function usage() {
-  console.error('Usage: node modules/03-importer/tools/parse-txt.mjs <file> [--category <path>]');
+  console.error('Usage: node modules/03-importer/tools/parse-txt.mjs <file> [--category <path>] [--out <jsonFile>]');
   process.exit(2);
 }
 
@@ -231,10 +231,16 @@ if (args.length === 0) usage();
 
 let file = null;
 let category = '';
+let outFile = '';
 for (let i = 0; i < args.length; i++) {
   const a = args[i];
   if (a === '--category') {
     category = args[i + 1] || '';
+    i++;
+    continue;
+  }
+  if (a === '--out') {
+    outFile = args[i + 1] || '';
     i++;
     continue;
   }
@@ -254,4 +260,10 @@ const result = {
   errors,
 };
 
-process.stdout.write(JSON.stringify(result, null, 2));
+const json = JSON.stringify(result, null, 2);
+if (outFile) {
+  const outAbs = path.resolve(process.cwd(), outFile);
+  fs.writeFileSync(outAbs, json, 'utf8');
+} else {
+  process.stdout.write(json);
+}
