@@ -248,3 +248,11 @@
 - 课程页补齐筛选结构（初中：年级/上下册/科目；单招：科目/题型）并驱动 mock 列表
 - 我的页补齐学习记录入口，并将 cell 图标/箭头样式改为 class，避免使用 `image` tag selector
 
+--- 2026-01-21 ---
+分支：feat/01-miniapp-M7-home-commercial-actions-winE3-v1
+验收：
+- 首页 banner 第 3 张点击可跳转到 `pages/news/index`（资讯 tab）
+- 首页“资讯”列表第 1 条点击可跳转到 `pages/news/index`
+变更点：
+- 首页商业配置（`pages/index/home-config.js`）补齐“资讯 tab”跳转样例，便于演示商业位可配置跳转
+

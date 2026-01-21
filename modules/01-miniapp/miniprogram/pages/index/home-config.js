@@ -15,9 +15,9 @@ module.exports = {
     },
     {
       id: 'home_b3',
-      title: 'SVIP 绑定 · 解锁课程能力（Mock）',
+      title: '资讯 · 学习技巧与运营内容（Mock）',
       image: '/images/BG.png',
-      action: { type: 'navigateTo', url: '/pages/svip/bind/index' },
+      action: { type: 'switchTab', url: '/pages/news/index' },
     },
   ],
   recommendByStage: {
@@ -83,7 +83,7 @@ module.exports = {
       id: 'news_1',
       title: '学习技巧：如何规划 30 分钟复习？',
       desc: '高频建议 · 适合日常训练',
-      action: { type: 'toast', text: '资讯详情待接入（Mock）' },
+      action: { type: 'switchTab', url: '/pages/news/index' },
     },
     {
       id: 'news_2',
